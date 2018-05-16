@@ -65,11 +65,15 @@ class ExplorerTools:
         return args
 
     def set_collect_mode(self):
+        """
+        Read and set collect_mode ('s' or 't').
+        :return: collect mode value
+        """
         if self.args.collect_mode:
             if self.args.collect_mode in settings.COLLECT_MODE_CHOICES:
                 return self.args.collect_mode
             else:
-                sys.exit("Wrong collect_mode, available collect_mode are: "+sstr(ettings.COLLECT_MODE_CHOICES))
+                sys.exit("Wrong collect_mode, available collect_mode are: "+str(ettings.COLLECT_MODE_CHOICES))
 
     def set_language(self):
         """
@@ -108,7 +112,10 @@ class ExplorerTools:
                 return settings.OUTPUT_FORMAT_DEFAULT
 
     def set_classname(self):
-
+        """
+        Read and set classname.
+        :return: classname value if mentioned or else return none.
+        """
         if self.args.classname:
             return self.args.classname
         else:
