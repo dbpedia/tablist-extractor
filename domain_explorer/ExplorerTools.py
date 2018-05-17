@@ -3,7 +3,8 @@ import sys
 import rdflib
 from collections import OrderedDict
 import settings
-
+import Utilities
+import Selector 
 
 class ExplorerTools:
     """
@@ -27,6 +28,12 @@ class ExplorerTools:
         self.language = self.set_language()
         self.output_format = self.set_output_format()
         self.classname = self.set_classname()
+
+        self.utils = Utilities.Utilities(self.language, self.resource, self.collect_mode)
+
+        # if user doesn't choose for single resource
+        if self.args.collect_mode != 's':
+            self.selector = Selector.Selector(self.utils)
 
     def parse_arguments(self):
         """
@@ -120,3 +127,36 @@ class ExplorerTools:
             return self.args.classname
         else:
             return None
+
+    def get_uri_resources(self):
+        """
+        Read from Selector class resources that have been found.
+        uri_resource_file stands for file that contain uri's list.
+        uri_resource_list will contain a uri's list represented all resources.
+        :return: list of uri
+        """
+        uri_resource_list = []
+        # if it's not a single resource
+        if self.args.collect_mode != 's':
+            # if there are resource
+            if self.selector.tot_res_interested > 0:
+                self.selector.collect_resources()
+                uri_resource_file = self.selector.res_list_file
+                uri_resource_list = self.extract_resources(uri_resource_file)
+            else:
+                sys.exit("No resources found. Please check arguments passed to pyDomainExplorer")
+        else:
+            uri_resource_list.append(self.args.resource)
+        return uri_resource_list
+
+    def extract_resources(self, uri_resource_file):
+        """
+        From uri_resource_file extract all resources.
+        Delete last element that is empty due to '\n'
+        :param uri_resource_file: file that contains resources' uri
+        :return: list of uri
+        """
+        content = open(uri_resource_file).read().split('\n')
+        # Last resource is empty due to '\n'
+        content = content[:-1]
+        return content
