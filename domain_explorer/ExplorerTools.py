@@ -4,7 +4,7 @@ import rdflib
 from collections import OrderedDict
 import settings
 import Utilities
-import Selector 
+import Selector, HtmlTableParser, wikiParser
 
 class ExplorerTools:
     """
@@ -28,6 +28,9 @@ class ExplorerTools:
         self.language = self.set_language()
         self.output_format = self.set_output_format()
         self.classname = self.set_classname()
+
+        #to store parsed information
+        self.parse_info = {}
 
         self.utils = Utilities.Utilities(self.language, self.resource, self.collect_mode)
 
@@ -146,7 +149,7 @@ class ExplorerTools:
             else:
                 sys.exit("No resources found. Please check arguments passed to pyDomainExplorer")
         else:
-            uri_resource_list.append(self.args.resource)
+            uri_resource_list.append(self.args.source)
         return uri_resource_list
 
     def extract_resources(self, uri_resource_file):
@@ -160,3 +163,56 @@ class ExplorerTools:
         # Last resource is empty due to '\n'
         content = content[:-1]
         return content
+
+    def print_progress_bar(self, iteration, total):
+        """
+        Print iterations progress
+        :param iteration: number of actual iteration
+        :param total: total iteration to do
+        :return: nothing, print progress bar
+        """
+        self.utils.print_progress_bar(iteration, total)
+
+    def html_object_getter(self, name):
+        """
+
+        :param name: resource
+        :return: html object that represents resource
+        """
+        return self.utils.html_object_getter(name)
+
+    def html_table_parser(self, res_name):
+        """
+        Method to instantiate HtmlTableParser, analyze tables and then give in output a list of tables.
+        :param res_name: resource that has to be analyzed
+        :return: list of tables found
+        """
+        html_doc_tree = self.html_object_getter(res_name)
+        # if html doc is defined
+        if html_doc_tree:
+            graph = rdflib.Graph()
+            # instantiate html table parser
+            html_table_parser = HtmlTableParser.HtmlTableParser(html_doc_tree, self.language, graph,
+                                                                self.resource, res_name, self.utils, False)
+
+            # if there are tables to analyze
+            if html_table_parser.tables_num>0:
+                #append parsed information
+                self.parse_info[res_name] = html_table_parser.tables
+                print(self.parse_info)
+                print(self.parse_info[res_name][0].tag)
+                # analyze and parse tables
+                html_table_parser.analyze_tables()
+                return html_table_parser.all_tables
+            # if there aren't tables to analyze result will be empty
+            else:
+                return ""
+        # if html doc is not defined result will be empty
+        else:
+            return ""
+
+    def wiki_parser(self, res_name):
+        wiki_parser = wikiParser.wikiParser(self.language, res_name, self.utils)
+        resDict = wiki_parser.main_parser()
+
+        return resDict

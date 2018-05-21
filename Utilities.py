@@ -284,3 +284,149 @@ class Utilities:
 		except:
 			logging.info("Lost resources with this offset range: " + str(offset) + " / " + str(offset + 1000))
 			print ("ERROR RETRIEVING RESOURCES FROM " + str(offset) + " TO " + str(offset + 1000))
+
+	def print_progress_bar(self, iteration, total, prefix='Progress: ', suffix='Complete', decimals=1, length=30,
+							fill='#'):
+		"""
+		Call in a loop to create terminal progress bar
+		@params:
+		    iteration   - Required  : current iteration (Int)
+		    total       - Required  : total iterations (Int)
+		    prefix      - Optional  : prefix string (Str)
+		    suffix      - Optional  : suffix string (Str)
+		    decimals    - Optional  : positive number of decimals in percent complete (Int)
+		    length      - Optional  : character length of bar (Int)
+		    fill        - Optional  : bar fill character (Str)
+		"""
+		percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+		filled_length = int(length * iteration // total)
+		bar = fill * filled_length + '-' * (length - filled_length)
+		print('\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix))
+
+	def html_answer(self, url_passed):
+		"""
+		Open url passed to method
+		:param url_passed: url to analyze
+		:return: html document of that url
+		"""
+		try:
+			call = urllib.urlopen(url_passed)
+			html_document = lxml.html.parse(call, self.parser)
+			return html_document
+		except IOError:
+			print ("Try, again, some problems due to Internet connection, url: " + url_passed)
+
+			return "Internet Error"
+		except ValueError:
+			print ("Not a HTML object.")
+			return "Value Error"
+		except:
+			print "Exception with url:" + str(url_passed)
+			return "General Error"
+
+	def html_object_getter(self, resource):
+		"""
+		Get html object of resource given in input
+		:param resource: resource to transform in html
+		:return: resource in html
+		"""
+		html_url = self.url_composer(resource, 'html')
+		is_answer_ok = False
+		attempts = 0
+		html_answer = None
+
+		while is_answer_ok is not True and attempts < self.max_attempts:
+			try:
+				attempts += 1
+				html_answer = self.html_answer(html_url)
+				if type(html_answer) != str:
+					is_answer_ok = self.test_html_result(html_answer)
+				else:
+					time.sleep(self.time_to_attend)
+			except:
+				print("Error trying to get html object")
+
+		if is_answer_ok:
+			print("Html document well formed..")
+		else:
+			print("Error trying to get html object : %s" % html_answer)
+			html_answer = None
+		return html_answer
+
+	def test_html_result(self, html_doc):
+		"""
+		Test if html document created is well-formed
+		:param html_doc: html document to test
+		:return:
+		    - True if html_doc is well-formed
+		    - False otherwise.
+		"""
+		if type(html_doc) == str and "Error" in html_doc:
+			return False
+		else:
+			return True
+
+	def delete_accented_characters(self, text):
+		"""
+		Method used to delete all accented characters from the name of resource.
+		It takes in input one string called text and gives in output another string that doesn't have accented
+		characters that it's similar to the previous form.
+		:param text: string where you have to delete accented charactes
+		:return:
+		"""
+		try:
+			text = unicode(text, "utf-8")
+			result = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
+			return result
+		except TypeError:
+			return text
+
+	def clean_dictionary(self, language, listDict) :
+		''' Deletes all entries with an empty values, thus 'cleaning' the dictionary.
+
+		:param listDict: dictionary obtained from parsing.
+
+		:return: a dictionary without empty values.
+		'''
+		for key in listDict.keys() :
+			if listDict[key] == '' :
+				listDict.pop(key)
+			#if key in EXCLUDED_SECTIONS[language]:  #remove excluded sections
+			#	listDict.pop(key)
+			else:
+				listDict[key] = self.remove_symbols(listDict[key])
+
+		return listDict
+
+
+	def remove_symbols(self, listDict_key):
+		''' removes other sybols are garbage characters that pollute the values to be inserted .
+
+		:param listDict_key: dictionary entries(values) obtained from parsing.
+
+		:return: a dictionary without empty values.
+		'''
+		for i in range(len(listDict_key)):
+			value = listDict_key[i]
+			if type(value)==list:   #handle recursive list elements
+				value=self.remove_symbols(value)
+			else: #replace this symbol from list values; as it broke the code in some cases
+				listDict_key[i] = value.replace('&nbsp;','')
+		return listDict_key
+
+	def json_req(req):
+		''' Performs a request to an online service and returns the answer in JSON.
+
+		:param req: URL representing the request.
+
+		:return: a JSON representation of data obtained from a call to an online service.
+		'''
+		try:
+			call = urllib.urlopen(req)
+			answer = call.read()
+			json_ans = json.loads(answer)
+			return json_ans
+		except:
+			err = str(sys.exc_info()[0])
+			print("Error: " + err + " - on request " + req)
+			raise
