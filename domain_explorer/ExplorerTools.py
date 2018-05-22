@@ -5,6 +5,7 @@ from collections import OrderedDict
 import settings
 import Utilities
 import Selector, HtmlTableParser, wikiParser
+import json
 
 class ExplorerTools:
     """
@@ -28,9 +29,6 @@ class ExplorerTools:
         self.language = self.set_language()
         self.output_format = self.set_output_format()
         self.classname = self.set_classname()
-
-        #to store parsed information
-        self.parse_info = {}
 
         self.utils = Utilities.Utilities(self.language, self.resource, self.collect_mode)
 
@@ -197,22 +195,23 @@ class ExplorerTools:
 
             # if there are tables to analyze
             if html_table_parser.tables_num>0:
-                #append parsed information
-                self.parse_info[res_name] = html_table_parser.tables
-                print(self.parse_info)
-                print(self.parse_info[res_name][0].tag)
                 # analyze and parse tables
                 html_table_parser.analyze_tables()
-                return html_table_parser.all_tables
+                return html_table_parser.all_tables, html_table_parser.tableStrList
             # if there aren't tables to analyze result will be empty
             else:
-                return ""
+                return "", ""
         # if html doc is not defined result will be empty
         else:
-            return ""
+            return "", ""
 
     def wiki_parser(self, res_name):
         wiki_parser = wikiParser.wikiParser(self.language, res_name, self.utils)
         resDict = wiki_parser.main_parser()
 
         return resDict
+
+    def write_parse_info(self, all_resources_parse_info):
+
+        with open('Resources/'+self.resource+'.txt', 'w') as outfile:
+            json.dump(all_resources_parse_info, outfile, indent=4)

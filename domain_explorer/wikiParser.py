@@ -40,6 +40,7 @@ class wikiParser:
         self.language = language
         self.resource = resource
         self.utils = utils
+        self.logging = self.utils.logging
 
     def main_parser(self):
         ''' **Main method**, obtains a **JSON** *representation* of a resource and stores the relevant data 
@@ -66,6 +67,9 @@ class wikiParser:
                 lists.update(parsed_sect)
 
         cleanlists = self.utils.clean_dictionary(self.language, lists)  #clean resulting dictionary and leave only meaningful keys
+
+        self.logging.info("Lists found under Sections: "+ str(cleanlists.keys()))
+        print("Lists found under Sections: "+ str(cleanlists.keys()))
 
         return cleanlists
 

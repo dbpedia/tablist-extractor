@@ -1,0 +1,106 @@
+{
+    "William_Gibson": [
+        {
+            "tables_data": ""
+        }, 
+        {
+            "lists_data": {
+                "Selected bibliography - Short stories": [
+                    "'' {{Burning Chrome (short story collection)}} '' (1986, preface by Bruce Sterling), collects Gibson's early short fiction, listed by original publication date:", 
+                    [
+                        "\" {{Fragments of a Hologram Rose}} \" (1977, ''UnEarth 3'')"
+                    ], 
+                    [
+                        "\" {{Johnny Mnemonic}} \" (1981, '' {{Omni (magazine)}} '')"
+                    ], 
+                    [
+                        "\" {{The Gernsback Continuum}} \" (1981, ''Universe 11'')"
+                    ], 
+                    [
+                        "\" {{Hinterlands (short story)}} \" (1981, ''Omni'')"
+                    ], 
+                    [
+                        "\" {{New Rose Hotel}} \" (1981, ''Omni'')"
+                    ], 
+                    [
+                        "\" {{The Belonging Kind}} \", with {{John Shirley}} (1981, ''Shadows 4'')"
+                    ], 
+                    [
+                        "\" {{Burning Chrome}} \" (1982, ''Omni'')"
+                    ], 
+                    [
+                        "\" {{Red Star, Winter Orbit}} \", with {{Bruce Sterling}} (1983, ''Omni'')"
+                    ], 
+                    [
+                        "\" {{The Winter Market}} \" (Nov. 1985, ''Vancouver'')"
+                    ], 
+                    [
+                        "\" {{Dogfight (short story)}} \", with {{Michael Swanwick}} (1985, ''Omni'')"
+                    ], 
+                    "\" {{Skinner's Room}} \" (Nov. 1991, ''Omni'')"
+                ], 
+                "Further reading": [
+                    "", 
+                    "", 
+                    "", 
+                    ""
+                ], 
+                "Selected bibliography - Novels": [
+                    " {{Sprawl trilogy}} :", 
+                    [
+                        "'' {{Neuromancer}} '' (1984)"
+                    ], 
+                    [
+                        "'' {{Count Zero}} '' (1986)"
+                    ], 
+                    [
+                        "'' {{Mona Lisa Overdrive}} '' (1988)"
+                    ], 
+                    "'' {{The Difference Engine}} '' (1990; with {{Bruce Sterling}} )", 
+                    " {{Bridge trilogy}} :", 
+                    [
+                        "'' {{Virtual Light}} '' (1993)"
+                    ], 
+                    [
+                        "'' {{Idoru}} '' (1996)"
+                    ], 
+                    [
+                        "'' {{All Tomorrow's Parties (novel)}} '' (1999)"
+                    ], 
+                    "Blue Ant trilogy ( {{Hubertus Bigend}} ):", 
+                    [
+                        "'' {{Pattern Recognition (novel)}} '' (2003)"
+                    ], 
+                    [
+                        "'' {{Spook Country}} '' (2007)"
+                    ], 
+                    [
+                        "'' {{Zero History}} '' (2010)"
+                    ], 
+                    "'' {{The Peripheral}} '' (2014)", 
+                    "'' {{Archangel (Gibson comic)}} '' (2017)( {{Graphic novel}} )", 
+                    "'' {{Agency (novel)}} '' (2018)"
+                ], 
+                "External links": [
+                    "http://www.williamgibsonbooks.com/ ", 
+                    "Bibliography from the Centre for Language and Literature, {{Athabasca University}} ", 
+                    "", 
+                    "0317218 ", 
+                    "172 (including bibliography of selected interviews)", 
+                    "William Gibson aleph \u2013 an extensive site dedicated to the author and his works (last updated Nov 2010)", 
+                    "", 
+                    "1282 "
+                ], 
+                "Selected bibliography - Nonfiction": [
+                    "'' {{Agrippa (A Book of the Dead)}} '' (1992) \u2013 a poem and {{artist's book}} ", 
+                    "'' {{Distrust That Particular Flavor}} '' (2012)", 
+                    "\" {{Disneyland with the Death Penalty}} \" \u2013 a 1993 '' {{Wired (magazine)}} '' article"
+                ], 
+                "Collaborations, adaptations, and miscellanea - Essays and short-form nonfiction": [
+                    "", 
+                    "The blog was largely discontinued by July 2009, after the writer had undertaken prolific microblogging on Twitter under the ''nom de plume'' \"GreatDismal\".In 2012, Gibson released a collection of his non-fiction works entitled '' {{Distrust That Particular Flavor}} ''."
+                ]
+            }
+        }
+    ]
+}

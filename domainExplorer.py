@@ -33,6 +33,7 @@ def analyze_uri_resource_list(uri_resource_list):
 	:return:
 	"""
 	total_resources = len(uri_resource_list)
+	all_resources_parse_info = {}
 	for single_uri in uri_resource_list:
 		print "Resource: ", single_uri
 		# update number of resources analyzed
@@ -40,9 +41,14 @@ def analyze_uri_resource_list(uri_resource_list):
 		# progress bar to warn user about how many resources have been analyzed
 		explorer_tools.print_progress_bar(explorer_tools.utils.res_analyzed, total_resources)
 		# get section and headers
-		get_resource_sections_and_headers(single_uri)
+		table_parse_info = get_resource_sections_and_headers(single_uri)
 		# get titles and list contents
-		get_titles_and_list_contents(single_uri)
+		resDict = get_titles_and_list_contents(single_uri)
+
+		all_resources_parse_info[single_uri] = [{'tables_data':table_parse_info}, {'lists_data':resDict}]
+
+	#Write parse info of tables and lists to json file
+	explorer_tools.write_parse_info(all_resources_parse_info)
 
 def get_resource_sections_and_headers(res_name):
 	"""
@@ -53,12 +59,14 @@ def get_resource_sections_and_headers(res_name):
 	:return:
 	"""
 	# Get all tables
-	all_tables = explorer_tools.html_table_parser(res_name)
+	all_tables, table_parse_info = explorer_tools.html_table_parser(res_name)
+	return table_parse_info
 
 def get_titles_and_list_contents(res_name):
 	resDict = explorer_tools.wiki_parser(res_name)
 
-	print(resDict)
+	return resDict
+
 
 if __name__ == "__main__":
     # instantiate tools that are useful for domain exploration

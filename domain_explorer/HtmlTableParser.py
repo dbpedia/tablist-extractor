@@ -5,6 +5,8 @@ from lxml import etree
 import re
 import string
 import Table
+import json
+
 
 __author__ = 'papalinis - Simone Papalini - papalini.simone.an@gmail.com'
 
@@ -64,6 +66,9 @@ class HtmlTableParser:
         self.tables_num = 0  # number of tables
         self.tables_analyzed = 0  # number of tables analyzed
 
+        #to store parsed information
+        self.table_parse_info_dict = {}
+
         # Errors or problems regarding a table
         # This value is used to count the times parser cannot find the text inside a header cell
         self.headers_not_resolved = 0
@@ -108,13 +113,22 @@ class HtmlTableParser:
         for collaps_table in collapsible_tables:
             self.tables.append(collaps_table)
 
-        #print(type(self.tables[0].getroottree()))
-        #print(etree.tostring(self.tables[0]))
-        #print(self.etree_to_dict(self.tables[1], True))
-        #print("---")
+        #self.parse_info[self.resource] = tableStrDict
+        #with open('parse_data.txt', 'w') as outfile:
+        #    json.dump(self.parse_info, outfile)
+
+        #with open('data.txt', 'r') as infile:
+        #    jsonStr=json.load(infile)
+        #print(len(jsonStr['Kobe_Bryant']))
 
         # If at least a table is found
         if self.tables:
+            self.tableStrList = []
+            for table in self.tables:
+                tableStr = etree.tostring(table)
+                tableStr = tableStr.replace('"','\"').replace('\n','')
+                self.tableStrList.append(tableStr.encode('utf-8'))
+
             # count the number of tables and add it to the total count
             self.tables_num += len(self.tables)
             # Adding tables number to the total, used to print a final report
