@@ -215,3 +215,13 @@ class ExplorerTools:
 
         with open('Resources/'+self.resource+'.txt', 'w') as outfile:
             json.dump(all_resources_parse_info, outfile, indent=4)
+
+    def append_parse_info(self, all_resources_parse_info):
+
+        with open('Resources/'+self.resource+'.txt', 'r+') as outfile:
+            outfile.seek(0,2)
+            position = outfile.tell() -1
+            outfile.seek(position)
+            for key, value in all_resources_parse_info.items():
+                outfile.write( ",\n\t\"{res_name}\":\n\t{parse_info}\n".format(res_name=key, parse_info=json.dumps(value)))
+            outfile.write("}")
