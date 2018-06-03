@@ -69,7 +69,6 @@ class wikiParser:
         cleanlists = self.utils.clean_dictionary(self.language, lists)  #clean resulting dictionary and leave only meaningful keys
 
         self.logging.info("Lists found under Sections: "+ str(cleanlists.keys()))
-        print("Lists found under Sections: "+ str(cleanlists.keys()))
 
         return cleanlists
 

@@ -19,6 +19,10 @@
 * `-f --output_format`: `1` or `2`.
 	* Integer which can be 1 or 2. Each value corresponds to a different organization of output file.
 
+By running the above command, a `domain_settings.py` file is created in `domain_explorer` directory. `domain_settings.py` contains all sections and headers found in exploration of the domain. You will observe a dictionary structure and some fields that have to be filled.
+
+* Next step is to fill `domain_settings.py`. Remember that you are writing mapping rules, so you are making an association between a table's/list's header (or sections) with a dbpedia ontology property.
+
 ### Examples
 
 * `python domainExplorer.py s Kobe_Bryant en -f 2`

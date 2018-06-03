@@ -6,6 +6,7 @@ import settings
 import Utilities
 import Selector, HtmlTableParser, wikiParser
 import json
+import urllib
 
 class ExplorerTools:
     """
@@ -225,3 +226,102 @@ class ExplorerTools:
             for key, value in all_resources_parse_info.items():
                 outfile.write( ",\n\t\"{res_name}\":\n\t{parse_info}\n".format(res_name=key, parse_info=json.dumps(value)))
             outfile.write("}")
+
+    def make_sparql_dbpedia(self, service, data):
+        """
+        Method for making a sparql query on dbpedia endpoint.
+
+        :param service: type of service, in order to create a unique method to make sparql query.
+        :param data: information to use in sparql query.
+        :return: response given by dbpedia endpoint
+        """
+        url = ""
+        if service == "check_property":
+            # header as wrote in table
+            query = settings.SPARQL_CHECK_PROPERTY[0] +\
+                    '{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + data + '"@' + self.language + "} UNION " +\
+                    '{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + data.lower() + '"@' + self.language + "}" +\
+                    settings.SPARQL_CHECK_PROPERTY[2]
+            # If I change chapter language of Utilities I will make a sparql query to dbpedia.org ontology
+            self.utils.language = "en"
+            self.utils.dbpedia_sparql_url = self.utils.dbpedia_selection()
+            url = self.utils.url_composer(query, "dbpedia")
+            # restore chapter given by user
+            self.utils.language = self.language
+            self.utils.dbpedia_sparql_url = self.utils.dbpedia_selection()
+        # get endpoint's answer
+        answer = self.utils.json_answer_getter(url)
+        return answer
+
+    def get_ontology_name_from_uri(self, uri):
+        """
+        Function to read only ontology property.
+
+        :param uri: uri's resource
+        :return: property name
+        """
+        # split by '/', i need last two elements (e.g. 'resource/Kobe_Bryant' or 'ontology/weight')
+        split_uri = uri.split("/")
+        res_name = split_uri[-1].encode('utf-8')
+        return res_name
+
+    def get_resource_type(self, resource):
+        ''' Asks all rdf:type of current resource to the local SPARQL endpoint.
+
+        :param resource: current resource with unknown type.
+        :param lang: language/endpoint.
+
+        :return: a list containing all types associated to the resource in the local endpoint.
+        '''
+        lang = self.language
+        if lang == 'en':
+            local = ""
+        else:
+            local = lang + "."
+        type_query = "SELECT distinct ?t WHERE {<http://" + local + "dbpedia.org/resource/" + resource + "> a ?t}"
+        answer = self.sparql_query(type_query, lang)
+        results = answer['results']['bindings']
+        types = []
+        for res in results:
+            full_uri = res['t']['value']  # e.g. http://dbpedia.org/ontology/Person
+            class_type = full_uri.split("/")[-1]  # e.g Person
+            types.append(class_type)
+        return types
+
+    def sparql_query(self, query, lang):
+        ''' Returns a JSON representation of data from a query to a given SPARQL endpoint.
+
+        :param query: string containing the query.
+        :param lang: prefix representing the local endpoint to query (e.g. 'en', 'it'..).
+
+        :return: JSON result obtained from the endpoint.
+        '''
+        if lang == 'en':
+            local = ""
+        else:
+            local = lang + "."
+        
+        enc_query = urllib.quote_plus(query)
+        endpoint_url = "http://" + local + "dbpedia.org/sparql?default-graph-uri=&query=" + enc_query + \
+                       "&format=application%2Fsparql-results%2Bjson&debug=on"
+        json_result = self.utils.json_req(endpoint_url)
+        return json_result
+
+    def get_res_list_file(self):
+        """
+        Get file that contains all resources.
+        :return: file with resources
+        """
+        result = ""
+        if self.args.collect_mode != 's':
+            result = self.selector.res_list_file.split(settings.PATH_FOLDER_RESOURCE_LIST)[1].replace("/", "")
+        return result
+
+    def replace_accents(self, string):
+        """
+        Function that replace accented letters with the associated not accented letters
+
+        :param string: string where you have to replace accents
+        :return:  string without accents
+        """
+        return self.utils.delete_accented_characters(string)

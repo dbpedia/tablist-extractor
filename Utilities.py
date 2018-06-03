@@ -414,7 +414,7 @@ class Utilities:
 				listDict_key[i] = value.replace('&nbsp;','')
 		return listDict_key
 
-	def json_req(req):
+	def json_req(self, req):
 		''' Performs a request to an online service and returns the answer in JSON.
 
 		:param req: URL representing the request.
@@ -430,3 +430,53 @@ class Utilities:
 			err = str(sys.exc_info()[0])
 			print("Error: " + err + " - on request " + req)
 			raise
+
+	def load_settings(self):
+	    ''' This function loads the mapping rules from the settngs.json file into ``MAPPING`` dict.
+
+	    :return: latest ``MAPPING`` dict.
+	    '''
+	    try:
+	        with open('configs.json') as settings_file:
+	            #global MAPPING
+	            settings = json.load(settings_file)  #load settings from file into the dict
+	            MAPPING = settings['MAPPING']
+	            return MAPPING
+	    except IOError:
+	        print "Settings files doesn't exist!!! "
+	        sys.exit(1)
+
+	def load_custom_mappers(self):
+	    ''' This function loads the user defined mapping functions from the ``custom_mappers.json`` 
+	    file into ``CUSTOM_MAPPERS`` dict.
+
+	    :return: Custom mapper function settings dict.
+	    '''
+	    try:
+	        with open('custom_mappers.json') as custom_mappers:
+	            #global CUSTOM_MAPPERS
+	            CUSTOM_MAPPERS = json.load(custom_mappers)  #load mappers from file into the dict
+	            return CUSTOM_MAPPERS
+	    except IOError:
+	        print "Custom mappers not found!"
+	        return dict()  #in case of failure, assume no user defined mappers and return empty dict
+
+	def get_list_section_ontology_property(self, sect_name, mapper, CUSTOM_MAPPERS):
+		ontology_class = None
+		for class_type in CUSTOM_MAPPERS[mapper]["ontology"][self.language]:
+			try:
+				#find a matching sub-section from the ontology class
+				if class_type.decode('utf-8').lower() in sect_name.decode('utf-8').lower():
+					ontology_class = class_type
+			except UnicodeEncodeError:
+				break
+
+		if ontology_class == None:   #No possible mapping found; try default mapping
+			if CUSTOM_MAPPERS[mapper]["ontology"][self.language]["default"] == "None":
+				return 0 #default wasn't allowed
+			else: 
+				ontology_class = "default"
+        
+		#final ontology class/property for the current element
+		p = CUSTOM_MAPPERS[mapper]["ontology"][self.language][ontology_class]
+		return p
