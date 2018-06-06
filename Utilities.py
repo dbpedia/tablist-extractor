@@ -17,15 +17,23 @@ import socket
 class Utilities:
 
 	def __init__(self, language, resource, collect_mode):
+
 		self.language = language
 		self.resource = resource
 		self.collect_mode = collect_mode
+		self.resource_file = None
 
 		# test if the directory ../Extracted exists (or create it)
 		self.test_dir_existence('Extracted')
 
-		self.setup_log("Explorer")
-		self.extractor = False
+		if not self.language:
+			self.read_parameters_research()
+			self.setup_log("extractor")
+			self.extractor = True   # utilities called by extractor, so i need to update mapping rules
+			#self.mapper = MapperTools.MapperTools(self)
+		else:
+			self.setup_log("explorer")
+			self.extractor = False
 
 		# define a log
 		self.logging = logging
@@ -53,6 +61,9 @@ class Utilities:
 		self.parser = etree.HTMLParser(encoding='utf-8')
 
 		self.html_format = "https://" + self.language + ".wikipedia.org/wiki/"
+
+		#if self.extractor:
+        #    self.dictionary = self.mapper.update_mapping_rules()
 
 		# define timeout for url request in order to don't wait too much time
 		socket.setdefaulttimeout(settings.REQUEST_TIMEOUT)
@@ -97,6 +108,30 @@ class Utilities:
 
 		# brief stat at the beginning of log, it indicates the  wiki/dbpedia chapter and topic selected
 		logging.info("You're analyzing wiki lists and tables of wiki chapter: " + self.language + ", source: " + self.resource)
+
+	def read_parameters_research(self):
+		"""
+		Read parameters defined in header of settings file
+		:return: set all parameters of research
+		"""
+		# i'm in table_extractor folder so i have to go up
+		if os.path.exists(settings.FILE_PATH_DOMAIN_EXPLORED):
+			from domain_explorer import domain_settings
+			for name, val in domain_settings.__dict__.iteritems():
+				# read domain
+				if name == settings.DOMAIN_TITLE:
+					self.resource = val
+				# read language
+				elif name == settings.CHAPTER:
+					self.language = val
+				# read research type (-s -t or -w)
+				elif name == settings.RESEARCH_TYPE:
+					self.collect_mode = val
+				# read name of resource's file
+				elif name == settings.RESOURCE_FILE:
+					self.resource_file = val
+		else:
+			sys.exit("File " + settings.FILE_PATH_DOMAIN_EXPLORED + " not found. You should run pyDomainExplorer.")
 
 	def dbpedia_selection(self):
 		"""
@@ -480,3 +515,32 @@ class Utilities:
 		#final ontology class/property for the current element
 		p = CUSTOM_MAPPERS[mapper]["ontology"][self.language][ontology_class]
 		return p
+
+	def validate_user_input(self):
+		"""
+		Verify each option of domain_settings file created. I have to notify user if he wrote something wrong in settings
+		file's header
+		:return: string that can be
+		    - 'valid_input' if it's all right
+		    - message that depend on type of error
+		"""
+		result = "valid_input"
+		# check chapter
+		if len(self.language) != 2:
+			result = "Chapter (" + self.language + ") is wrong, check domain_settings.py"
+		# check research type
+		if len(self.collect_mode) == 1:
+			if self.collect_mode != "t" and self.collect_mode != "s" :
+				result = "Research type (" + self.collect_mode + ") is wrong, check domain_settings.py"
+		else:
+			result = "Research type (" + self.collect_mode + ") is wrong, check domain_settings.py"
+		# check resource file
+		if self.collect_mode != "s" and not os.path.isfile(self.get_resource_file()):
+			result = "Resource file doesn't exists, check domain_settings.py"
+		return result
+
+	def get_resource_file(self):
+		"""
+		:return: resource file
+		"""
+		return settings.PATH_FOLDER_RESOURCE_LIST + "/" + self.resource_file

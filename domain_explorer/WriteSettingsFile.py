@@ -30,7 +30,6 @@ class WriteSettingsFile:
         self.explorer_tools = explorer_tools
         self.language = explorer_tools.language
         self.resource = explorer_tools.resource
-        self.output_format = explorer_tools.output_format
         # start to write
         self.write_sections_and_headers()
 
@@ -55,7 +54,8 @@ class WriteSettingsFile:
     def write_table_sections_and_headers(self, domain_explored_file):
 
         for mapper, sections in self.all_sections.items():
-            domain_explored_file.write("Mapper used for the following are: "+mapper+"\n\n")
+            domain_explored_file.write("#Mapper used for the following are: "+mapper+"\n\n")
+            domain_explored_file.write(mapper + " = {\n")
             for key, section_dict in sections.items():
                 # adjust key to print in output
                 key = self.explorer_tools.replace_accents(key.replace(" ", "_").replace("-", "_"))
@@ -63,10 +63,9 @@ class WriteSettingsFile:
                 domain_explored_file.write(settings.COMMENT_FOR_EXAMPLE_PAGE + section_dict["exampleWiki"] + "\n")
                 # delete example page that is useless now
                 del section_dict["exampleWiki"]
-                domain_explored_file.write(settings.SECTION_NAME + key + " = {\n")
                 # print section dictionary that contains all table headers.
-                self.print_dictionary_on_file(mapper, domain_explored_file, section_dict)
-                domain_explored_file.write("} \n")
+                self.print_dictionary_on_file(mapper, domain_explored_file, key, section_dict)
+            domain_explored_file.write("} \n")
         
     def write_file_heading(self, domain_explored_file):
         """
@@ -87,13 +86,12 @@ class WriteSettingsFile:
         domain_explored_file.write(settings.DOMAIN_TITLE + ' = "' + self.resource + '" \n')
         domain_explored_file.write(settings.CHAPTER + ' = "' + self.language + '" \n')
         domain_explored_file.write(settings.COLLECT_MODE + ' = "' + self.explorer_tools.collect_mode + '" \n')
-        domain_explored_file.write(settings.OUTPUT_FORMAT_TYPE + ' = "' + str(self.output_format) + '" \n')
         domain_explored_file.write(settings.RESOURCE_FILE + ' = "' + self.explorer_tools.get_res_list_file() + '" \n\n')
         domain_explored_file.write(settings.COMMENT_SECTION_PROPERTY + "\n\n")
         domain_explored_file.write(settings.COMMENT_STRUCTURE + "\n\n")
         domain_explored_file.write(settings.COMMENT_FILLED_ELEMENT + "\n\n")
 
-    def print_dictionary_on_file(self, mapper, file_settings, section_dict):
+    def print_dictionary_on_file(self, mapper, file_settings, section_name, section_dict):
         """
         Write dictionary in a file. Output format is a variable for defining which output's type produce:
         1 - print all sections and related headers in output file.
@@ -103,28 +101,22 @@ class WriteSettingsFile:
         :return:
         """
         for key, value in section_dict.items():
-            if self.output_format == 1:
+            # don't print header already printed
+            if key == settings.SECTION_NAME_PROPERTY:
+                file_settings.write("'" + settings.SECTION_NAME+section_name + "' : '" + value + "'" + ", \n")
+            elif self.all_headers[mapper][key] != "printed":
                 file_settings.write("'" + key + "': '" + value + "'" + ", \n")
-            elif self.output_format == 2:
-                # don't print header already printed
-                if key == settings.SECTION_NAME_PROPERTY:
-                    file_settings.write("'" + key + "' : '" + value + "'" + ", \n")
-                elif self.all_headers[mapper][key] != "printed":
-                    file_settings.write("'" + key + "': '" + value + "'" + ", \n")
-                    self.all_headers[mapper].__setitem__(key, "printed")
+                self.all_headers[mapper].__setitem__(key, "printed")
 
     def write_list_section_names(self, domain_explored_file):
 
         for mapper, sections in self.all_list_sections.items():
             printed_keys=[]
-            domain_explored_file.write("\nFollowing are section mappings of lists found:\n")
-            domain_explored_file.write("Mapper used for the following are: "+mapper+"\n\n")
+            domain_explored_file.write("\n#Following are section mappings of lists found:\n")
+            domain_explored_file.write("#Mapper used for the following are: "+mapper+"\n\n")
             domain_explored_file.write(mapper + " = {\n")
             for key, value in sections.items():
-                if self.output_format == 1:
+                if key not in printed_keys:
                     domain_explored_file.write("'" + key + "': '" + value + "'" + ", \n")
-                elif self.output_format == 2:
-                    if key not in printed_keys:
-                        domain_explored_file.write("'" + key + "': '" + value + "'" + ", \n")
-                        printed_keys.append(key)
+                    printed_keys.append(key)
             domain_explored_file.write("} \n")

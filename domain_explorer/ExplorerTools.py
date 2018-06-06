@@ -28,7 +28,6 @@ class ExplorerTools:
         self.collect_mode = self.set_collect_mode()
         self.resource = self.set_source()
         self.language = self.set_language()
-        self.output_format = self.set_output_format()
         self.classname = self.set_classname()
 
         self.utils = Utilities.Utilities(self.language, self.resource, self.collect_mode)
@@ -63,9 +62,6 @@ class ExplorerTools:
         """ chapter input"""
         parser.add_argument('language', type=str, default=settings.CHAPTER_DEFAULT, help=settings.CHAPTER_HELP)
 
-        """ output organization input"""
-        parser.add_argument('-f', '--output_format', help=settings.OUTPUT_FORMAT_HELP, type=int,
-                            choices=settings.OUTPUT_FORMAT_CHOICES, default=settings.OUTPUT_FORMAT_DEFAULT)
 
         parser.add_argument('-c', '--classname', type=str, help=settings.CLASSNAME_HELP)
 
@@ -105,20 +101,6 @@ class ExplorerTools:
         """
         if self.args.source:
             return self.args.source.encode('utf-8')
-
-    def set_output_format(self):
-        """
-        Read and set output organization. I will use a default value if user makes a mistake.
-        :return: output organization value
-        """
-        if self.args.output_format:
-            # check if output_format is correct
-            if len(str(self.args.output_format)) == 1 and self.args.output_format <= 2:
-                return self.args.output_format
-            else:
-                # use default output format if user wrote a wrong value
-                print "Wrong output format value, used default: " + settings.OUTPUT_FORMAT_DEFAULT
-                return settings.OUTPUT_FORMAT_DEFAULT
 
     def set_classname(self):
         """
