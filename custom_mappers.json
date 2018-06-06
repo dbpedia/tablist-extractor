@@ -1,377 +1,492 @@
 {
-	"CUSTOM_ARTIST_MAPPER": {
-		"table_sections": {
-			"en": []
-		},
-		"list_headers": {
-			"en": ["Discography", "Tours"]
-		},
-		"extractors": [1, 2, 3, 4],
-		"ontology": {
-			"en": {
-				"tours": "concertTour",
-				"discography": "musicalArtist"
-			}
-		},
-		"years": "Yes"
-	},
-	"BIBLIOGRAPHY_MAPPER": {
-		"table_sections": {
-			"en": []
-		},
-		"list_headers": {
-			"en": ["bibliography"]
-		},
-		"extractors": [1, 2, 3, 4],
-		"ontology": {
-			"en": { 
-				"Novel": "Novel",
-				"Stories": "ShortStory",
-				"fiction": "Fiction"
-			}
-		},
-		"years": "Yes"
-	},
-	"MUSIC_GENRE_MAPPER": {
-		"table_sections": {
-			"en": []
-		},
-		"list_headers": {
-			"en": ["bands", "artists"]
-		},
-		"extractors": [1, 2, 3, 4],
-		"ontology": {
-			"en": {
-				"default": "notableArtist",
-				"artist": "notableArtist",
-				"band": "notableBand",
-				"Subgenre" : "SubGenre",
-				"division" : "SubGenre",
-				"festivals" : "relatedFestivals"
-			}
-		},
-		"years": "Yes"
-	},
-	"PROGRAMS_OFFERED_MAPPER":{
-		"table_sections": {
-			"en": []
-		},
-		"list_headers": {
-			"en": ["Program", "Programmes", "Faculties", "Academics", "Courses", "Departments" ]
-		},
-		"extractors": [1, 2, 4],
-		"ontology": {
-			"en": {
-				"default": "academicDiscipline"
-			}
-		},
-		"years": "No"
-	},
-	"OTHER_PERSON_DETAILS_MAPPER":{
-		"table_sections": {
-			"en": []
-		},
-		"list_headers": {
-			"en": ["family", "marriages", "restaurants", "memberships" ]
-		},
-		"extractors": [1, 2, 3, 4],
-		"ontology": {
-			"en": {
-				"family": "relative",
-				"marriages": "spouse", 
-				"works": "notableWork", 
-				"career": "Employer", 
-            	"expeditions": "notableWork", 
-            	"work": "notableWork", 
-            	"restaurants": "owner", 
-            	"tree": "colleague", 
-            	"memberships": "member"
-			}
-		},
-		"years": "No"
-	},
-	"CAREER_MAPPER":{
-		"table_sections": {
-			"en": []
-		},
-		"list_headers": {
-			"en": ["works", "work", "career", "expeditions", "tree" ]
-		},
-		"extractors": [3, 4],
-		"ontology": {
-			"en": {
-				"family": "relative",
-				"marriages": "spouse", 
-				"works": "notableWork", 
-				"career": "Employer", 
-            	"expeditions": "notableWork", 
-            	"work": "notableWork", 
-            	"restaurants": "owner", 
-            	"tree": "colleague", 
-            	"memberships": "member"
-			}
-		},
-		"years": "No"
-	},
-	"BAND_MEMBERS_MAPPER":{
-		"table_sections": {
-			"en": []
-		},
-		"list_headers": {
-			"en" : ["members", "bands", "personnel", "team" ],
-			"it" : ["Formazione","Membri", "bande", "personale", "team"],
-    		"de" : ["Bandmitglieder", "Besetzung", "Mitglieder", "Gruppe", "Personal"],
-    		"es" : ["Miembros", "banda", "grupo", "personal"]
-		},
-		"extractors": [1, 2, 4],
-		"ontology": {
-			"en": {
-				"default": "bandMember"
-			}
-		},
-		"years": "No"
-	},
-	"BASKETBALL_PLAYER_MAPPER":{
-		"table_sections": {
-			"en": ["EuroLeague", "Domestic leagues", "CBA", "College statistics", "Honour roll", "Louisiana Tech statistics", "Duke statistics", "Regular season",
-				"International statistics", "Vanderbilt statistics", "Head coaching record", "Playoffs", "NBL", "NBA", "Eurocup", "Ramone Moore", "Kentucky statistics",
-				"High school career", "NBL career stats", "Statistics", "College", "Head Coaching Record"],
-			"it": ["Nazionale", "Regular season", "NCAA", "Cronologia recente presenze e punti in Nazionale", "Cronologia presenze e punti in Nazionale", "Lega NEBL", 
-				"Stagione regolare", "Record individuali", "Playoff", "Playoffs", "Basketligan", "Statistiche", "Presenze e punti nei club"]
-		},
-		"list_headers": {
-			"en" : []
-		},
-		"extractors": [],
-		"ontology": {
-			"en": {
-				"Regular season_Team": "team", 
-				"Euroleague": "league", 
-				"MIN": "min", 
-				"Regular season_GS": "gamesStarted", 
-				"Regular season_GP": "gamesPlayed", 
-				"Head coaching record_W": "gamesWin", 
-				"Head coaching record_L": "gamesLost", 
-				"Head coaching record_Result": "result", 
-				"Playoffs_Team": "team", 
-				"Head coaching record_G": "games", 
-				"Finish": "gamesFinished", 
-				"W.L%": "winLoss", 
-				"College statistics_APG": "assistsPerGame", 
-				"Assists:": "assistsPerGame", 
-				"High school / college": "collegeName", 
-				"Domestic leagues": "league", 
-				"PF": "pf", 
-				"PIR": "performanceIndex", 
-				"FGA": "fga", 
-				"SPG": "stolePerGame", 
-				"League": "nameLeague", 
-				"CBA": "cba", 
-				"GS": "gamesStarted", 
-				"GP": "gamesPlayed", 
-				"College statistics_FT%": "freeThrow", 
-				"L": "gamesLost", 
-				"College statistics_GS": "gamesStarted", 
-				"FG%": "fieldGoal", 
-				"College statistics": "collegeStatistics", 
-				"Honour roll": "honourRoll", 
-				"Head coaching record_Year": "Year", 
-				"Louisiana Tech statistics": "statistics", 
-				"3 Points:": "threePoints", 
-				"Regular season_RPG": "reboundsPerGame", 
-				"Adelaide 36ers Club MVP:": "adelaideMVP", 
-				"FGM": "fgm", 
-				"Regular season_SPG": "stolePerGame", 
-				"APG": "assistsPerGame", 
-				"Postseason": "postseason", 
-				"Playoffs_RPG": "reboundsPerGame", 
-				"All-NBL First Team:": "nblFirstTeam", 
-				"Playoffs_MPG": "minutesPerGame", 
-				"Playoffs_3P%": "threePoints", 
-				"Duke statistics": "statistics", 
-				"Commit date": "commitDate", 
-				"Regular season": "regularSeason", 
-				"DEF": "defensive", 
-				"International statistics": "statistics", 
-				"Vanderbilt statistics": "statistics", 
-				"PW": "playoffWins", 
-				"Regular season_FG%": "fieldGoal", 
-				"Season": "season", 
-				"Playoffs_APG": "assistsPerGame", 
-				"Playoffs_BPG": "blocksPerGame", 
-				"FT%": "freeThrow", 
-				"PG": "playoffGames", 
-				"NBL Championships:": "nblChampionships", 
-				"Rebounds per game": "reboundsPerGame", 
-				"Head coaching record": "headCoaching", 
-				"College statistics_GP": "gamesPlayed", 
-				"PTS": "pointsPerGame", 
-				"PL": "playoffLosses", 
-				"College statistics_MPG": "minutesPerGame", 
-				"Field Goals:": "fieldGoal", 
-				"G": "games", 
-				"NBL All-Star Game:": "nblAllStarGame", 
-				"Age": "age", 
-				"FTA": "fta", 
-				"Head coaching record_W.L%": "winLoss", 
-				"BLK": "blocksPerGame", 
-				"Team": "team", 
-				"Playoffs_FT%": "freeThrow", 
-				"College statistics_Team": "team", 
-				"FTM": "ftm", 
-				"MPG": "minutesPerGame", 
-				"Playoffs": "playoff", 
-				"Weight": "weight", 
-				"NBL Finals appearances:": "nblFinals", 
-				"Tournament": "Tournament", 
-				"College statistics_3P%": "threePoints", 
-				"Result": "result", 
-				"PW.L%": "playoffWinsLoss", 
-				"Conference": "conference", 
-				"Points:": "pointsPerGame", 
-				"W": "gamesWin", 
-				"NBL": "nbl", 
-				"REB": "reboundsPerGame", 
-				"NBA": "nba", 
-				"Playoffs_FG%": "fieldGoal", 
-				"Free Throws:": "freeThrow", 
-				"Eurocup": "euroCup", 
-				"NBL career:": "nblCareer", 
-				"Regular season_MPG": "minutesPerGame", 
-				"AST": "assistsPerGame", 
-				"Ramone Moore": "statistics", 
-				"Overall": "overall", 
-				"Rebounds:": "reboundsPerGame", 
-				"Playoffs_GP": "gamesPlayed", 
-				"College statistics_Year": "Year", 
-				"Regular season_3P%": "threePoints", 
-				"Regular season_FT%": "freeThrow", 
-				"Points": "pointsPerGame", 
-				"College statistics_PPG": "pointsPerGame", 
-				"Regular season_APG": "assistsPerGame", 
-				"EuroLeague": "league", 
-				"Regular season_PPG": "pointsPerGame", 
-				"Hometown": "town", 
-				"Height": "height", 
-				"College": "nameCollege", 
-				"Kentucky statistics": "statistics", 
-				"Head coaching record_PW.L%": "playoffWinsLoss", 
-				"Steals:": "stealsPerGame", 
-				"Standing": "standind", 
-				"Head coaching record_PL": "playoffLosses", 
-				"High school career": "highSchoolCareer", 
-				"College statistics_RPG": "reboundsPerGame", 
-				"BPG": "blocksPerGame", 
-				"Head coaching record_Finish": "gamesFinished", 
-				"Playoffs_SPG": "stolePerGame", 
-				"Head coaching record_PG": "playoffGames", 
-				"TOV": "tov", 
-				"Games:": "games", 
-				"Head coaching record_Team": "team", 
-				"3PM": "3pm", 
-				"Regular season_Year": "Year", 
-				"3PA": "3pa", 
-				"Head coaching record_PW": "playoffWins", 
-				"OFF": "offensive", 
-				"PPG": "pointsPerGame", 
-				"Points per game": "pointsPerGame", 
-				"NBL career stats": "nbl", 
-				"RPG": "reboundsPerGame", 
-				"Assists per game": "assistsPerGame", 
-				"Playoffs_Year": "Year", 
-				"Name": "Name", 
-				"College statistics_BPG": "blocksPerGame", 
-				"College statistics_FG%": "fieldGoal", 
-				"STL": "stolePerGame", 
-				"NBL Grand Final MVP:": "nblGrandFinalMVP", 
-				"Statistics": "statistics", 
-				"College": "collegeStatistics", 
-				"Playoffs_GS": "gamesStarted", 
-				"Blocks:": "blocksPerGame", 
-				"Regular season_BPG": "blocksPerGame", 
-				"NBL Grand Final appearances:": "nblGrandFinal", 
-				"College statistics_SPG": "stolePerGame", 
-				"Playoffs_PPG": "pointsPerGame", 
-				"Head Coaching Record": "headCoaching", 
-				"Year": "Year", 
-				"3P%": "threePoints"
-			},
-			"it": {
-				"Cronologia completa delle presenze e dei punti in Nazionale - Italia - Risultato": "result", 
-				"Stagione": "season", 
-				"Nazionale": "national", 
-				"Statistiche tiro - Tiri da 2": "twoPoints", 
-				"DIF": "difensive", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Italia - Punti": "points", 
-				"Altre statistiche - Assist": "assistsPerGame", 
-				"Anno": "year", 
-				"Statistica": "statisticsRecord", 
-				"Statistiche - V-P%": "winLoss", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Data": "date", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Punti": "points", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Ospiti": "visiting", 
-				"Regular season": "regularSeason", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - In casa": "home", 
-				"Statistiche - Lega": "division", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Italia - In casa": "home", 
-				"PPG": "pointsPerGame", 
-				"3P%": "threePoints", 
-				"SPP": "spp", 
-				"Altre statistiche - Rimb.": "reboundsPerGame", 
-				"Statistiche - V": "wins", 
-				"Statistiche tiro - Tiri da 3": "threePoints", 
-				"Campion.": "championship", 
-				"FT%": "freeThrow", 
-				"PG": "playoffGames", 
-				"RPG": "reboundsPerGame", 
-				"Altre statistiche - Punti": "pointsPerGame", 
-				"Partite - Minuti": "minutesPerGame", 
-				"NBA": "nba", 
-				"NCAA": "ncaa", 
-				"Cronologia recente presenze e punti in Nazionale": "statistics", 
-				"Cronologia presenze e punti in Nazionale": "national", 
-				"Lega NEBL": "nebl", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Italia - Competizione": "championship", 
-				"OFF": "offensive", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Italia - Note": "notes", 
-				"RPP": "rpp", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Italia - Ospiti": "visiting", 
-				"Stagione regolare": "regularSeason", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Risultato": "result", 
-				"PPP": "ppp", 
-				"Record individuali": "individualRecord", 
-				"Statistiche tiro - Liberi": "freeThrow", 
-				"MPP": "mpp", 
-				"Team": "team", 
-				"FG%": "fieldGoal", 
-				"PRPP": "prpp", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Citt.": "town", 
-				"Partite - Pres.": "gamesPlayed", 
-				"MPG": "minutesPerGame", 
-				"Playoff": "playoff", 
-				"PI": "performanceIndex", 
-				"Playoffs": "playoff", 
-				"PRPG": "prpg", 
-				"APP": "app", 
-				"Altre statistiche - Rubate": "stealsPerGame", 
-				"Basketligan": "basketligan", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Italia - Citt.": "town", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Italia - Data": "date", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Competizione": "championship", 
-				"Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Note": "notes", 
-				"TL%": "tl", 
-				"Altre statistiche - Stopp.": "blockPerGame", 
-				"Statistiche - G": "games", 
-				"Squadra": "team", 
-				"Year": "Year", 
-				"Statistiche": "statistics", 
-				"Statistiche - P": "loss", 
-				"SPG": "stolePerGame", 
-				"Partite - Titol.": "gamesStarted", 
-				"APG": "assistsPerGame", 
-				"Presenze e punti nei club": "statistics"
-			}
-		},
-		"years": "No"
-	}
+    "MUSIC_GENRE_MAPPER": {
+        "table_sections": {
+            "en": []
+        }, 
+        "list_headers": {
+            "en": [
+                "bands", 
+                "artists"
+            ]
+        }, 
+        "extractors": [
+            1, 
+            2, 
+            3, 
+            4
+        ], 
+        "ontology": {
+            "en": {
+                "division": "SubGenre", 
+                "artist": "notableArtist", 
+                "default": "notableArtist", 
+                "band": "notableBand", 
+                "festivals": "relatedFestivals", 
+                "Subgenre": "SubGenre"
+            }
+        }, 
+        "years": "Yes"
+    }, 
+    "BIBLIOGRAPHY_MAPPER": {
+        "table_sections": {
+            "en": []
+        }, 
+        "list_headers": {
+            "en": [
+                "bibliography"
+            ]
+        }, 
+        "extractors": [
+            1, 
+            2, 
+            3, 
+            4
+        ], 
+        "ontology": {
+            "en": {
+                "Novel": "Novel", 
+                "Stories": "ShortStory", 
+                "fiction": "Fiction", 
+                "Selected bibliography - Short stories": "ShortStory", 
+                "Selected bibliography - Nonfiction": "Fiction", 
+                "Selected bibliography - Novels": "Novel"
+            }
+        }, 
+        "years": "Yes"
+    }, 
+    "OTHER_PERSON_DETAILS_MAPPER": {
+        "table_sections": {
+            "en": []
+        }, 
+        "list_headers": {
+            "en": [
+                "family", 
+                "marriages", 
+                "restaurants", 
+                "memberships"
+            ]
+        }, 
+        "extractors": [
+            1, 
+            2, 
+            3, 
+            4
+        ], 
+        "ontology": {
+            "en": {
+                "expeditions": "notableWork", 
+                "family": "relative", 
+                "career": "Employer", 
+                "work": "notableWork", 
+                "tree": "colleague", 
+                "marriages": "spouse", 
+                "memberships": "member", 
+                "works": "notableWork", 
+                "restaurants": "owner"
+            }
+        }, 
+        "years": "No"
+    }, 
+    "BASKETBALL_PLAYER_MAPPER": {
+        "table_sections": {
+            "en": [
+                "EuroLeague", 
+                "Domestic leagues", 
+                "CBA", 
+                "College statistics", 
+                "Honour roll", 
+                "Louisiana Tech statistics", 
+                "Duke statistics", 
+                "Regular season", 
+                "International statistics", 
+                "Vanderbilt statistics", 
+                "Head coaching record", 
+                "Playoffs", 
+                "NBL", 
+                "NBA", 
+                "Eurocup", 
+                "Ramone Moore", 
+                "Kentucky statistics", 
+                "High school career", 
+                "NBL career stats", 
+                "Statistics", 
+                "College", 
+                "Head Coaching Record"
+            ], 
+            "it": [
+                "Nazionale", 
+                "Regular season", 
+                "NCAA", 
+                "Cronologia recente presenze e punti in Nazionale", 
+                "Cronologia presenze e punti in Nazionale", 
+                "Lega NEBL", 
+                "Stagione regolare", 
+                "Record individuali", 
+                "Playoff", 
+                "Playoffs", 
+                "Basketligan", 
+                "Statistiche", 
+                "Presenze e punti nei club"
+            ]
+        }, 
+        "list_headers": {
+            "en": []
+        }, 
+        "extractors": [], 
+        "ontology": {
+            "en": {
+                "Regular season_Team": "team", 
+                "High school / college": "collegeName", 
+                "W.L%": "winLoss", 
+                "MIN": "min", 
+                "Regular season_GS": "gamesStarted", 
+                "Regular season_GP": "gamesPlayed", 
+                "Head coaching record_W": "gamesWin", 
+                "Head coaching record_L": "gamesLost", 
+                "Head coaching record_Result": "result", 
+                "FG%": "fieldGoal", 
+                "Playoffs_Team": "team", 
+                "Head coaching record_G": "games", 
+                "Finish": "gamesFinished", 
+                "College statistics_APG": "assistsPerGame", 
+                "Assists:": "assistsPerGame", 
+                "FGM": "fgm", 
+                "PF": "pf", 
+                "PIR": "performanceIndex", 
+                "FGA": "fga", 
+                "SPG": "stolePerGame", 
+                "League": "nameLeague", 
+                "Head coaching record": "headCoaching", 
+                "GS": "gamesStarted", 
+                "GP": "gamesPlayed", 
+                "College statistics_FT%": "freeThrow", 
+                "L": "gamesLost", 
+                "Regular season": "regularSeason", 
+                "College statistics_GS": "gamesStarted", 
+                "Louisiana Tech statistics": "statistics", 
+                "Playoffs": "playoff", 
+                "Head coaching record_Year": "Year", 
+                "Adelaide 36ers Club MVP:": "adelaideMVP", 
+                "3 Points:": "threePoints", 
+                "Regular season_RPG": "reboundsPerGame", 
+                "Regular season_SPG": "stolePerGame", 
+                "APG": "assistsPerGame", 
+                "Eurocup": "euroCup", 
+                "Postseason": "postseason", 
+                "Playoffs_RPG": "reboundsPerGame", 
+                "NBL career stats": "nbl", 
+                "All-NBL First Team:": "nblFirstTeam", 
+                "Playoffs_MPG": "minutesPerGame", 
+                "Playoffs_3P%": "threePoints", 
+                "EuroLeague": "league", 
+                "Commit date": "commitDate", 
+                "DEF": "defensive", 
+                "College statistics_FG%": "fieldGoal", 
+                "PW": "playoffWins", 
+                "Regular season_FG%": "fieldGoal", 
+                "Kentucky statistics": "statistics", 
+                "Season": "season", 
+                "Playoffs_APG": "assistsPerGame", 
+                "Playoffs_BPG": "blocksPerGame", 
+                "FT%": "freeThrow", 
+                "PG": "playoffGames", 
+                "NBL Championships:": "nblChampionships", 
+                "Rebounds per game": "reboundsPerGame", 
+                "College statistics_GP": "gamesPlayed", 
+                "PTS": "pointsPerGame", 
+                "PL": "playoffLosses", 
+                "College statistics_MPG": "minutesPerGame", 
+                "Field Goals:": "fieldGoal", 
+                "G": "games", 
+                "NBL All-Star Game:": "nblAllStarGame", 
+                "Age": "age", 
+                "FTA": "fta", 
+                "Honour roll": "honourRoll", 
+                "Head coaching record_W.L%": "winLoss", 
+                "W": "gamesWin", 
+                "Team": "team", 
+                "Playoffs_FT%": "freeThrow", 
+                "College statistics_Team": "team", 
+                "FTM": "ftm", 
+                "MPG": "minutesPerGame", 
+                "CBA": "cba", 
+                "College statistics_PPG": "pointsPerGame", 
+                "International statistics": "statistics", 
+                "Weight": "weight", 
+                "NBL Finals appearances:": "nblFinals", 
+                "Tournament": "Tournament", 
+                "College statistics_3P%": "threePoints", 
+                "Result": "result", 
+                "Euroleague": "league", 
+                "PW.L%": "playoffWinsLoss", 
+                "Conference": "conference", 
+                "Points:": "pointsPerGame", 
+                "BLK": "blocksPerGame", 
+                "Ramone Moore": "statistics", 
+                "Statistics": "statistics", 
+                "REB": "reboundsPerGame", 
+                "Playoffs_FG%": "fieldGoal", 
+                "Free Throws:": "freeThrow", 
+                "NBL career:": "nblCareer", 
+                "Regular season_MPG": "minutesPerGame", 
+                "AST": "assistsPerGame", 
+                "Overall": "overall", 
+                "Rebounds:": "reboundsPerGame", 
+                "NBL": "nbl", 
+                "NBA": "nba", 
+                "College statistics_Year": "Year", 
+                "Regular season_3P%": "threePoints", 
+                "Regular season_FT%": "freeThrow", 
+                "Head Coaching Record": "headCoaching", 
+                "College statistics": "collegeStatistics", 
+                "Vanderbilt statistics": "statistics", 
+                "Points": "pointsPerGame", 
+                "High school career": "highSchoolCareer", 
+                "Regular season_APG": "assistsPerGame", 
+                "Regular season_PPG": "pointsPerGame", 
+                "Hometown": "town", 
+                "Height": "height", 
+                "College": "collegeStatistics", 
+                "Head coaching record_PW.L%": "playoffWinsLoss", 
+                "Steals:": "stealsPerGame", 
+                "Standing": "standind", 
+                "Head coaching record_PL": "playoffLosses", 
+                "College statistics_RPG": "reboundsPerGame", 
+                "BPG": "blocksPerGame", 
+                "Head coaching record_Finish": "gamesFinished", 
+                "Playoffs_SPG": "stolePerGame", 
+                "Head coaching record_PG": "playoffGames", 
+                "TOV": "tov", 
+                "Games:": "games", 
+                "Head coaching record_Team": "team", 
+                "3PM": "3pm", 
+                "Regular season_Year": "Year", 
+                "3PA": "3pa", 
+                "Head coaching record_PW": "playoffWins", 
+                "OFF": "offensive", 
+                "PPG": "pointsPerGame", 
+                "Points per game": "pointsPerGame", 
+                "RPG": "reboundsPerGame", 
+                "Assists per game": "assistsPerGame", 
+                "Playoffs_Year": "Year", 
+                "Name": "Name", 
+                "College statistics_BPG": "blocksPerGame", 
+                "STL": "stolePerGame", 
+                "NBL Grand Final MVP:": "nblGrandFinalMVP", 
+                "Playoffs_GP": "gamesPlayed", 
+                "Playoffs_GS": "gamesStarted", 
+                "Blocks:": "blocksPerGame", 
+                "Regular season_BPG": "blocksPerGame", 
+                "Domestic leagues": "league", 
+                "NBL Grand Final appearances:": "nblGrandFinal", 
+                "College statistics_SPG": "stolePerGame", 
+                "Playoffs_PPG": "pointsPerGame", 
+                "Year": "Year", 
+                "Duke statistics": "statistics", 
+                "3P%": "threePoints"
+            }, 
+            "it": {
+                "Cronologia completa delle presenze e dei punti in Nazionale - Italia - Risultato": "result", 
+                "Stagione": "season", 
+                "Statistiche tiro - Tiri da 3": "threePoints", 
+                "Statistiche tiro - Tiri da 2": "twoPoints", 
+                "DIF": "difensive", 
+                "Regular season": "regularSeason", 
+                "Altre statistiche - Assist": "assistsPerGame", 
+                "Anno": "year", 
+                "Statistica": "statisticsRecord", 
+                "Statistiche - V-P%": "winLoss", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Data": "date", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Punti": "points", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Ospiti": "visiting", 
+                "Presenze e punti nei club": "statistics", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - In casa": "home", 
+                "Statistiche - Lega": "division", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Italia - In casa": "home", 
+                "PPG": "pointsPerGame", 
+                "3P%": "threePoints", 
+                "SPP": "spp", 
+                "Altre statistiche - Rimb.": "reboundsPerGame", 
+                "NCAA": "ncaa", 
+                "Cronologia recente presenze e punti in Nazionale": "statistics", 
+                "Statistiche - V": "wins", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Italia - Punti": "points", 
+                "Campion.": "championship", 
+                "FT%": "freeThrow", 
+                "Cronologia presenze e punti in Nazionale": "national", 
+                "RPG": "reboundsPerGame", 
+                "Altre statistiche - Punti": "pointsPerGame", 
+                "Partite - Minuti": "minutesPerGame", 
+                "NBA": "nba", 
+                "PI": "performanceIndex", 
+                "Statistiche - G": "games", 
+                "PG": "playoffGames", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Italia - Note": "notes", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Italia - Competizione": "championship", 
+                "OFF": "offensive", 
+                "Squadra": "team", 
+                "RPP": "rpp", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Italia - Ospiti": "visiting", 
+                "Stagione regolare": "regularSeason", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Risultato": "result", 
+                "PPP": "ppp", 
+                "Basketligan": "basketligan", 
+                "Statistiche tiro - Liberi": "freeThrow", 
+                "Team": "team", 
+                "Statistiche": "statistics", 
+                "FG%": "fieldGoal", 
+                "PRPP": "prpp", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Citt.": "town", 
+                "Partite - Pres.": "gamesPlayed", 
+                "MPG": "minutesPerGame", 
+                "Record individuali": "individualRecord", 
+                "Playoffs": "playoff", 
+                "PRPG": "prpg", 
+                "SPG": "stolePerGame", 
+                "APP": "app", 
+                "Altre statistiche - Rubate": "stealsPerGame", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Italia - Citt.": "town", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Italia - Data": "date", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Competizione": "championship", 
+                "Cronologia completa delle presenze e dei punti in Nazionale - Stati Uniti - Note": "notes", 
+                "Playoff": "playoff", 
+                "TL%": "tl", 
+                "Altre statistiche - Stopp.": "blockPerGame", 
+                "MPP": "mpp", 
+                "Year": "Year", 
+                "Nazionale": "national", 
+                "Statistiche - P": "loss", 
+                "Lega NEBL": "nebl", 
+                "Partite - Titol.": "gamesStarted", 
+                "APG": "assistsPerGame"
+            }
+        }, 
+        "years": "No"
+    }, 
+    "CAREER_MAPPER": {
+        "table_sections": {
+            "en": []
+        }, 
+        "list_headers": {
+            "en": [
+                "works", 
+                "work", 
+                "career", 
+                "expeditions", 
+                "tree"
+            ]
+        }, 
+        "extractors": [
+            3, 
+            4
+        ], 
+        "ontology": {
+            "en": {
+                "expeditions": "notableWork", 
+                "family": "relative", 
+                "career": "Employer", 
+                "work": "notableWork", 
+                "tree": "colleague", 
+                "marriages": "spouse", 
+                "memberships": "member", 
+                "works": "notableWork", 
+                "restaurants": "owner"
+            }
+        }, 
+        "years": "No"
+    }, 
+    "BAND_MEMBERS_MAPPER": {
+        "table_sections": {
+            "en": []
+        }, 
+        "list_headers": {
+            "de": [
+                "Bandmitglieder", 
+                "Besetzung", 
+                "Mitglieder", 
+                "Gruppe", 
+                "Personal"
+            ], 
+            "en": [
+                "members", 
+                "bands", 
+                "personnel", 
+                "team"
+            ], 
+            "it": [
+                "Formazione", 
+                "Membri", 
+                "bande", 
+                "personale", 
+                "team"
+            ], 
+            "es": [
+                "Miembros", 
+                "banda", 
+                "grupo", 
+                "personal"
+            ]
+        }, 
+        "extractors": [
+            1, 
+            2, 
+            4
+        ], 
+        "ontology": {
+            "en": {
+                "default": "bandMember"
+            }
+        }, 
+        "years": "No"
+    }, 
+    "CUSTOM_ARTIST_MAPPER": {
+        "table_sections": {
+            "en": []
+        }, 
+        "list_headers": {
+            "en": [
+                "Discography", 
+                "Tours"
+            ]
+        }, 
+        "extractors": [
+            1, 
+            2, 
+            3, 
+            4
+        ], 
+        "ontology": {
+            "en": {
+                "tours": "concertTour", 
+                "discography": "musicalArtist"
+            }
+        }, 
+        "years": "Yes"
+    }, 
+    "PROGRAMS_OFFERED_MAPPER": {
+        "table_sections": {
+            "en": []
+        }, 
+        "list_headers": {
+            "en": [
+                "Program", 
+                "Programmes", 
+                "Faculties", 
+                "Academics", 
+                "Courses", 
+                "Departments"
+            ]
+        }, 
+        "extractors": [
+            1, 
+            2, 
+            4
+        ], 
+        "ontology": {
+            "en": {
+                "default": "academicDiscipline"
+            }
+        }, 
+        "years": "No"
+    }
 }

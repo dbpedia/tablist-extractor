@@ -13,6 +13,8 @@ import settings
 import unicodedata
 import sys
 import socket
+from domain_extractor import MapperTools
+from collections import OrderedDict
 
 class Utilities:
 
@@ -30,7 +32,7 @@ class Utilities:
 			self.read_parameters_research()
 			self.setup_log("extractor")
 			self.extractor = True   # utilities called by extractor, so i need to update mapping rules
-			#self.mapper = MapperTools.MapperTools(self)
+			self.mapper = MapperTools.MapperTools(self)
 		else:
 			self.setup_log("explorer")
 			self.extractor = False
@@ -62,8 +64,8 @@ class Utilities:
 
 		self.html_format = "https://" + self.language + ".wikipedia.org/wiki/"
 
-		#if self.extractor:
-        #    self.dictionary = self.mapper.update_mapping_rules()
+		if self.extractor:
+			self.dictionary = self.mapper.update_mapping_rules()
 
 		# define timeout for url request in order to don't wait too much time
 		socket.setdefaulttimeout(settings.REQUEST_TIMEOUT)
@@ -125,7 +127,7 @@ class Utilities:
 				elif name == settings.CHAPTER:
 					self.language = val
 				# read research type (-s -t or -w)
-				elif name == settings.RESEARCH_TYPE:
+				elif name == settings.COLLECT_MODE:
 					self.collect_mode = val
 				# read name of resource's file
 				elif name == settings.RESOURCE_FILE:
@@ -490,7 +492,7 @@ class Utilities:
 	    try:
 	        with open('custom_mappers.json') as custom_mappers:
 	            #global CUSTOM_MAPPERS
-	            CUSTOM_MAPPERS = json.load(custom_mappers)  #load mappers from file into the dict
+	            CUSTOM_MAPPERS = json.load(custom_mappers, object_pairs_hook=OrderedDict)  #load mappers from file into the dict
 	            return CUSTOM_MAPPERS
 	    except IOError:
 	        print "Custom mappers not found!"
