@@ -6,8 +6,7 @@ import re
 import string
 import Table
 import json
-
-
+from domain_extractor import TableMapper
 __author__ = 'papalinis - Simone Papalini - papalini.simone.an@gmail.com'
 
 
@@ -89,6 +88,14 @@ class HtmlTableParser:
         # As HtmlTableParsed is correctly initialized, we find tables with find_wiki_tables()
         self.find_wiki_tables()
 
+        self.mappers=[]
+        if self.mapping:
+            rdf_types = self.utils.get_resource_type(self.resource)
+            domains = self.utils.load_settings()
+            for rdf_type in rdf_types:
+                if rdf_type in domains.keys():
+                    self.mappers+=domains[rdf_type]
+
     def find_wiki_tables(self):
         """
         Find and set(in a list) tables from a lxml.etree._ElementTree object containing the whole wiki page.
@@ -112,23 +119,8 @@ class HtmlTableParser:
         # Adding collapsible tables to the tables list
         for collaps_table in collapsible_tables:
             self.tables.append(collaps_table)
-
-        #self.parse_info[self.resource] = tableStrDict
-        #with open('parse_data.txt', 'w') as outfile:
-        #    json.dump(self.parse_info, outfile)
-
-        #with open('data.txt', 'r') as infile:
-        #    jsonStr=json.load(infile)
-        #print(len(jsonStr['Kobe_Bryant']))
-
         # If at least a table is found
         if self.tables:
-            self.tableStrList = []
-            for table in self.tables:
-                tableStr = etree.tostring(table)
-                tableStr = tableStr.replace('"','\"').replace('\n','')
-                self.tableStrList.append(tableStr.encode('utf-8'))
-
             # count the number of tables and add it to the total count
             self.tables_num += len(self.tables)
             # Adding tables number to the total, used to print a final report
@@ -137,21 +129,6 @@ class HtmlTableParser:
         else:
             print("No tables found for this resource.")
             self.logging.info("No Tables found for this resource.")
-
-    def etree_to_dict(self, tree, only_child):
-        '''Converts an lxml etree into a dictionary.'''
-        mydict = dict([(item[0], item[1]) for item in tree.items()])
-        children = tree.getchildren()
-        if children:
-            if len(children) > 1:
-                mydict['children'] = [self.etree_to_dict(child, False) for child in children]
-            else:
-                child = children[0]
-                mydict[child.tag] = self.etree_to_dict(child, True)
-        if only_child:
-            return mydict
-        else:
-            return {tree.tag: mydict}
 
     def analyze_tables(self):
         """
@@ -199,44 +176,42 @@ class HtmlTableParser:
                 # Refine headers found
                 self.refine_headers(tab)
 
-                #uncomment during mapping phase development
+                if self.mapping:
+                    # Once the headers are refined, start to extract data cells
+                    self.extract_data(tab)
 
-                # if self.mapping:
-                #     # Once the headers are refined, start to extract data cells
-                #     self.extract_data(tab)
+                    # Refine data cells found
+                    self.refine_data(tab)
 
-                #     # Refine data cells found
-                #     self.refine_data(tab)
+                    # If data are correctly refined
+                    if tab.data_refined:
+                        # Count data cells and data rows using table.count_data_cells_and_rows()
+                        tab.count_data_cells_and_rows()
+                        self.logging.info("Rows extracted: %d" % tab.data_refined_rows)
+                        self.logging.info("Data extracted for this table: %d" % tab.cells_refined)
 
-                #     # If data are correctly refined
-                #     if tab.data_refined:
-                #         # Count data cells and data rows using table.count_data_cells_and_rows()
-                #         tab.count_data_cells_and_rows()
-                #         self.logging.info("Rows extracted: %d" % tab.data_refined_rows)
-                #         self.logging.info("Data extracted for this table: %d" % tab.cells_refined)
+                        # update data cells extracted in order to <make a final report
+                        self.utils.data_extracted += tab.cells_refined
+                        self.utils.data_extracted_to_map += tab.cells_refined
+                        self.utils.rows_extracted += tab.data_refined_rows
+                        # Start the mapping process
+                        self.all_tables.append(tab)
+                        # if i have to map table found (HtmlTableParser can be called even by pyDomainExplorer)
 
-                #         # update data cells extracted in order to <make a final report
-                #         self.utils.data_extracted += tab.cells_refined
-                #         self.utils.data_extracted_to_map += tab.cells_refined
-                #         self.utils.rows_extracted += tab.data_refined_rows
-                #         # Start the mapping process
-                #         self.all_tables.append(tab)
-                #         # if i have to map table found (HtmlTableParser can be called even by pyDomainExplorer)
-
-                #         # Create a MAPPER object in order to map data extracted
-                #         mapper = Mapper.Mapper(self.chapter, self.graph, self.topic, self.resource, tab.data_refined,
-                #                                self.utils, self.reification_index, tab.table_section)
-                #         mapper.map()
-                #         # update reification index of this resource
-                #         self.reification_index = mapper.reification_index
-                #     # If no data have been found for this table report this condition with tag E3
-                #     else:
-                #         self.logging.debug("E3 - UNABLE TO EXTRACT DATA - resource: %s" % self.resource)
-                #         print("E3 UNABLE TO EXTRACT DATA")
-                #         # Update the count of tables with this condition (no data found)
-                #         self.no_data += 1
-                # else:
-                self.all_tables.append(tab)
+                        # Create a MAPPER object in order to map data extracted
+                        tablemapper = TableMapper.TableMapper(self.language, self.graph, self.domain, self.resource, tab.data_refined,
+                                               self.utils, self.mappers, self.reification_index, tab.table_section)
+                        tablemapper.map()
+                        # update reification index of this resource
+                        self.reification_index = tablemapper.reification_index
+                    # If no data have been found for this table report this condition with tag E3
+                    else:
+                        self.logging.debug("E3 - UNABLE TO EXTRACT DATA - resource: %s" % self.resource)
+                        print("E3 UNABLE TO EXTRACT DATA")
+                        # Update the count of tables with this condition (no data found)
+                        self.no_data += 1
+                else:
+                    self.all_tables.append(tab)
             # if no headers have been found report this critical condition with the tag E2
             else:
                 self.logging.debug(
@@ -264,7 +239,6 @@ class HtmlTableParser:
         section_text = ""
         # creating an iterator containing preceding siblings of the current table's tag
         siblings = self.current_html_table.itersiblings(preceding=True)
-
         for sibling in siblings:
             # test if this sibling is a heading
             if 'h' in sibling.tag:

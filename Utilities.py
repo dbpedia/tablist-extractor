@@ -546,3 +546,45 @@ class Utilities:
 		:return: resource file
 		"""
 		return settings.PATH_FOLDER_RESOURCE_LIST + "/" + self.resource_file
+
+	def get_resource_type(self, resource):
+		''' Asks all rdf:type of current resource to the local SPARQL endpoint.
+
+		:param resource: current resource with unknown type.
+		:param lang: language/endpoint.
+
+		:return: a list containing all types associated to the resource in the local endpoint.
+		'''
+		lang = self.language
+		if lang == 'en':
+			local = ""
+		else:
+			local = lang + "."
+		type_query = "SELECT distinct ?t WHERE {<http://" + local + "dbpedia.org/resource/" + resource + "> a ?t}"
+		answer = self.sparql_query(type_query, lang)
+		results = answer['results']['bindings']
+		types = []
+		for res in results:
+			full_uri = res['t']['value']  # e.g. http://dbpedia.org/ontology/Person
+			class_type = full_uri.split("/")[-1]  # e.g Person
+			types.append(class_type)
+		return types
+
+	def sparql_query(self, query, lang):
+		''' Returns a JSON representation of data from a query to a given SPARQL endpoint.
+
+		:param query: string containing the query.
+		:param lang: prefix representing the local endpoint to query (e.g. 'en', 'it'..).
+
+		:return: JSON result obtained from the endpoint.
+		'''
+		if lang == 'en':
+			local = ""
+		else:
+			local = lang + "."
+
+		enc_query = urllib.quote_plus(query)
+		endpoint_url = "http://" + local + "dbpedia.org/sparql?default-graph-uri=&query=" + enc_query + \
+		               "&format=application%2Fsparql-results%2Bjson&debug=on"
+		json_result = self.json_req(endpoint_url)
+		return json_result

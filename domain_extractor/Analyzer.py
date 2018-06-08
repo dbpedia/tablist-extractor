@@ -134,3 +134,112 @@ class Analyzer:
         :return: filename
         """
         return self.filename
+
+    def analyze(self):
+        """
+        This method iterates over a list of resources and setup a TableParser on a html representation of it.
+
+        Then it uses the analyze_tables() method of Table Parsers to start the analysis process for tables of current
+            resource.
+        Finally, once the list of resources is empty, the method set some statistics value and print out headers with no
+            adequate mapping rules.
+        This last feature is useful to find out headers in tables of a specific topic with a name user or
+         developer had not considered (to improve data mapped)
+        :return: nothing
+        """
+
+        # lines_to_read is used to know when the iterator is finished.It is set to False once StopIteration is raised
+        while self.lines_to_read:
+
+            try:
+                # set resource to the next element in the iterator
+                resource = self.res_iterator.next()
+                # delete newline tag from the resource name
+                resource = resource.replace("\n", "")
+                print("Analyzing " + str(resource))
+                self.logging.info("Analyzing " + str(resource))
+                # update res_analyzed index
+                self.res_analyzed += 1
+                if self.res_list:
+                    # search over many resources
+                    self.utils.print_progress_bar(self.res_analyzed, len(self.res_list))
+                else:
+                    # uses chose to analyze only one resource
+                    self.utils.print_progress_bar(self.res_analyzed, 1)
+                if resource:
+                    html_doc_tree = self.utils.html_object_getter(resource)
+                    if html_doc_tree:
+                        """
+                        Then a HtmlTableParser object is created and the tables for the current resource are
+                            analyzed with HtmlTableParser.analyze_tables() method.
+                        """
+                        html_parser = HtmlTableParser.HtmlTableParser(html_doc_tree, self.language, self.graph,
+                                                                      self.resource, resource, self.utils, mapping=True)
+                        html_parser.analyze_tables()
+
+                        # Add to the total the number of tables found for this resource
+                        self.total_table_num += html_parser.tables_num
+            except StopIteration:
+                self.lines_to_read = False
+                self.utils.res_analyzed = self.res_analyzed
+
+                # Print out and in the log every header cell without mapping rule
+                print("There are %d sections without mapping rules." % self.utils.no_mapping_rule_errors_section)
+                self.logging.info("There are %d sections and sections without mapping rules" %
+                                  self.utils.no_mapping_rule_errors_section)
+                # Print out and in the log every section cell without mapping rule
+                print("There are %d headers without mapping rules." % self.utils.no_mapping_rule_errors_headers)
+                self.logging.info("There are %d headers and sections without mapping rules" %
+                                  self.utils.no_mapping_rule_errors_headers)
+                # end of resources involved
+                self.logging.info("End Of File reached, now you can serialize the graph")
+                print ("\nEnd Of Resource File reached")
+
+    def serialize(self):
+        """
+        Call serialize() when you want to serialize the RDF graph created with a Analyzer object.
+
+        The graph should be fulfilled with triples during the mapping process, so analyze() method should be called
+         before serialize() otherwise the graph would be empty.
+        Messages are printed in console and in log file to update the user on the result.
+        :return: nothing
+        """
+        # serialize the graph if only contains triples
+        if len(self.graph) > 0:
+
+            # get the current directory using utils.get_current_dir()
+            cur_dir = self.utils.get_current_dir()
+
+            # if this Extraction is over a single resource use single_res joined with the resource name as self.topic
+            if self.resource == 'single_resource':
+                self.resource = "single_res_" + str(self.single_res)
+
+            # compose filename of the .ttl file
+            filename = self.utils.get_date_time() + "_T_Ext_" + self.language + '_' + \
+                           self.resource + ".ttl"
+            # join path of execution with that of ../Extraction
+
+            destination = self.utils.join_paths(cur_dir, 'Extracted/'+filename)
+            for s,p,o in self.graph:
+                print(s,p,o)
+                break
+            # setting the rdf_format
+            rdf_format = "turtle"
+            # serialize the graph using graph.serialize. It needs destination and the rdf format as parameters
+            self.graph.serialize(destination, rdf_format)
+
+            # Writing down triples number in the log
+            self.logging.info('Triples in the graph: ' + str(len(self.graph)))
+
+            # updating triples serialized for report purpose
+            self.utils.triples_serialized = len(self.graph)
+
+            # show the user result of serialization both in log and in console
+            print('GRAPH SERIALIZED, filename: ' + destination)
+            self.logging.info('Graph serialized, filename: ' + destination)
+
+        # if no triple is in graph
+        else:
+            print('Something went wrong: Nothing to serialize')
+            self.logging.warn('Nothing to serialize, you have to choose right scope or resource,'
+                              'or something went wrong scraping tables')

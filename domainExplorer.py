@@ -46,35 +46,18 @@ def analyze_uri_resource_list(uri_resource_list):
 	total_resources = len(uri_resource_list)
 	offset = 0
 
-	while offset < total_resources:
-		all_resources_parse_info = {}
+	for single_uri in uri_resource_list:
+		print "Resource: ", single_uri
+		# get section and headers
+		all_tables = get_resource_sections_and_headers(single_uri)
+		# get titles and list contents
+		resDict = get_titles_and_list_contents(single_uri)
+		# update number of resources analyzed
+		explorer_tools.utils.res_analyzed += 1
+		# progress bar to warn user about how many resources have been analyzed
+		explorer_tools.print_progress_bar(explorer_tools.utils.res_analyzed, total_resources)
 
-		if total_resources - explorer_tools.utils.res_analyzed >= 10000:
-			current_uri_resource_list = uri_resource_list[offset:offset+10000]
-		else:
-			current_uri_resource_list = uri_resource_list[offset:]
-
-		for single_uri in current_uri_resource_list:
-			print "Resource: ", single_uri
-			# get section and headers
-			all_tables, table_parse_info = get_resource_sections_and_headers(single_uri)
-			# get titles and list contents
-			resDict = get_titles_and_list_contents(single_uri)
-			# update number of resources analyzed
-			explorer_tools.utils.res_analyzed += 1
-			# progress bar to warn user about how many resources have been analyzed
-			explorer_tools.print_progress_bar(explorer_tools.utils.res_analyzed, total_resources)
-
-			all_resources_parse_info[single_uri] = [{"tables_data":table_parse_info}, {"lists_data":resDict}]
-
-			collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri)
-
-		if offset == 0:
-			#Write parse info of tables and lists to json file
-			explorer_tools.write_parse_info(all_resources_parse_info)
-		else:
-			explorer_tools.append_parse_info(all_resources_parse_info)
-		offset+=len(current_uri_resource_list)
+		collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri)
 
 def get_resource_sections_and_headers(res_name):
 	"""

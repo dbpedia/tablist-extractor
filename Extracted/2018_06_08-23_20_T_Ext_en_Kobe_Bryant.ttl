@@ -1,0 +1,577 @@
+@prefix ns1: <http://dbpedia.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://dbpedia.org/resource/Kobe_Bryant> ns1:playoff <http://dbpedia.org/resource/Kobe_Bryant__23>,
+        <http://dbpedia.org/resource/Kobe_Bryant__24>,
+        <http://dbpedia.org/resource/Kobe_Bryant__25>,
+        <http://dbpedia.org/resource/Kobe_Bryant__26>,
+        <http://dbpedia.org/resource/Kobe_Bryant__27>,
+        <http://dbpedia.org/resource/Kobe_Bryant__28>,
+        <http://dbpedia.org/resource/Kobe_Bryant__29>,
+        <http://dbpedia.org/resource/Kobe_Bryant__30>,
+        <http://dbpedia.org/resource/Kobe_Bryant__31>,
+        <http://dbpedia.org/resource/Kobe_Bryant__32>,
+        <http://dbpedia.org/resource/Kobe_Bryant__33>,
+        <http://dbpedia.org/resource/Kobe_Bryant__34>,
+        <http://dbpedia.org/resource/Kobe_Bryant__35>,
+        <http://dbpedia.org/resource/Kobe_Bryant__36>,
+        <http://dbpedia.org/resource/Kobe_Bryant__37>,
+        <http://dbpedia.org/resource/Kobe_Bryant__38> ;
+    ns1:regularSeason <http://dbpedia.org/resource/Kobe_Bryant__1>,
+        <http://dbpedia.org/resource/Kobe_Bryant__10>,
+        <http://dbpedia.org/resource/Kobe_Bryant__11>,
+        <http://dbpedia.org/resource/Kobe_Bryant__12>,
+        <http://dbpedia.org/resource/Kobe_Bryant__13>,
+        <http://dbpedia.org/resource/Kobe_Bryant__14>,
+        <http://dbpedia.org/resource/Kobe_Bryant__15>,
+        <http://dbpedia.org/resource/Kobe_Bryant__16>,
+        <http://dbpedia.org/resource/Kobe_Bryant__17>,
+        <http://dbpedia.org/resource/Kobe_Bryant__18>,
+        <http://dbpedia.org/resource/Kobe_Bryant__19>,
+        <http://dbpedia.org/resource/Kobe_Bryant__2>,
+        <http://dbpedia.org/resource/Kobe_Bryant__20>,
+        <http://dbpedia.org/resource/Kobe_Bryant__21>,
+        <http://dbpedia.org/resource/Kobe_Bryant__22>,
+        <http://dbpedia.org/resource/Kobe_Bryant__3>,
+        <http://dbpedia.org/resource/Kobe_Bryant__4>,
+        <http://dbpedia.org/resource/Kobe_Bryant__5>,
+        <http://dbpedia.org/resource/Kobe_Bryant__6>,
+        <http://dbpedia.org/resource/Kobe_Bryant__7>,
+        <http://dbpedia.org/resource/Kobe_Bryant__8>,
+        <http://dbpedia.org/resource/Kobe_Bryant__9> .
+
+<http://dbpedia.org/resource/Kobe_Bryant__1> ns1:Year "1996–97"^^xsd:string ;
+    ns1:assistsPerGame "1.3"^^xsd:float ;
+    ns1:blocksPerGame "0.3"^^xsd:float ;
+    ns1:fieldGoal "0.417"^^xsd:float ;
+    ns1:freeThrow "0.819"^^xsd:float ;
+    ns1:gamesPlayed "71.0"^^xsd:float ;
+    ns1:gamesStarted "6.0"^^xsd:float ;
+    ns1:minutesPerGame "15.5"^^xsd:float ;
+    ns1:pointsPerGame "7.6"^^xsd:float ;
+    ns1:reboundsPerGame "1.9"^^xsd:float ;
+    ns1:stolePerGame "0.7"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.375"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__10> ns1:Year "2005–06"^^xsd:string ;
+    ns1:assistsPerGame "4.5"^^xsd:float ;
+    ns1:blocksPerGame "0.4"^^xsd:float ;
+    ns1:fieldGoal "0.45"^^xsd:float ;
+    ns1:freeThrow "0.85"^^xsd:float ;
+    ns1:gamesPlayed "80.0"^^xsd:float ;
+    ns1:gamesStarted "80.0"^^xsd:float ;
+    ns1:minutesPerGame "41.0"^^xsd:float ;
+    ns1:pointsPerGame "35.4*"^^xsd:string ;
+    ns1:reboundsPerGame "5.3"^^xsd:float ;
+    ns1:stolePerGame "1.8"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.347"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__11> ns1:Year "2006–07"^^xsd:string ;
+    ns1:assistsPerGame "5.4"^^xsd:float ;
+    ns1:blocksPerGame "0.5"^^xsd:float ;
+    ns1:fieldGoal "0.463"^^xsd:float ;
+    ns1:freeThrow "0.868"^^xsd:float ;
+    ns1:gamesPlayed "77.0"^^xsd:float ;
+    ns1:gamesStarted "77.0"^^xsd:float ;
+    ns1:minutesPerGame "40.8"^^xsd:float ;
+    ns1:pointsPerGame "31.6*"^^xsd:string ;
+    ns1:reboundsPerGame "5.7"^^xsd:float ;
+    ns1:stolePerGame "1.4"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.344"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__12> ns1:Year "2007–08"^^xsd:string ;
+    ns1:assistsPerGame "5.4"^^xsd:float ;
+    ns1:blocksPerGame "0.5"^^xsd:float ;
+    ns1:fieldGoal "0.459"^^xsd:float ;
+    ns1:freeThrow "0.84"^^xsd:float ;
+    ns1:gamesPlayed "82.0"^^xsd:float ;
+    ns1:gamesStarted "82.0"^^xsd:float ;
+    ns1:minutesPerGame "38.9"^^xsd:float ;
+    ns1:pointsPerGame "28.3"^^xsd:float ;
+    ns1:reboundsPerGame "6.3"^^xsd:float ;
+    ns1:stolePerGame "1.8"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.361"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__13> ns1:Year "2008–09†"^^xsd:string ;
+    ns1:assistsPerGame "4.9"^^xsd:float ;
+    ns1:blocksPerGame "0.5"^^xsd:float ;
+    ns1:fieldGoal "0.467"^^xsd:float ;
+    ns1:freeThrow "0.856"^^xsd:float ;
+    ns1:gamesPlayed "82.0"^^xsd:float ;
+    ns1:gamesStarted "82.0"^^xsd:float ;
+    ns1:minutesPerGame "36.1"^^xsd:float ;
+    ns1:pointsPerGame "26.8"^^xsd:float ;
+    ns1:reboundsPerGame "5.2"^^xsd:float ;
+    ns1:stolePerGame "1.5"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.351"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__14> ns1:Year "2009–10†"^^xsd:string ;
+    ns1:assistsPerGame "5.0"^^xsd:float ;
+    ns1:blocksPerGame "0.3"^^xsd:float ;
+    ns1:fieldGoal "0.456"^^xsd:float ;
+    ns1:freeThrow "0.811"^^xsd:float ;
+    ns1:gamesPlayed "73.0"^^xsd:float ;
+    ns1:gamesStarted "73.0"^^xsd:float ;
+    ns1:minutesPerGame "38.8"^^xsd:float ;
+    ns1:pointsPerGame "27.0"^^xsd:float ;
+    ns1:reboundsPerGame "5.4"^^xsd:float ;
+    ns1:stolePerGame "1.5"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.329"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__15> ns1:Year "2010–11"^^xsd:string ;
+    ns1:assistsPerGame "4.7"^^xsd:float ;
+    ns1:blocksPerGame "0.1"^^xsd:float ;
+    ns1:fieldGoal "0.451"^^xsd:float ;
+    ns1:freeThrow "0.828"^^xsd:float ;
+    ns1:gamesPlayed "82.0"^^xsd:float ;
+    ns1:gamesStarted "82.0"^^xsd:float ;
+    ns1:minutesPerGame "33.9"^^xsd:float ;
+    ns1:pointsPerGame "25.3"^^xsd:float ;
+    ns1:reboundsPerGame "5.1"^^xsd:float ;
+    ns1:stolePerGame "1.2"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.323"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__16> ns1:Year "2011–12"^^xsd:string ;
+    ns1:assistsPerGame "4.6"^^xsd:float ;
+    ns1:blocksPerGame "0.3"^^xsd:float ;
+    ns1:fieldGoal "0.43"^^xsd:float ;
+    ns1:freeThrow "0.845"^^xsd:float ;
+    ns1:gamesPlayed "58.0"^^xsd:float ;
+    ns1:gamesStarted "58.0"^^xsd:float ;
+    ns1:minutesPerGame "38.5"^^xsd:float ;
+    ns1:pointsPerGame "27.9"^^xsd:float ;
+    ns1:reboundsPerGame "5.4"^^xsd:float ;
+    ns1:stolePerGame "1.2"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.303"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__17> ns1:Year "2012–13"^^xsd:string ;
+    ns1:assistsPerGame "6.0"^^xsd:float ;
+    ns1:blocksPerGame "0.3"^^xsd:float ;
+    ns1:fieldGoal "0.463"^^xsd:float ;
+    ns1:freeThrow "0.839"^^xsd:float ;
+    ns1:gamesPlayed "78.0"^^xsd:float ;
+    ns1:gamesStarted "78.0"^^xsd:float ;
+    ns1:minutesPerGame "38.6"^^xsd:float ;
+    ns1:pointsPerGame "27.3"^^xsd:float ;
+    ns1:reboundsPerGame "5.6"^^xsd:float ;
+    ns1:stolePerGame "1.4"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.324"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__18> ns1:Year "2013–14"^^xsd:string ;
+    ns1:assistsPerGame "6.3"^^xsd:float ;
+    ns1:blocksPerGame "0.2"^^xsd:float ;
+    ns1:fieldGoal "0.425"^^xsd:float ;
+    ns1:freeThrow "0.857"^^xsd:float ;
+    ns1:gamesPlayed "6.0"^^xsd:float ;
+    ns1:gamesStarted "6.0"^^xsd:float ;
+    ns1:minutesPerGame "29.5"^^xsd:float ;
+    ns1:pointsPerGame "13.8"^^xsd:float ;
+    ns1:reboundsPerGame "4.3"^^xsd:float ;
+    ns1:stolePerGame "1.2"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.188"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__19> ns1:Year "2014–15"^^xsd:string ;
+    ns1:assistsPerGame "5.6"^^xsd:float ;
+    ns1:blocksPerGame "0.2"^^xsd:float ;
+    ns1:fieldGoal "0.373"^^xsd:float ;
+    ns1:freeThrow "0.813"^^xsd:float ;
+    ns1:gamesPlayed "35.0"^^xsd:float ;
+    ns1:gamesStarted "35.0"^^xsd:float ;
+    ns1:minutesPerGame "34.5"^^xsd:float ;
+    ns1:pointsPerGame "22.3"^^xsd:float ;
+    ns1:reboundsPerGame "5.7"^^xsd:float ;
+    ns1:stolePerGame "1.3"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.293"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__2> ns1:Year "1997–98"^^xsd:string ;
+    ns1:assistsPerGame "2.5"^^xsd:float ;
+    ns1:blocksPerGame "0.5"^^xsd:float ;
+    ns1:fieldGoal "0.428"^^xsd:float ;
+    ns1:freeThrow "0.794"^^xsd:float ;
+    ns1:gamesPlayed "79.0"^^xsd:float ;
+    ns1:gamesStarted "1.0"^^xsd:float ;
+    ns1:minutesPerGame "26.0"^^xsd:float ;
+    ns1:pointsPerGame "15.4"^^xsd:float ;
+    ns1:reboundsPerGame "3.1"^^xsd:float ;
+    ns1:stolePerGame "0.9"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.341"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__20> ns1:Year "2015–16"^^xsd:string ;
+    ns1:assistsPerGame "2.8"^^xsd:float ;
+    ns1:blocksPerGame "0.2"^^xsd:float ;
+    ns1:fieldGoal "0.358"^^xsd:float ;
+    ns1:freeThrow "0.826"^^xsd:float ;
+    ns1:gamesPlayed "66.0"^^xsd:float ;
+    ns1:gamesStarted "66.0"^^xsd:float ;
+    ns1:minutesPerGame "28.2"^^xsd:float ;
+    ns1:pointsPerGame "17.6"^^xsd:float ;
+    ns1:reboundsPerGame "3.7"^^xsd:float ;
+    ns1:stolePerGame "0.9"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.285"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__21> ns1:Year <http://dbpedia.org/resource/Career> ;
+    ns1:assistsPerGame "4.7"^^xsd:float ;
+    ns1:blocksPerGame "0.5"^^xsd:float ;
+    ns1:fieldGoal "0.447"^^xsd:float ;
+    ns1:freeThrow "0.837"^^xsd:float ;
+    ns1:gamesPlayed "1,346"^^xsd:string ;
+    ns1:gamesStarted "1,198"^^xsd:string ;
+    ns1:minutesPerGame "36.1"^^xsd:float ;
+    ns1:pointsPerGame "25.0"^^xsd:float ;
+    ns1:reboundsPerGame "5.2"^^xsd:float ;
+    ns1:stolePerGame "1.4"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Career> ;
+    ns1:threePoints "0.329"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__22> ns1:Year <http://dbpedia.org/resource/All-Star> ;
+    ns1:assistsPerGame "4.7"^^xsd:float ;
+    ns1:blocksPerGame "0.4"^^xsd:float ;
+    ns1:fieldGoal "0.5"^^xsd:float ;
+    ns1:freeThrow "0.789"^^xsd:float ;
+    ns1:gamesPlayed "15.0"^^xsd:float ;
+    ns1:gamesStarted "15.0"^^xsd:float ;
+    ns1:minutesPerGame "27.6"^^xsd:float ;
+    ns1:pointsPerGame "19.3"^^xsd:float ;
+    ns1:reboundsPerGame "5.0"^^xsd:float ;
+    ns1:stolePerGame "2.5"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/All-Star> ;
+    ns1:threePoints "0.324"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__23> ns1:Year "1997.0"^^xsd:float ;
+    ns1:assistsPerGame "1.2"^^xsd:float ;
+    ns1:blocksPerGame "0.2"^^xsd:float ;
+    ns1:fieldGoal "0.382"^^xsd:float ;
+    ns1:freeThrow "0.867"^^xsd:float ;
+    ns1:gamesPlayed "9.0"^^xsd:float ;
+    ns1:gamesStarted "0.0"^^xsd:float ;
+    ns1:minutesPerGame "14.8"^^xsd:float ;
+    ns1:pointsPerGame "8.2"^^xsd:float ;
+    ns1:reboundsPerGame "1.2"^^xsd:float ;
+    ns1:stolePerGame "0.3"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.261"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__24> ns1:Year "1998.0"^^xsd:float ;
+    ns1:assistsPerGame "1.5"^^xsd:float ;
+    ns1:blocksPerGame "0.7"^^xsd:float ;
+    ns1:fieldGoal "0.408"^^xsd:float ;
+    ns1:freeThrow "0.689"^^xsd:float ;
+    ns1:gamesPlayed "11.0"^^xsd:float ;
+    ns1:gamesStarted "0.0"^^xsd:float ;
+    ns1:minutesPerGame "20.0"^^xsd:float ;
+    ns1:pointsPerGame "8.7"^^xsd:float ;
+    ns1:reboundsPerGame "1.9"^^xsd:float ;
+    ns1:stolePerGame "0.3"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.214"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__25> ns1:Year "1999.0"^^xsd:float ;
+    ns1:assistsPerGame "4.6"^^xsd:float ;
+    ns1:blocksPerGame "1.3"^^xsd:float ;
+    ns1:fieldGoal "0.43"^^xsd:float ;
+    ns1:freeThrow "0.8"^^xsd:float ;
+    ns1:gamesPlayed "8.0"^^xsd:float ;
+    ns1:gamesStarted "8.0"^^xsd:float ;
+    ns1:minutesPerGame "39.4"^^xsd:float ;
+    ns1:pointsPerGame "19.8"^^xsd:float ;
+    ns1:reboundsPerGame "6.9"^^xsd:float ;
+    ns1:stolePerGame "1.9"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.348"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__26> ns1:Year "2000†"^^xsd:string ;
+    ns1:assistsPerGame "4.4"^^xsd:float ;
+    ns1:blocksPerGame "1.5"^^xsd:float ;
+    ns1:fieldGoal "0.442"^^xsd:float ;
+    ns1:freeThrow "0.754"^^xsd:float ;
+    ns1:gamesPlayed "22.0"^^xsd:float ;
+    ns1:gamesStarted "22.0"^^xsd:float ;
+    ns1:minutesPerGame "39.0"^^xsd:float ;
+    ns1:pointsPerGame "21.1"^^xsd:float ;
+    ns1:reboundsPerGame "4.5"^^xsd:float ;
+    ns1:stolePerGame "1.5"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.344"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__27> ns1:Year "2001†"^^xsd:string ;
+    ns1:assistsPerGame "6.1"^^xsd:float ;
+    ns1:blocksPerGame "0.8"^^xsd:float ;
+    ns1:fieldGoal "0.469"^^xsd:float ;
+    ns1:freeThrow "0.821"^^xsd:float ;
+    ns1:gamesPlayed "16.0"^^xsd:float ;
+    ns1:gamesStarted "16.0"^^xsd:float ;
+    ns1:minutesPerGame "43.4"^^xsd:float ;
+    ns1:pointsPerGame "29.4"^^xsd:float ;
+    ns1:reboundsPerGame "7.3"^^xsd:float ;
+    ns1:stolePerGame "1.6"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.324"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__28> ns1:Year "2002†"^^xsd:string ;
+    ns1:assistsPerGame "4.6"^^xsd:float ;
+    ns1:blocksPerGame "0.9"^^xsd:float ;
+    ns1:fieldGoal "0.434"^^xsd:float ;
+    ns1:freeThrow "0.759"^^xsd:float ;
+    ns1:gamesPlayed "19.0"^^xsd:float ;
+    ns1:gamesStarted "19.0"^^xsd:float ;
+    ns1:minutesPerGame "43.8"^^xsd:float ;
+    ns1:pointsPerGame "26.6"^^xsd:float ;
+    ns1:reboundsPerGame "5.8"^^xsd:float ;
+    ns1:stolePerGame "1.4"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.379"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__29> ns1:Year "2003.0"^^xsd:float ;
+    ns1:assistsPerGame "5.2"^^xsd:float ;
+    ns1:blocksPerGame "0.1"^^xsd:float ;
+    ns1:fieldGoal "0.432"^^xsd:float ;
+    ns1:freeThrow "0.827"^^xsd:float ;
+    ns1:gamesPlayed "12.0"^^xsd:float ;
+    ns1:gamesStarted "12.0"^^xsd:float ;
+    ns1:minutesPerGame "44.3"^^xsd:float ;
+    ns1:pointsPerGame "32.1"^^xsd:float ;
+    ns1:reboundsPerGame "5.1"^^xsd:float ;
+    ns1:stolePerGame "1.2"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.403"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__3> ns1:Year "1998–99"^^xsd:string ;
+    ns1:assistsPerGame "3.8"^^xsd:float ;
+    ns1:blocksPerGame "1.0"^^xsd:float ;
+    ns1:fieldGoal "0.465"^^xsd:float ;
+    ns1:freeThrow "0.839"^^xsd:float ;
+    ns1:gamesPlayed "50.0"^^xsd:float ;
+    ns1:gamesStarted "50.0"^^xsd:float ;
+    ns1:minutesPerGame "37.9"^^xsd:float ;
+    ns1:pointsPerGame "19.9"^^xsd:float ;
+    ns1:reboundsPerGame "5.3"^^xsd:float ;
+    ns1:stolePerGame "1.4"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.267"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__30> ns1:Year "2004.0"^^xsd:float ;
+    ns1:assistsPerGame "5.5"^^xsd:float ;
+    ns1:blocksPerGame "0.3"^^xsd:float ;
+    ns1:fieldGoal "0.413"^^xsd:float ;
+    ns1:freeThrow "0.813"^^xsd:float ;
+    ns1:gamesPlayed "22.0"^^xsd:float ;
+    ns1:gamesStarted "22.0"^^xsd:float ;
+    ns1:minutesPerGame "44.2"^^xsd:float ;
+    ns1:pointsPerGame "24.5"^^xsd:float ;
+    ns1:reboundsPerGame "4.7"^^xsd:float ;
+    ns1:stolePerGame "1.9"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.247"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__31> ns1:Year "2006.0"^^xsd:float ;
+    ns1:assistsPerGame "5.1"^^xsd:float ;
+    ns1:blocksPerGame "0.4"^^xsd:float ;
+    ns1:fieldGoal "0.497"^^xsd:float ;
+    ns1:freeThrow "0.771"^^xsd:float ;
+    ns1:gamesPlayed "7.0"^^xsd:float ;
+    ns1:gamesStarted "7.0"^^xsd:float ;
+    ns1:minutesPerGame "44.9"^^xsd:float ;
+    ns1:pointsPerGame "27.9"^^xsd:float ;
+    ns1:reboundsPerGame "6.3"^^xsd:float ;
+    ns1:stolePerGame "1.1"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.4"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__32> ns1:Year "2007.0"^^xsd:float ;
+    ns1:assistsPerGame "4.4"^^xsd:float ;
+    ns1:blocksPerGame "0.4"^^xsd:float ;
+    ns1:fieldGoal "0.462"^^xsd:float ;
+    ns1:freeThrow "0.919"^^xsd:float ;
+    ns1:gamesPlayed "5.0"^^xsd:float ;
+    ns1:gamesStarted "5.0"^^xsd:float ;
+    ns1:minutesPerGame "43.0"^^xsd:float ;
+    ns1:pointsPerGame "32.8"^^xsd:float ;
+    ns1:reboundsPerGame "5.2"^^xsd:float ;
+    ns1:stolePerGame "1.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.357"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__33> ns1:Year "2008.0"^^xsd:float ;
+    ns1:assistsPerGame "5.6"^^xsd:float ;
+    ns1:blocksPerGame "0.4"^^xsd:float ;
+    ns1:fieldGoal "0.479"^^xsd:float ;
+    ns1:freeThrow "0.809"^^xsd:float ;
+    ns1:gamesPlayed "21.0"^^xsd:float ;
+    ns1:gamesStarted "21.0"^^xsd:float ;
+    ns1:minutesPerGame "41.1"^^xsd:float ;
+    ns1:pointsPerGame "30.1"^^xsd:float ;
+    ns1:reboundsPerGame "5.7"^^xsd:float ;
+    ns1:stolePerGame "1.7"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.302"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__34> ns1:Year "2009†"^^xsd:string ;
+    ns1:assistsPerGame "5.5"^^xsd:float ;
+    ns1:blocksPerGame "0.9"^^xsd:float ;
+    ns1:fieldGoal "0.457"^^xsd:float ;
+    ns1:freeThrow "0.883"^^xsd:float ;
+    ns1:gamesPlayed "23.0"^^xsd:float ;
+    ns1:gamesStarted "23.0"^^xsd:float ;
+    ns1:minutesPerGame "40.8"^^xsd:float ;
+    ns1:pointsPerGame "30.2"^^xsd:float ;
+    ns1:reboundsPerGame "5.3"^^xsd:float ;
+    ns1:stolePerGame "1.7"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.349"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__35> ns1:Year "2010†"^^xsd:string ;
+    ns1:assistsPerGame "5.5"^^xsd:float ;
+    ns1:blocksPerGame "0.7"^^xsd:float ;
+    ns1:fieldGoal "0.458"^^xsd:float ;
+    ns1:freeThrow "0.842"^^xsd:float ;
+    ns1:gamesPlayed "23.0"^^xsd:float ;
+    ns1:gamesStarted "23.0"^^xsd:float ;
+    ns1:minutesPerGame "40.1"^^xsd:float ;
+    ns1:pointsPerGame "29.2"^^xsd:float ;
+    ns1:reboundsPerGame "6.0"^^xsd:float ;
+    ns1:stolePerGame "1.3"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.374"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__36> ns1:Year "2011.0"^^xsd:float ;
+    ns1:assistsPerGame "3.3"^^xsd:float ;
+    ns1:blocksPerGame "0.3"^^xsd:float ;
+    ns1:fieldGoal "0.446"^^xsd:float ;
+    ns1:freeThrow "0.82"^^xsd:float ;
+    ns1:gamesPlayed "10.0"^^xsd:float ;
+    ns1:gamesStarted "10.0"^^xsd:float ;
+    ns1:minutesPerGame "35.4"^^xsd:float ;
+    ns1:pointsPerGame "22.8"^^xsd:float ;
+    ns1:reboundsPerGame "3.4"^^xsd:float ;
+    ns1:stolePerGame "1.6"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.293"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__37> ns1:Year "2012.0"^^xsd:float ;
+    ns1:assistsPerGame "4.3"^^xsd:float ;
+    ns1:blocksPerGame "0.2"^^xsd:float ;
+    ns1:fieldGoal "0.439"^^xsd:float ;
+    ns1:freeThrow "0.832"^^xsd:float ;
+    ns1:gamesPlayed "12.0"^^xsd:float ;
+    ns1:gamesStarted "12.0"^^xsd:float ;
+    ns1:minutesPerGame "39.7"^^xsd:float ;
+    ns1:pointsPerGame "30.0"^^xsd:float ;
+    ns1:reboundsPerGame "4.8"^^xsd:float ;
+    ns1:stolePerGame "1.3"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.283"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__38> ns1:Year <http://dbpedia.org/resource/Career> ;
+    ns1:assistsPerGame "4.7"^^xsd:float ;
+    ns1:blocksPerGame "0.6"^^xsd:float ;
+    ns1:fieldGoal "0.448"^^xsd:float ;
+    ns1:freeThrow "0.816"^^xsd:float ;
+    ns1:gamesPlayed "220.0"^^xsd:float ;
+    ns1:gamesStarted "200.0"^^xsd:float ;
+    ns1:minutesPerGame "39.3"^^xsd:float ;
+    ns1:pointsPerGame "25.6"^^xsd:float ;
+    ns1:reboundsPerGame "5.1"^^xsd:float ;
+    ns1:stolePerGame "1.4"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Career> ;
+    ns1:threePoints "0.331"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__4> ns1:Year "1999–00†"^^xsd:string ;
+    ns1:assistsPerGame "4.9"^^xsd:float ;
+    ns1:blocksPerGame "0.9"^^xsd:float ;
+    ns1:fieldGoal "0.468"^^xsd:float ;
+    ns1:freeThrow "0.821"^^xsd:float ;
+    ns1:gamesPlayed "66.0"^^xsd:float ;
+    ns1:gamesStarted "62.0"^^xsd:float ;
+    ns1:minutesPerGame "38.2"^^xsd:float ;
+    ns1:pointsPerGame "22.5"^^xsd:float ;
+    ns1:reboundsPerGame "6.3"^^xsd:float ;
+    ns1:stolePerGame "1.6"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.319"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__5> ns1:Year "2000–01†"^^xsd:string ;
+    ns1:assistsPerGame "5.0"^^xsd:float ;
+    ns1:blocksPerGame "0.6"^^xsd:float ;
+    ns1:fieldGoal "0.464"^^xsd:float ;
+    ns1:freeThrow "0.853"^^xsd:float ;
+    ns1:gamesPlayed "68.0"^^xsd:float ;
+    ns1:gamesStarted "68.0"^^xsd:float ;
+    ns1:minutesPerGame "40.9"^^xsd:float ;
+    ns1:pointsPerGame "28.5"^^xsd:float ;
+    ns1:reboundsPerGame "5.9"^^xsd:float ;
+    ns1:stolePerGame "1.7"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.305"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__6> ns1:Year "2001–02†"^^xsd:string ;
+    ns1:assistsPerGame "5.5"^^xsd:float ;
+    ns1:blocksPerGame "0.4"^^xsd:float ;
+    ns1:fieldGoal "0.469"^^xsd:float ;
+    ns1:freeThrow "0.829"^^xsd:float ;
+    ns1:gamesPlayed "80.0"^^xsd:float ;
+    ns1:gamesStarted "80.0"^^xsd:float ;
+    ns1:minutesPerGame "38.3"^^xsd:float ;
+    ns1:pointsPerGame "25.2"^^xsd:float ;
+    ns1:reboundsPerGame "5.5"^^xsd:float ;
+    ns1:stolePerGame "1.5"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.25"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__7> ns1:Year "2002–03"^^xsd:string ;
+    ns1:assistsPerGame "5.9"^^xsd:float ;
+    ns1:blocksPerGame "0.8"^^xsd:float ;
+    ns1:fieldGoal "0.451"^^xsd:float ;
+    ns1:freeThrow "0.843"^^xsd:float ;
+    ns1:gamesPlayed "82.0"^^xsd:float ;
+    ns1:gamesStarted "82.0"^^xsd:float ;
+    ns1:minutesPerGame "41.5"^^xsd:float ;
+    ns1:pointsPerGame "30.0"^^xsd:float ;
+    ns1:reboundsPerGame "6.9"^^xsd:float ;
+    ns1:stolePerGame "2.2"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.383"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__8> ns1:Year "2003–04"^^xsd:string ;
+    ns1:assistsPerGame "5.1"^^xsd:float ;
+    ns1:blocksPerGame "0.4"^^xsd:float ;
+    ns1:fieldGoal "0.438"^^xsd:float ;
+    ns1:freeThrow "0.852"^^xsd:float ;
+    ns1:gamesPlayed "65.0"^^xsd:float ;
+    ns1:gamesStarted "64.0"^^xsd:float ;
+    ns1:minutesPerGame "37.6"^^xsd:float ;
+    ns1:pointsPerGame "24.0"^^xsd:float ;
+    ns1:reboundsPerGame "5.5"^^xsd:float ;
+    ns1:stolePerGame "1.7"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.327"^^xsd:float .
+
+<http://dbpedia.org/resource/Kobe_Bryant__9> ns1:Year "2004–05"^^xsd:string ;
+    ns1:assistsPerGame "6.0"^^xsd:float ;
+    ns1:blocksPerGame "0.8"^^xsd:float ;
+    ns1:fieldGoal "0.433"^^xsd:float ;
+    ns1:freeThrow "0.816"^^xsd:float ;
+    ns1:gamesPlayed "66.0"^^xsd:float ;
+    ns1:gamesStarted "66.0"^^xsd:float ;
+    ns1:minutesPerGame "40.7"^^xsd:float ;
+    ns1:pointsPerGame "27.6"^^xsd:float ;
+    ns1:reboundsPerGame "5.9"^^xsd:float ;
+    ns1:stolePerGame "1.3"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/L.A._Lakers> ;
+    ns1:threePoints "0.339"^^xsd:float .
+

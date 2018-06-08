@@ -68,14 +68,14 @@ def main():
             and then trying to apply mapping rules to every single data cells of those tables. 
             See Mapper class to get an idea of the decision algorithm for the mapping.
         """
-        #analyzer.analyze()
+        analyzer.analyze()
 
         """
         At last, you surely want to serialize the RDF graph obtained with serialize() method.
         You can find the .ttl file containing the graph serialized in /Extractions/ along with
              the corresponding log file.
         """
-        #analyzer.serialize()
+        analyzer.serialize()
 
         # Finally, print a report for the current extraction, then exits.
         #utils.print_report()
