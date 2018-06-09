@@ -1,0 +1,85 @@
+@prefix ns1: <http://dbpedia.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://dbpedia.org/resource/Agency_%28novel%29> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "2018-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Agrippa_%28A_Book_of_the_Dead%29> ns1:Fiction <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1992-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/All_Tomorrow%27s_Parties_%28novel%29> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1999-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Archangel_%28Gibson_comic%29> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "2017-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Bridge_trilogy> ns1:Novel <http://dbpedia.org/resource/William_Gibson> .
+
+<http://dbpedia.org/resource/Burning_Chrome_%28short_story_collection%29> ns1:ShortStory <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1986-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Count_Zero> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1986-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Distrust_That_Particular_Flavor> ns1:Fiction <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "2012-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Hubertus_Bigend> ns1:Novel <http://dbpedia.org/resource/William_Gibson> .
+
+<http://dbpedia.org/resource/Idoru> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1996-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Mona_Lisa_Overdrive> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1988-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Neuromancer> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1984-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Omni> ns1:ShortStory <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1981-01-01"^^xsd:gYear,
+        "1982-01-01"^^xsd:gYear,
+        "1983-01-01"^^xsd:gYear,
+        "1985-01-01"^^xsd:gYear,
+        "1991-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Omni_%28magazine%29> ns1:ShortStory <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1981-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Pattern_Recognition_%28novel%29> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "2003-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Shadows_4> ns1:ShortStory <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1981-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Spook_Country> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "2007-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Sprawl_trilogy> ns1:Novel <http://dbpedia.org/resource/William_Gibson> .
+
+<http://dbpedia.org/resource/The_Difference_Engine> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1990-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/The_Peripheral> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "2014-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/UnEarth_3> ns1:ShortStory <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1977-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Universe_11> ns1:ShortStory <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1981-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Vancouver> ns1:ShortStory <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1985-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Virtual_Light> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1993-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Wired_%28magazine%29> ns1:Fiction <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "1993-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Zero_History> ns1:Novel <http://dbpedia.org/resource/William_Gibson> ;
+    ns1:activeYear "2010-01-01"^^xsd:gYear .
+

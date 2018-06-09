@@ -85,27 +85,28 @@ def collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri):
 
 def collect_table_sections_and_headers_mappings(all_tables, res_name, rdf_types, domains, CUSTOM_MAPPERS):
 
-	mappers=[]
-	mapped_domains=[]
+    mappers=[]
+    mapped_domains=[]
 
-	for rdf_type in rdf_types:
-		if rdf_type in domains.keys():
-			mappers+=domains[rdf_type]
+    for rdf_type in rdf_types:
+        if rdf_type in domains.keys():
+            mappers+=domains[rdf_type]
 
-	for mapper in mappers:
-		if mapper not in mapped_domains:
-			# table's section found
-			table_sections = OrderedDict()
-			# headers found in tables analyzed
-			table_headers = OrderedDict()
+    for mapper in mappers:
+        if mapper not in mapped_domains:
+            # table's section found
+            table_sections = OrderedDict()
+            # headers found in tables analyzed
+            table_headers = OrderedDict()
 
-			# For each table defined
-			for table in all_tables:
-				if mapper in CUSTOM_MAPPERS and table.table_section in CUSTOM_MAPPERS[mapper]["table_sections"][explorer_tools.language]:
-					actual_dictionary = CUSTOM_MAPPERS[mapper]["ontology"][explorer_tools.language]
-					# I won't get tables with only one row --> It can be an error during table's reading
-					if table.n_rows > 1:
-						check_if_section_is_present(table.table_section, table.headers_refined, res_name, actual_dictionary, table_sections, table_headers)
+            # For each table defined
+            for table in all_tables:
+                if table:
+                    if mapper in CUSTOM_MAPPERS and table.table_section in CUSTOM_MAPPERS[mapper]["table_sections"][explorer_tools.language]:
+                        actual_dictionary = CUSTOM_MAPPERS[mapper]["ontology"][explorer_tools.language]
+                        # I won't get tables with only one row --> It can be an error during table's reading
+                        if table.n_rows > 1:
+                            check_if_section_is_present(table.table_section, table.headers_refined, res_name, actual_dictionary, table_sections, table_headers)
 
 			if table_sections and table_headers:
 				all_sections[mapper] = table_sections

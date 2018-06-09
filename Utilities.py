@@ -588,3 +588,46 @@ class Utilities:
 		               "&format=application%2Fsparql-results%2Bjson&debug=on"
 		json_result = self.json_req(endpoint_url)
 		return json_result
+
+	def count_listelem_dict(self, res_dict):
+		''' Counts the total number of list elements from the dictionary representing the Wikipedia page.\
+		It's used to know how many list elements in a page are actually extracted.
+
+		:param res_dict: dictionary representing the resource (Wikipedia page).
+
+		:return: total list elements.
+		'''
+		list_el_num = 0
+		for k in res_dict.keys():
+			for el in res_dict[k]:
+				list_el_num += 1
+		return list_el_num
+
+	def evaluate(self, lang, source, tot_res, tot_res_success, tot_extracted_elems, tot_elems, num_statements):
+		''' Evaluates the extaction process and stores it in a csv file.
+
+		:param source: resource type(dbpedia ontology type).
+		:param tot_extracted_elems: number of list elements extracted in the resources.
+		:param tot_elems: total number of list elements present in the resources.
+
+		:return: void.
+		'''
+		try:
+			print "\nEvaluation:\n===========\n"
+			print "Resource Type:", lang + ":" + source
+			print "Resources Found:", tot_res
+			print "Resources successfully processed:", tot_res_success
+			print "List elements found:", tot_elems
+			print "List elements extracted:", tot_extracted_elems
+			print "Triples Created:", num_statements
+			accuracy = (1.0*tot_extracted_elems)/tot_elems
+			print "Accuracy:", accuracy
+			print ""
+
+			#write the evaluation results in evaluation.csv
+			with open('evaluation.csv', 'a') as csvfile:
+				filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+				filewriter.writerow([lang, source, tot_res, tot_res_success, tot_extracted_elems, tot_elems, 
+				                        num_statements, accuracy])
+		except ZeroDivisionError:
+			print '\nNo elements extracted!'

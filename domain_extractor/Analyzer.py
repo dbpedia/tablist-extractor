@@ -3,7 +3,8 @@
 import sys
 import rdflib
 from domain_explorer import HtmlTableParser
-
+from domain_explorer import wikiParser
+import ListMapper
 __author__ = 'papalinis - Simone Papalini - papalini.simone.an@gmail.com'
 
 
@@ -69,6 +70,9 @@ class Analyzer:
         self.total_table_num = 0  # Extraction tables number
 
         self.res_list = None
+
+        self.tot_extracted_list_elems = 0
+        self.tot_list_elems = 0
 
         # setup a list of resources  from the file (filename) passed to __init__
         if self.filename:
@@ -179,6 +183,16 @@ class Analyzer:
 
                         # Add to the total the number of tables found for this resource
                         self.total_table_num += html_parser.tables_num
+
+                    #Extracting list triples
+                    resDict = wikiParser.wikiParser(self.language, resource, self.utils).main_parser()
+                    self.tot_list_elems += self.utils.count_listelem_dict(resDict)
+                    if resDict:
+                        listMapper = ListMapper.ListMapper(resDict, self.language, resource, self.resource, self.graph, self.utils)
+                        extr_list_elems = listMapper.select_mapping()
+                        self.tot_extracted_list_elems += extr_list_elems
+                        print(">>> Mapped " + self.language + ":" + resource + ", extracted elements: " + str(extr_list_elems) + "  <<<\n")
+ 
             except StopIteration:
                 self.lines_to_read = False
                 self.utils.res_analyzed = self.res_analyzed
