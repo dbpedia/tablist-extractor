@@ -271,7 +271,7 @@ class wikiParser:
             # spawn a new process that makes a call to the json wrapper, which creates the required
             # json for the given resource, then load the string into a dict using json.loads()
             proc = subprocess.Popen(['java','-jar','domain_explorer/jsonpedia_wrapper.jar','-l', language, 
-                                '-r', resource, '-p', 'Structure', '-f', 'section'], stdout=subprocess.PIPE)
+                                '-r', resource, '-p', 'Structure', '-f', 'section'], stdout=subprocess.PIPE, shell=False)
             pipe_output = proc.stdout.read()  #redirect the input into python variable
             proc.kill()  #kill the spawned process
             sections = json.loads(pipe_output) #load the string as a python dict
@@ -321,7 +321,7 @@ class wikiParser:
             # spawn a new process that makes a call to the json wrapper, which creates the required
             # json for the given resource, then load the string into a dict using json.loads()
             proc = subprocess.Popen(['java','-jar','domain_explorer/jsonpedia_wrapper.jar','-l', language, 
-                                '-r', resource, '-p', 'Structure'], stdout=subprocess.PIPE)
+                                '-r', resource, '-p', 'Structure'], stdout=subprocess.PIPE, shell = False)
             pipe_output = proc.stdout.read()   #redirect the input into python variable
             proc.kill()  #kill the spawned process
             result = json.load(pipe_output)  #load the string as a python dict

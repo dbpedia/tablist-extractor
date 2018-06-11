@@ -2,6 +2,8 @@
 
 import sys
 import rdflib
+from rdflib import URIRef, BNode, Literal
+from rdflib.namespace import RDF
 from domain_explorer import HtmlTableParser
 from domain_explorer import wikiParser
 import ListMapper
