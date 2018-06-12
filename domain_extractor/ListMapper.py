@@ -114,6 +114,7 @@ class ListMapper:
                         # if the section hasn't been mapped yet and the title match, apply domain related mapping
                         dk = dk.decode('utf-8') #make sure utf-8 mismatches don't skip sections 
                         if not mapped and re.search(dk, res_key, re.IGNORECASE):
+                            try:
                                 if is_custom_map_fn == False:
                                     #use the pre-defined mapper functions
                                     mapperfn = "self.map_" + mapper.lower() + "(self.resDict[res_key], res_key, self.db_res, self.language, self.graph, 0)"
@@ -200,6 +201,8 @@ class ListMapper:
                 #initital uri and resource names of the triple (triple form: <uri dbo:p res_name>)
                 uri = None
                 res_name = None
+                isbn = None
+                work = None
 
                 if res_name == None and 1 in extractor_choices: #italics mapper was chosen
                     res_name = self.italic_mapper(elem)

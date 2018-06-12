@@ -28,7 +28,7 @@ RESOURCE_FILE = ""
 BIBLIOGRAPHY_MAPPER = {
 'Selected bibliography - Short stories': 'ShortStory', 
 'Selected bibliography - Novels': 'Novel', 
-'Selected bibliography - Nonfiction': 'Fiction', 
+'Selected bibliography - Nonfiction': 'Non-fiction', 
 } 
 
 # END OF FILE 

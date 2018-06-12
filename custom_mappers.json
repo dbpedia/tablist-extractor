@@ -33,17 +33,36 @@
         }, 
         "list_headers": {
             "en": [
-                "bibliography", "works", "novels", "books", "publications"
-            ],
-            "it": ["opere", "romanzi", "saggi", "pubblicazioni", "edizioni"],
-            "de": ["bibliographie", "werke","arbeiten", "bücher", "publikationen"],
-            "es": ["Obras", "Bibliografía"]
+                "bibliography", 
+                "works", 
+                "novels", 
+                "books", 
+                "publications"
+            ], 
+            "it": [
+                "opere", 
+                "romanzi", 
+                "saggi", 
+                "pubblicazioni", 
+                "edizioni"
+            ], 
+            "de": [
+                "bibliographie", 
+                "werke", 
+                "arbeiten", 
+                "b\u00fccher", 
+                "publikationen"
+            ], 
+            "es": [
+                "Obras", 
+                "Bibliograf\u00eda"
+            ]
         }, 
         "extractors": [
             1, 
             2, 
             3, 
-            4,
+            4, 
             5
         ], 
         "ontology": {
@@ -52,32 +71,72 @@
                 "Stories": "ShortStory", 
                 "fiction": "Fiction", 
                 "Selected bibliography - Short stories": "ShortStory", 
-                "Selected bibliography - Nonfiction": "Fiction", 
-                "Selected bibliography - Novels": "Novel",
-                "Comics": "Comic",
+                "Selected bibliography - Nonfiction": "Nonfiction", 
+                "Selected bibliography - Novels": "Novel", 
+                "Comics": "Comic", 
                 "Articles": "Article", 
                 "Essays": "Essay", 
-                "Plays": "Play_(theatre)",
+                "Plays": "Play_(theatre)", 
                 "Anthologies": "Anthology", 
                 "Non-fiction": "Non-fiction", 
-                "Comedy":"comedy", 
-                "other":"other",
+                "Comedy": "comedy", 
+                "other": "other", 
                 "Nonfiction": "Non-fiction", 
                 "Poetry": "Poetry", 
-                "Science fiction": "Science_fiction",
+                "Science fiction": "Science_fiction", 
                 "Biographies": "Biography"
-            },
-            "it": {"Romanzi": "Novel", "Racconti": "Story", "Antologie": "Anthology", "Non-fiction": "Non-fiction",
-           "Audiolibri": "Audiobook", "Saggi": "Essay", "Poesie": "Poetry", "Drammi": "Drama", "Altri":"other",
-           "audiolibro":"Audiobook", "finzione":"Fiction", "saggistica":"Non-Fiction"},
-           "de": { "poesie": "Poetry", "dramen": "Drama", "kurzgedichte": "Poem", "kurzgeschichten": "Short_story",
-            "Übersetzungen":"translator", "erzählungen":"story","romane":"Romance", "verfilmungen":"adaptations",
-            "dokumentarfilm":"documentary", "journal":"journal", "gedichte":"poem", "märchen":"fairy_tales", 
-            "bühnenstücke":"Play_(theatre)", "essays":"essay", "gedichtbände":"poem", "aufzeichnungen":"record", 
-            "hörbücher":"Audiobook", "autobiografisches":"Autobiography", "briefe":"letter"},
-            "es": {"Novela": "Novel", "Antologías":"Anthology", "Cuentos":"story", "Guiones":"Script", "Películas":"Movie",
-            "Prosa":"letter", "Tragedia":"Tragedy", "Comedia":"comedy", "Relatos":"story", "No ficción":"Non-ficton",
-            "ficción":"Ficton", "drama":"drama", "tragedia":"drama", "otros":"other"}
+            }, 
+            "it": {
+                "Romanzi": "Novel", 
+                "Racconti": "Story", 
+                "Antologie": "Anthology", 
+                "Non-fiction": "Non-fiction", 
+                "Audiolibri": "Audiobook", 
+                "Saggi": "Essay", 
+                "Poesie": "Poetry", 
+                "Drammi": "Drama", 
+                "Altri": "other", 
+                "audiolibro": "Audiobook", 
+                "finzione": "Fiction", 
+                "saggistica": "Non-Fiction"
+            }, 
+            "de": {
+                "poesie": "Poetry", 
+                "dramen": "Drama", 
+                "kurzgedichte": "Poem", 
+                "kurzgeschichten": "Short_story", 
+                "\u00dcbersetzungen": "translator", 
+                "erz\u00e4hlungen": "story", 
+                "romane": "Romance", 
+                "verfilmungen": "adaptations", 
+                "dokumentarfilm": "documentary", 
+                "journal": "journal", 
+                "gedichte": "poem", 
+                "m\u00e4rchen": "fairy_tales", 
+                "b\u00fchnenst\u00fccke": "Play_(theatre)", 
+                "essays": "essay", 
+                "gedichtb\u00e4nde": "poem", 
+                "aufzeichnungen": "record", 
+                "h\u00f6rb\u00fccher": "Audiobook", 
+                "autobiografisches": "Autobiography", 
+                "briefe": "letter"
+            }, 
+            "es": {
+                "Novela": "Novel", 
+                "Antolog\u00edas": "Anthology", 
+                "Cuentos": "story", 
+                "Guiones": "Script", 
+                "Pel\u00edculas": "Movie", 
+                "Prosa": "letter", 
+                "Tragedia": "Tragedy", 
+                "Comedia": "comedy", 
+                "Relatos": "story", 
+                "No ficci\u00f3n": "Non-ficton", 
+                "ficci\u00f3n": "Ficton", 
+                "drama": "drama", 
+                "tragedia": "drama", 
+                "otros": "other"
+            }
         }, 
         "years": "Yes"
     }, 
@@ -515,7 +574,7 @@
             }
         }, 
         "years": "No"
-    },
+    }, 
     "ALUMNI_MAPPER": {
         "table_sections": {
             "en": []
@@ -529,7 +588,7 @@
         "extractors": [
             1, 
             2, 
-            4,
+            4, 
             6
         ], 
         "ontology": {
