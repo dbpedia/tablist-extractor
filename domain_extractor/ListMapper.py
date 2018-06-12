@@ -114,8 +114,6 @@ class ListMapper:
                         # if the section hasn't been mapped yet and the title match, apply domain related mapping
                         dk = dk.decode('utf-8') #make sure utf-8 mismatches don't skip sections 
                         if not mapped and re.search(dk, res_key, re.IGNORECASE):
-                            try:
-                                print(self.resDict[res_key])
                                 if is_custom_map_fn == False:
                                     #use the pre-defined mapper functions
                                     mapperfn = "self.map_" + mapper.lower() + "(self.resDict[res_key], res_key, self.db_res, self.language, self.graph, 0)"
@@ -242,10 +240,20 @@ class ListMapper:
                             res_name = urllib2.quote(res_name)  #quoting res_name in proper format
                             uri = self.dbr + res_name.decode('utf-8', errors='ignore')
 
+                if 5 in extractor_choices: #isbn mapper was chosen
+                    isbn = self.isbn_mapper(elem)
+
+                if 6 in extractor_choices: #alumni profession mapper was chosen
+                    work = self.alumni_profession_mapper(elem)
+
                 #if successfully found a triple, add that to the existing graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.dbo[p], res))
                     elems += 1
+                    if isbn:
+                        g.add((rdflib.URIRef(uri), dbo.isbn, rdflib.Literal(isbn, datatype=rdflib.XSD.string)))
+                    if work:
+                        g.add((rdflib.URIRef(uri), dbo.notableWork, rdflib.Literal(work, datatype=rdflib.XSD.string)))
                     if years:
                         self.add_years_to_graph(g, uri, years)
 
