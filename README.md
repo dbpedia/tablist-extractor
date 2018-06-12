@@ -8,13 +8,8 @@ The main idea of this project is to analyze the resources choosen by the user an
 
 ### Requirements
 
-All the requirements needed to run this project can be installed by executing the below line in the terminal.
-`install -r requirements.txt`
-
-* **[RDFlib](http://rdflib.readthedocs.io/en/stable/gettingstarted.html)** (v. >= 4.2) 
-* **[lxml library](http://lxml.de/lxmlhtml.html)** (v. 3.6)
-* Python 2.7
-* Stable internet connection
+The extractor is written in Python 2.7. All the requirements needed to run this project can be installed by executing the below line in the terminal.
+`pip install -r requirements.txt`
 
 ### How to run tablist-extractor
 
