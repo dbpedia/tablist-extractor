@@ -60,17 +60,17 @@ def analyze_uri_resource_list(uri_resource_list):
 		collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri)
 
 def get_resource_sections_and_headers(res_name):
-	"""
-	If there are defined tables, I will analyze each of them.
-	First of all I will study section's table, then I will go on headers' table.
-	:param res_name: resource name that has to be analyzed
-	:param actual_dictionary: mapping rules defined in pyTableExtractor dictionary
-	:return:
-	"""
-	# Get all tables
-	all_tables, table_parse_info = explorer_tools.html_table_parser(res_name)
+    """
+    If there are defined tables, I will analyze each of them.
+    First of all I will study section's table, then I will go on headers' table.
+    :param res_name: resource name that has to be analyzed
+    :param actual_dictionary: mapping rules defined in pyTableExtractor dictionary
+    :return:
+    """
+    # Get all tables
+    all_tables = explorer_tools.html_table_parser(res_name)
 
-	return all_tables, table_parse_info
+    return all_tables
 
 def collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri):
 

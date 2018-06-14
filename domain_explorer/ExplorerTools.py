@@ -183,10 +183,10 @@ class ExplorerTools:
                 return html_table_parser.all_tables
             # if there aren't tables to analyze result will be empty
             else:
-                return "", ""
+                return ""
         # if html doc is not defined result will be empty
         else:
-            return "", ""
+            return ""
 
     def wiki_parser(self, res_name):
         wiki_parser = wikiParser.wikiParser(self.language, res_name, self.utils)

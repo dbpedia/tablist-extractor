@@ -4,7 +4,7 @@
 # Please do not modify pyDomainExplorer parameters. 
 
 # pyDomainExplorer parameters 
-DOMAIN_EXPLORED = "William_Gibson" 
+DOMAIN_EXPLORED = "Boston_celtics" 
 CHAPTER = "en" 
 COLLECT_MODE = "s" 
 RESOURCE_FILE = "" 
@@ -21,14 +21,5 @@ RESOURCE_FILE = ""
 # or on dbpedia ontology.
 # If you empty a field that was filled, you will delete that rule from dictionary.
 
-
-#Following are section mappings of lists found:
-#Mapper used for the following are: BIBLIOGRAPHY_MAPPER
-
-BIBLIOGRAPHY_MAPPER = {
-'Selected bibliography - Short stories': 'ShortStory', 
-'Selected bibliography - Novels': 'Novel', 
-'Selected bibliography - Nonfiction': 'Non-fiction', 
-} 
 
 # END OF FILE 
