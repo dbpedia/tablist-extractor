@@ -64,7 +64,7 @@ class Selector:
         :return: path_to_file  absolute path to the file we want to create
         """
         # call test_dir_existence() from Utilities class to test if '../Resource_lists' exists.
-        self.utils.test_dir_existence('../Resource_lists')
+        self.utils.test_dir_existence(settings.PATH_FOLDER_RESOURCE_LIST)
 
         # get current directory
         current_dir = self.utils.get_current_dir()
@@ -74,7 +74,7 @@ class Selector:
         #else:
         filename = self.utils.get_date() + "_" + self.resource + "_" + self.language + ".txt"
         # recreating abs path from 2 paths
-        path_to_file = self.utils.join_paths(current_dir, '../Resource_lists/' + filename)
+        path_to_file = self.utils.join_paths(current_dir, settings.PATH_FOLDER_RESOURCE_LIST+"/" + filename)
         return path_to_file
 
     def collect_resources(self):

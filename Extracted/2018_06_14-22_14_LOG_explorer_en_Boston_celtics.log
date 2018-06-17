@@ -1,0 +1,39 @@
+INFO 06/14 10:14:58 PM You're analyzing wiki lists and tables of wiki chapter: en, source: Boston_celtics
+INFO 06/14 10:14:59 PM Analyzing resource: Boston_celtics
+INFO 06/14 10:14:59 PM Table under section: Seasonbyseason record
+DEBUG 06/14 10:14:59 PM  E2 Unable to find headers - resource: Boston_celtics
+INFO 06/14 10:14:59 PM Table under section: FIBA Hall of Fame
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Home arenas
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Captains
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Assistant coaches
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Ownership history
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Team presidents
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: General managers
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Other
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Team physicians
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Team athletic trainers
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Retained draft rights
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Boston celtics
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Boston celtics
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Boston celtics
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Boston celtics
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Boston celtics
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:14:59 PM Table under section: Boston celtics
+INFO 06/14 10:14:59 PM Headers Found
+INFO 06/14 10:15:02 PM Lists found under Sections: [u'See also', u'Players - Franchise leaders', u'External links']

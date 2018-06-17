@@ -117,6 +117,7 @@ class WriteSettingsFile:
             domain_explored_file.write(mapper + " = {\n")
             for key, value in sections.items():
                 if key not in printed_keys:
+                    key = self.explorer_tools.replace_accents(key.replace("'",""))
                     domain_explored_file.write("'" + key + "': '" + value + "'" + ", \n")
                     printed_keys.append(key)
             domain_explored_file.write("} \n")

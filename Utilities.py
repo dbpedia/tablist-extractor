@@ -498,7 +498,7 @@ class Utilities:
 	        print "Custom mappers not found!"
 	        return dict()  #in case of failure, assume no user defined mappers and return empty dict
 
-	def get_list_section_ontology_property(self, sect_name, mapper, CUSTOM_MAPPERS):
+	def get_list_section_ontology_class(self, sect_name, mapper, CUSTOM_MAPPERS):
 		ontology_class = None
 		for class_type in CUSTOM_MAPPERS[mapper]["ontology"][self.language]:
 			try:
@@ -509,14 +509,15 @@ class Utilities:
 				break
 
 		if ontology_class == None:   #No possible mapping found; try default mapping
-			if CUSTOM_MAPPERS[mapper]["ontology"][self.language]["default"] == "None":
-				return 0 #default wasn't allowed
-			else: 
-				ontology_class = "default"
+			if "default" in CUSTOM_MAPPERS[mapper]["ontology"][self.language]:
+				if CUSTOM_MAPPERS[mapper]["ontology"][self.language]["default"] == "None":
+					return 0 #default wasn't allowed
+				else: 
+					ontology_class = "default"
+			else:
+				return 0
         
-		#final ontology class/property for the current element
-		p = CUSTOM_MAPPERS[mapper]["ontology"][self.language][ontology_class]
-		return p
+		return ontology_class
 
 	def validate_user_input(self):
 		"""

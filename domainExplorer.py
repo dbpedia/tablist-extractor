@@ -26,6 +26,7 @@ def start_exploration():
 	#actual_dictionary = explorer_tools.read_actual_dictionary()
 	# Read uri resources
 	uri_resource_list = explorer_tools.get_uri_resources()
+
 	# If resources are found
 	if uri_resource_list:
 		# Analyze uri list
@@ -288,35 +289,36 @@ def get_titles_and_list_contents(res_name):
 	return resDict
 
 def collect_list_section_mappings(resDict, res_name, rdf_types, domains, CUSTOM_MAPPERS):
-	mappers=[]
-	mapped_domains=[]
+    mappers=[]
+    mapped_domains=[]
 
-	for rdf_type in rdf_types:
-		if rdf_type in domains.keys():
-			mappers+=domains[rdf_type]
+    for rdf_type in rdf_types:
+        if rdf_type in domains.keys():
+            mappers+=domains[rdf_type]
 
-	for mapper in mappers:
-		if mapper not in mapped_domains and mapper in CUSTOM_MAPPERS.keys():
-			list_sections = OrderedDict()
-			domain_keys = CUSTOM_MAPPERS[mapper]["list_headers"][explorer_tools.language]
+    for mapper in mappers:
+        if mapper not in mapped_domains and mapper in CUSTOM_MAPPERS.keys():
+            list_sections = OrderedDict()
+            domain_keys = CUSTOM_MAPPERS[mapper]["list_headers"][explorer_tools.language]
 
-			for res_key in resDict.keys():
-				mapped = False
-				for dk in domain_keys:
-					dk = dk.decode('utf-8') #make sure utf-8 mismatches don't skip sections 
-					if not mapped and re.search(dk, res_key, re.IGNORECASE):
-						ontology_property = explorer_tools.utils.get_list_section_ontology_property(res_key, mapper, CUSTOM_MAPPERS)
-						if ontology_property:
-							list_sections.__setitem__(res_key, ontology_property)
-							mapped = True
-						else:
-							list_sections.__setitem__(res_key, "")
-							mapped = True
+            for res_key in resDict.keys():
+                mapped = False
+                for dk in domain_keys:
+                    dk = dk.decode('utf-8') #make sure utf-8 mismatches don't skip sections 
+                    if not mapped and re.search(dk, res_key, re.IGNORECASE):
+                        ontology_class = explorer_tools.utils.get_list_section_ontology_class(res_key, mapper, CUSTOM_MAPPERS)
+                        if ontology_class:
+                            ontology_property = CUSTOM_MAPPERS[mapper]["ontology"][explorer_tools.language][ontology_class]
+                            list_sections.__setitem__(ontology_class, ontology_property)
+                            mapped = True
+                        else:
+                            list_sections.__setitem__(res_key, "")
+                            mapped = True
 
-			if list_sections:
-				all_list_sections[mapper] = list_sections
+            if list_sections:
+                all_list_sections[mapper] = list_sections
 
-			mapped_domains.append(mapper)
+            mapped_domains.append(mapper)
 
 def write_sections_and_headers():
 	"""
