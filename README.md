@@ -48,6 +48,12 @@ The above command creates a .ttl file for the respective resources in the `Extra
 
 * `python domainExplorer.py s William_Gibson en`
 
+### How to run GUI of extraction process
+
+* `python guiExtractor.py`
+
+* Follow the instructions step by step as guided in the UI. For hints to fill the required fields, hover onto the field area.
+
 ### Notes
 
 * If everything goes well, three files are created in `/Extracted` folder : two log file (one for domainExplorer and one for domainExtractor) and a .ttl file containing the serialized rdf data set.
