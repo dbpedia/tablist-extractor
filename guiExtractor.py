@@ -55,12 +55,19 @@ class guiExtractor:
 			collect_mode = "t"
 		language = str(self.ui.LanguageCombo.currentText())
 
-		proc = subprocess.Popen(['python','domainExplorer.py', collect_mode, resource, language], stdout=subprocess.PIPE, shell=False)
-		while proc.poll() is None:
-			l = proc.stdout.readline().rstrip() # This blocks until it receives a newline.
-			if not l:
-				break
-			print(l)
+		try:
+			proc = subprocess.Popen(['python','domainExplorer.py', collect_mode, resource, language], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False)
+			# while proc.poll() is None:
+			# 	l = proc.stdout.readline().rstrip() # This blocks until it receives a newline.
+			# 	if not l:
+			# 		break
+			# 	print(l)
+			for line in iter(proc.stdout.readline, b''):
+				print line.rstrip()
+			proc.wait() # wait for the subprocess to exit
+		except Exception as e:
+			print(e)
+			sys.exit(0)
 
 		self.openDomainSettingsFile()
 

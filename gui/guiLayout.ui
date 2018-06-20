@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1013</width>
-    <height>779</height>
+    <width>1117</width>
+    <height>784</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -20,16 +20,38 @@
    <string>Tablist-Extractor</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1120</width>
+      <height>780</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
      <widget class="QFrame" name="frame">
       <property name="enabled">
        <bool>true</bool>
       </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1111</width>
+        <height>751</height>
+       </rect>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>989</width>
-        <height>733</height>
+        <width>990</width>
+        <height>735</height>
        </size>
       </property>
       <property name="frameShape">
@@ -39,12 +61,86 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
+       <item row="2" column="0" colspan="2">
+        <widget class="QTextBrowser" name="TerminalWindow">
+         <property name="minimumSize">
+          <size>
+           <width>965</width>
+           <height>215</height>
+          </size>
+         </property>
+         <property name="palette">
+          <palette>
+           <active>
+            <colorrole role="Text">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>33</red>
+               <green>255</green>
+               <blue>6</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </active>
+           <inactive>
+            <colorrole role="Text">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>33</red>
+               <green>255</green>
+               <blue>6</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>0</red>
+               <green>0</green>
+               <blue>0</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </inactive>
+           <disabled>
+            <colorrole role="Text">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>128</red>
+               <green>128</green>
+               <blue>128</blue>
+              </color>
+             </brush>
+            </colorrole>
+            <colorrole role="Base">
+             <brush brushstyle="SolidPattern">
+              <color alpha="255">
+               <red>236</red>
+               <green>236</green>
+               <blue>236</blue>
+              </color>
+             </brush>
+            </colorrole>
+           </disabled>
+          </palette>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QFrame" name="frame_3">
          <property name="minimumSize">
           <size>
-           <width>293</width>
-           <height>501</height>
+           <width>295</width>
+           <height>500</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -144,14 +240,14 @@ For eg., &quot;Kobe_Bryant&quot;, &quot;William_Gibson&quot; for single resource
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
+          <item row="6" column="0" colspan="2">
            <widget class="QPushButton" name="ExploreBtn">
             <property name="text">
              <string>Explore</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="0" colspan="2">
+          <item row="8" column="0" colspan="2">
            <widget class="Line" name="line">
             <property name="font">
              <font>
@@ -166,7 +262,7 @@ For eg., &quot;Kobe_Bryant&quot;, &quot;William_Gibson&quot; for single resource
             </property>
            </widget>
           </item>
-          <item row="7" column="0" colspan="2">
+          <item row="9" column="0" colspan="2">
            <widget class="QLabel" name="Step2Label">
             <property name="font">
              <font>
@@ -183,7 +279,7 @@ For eg., &quot;Kobe_Bryant&quot;, &quot;William_Gibson&quot; for single resource
             </property>
            </widget>
           </item>
-          <item row="8" column="0" colspan="2">
+          <item row="10" column="0" colspan="2">
            <widget class="QLabel" name="Step2Infolabel">
             <property name="text">
              <string>Add/Edit ontology mappings as 
@@ -199,14 +295,14 @@ save button to update mappings.</string>
             </property>
            </widget>
           </item>
-          <item row="9" column="0" colspan="2">
+          <item row="11" column="0" colspan="2">
            <widget class="QPushButton" name="saveBtn">
             <property name="text">
              <string>Save</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="0" colspan="2">
+          <item row="12" column="0" colspan="2">
            <widget class="Line" name="line_2">
             <property name="lineWidth">
              <number>2</number>
@@ -216,7 +312,7 @@ save button to update mappings.</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
+          <item row="13" column="0" colspan="2">
            <spacer name="horizontalSpacer_4">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -229,7 +325,7 @@ save button to update mappings.</string>
             </property>
            </spacer>
           </item>
-          <item row="12" column="0" colspan="2">
+          <item row="14" column="0" colspan="2">
            <widget class="QLabel" name="Step3Label">
             <property name="font">
              <font>
@@ -246,111 +342,48 @@ save button to update mappings.</string>
             </property>
            </widget>
           </item>
-          <item row="13" column="0" colspan="2">
+          <item row="15" column="0" colspan="2">
            <widget class="QPushButton" name="ExtractBtn">
             <property name="text">
              <string>Extract Triples</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="0" colspan="2">
-           <widget class="QProgressBar" name="progressBar">
-            <property name="value">
-             <number>0</number>
+          <item row="16" column="0" colspan="2">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-           </widget>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="1" column="1">
         <widget class="QTextEdit" name="textEdit">
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>0</height>
+           <height>500</height>
           </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QTextBrowser" name="TerminalWindow">
-         <property name="minimumSize">
-          <size>
-           <width>963</width>
-           <height>212</height>
-          </size>
-         </property>
-         <property name="palette">
-          <palette>
-           <active>
-            <colorrole role="Text">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>33</red>
-               <green>255</green>
-               <blue>6</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>0</red>
-               <green>0</green>
-               <blue>0</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </active>
-           <inactive>
-            <colorrole role="Text">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>33</red>
-               <green>255</green>
-               <blue>6</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>0</red>
-               <green>0</green>
-               <blue>0</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </inactive>
-           <disabled>
-            <colorrole role="Text">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>128</red>
-               <green>128</green>
-               <blue>128</blue>
-              </color>
-             </brush>
-            </colorrole>
-            <colorrole role="Base">
-             <brush brushstyle="SolidPattern">
-              <color alpha="255">
-               <red>236</red>
-               <green>236</green>
-               <blue>236</blue>
-              </color>
-             </brush>
-            </colorrole>
-           </disabled>
-          </palette>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-    </item>
-   </layout>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
