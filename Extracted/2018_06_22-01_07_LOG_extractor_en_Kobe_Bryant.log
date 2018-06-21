@@ -1,0 +1,47 @@
+INFO 06/22 01:07:55 AM You're analyzing wiki lists and tables of wiki chapter: en, source: Kobe_Bryant
+INFO 06/22 01:07:55 AM Analyzing Kobe_Bryant
+INFO 06/22 01:07:56 AM Analyzing resource: Kobe_Bryant
+INFO 06/22 01:07:56 AM Table under section: NBA career statistics
+DEBUG 06/22 01:07:56 AM  E2 Unable to find headers - resource: Kobe_Bryant
+INFO 06/22 01:07:56 AM Table under section: Regular season
+INFO 06/22 01:07:56 AM Headers Found
+INFO 06/22 01:07:56 AM Data refined
+INFO 06/22 01:07:56 AM Rows extracted: 22
+INFO 06/22 01:07:56 AM Data extracted for this table: 286
+INFO 06/22 01:07:56 AM Header: MPG mapped with: minutesPerGame
+INFO 06/22 01:07:56 AM Header: GS mapped with: gamesStarted
+INFO 06/22 01:07:56 AM Header: BPG mapped with: blocksPerGame
+INFO 06/22 01:07:56 AM Header: GP mapped with: gamesPlayed
+INFO 06/22 01:07:56 AM Header: Year mapped with: Year
+INFO 06/22 01:07:56 AM Header: APG mapped with: assistsPerGame
+INFO 06/22 01:07:56 AM Header: FT% mapped with: freeThrow
+INFO 06/22 01:07:56 AM Header: RPG mapped with: reboundsPerGame
+INFO 06/22 01:07:56 AM Header: Team mapped with: team
+INFO 06/22 01:07:57 AM Header: FG% mapped with: fieldGoal
+INFO 06/22 01:07:57 AM Header: PPG mapped with: pointsPerGame
+INFO 06/22 01:07:57 AM Header: 3P% mapped with: threePoints
+INFO 06/22 01:07:57 AM Header: SPG mapped with: stolePerGame
+INFO 06/22 01:07:59 AM Table under section: Playoffs
+INFO 06/22 01:07:59 AM Headers Found
+INFO 06/22 01:07:59 AM Data refined
+INFO 06/22 01:07:59 AM Rows extracted: 16
+INFO 06/22 01:07:59 AM Data extracted for this table: 208
+INFO 06/22 01:07:59 AM Header: MPG mapped with: minutesPerGame
+INFO 06/22 01:07:59 AM Header: GS mapped with: gamesStarted
+INFO 06/22 01:07:59 AM Header: BPG mapped with: blocksPerGame
+INFO 06/22 01:07:59 AM Header: GP mapped with: gamesPlayed
+INFO 06/22 01:07:59 AM Header: Year mapped with: Year
+INFO 06/22 01:07:59 AM Header: APG mapped with: assistsPerGame
+INFO 06/22 01:07:59 AM Header: FT% mapped with: freeThrow
+INFO 06/22 01:07:59 AM Header: RPG mapped with: reboundsPerGame
+INFO 06/22 01:07:59 AM Header: Team mapped with: team
+INFO 06/22 01:07:59 AM Header: FG% mapped with: fieldGoal
+INFO 06/22 01:07:59 AM Header: PPG mapped with: pointsPerGame
+INFO 06/22 01:07:59 AM Header: 3P% mapped with: threePoints
+INFO 06/22 01:07:59 AM Header: SPG mapped with: stolePerGame
+INFO 06/22 01:08:01 AM Lists found under Sections: [u'Further reading', u'See also', u'External links', u'Off the court - Endorsements']
+INFO 06/22 01:08:02 AM There are 0 sections and sections without mapping rules
+INFO 06/22 01:08:02 AM There are 0 headers and sections without mapping rules
+INFO 06/22 01:08:02 AM End Of File reached, now you can serialize the graph
+INFO 06/22 01:08:02 AM Triples in the graph: 532
+INFO 06/22 01:08:02 AM Graph serialized, filename: /Users/sachinmalepati/Documents/Dbpedia/tablist-extractor/Extracted/2018_06_22-01_08_T_Ext_en_Kobe_Bryant.ttl

@@ -7,6 +7,10 @@ import sys
 import settings
 import subprocess
 import domainExtractor
+import Utilities
+import json
+from collections import OrderedDict
+
 
 class Log(object):
     def __init__(self, edit, isStdout):
@@ -39,9 +43,21 @@ class guiExtractor:
 		for lang in settings.LANGUAGES_AVAILABLE:
 			self.ui.LanguageCombo.addItem(lang)
 
+		self.custom_mappers = Utilities.Utilities.load_custom_mappers()
+
+		for mapper in self.custom_mappers:
+			self.ui.ListOfMappersCombo.addItem(mapper)
+
+		self.ui.ListOfMappersCombo.setDuplicatesEnabled(False)
+
+		self.extractor_checkBoxes = [self.ui.extractor_checkBox_1, self.ui.extractor_checkBox_2, self.ui.extractor_checkBox_3,
+										self.ui.extractor_checkBox_4, self.ui.extractor_checkBox_5, self.ui.extractor_checkBox_6]
+
 		self.ui.ExploreBtn.clicked.connect(self.exploreDomain)
 		self.ui.saveBtn.clicked.connect(self.saveDomainSettingsFile)
 		self.ui.ExtractBtn.clicked.connect(self.extractTriples)
+		self.ui.ShowMappersBtn.clicked.connect(self.showMappers)
+		self.ui.SaveMapperBtn.clicked.connect(self.updateMapper)
 
 		MainWindow.show()
 		sys.exit(app.exec_())
@@ -84,6 +100,79 @@ class guiExtractor:
 
 	def extractTriples(self):
 		self.domain_extractor = domainExtractor.main()
+
+	def showMappers(self):
+		mapper = str(self.ui.ListOfMappersCombo.currentText())
+		current_mapper = self.custom_mappers[mapper]
+
+		self.ui.MapperNameLineEdit.setText(mapper)
+		self.ui.ListHeadersTextEdit.setText(json.dumps(current_mapper['list_headers'], indent = 2))
+		self.ui.TableSectionsTextEdit.setText(json.dumps(current_mapper['table_sections'], indent = 2))
+
+		extractors = current_mapper['extractors']
+
+		for extractor in extractors:
+			self.extractor_checkBoxes[extractor-1].setChecked(True)
+
+		if current_mapper['years'] == 'Yes':
+			self.ui.YearsYesRadio.setChecked(True)
+		else:
+			self.ui.YearsNoRadio.setChecked(True)
+
+		self.ui.OntologyTextEdit.setText(json.dumps(current_mapper['ontology'], indent = 2))
+
+	def updateMapper(self):
+		mapper_function = OrderedDict()
+		mapper_name = str(self.ui.MapperNameLineEdit.text())
+		list_headers = json.loads(str(self.ui.ListHeadersTextEdit.toPlainText()))
+		table_sections = json.loads(str(self.ui.TableSectionsTextEdit.toPlainText()))
+
+		extractors=[]
+		i=1
+		for extractor in self.extractor_checkBoxes:
+			if extractor.isChecked():
+				extractors.append(i)
+			i+=1
+
+		if self.ui.YearsYesRadio.isChecked():
+			years = 'Yes'
+		else:
+			years = 'No'
+
+		ontology = json.loads(str(self.ui.OntologyTextEdit.toPlainText()))
+
+		mapper_function['table_sections'] = table_sections
+		mapper_function['list_headers'] = list_headers
+		mapper_function['extractors'] = extractors
+		mapper_function['ontology'] = ontology
+		mapper_function['years'] = years
+
+		self.dump_custom_mappers(mapper_name, mapper_function)
+
+		self.refresh_mappers_list()
+
+	def dump_custom_mappers(self, mapper_name, mapper_function):
+		''' This method saves the modified custom mappers into the ``custom_mappers.json`` file and \
+		makes a call to ``load_custom_mappers()`` and ``merge_mappers()`` to reload the ``custom_mappers`` \
+		file to reflect updated changes.
+
+		:param mapper_name: the mapper function name to be saved.
+		:param mapper_function: the mapper function dict, containing settings related to the mapper function.
+
+		:return: void.
+		'''
+		self.custom_mappers[mapper_name] = mapper_function
+		custom_mappers_file = open("custom_mappers.json", "w+")
+		custom_mappers_file.write(json.dumps(self.custom_mappers, indent = 4))  #save the new mapper function on file
+		custom_mappers_file.close()
+		self.custom_mappers = Utilities.Utilities.load_custom_mappers() #reload the mapper functions file in the memory
+		return
+
+	def refresh_mappers_list(self):
+		self.ui.ListOfMappersCombo.clear()
+		for mapper in self.custom_mappers:
+			self.ui.ListOfMappersCombo.addItem(mapper)
+
 
 if __name__ == '__main__':
     extractor = guiExtractor()

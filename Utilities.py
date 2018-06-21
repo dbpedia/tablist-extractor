@@ -483,7 +483,8 @@ class Utilities:
 	        print "Settings files doesn't exist!!! "
 	        sys.exit(1)
 
-	def load_custom_mappers(self):
+	@staticmethod
+	def load_custom_mappers():
 	    ''' This function loads the user defined mapping functions from the ``custom_mappers.json`` 
 	    file into ``CUSTOM_MAPPERS`` dict.
 
