@@ -44,20 +44,27 @@ class guiExtractor:
 			self.ui.LanguageCombo.addItem(lang)
 
 		self.custom_mappers = Utilities.Utilities.load_custom_mappers()
+		self.static_mappers = [ "FILMOGRAPHY", "DISCOGRAPHY", "CONCERT_TOURS",
+            "STAFF", "HONORS", "CONTRIBUTORS","OTHER_LITERATURE_DETAILS"]
+		self.domains = Utilities.Utilities.load_settings()
 
-		for mapper in self.custom_mappers:
-			self.ui.ListOfMappersCombo.addItem(mapper)
+		self.refresh_mappers_list()
 
 		self.ui.ListOfMappersCombo.setDuplicatesEnabled(False)
 
 		self.extractor_checkBoxes = [self.ui.extractor_checkBox_1, self.ui.extractor_checkBox_2, self.ui.extractor_checkBox_3,
 										self.ui.extractor_checkBox_4, self.ui.extractor_checkBox_5, self.ui.extractor_checkBox_6]
 
+		self.refresh_domains_list()
+
 		self.ui.ExploreBtn.clicked.connect(self.exploreDomain)
 		self.ui.saveBtn.clicked.connect(self.saveDomainSettingsFile)
 		self.ui.ExtractBtn.clicked.connect(self.extractTriples)
 		self.ui.ShowMappersBtn.clicked.connect(self.showMappers)
 		self.ui.SaveMapperBtn.clicked.connect(self.updateMapper)
+		self.ui.ShowDomainBtn.clicked.connect(self.showDomain)
+		self.ui.SaveDomainBtn.clicked.connect(self.updateDomain)
+		self.ui.CheckBtn.clicked.connect(self.checkOntology)
 
 		MainWindow.show()
 		sys.exit(app.exec_())
@@ -168,10 +175,77 @@ class guiExtractor:
 		self.custom_mappers = Utilities.Utilities.load_custom_mappers() #reload the mapper functions file in the memory
 		return
 
+	def dump_settings(self, new_settings):
+		''' This method save the modified settings into the ``setting.json`` file and makes call to \
+		``load_settings()`` which reloads the settings file to reflect the updated changes.
+
+		:param new_settings: the updated settings dict to be saved.
+
+		:return: void.
+		'''
+		settings_file = open("configs.json", "w+")
+		settings={}
+		settings['MAPPING'] = new_settings
+		settings_file.write(json.dumps(settings, indent = 4)) #saves/updates the existing settings
+		settings_file.close()
+		self.domains = Utilities.Utilities.load_settings() #reload the saved settings into the memory
+		return
+
 	def refresh_mappers_list(self):
 		self.ui.ListOfMappersCombo.clear()
 		for mapper in self.custom_mappers:
 			self.ui.ListOfMappersCombo.addItem(mapper)
+
+	def refresh_domains_list(self):
+		self.ui.DomainsListCombo.clear()
+		for domain in self.domains:
+			self.ui.DomainsListCombo.addItem(domain)
+
+	def showDomain(self):
+		domain = str(self.ui.DomainsListCombo.currentText())
+		self.ui.DomainNameLineEdit.setText(domain)
+
+		self.mapperListModel = QStandardItemModel()
+		all_mappers = self.custom_mappers.keys() + self.static_mappers
+		for mapper in all_mappers:
+			item = QStandardItem(mapper)
+			item.setEditable(False)
+			if mapper in self.domains[domain]:
+				item.setCheckState(Qt.Checked)
+			else:
+				item.setCheckState(Qt.Unchecked)
+			item.setCheckable(True)
+			self.mapperListModel.appendRow(item)
+		self.ui.MappersListView.setModel(self.mapperListModel)
+
+	def updateDomain(self):
+		domain = str(self.ui.DomainNameLineEdit.text())
+
+		model = self.ui.MappersListView.model()
+		mappers=[]
+		for index in range(model.rowCount()):
+			item = model.item(index)
+			if item.checkState() == QtCore.Qt.Checked:
+				mappers.append(str(item.text()))
+
+		self.domains[domain] = mappers
+		self.dump_settings(self.domains)
+		self.refresh_domains_list()
+
+	def checkOntology(self):
+		ontology = str(self.ui.CheckOntologyField.text())
+		language = "en"
+
+		query = settings.SPARQL_CHECK_PROPERTY[0] +\
+				'{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + ontology + '"@' + language + "} UNION " +\
+				'{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + ontology.lower() + '"@' + language + "}" +\
+				settings.SPARQL_CHECK_PROPERTY[2]
+		utils = Utilities.Utilities(language, None, None)
+		utils.language = "en"
+		utils.dbpedia_sparql_url = utils.dbpedia_selection()
+		url = utils.url_composer(query, "dbpedia")
+		answer = utils.json_answer_getter(url)
+		print(answer)
 
 
 if __name__ == '__main__':

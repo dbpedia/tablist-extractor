@@ -564,7 +564,7 @@ save button to update mappings.</string>
         </property>
         <layout class="QFormLayout" name="formLayout_3">
          <item row="0" column="0" colspan="2">
-          <widget class="QLabel" name="AddDomainLabel">
+          <widget class="QLabel" name="UpdateDomainLabel">
            <property name="font">
             <font>
              <pointsize>15</pointsize>
@@ -573,7 +573,7 @@ save button to update mappings.</string>
             </font>
            </property>
            <property name="text">
-            <string>Add Domain</string>
+            <string>Add/Edit Domain</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -594,33 +594,50 @@ save button to update mappings.</string>
           </spacer>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="NewDomainLabel">
+          <widget class="QLabel" name="DomainsListLabel">
            <property name="text">
-            <string>New Domain:</string>
+            <string>Domains:</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="NewDomainLineEdit"/>
+          <widget class="QComboBox" name="DomainsListCombo"/>
          </item>
-         <item row="3" column="0">
+         <item row="3" column="1">
+          <widget class="QPushButton" name="ShowDomainBtn">
+           <property name="text">
+            <string>Show</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="DomainNameLabel">
+           <property name="text">
+            <string>Domain:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="DomainNameLineEdit"/>
+         </item>
+         <item row="5" column="0">
           <widget class="QLabel" name="AddDomainMappersLabel">
            <property name="text">
             <string>Mappers:</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
-          <widget class="QTextEdit" name="AddDomainMappers"/>
+         <item row="5" column="1">
+          <widget class="QListView" name="MappersListView"/>
          </item>
-         <item row="4" column="1">
-          <widget class="QPushButton" name="AddDomainBtn">
+         <item row="7" column="1">
+          <widget class="QPushButton" name="SaveDomainBtn">
            <property name="text">
-            <string>Add</string>
+            <string>Save</string>
            </property>
           </widget>
          </item>
-         <item row="6" column="0" colspan="2">
+         <item row="9" column="0" colspan="2">
           <widget class="Line" name="line_3">
            <property name="minimumSize">
             <size>
@@ -636,7 +653,7 @@ save button to update mappings.</string>
            </property>
           </widget>
          </item>
-         <item row="8" column="0" colspan="2">
+         <item row="11" column="0" colspan="2">
           <widget class="QLabel" name="label_10">
            <property name="font">
             <font>
@@ -646,14 +663,14 @@ save button to update mappings.</string>
             </font>
            </property>
            <property name="text">
-            <string>Edit Domain</string>
+            <string>Check Existence of Ontology</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="9" column="0" colspan="2">
+         <item row="12" column="0" colspan="2">
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -666,30 +683,27 @@ save button to update mappings.</string>
            </property>
           </spacer>
          </item>
-         <item row="10" column="0">
-          <widget class="QLabel" name="DomainsListLabel">
+         <item row="13" column="0">
+          <widget class="QLabel" name="CheckOntologyLabel">
            <property name="text">
-            <string>Domains:</string>
+            <string>Ontology:</string>
            </property>
           </widget>
          </item>
-         <item row="10" column="1">
-          <widget class="QComboBox" name="DomainsListDropDown"/>
+         <item row="13" column="1">
+          <widget class="QLineEdit" name="CheckOntologyField"/>
          </item>
-         <item row="11" column="0">
-          <widget class="QLabel" name="EditDomainMappersLabel">
+         <item row="14" column="1">
+          <widget class="QPushButton" name="CheckBtn">
            <property name="text">
-            <string>TextLabel</string>
+            <string>Check</string>
            </property>
           </widget>
          </item>
-         <item row="11" column="1">
-          <widget class="QTextEdit" name="EditDomainMappers"/>
-         </item>
-         <item row="12" column="1">
-          <widget class="QPushButton" name="EditDomainSaveBtn">
+         <item row="15" column="0">
+          <widget class="QLabel" name="ResultLabel">
            <property name="text">
-            <string>Save</string>
+            <string>Result:</string>
            </property>
           </widget>
          </item>
@@ -739,91 +753,8 @@ save button to update mappings.</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="0" colspan="2">
-          <widget class="QTextEdit" name="ShowResourcesField"/>
-         </item>
-         <item row="8" column="0" colspan="2">
-          <widget class="QLabel" name="CheckOntologyTitle">
-           <property name="font">
-            <font>
-             <pointsize>15</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Check Existence of Ontology</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="0">
-          <widget class="QLabel" name="CheckOntologyLabel">
-           <property name="text">
-            <string>Ontology</string>
-           </property>
-          </widget>
-         </item>
-         <item row="10" column="1">
-          <widget class="QLineEdit" name="CheckOntologyField"/>
-         </item>
-         <item row="11" column="1">
-          <widget class="QPushButton" name="CheckBtn">
-           <property name="text">
-            <string>Check</string>
-           </property>
-          </widget>
-         </item>
-         <item row="12" column="0">
-          <widget class="QLabel" name="ResultLabel">
-           <property name="text">
-            <string>Result:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0" colspan="2">
-          <spacer name="horizontalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="9" column="0" colspan="2">
-          <spacer name="horizontalSpacer_8">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="6" column="0" colspan="2">
-          <widget class="Line" name="line_4">
-           <property name="minimumSize">
-            <size>
-             <width>50</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="lineWidth">
-            <number>2</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
+         <item row="3" column="1">
+          <widget class="QListView" name="ResoucesListView"/>
          </item>
         </layout>
        </widget>

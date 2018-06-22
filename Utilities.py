@@ -28,7 +28,10 @@ class Utilities:
 		# test if the directory ../Extracted exists (or create it)
 		self.test_dir_existence('Extracted')
 
-		if not self.language:
+		if self.language and not self.resource and not self.collect_mode:
+			#for using utility functions in UI
+			self.extractor = False
+		elif not self.language:
 			self.read_parameters_research()
 			self.setup_log("extractor")
 			self.extractor = True   # utilities called by extractor, so i need to update mapping rules
@@ -468,7 +471,8 @@ class Utilities:
 			print("Error: " + err + " - on request " + req)
 			raise
 
-	def load_settings(self):
+	@staticmethod
+	def load_settings():
 	    ''' This function loads the mapping rules from the settngs.json file into ``MAPPING`` dict.
 
 	    :return: latest ``MAPPING`` dict.
