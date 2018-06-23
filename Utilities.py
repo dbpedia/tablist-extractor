@@ -18,7 +18,7 @@ from collections import OrderedDict
 
 class Utilities:
 
-	def __init__(self, language, resource, collect_mode):
+	def __init__(self, language, resource, collect_mode, ui=False):
 
 		self.language = language
 		self.resource = resource
@@ -28,7 +28,7 @@ class Utilities:
 		# test if the directory ../Extracted exists (or create it)
 		self.test_dir_existence('Extracted')
 
-		if self.language and not self.resource and not self.collect_mode:
+		if ui:
 			#for using utility functions in UI
 			self.extractor = False
 		elif not self.language:

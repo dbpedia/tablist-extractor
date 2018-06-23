@@ -10,6 +10,7 @@ import domainExtractor
 import Utilities
 import json
 from collections import OrderedDict
+from domain_explorer import Selector
 
 
 class Log(object):
@@ -42,6 +43,7 @@ class guiExtractor:
 
 		for lang in settings.LANGUAGES_AVAILABLE:
 			self.ui.LanguageCombo.addItem(lang)
+			self.ui.DomainLanguageCombo.addItem(lang)
 
 		self.custom_mappers = Utilities.Utilities.load_custom_mappers()
 		self.static_mappers = [ "FILMOGRAPHY", "DISCOGRAPHY", "CONCERT_TOURS",
@@ -65,6 +67,7 @@ class guiExtractor:
 		self.ui.ShowDomainBtn.clicked.connect(self.showDomain)
 		self.ui.SaveDomainBtn.clicked.connect(self.updateDomain)
 		self.ui.CheckBtn.clicked.connect(self.checkOntology)
+		self.ui.ShowResourcesBtn.clicked.connect(self.getResourceList)
 
 		MainWindow.show()
 		sys.exit(app.exec_())
@@ -240,13 +243,36 @@ class guiExtractor:
 				'{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + ontology + '"@' + language + "} UNION " +\
 				'{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + ontology.lower() + '"@' + language + "}" +\
 				settings.SPARQL_CHECK_PROPERTY[2]
-		utils = Utilities.Utilities(language, None, None)
+		utils = Utilities.Utilities(language, None, None, True)
 		utils.language = "en"
 		utils.dbpedia_sparql_url = utils.dbpedia_selection()
 		url = utils.url_composer(query, "dbpedia")
 		answer = utils.json_answer_getter(url)
 		print(answer)
 
+	def getResourceList(self):
+		domain = str(self.ui.DomainLineEdit.text())
+		language = str(self.ui.DomainLanguageCombo.currentText())
+		utils = Utilities.Utilities(language, domain, 't', True)
+		selector = Selector.Selector(utils)
+
+		if selector.tot_res_interested > 0:
+			selector.collect_resources()
+			uri_resource_file = selector.res_list_file
+			contents = open(uri_resource_file).read().split('\n')
+			contents = contents[:-1]
+			
+			self.resourcesListModel = QStandardItemModel()
+			for content in contents:
+				item = QStandardItem(content)
+				item.setEditable(False)
+				self.resourcesListModel.appendRow(item)
+			self.ui.ResoucesListView.setModel(self.resourcesListModel)
+			self.ui.ResourcesListResult.setText(QString("Total resources found: "+str(selector.tot_res_interested)))
+
+
+		else:
+			self.ui.ResourcesListResult.setText(QString("No resources found."))
 
 if __name__ == '__main__':
     extractor = guiExtractor()
