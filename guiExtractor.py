@@ -44,6 +44,7 @@ class guiExtractor:
 		for lang in settings.LANGUAGES_AVAILABLE:
 			self.ui.LanguageCombo.addItem(lang)
 			self.ui.DomainLanguageCombo.addItem(lang)
+			self.ui.CheckOntologyLanguageCombo.addItem(lang)
 
 		self.custom_mappers = Utilities.Utilities.load_custom_mappers()
 		self.static_mappers = [ "FILMOGRAPHY", "DISCOGRAPHY", "CONCERT_TOURS",
@@ -51,8 +52,6 @@ class guiExtractor:
 		self.domains = Utilities.Utilities.load_settings()
 
 		self.refresh_mappers_list()
-
-		self.ui.ListOfMappersCombo.setDuplicatesEnabled(False)
 
 		self.extractor_checkBoxes = [self.ui.extractor_checkBox_1, self.ui.extractor_checkBox_2, self.ui.extractor_checkBox_3,
 										self.ui.extractor_checkBox_4, self.ui.extractor_checkBox_5, self.ui.extractor_checkBox_6]
@@ -237,18 +236,22 @@ class guiExtractor:
 
 	def checkOntology(self):
 		ontology = str(self.ui.CheckOntologyField.text())
-		language = "en"
+		language = str(self.ui.CheckOntologyLanguageCombo.currentText())
 
-		query = settings.SPARQL_CHECK_PROPERTY[0] +\
-				'{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + ontology + '"@' + language + "} UNION " +\
-				'{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + ontology.lower() + '"@' + language + "}" +\
-				settings.SPARQL_CHECK_PROPERTY[2]
 		utils = Utilities.Utilities(language, None, None, True)
-		utils.language = "en"
-		utils.dbpedia_sparql_url = utils.dbpedia_selection()
+		query = settings.SPARQL_CHECK_IN_ONTOLOGY[0] + ontology + settings.SPARQL_CHECK_IN_ONTOLOGY[1]
 		url = utils.url_composer(query, "dbpedia")
-		answer = utils.json_answer_getter(url)
-		print(answer)
+		# get response of request
+		response = utils.json_answer_getter(url)['boolean']
+		# if property isn't defined in ontology, i delete it
+		if not response:
+			message = "Property doesn't exist in dbpedia ontology."
+			color='red'
+		else:
+			message = "Property exists"
+			color = 'green'
+		self.ui.CheckOntologyResult.setText(message)
+		self.ui.CheckOntologyResult.setStyleSheet('color: '+color)
 
 	def getResourceList(self):
 		domain = str(self.ui.DomainLineEdit.text())
