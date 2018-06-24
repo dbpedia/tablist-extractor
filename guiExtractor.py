@@ -74,25 +74,27 @@ class guiExtractor:
 	def exploreDomain(self):
 		
 		resource = str(self.ui.ResourceField.text())
+		resource = resource.strip()
 		if self.ui.CollectmodeSBtn.isChecked():
 			collect_mode = "s"
 		if self.ui.CollectmodeTBtn.isChecked():
 			collect_mode = "t"
 		language = str(self.ui.LanguageCombo.currentText())
+		self.ui.ExploreDomainMessageLabel.clear()
+		if resource == None or resource == "":
+			self.ui.ExploreDomainMessageLabel.setText('Error in resource name.')
+			return
 
 		try:
-			proc = subprocess.Popen(['python','domainExplorer.py', collect_mode, resource, language], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False)
-			# while proc.poll() is None:
-			# 	l = proc.stdout.readline().rstrip() # This blocks until it receives a newline.
-			# 	if not l:
-			# 		break
-			# 	print(l)
+			proc = subprocess.Popen(['python','domainExplorer.py', collect_mode, resource, language], 
+				stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False)
 			for line in iter(proc.stdout.readline, b''):
 				print line.rstrip()
 			proc.wait() # wait for the subprocess to exit
 		except Exception as e:
 			print(e)
-			sys.exit(0)
+			self.ui.ExploreDomainMessageLabel.setText('Exception during execution of domainExplorer.\nCheck console for error log.')
+			return
 
 		self.openDomainSettingsFile()
 
@@ -114,6 +116,8 @@ class guiExtractor:
 		mapper = str(self.ui.ListOfMappersCombo.currentText())
 		current_mapper = self.custom_mappers[mapper]
 
+		self.ui.UpdateMapperMessageLabel.clear()
+
 		self.ui.MapperNameLineEdit.setText(mapper)
 		self.ui.ListHeadersTextEdit.setText(json.dumps(current_mapper['list_headers'], indent = 2))
 		self.ui.TableSectionsTextEdit.setText(json.dumps(current_mapper['table_sections'], indent = 2))
@@ -132,9 +136,25 @@ class guiExtractor:
 
 	def updateMapper(self):
 		mapper_function = OrderedDict()
-		mapper_name = str(self.ui.MapperNameLineEdit.text())
-		list_headers = json.loads(str(self.ui.ListHeadersTextEdit.toPlainText()))
-		table_sections = json.loads(str(self.ui.TableSectionsTextEdit.toPlainText()))
+		mapper_name = str(self.ui.MapperNameLineEdit.text()).strip()
+		if mapper_name == None or mapper_name == "":
+			self.ui.UpdateMapperMessageLabel.setText("Mapper Name is Null/Empty")
+			self.ui.UpdateMapperMessageLabel.setStyleSheet('color: red')
+			return
+
+		try:
+			list_headers = json.loads(str(self.ui.ListHeadersTextEdit.toPlainText()))
+		except ValueError:
+			self.ui.UpdateMapperMessageLabel.setText("List Headers are not in JSON format.")
+			self.ui.UpdateMapperMessageLabel.setStyleSheet('color: red')
+			return
+
+		try:
+			table_sections = json.loads(str(self.ui.TableSectionsTextEdit.toPlainText()))
+		except ValueError:
+			self.ui.UpdateMapperMessageLabel.setText("table sections are not in JSON format.")
+			self.ui.UpdateMapperMessageLabel.setStyleSheet('color: red')
+			return
 
 		extractors=[]
 		i=1
@@ -148,7 +168,12 @@ class guiExtractor:
 		else:
 			years = 'No'
 
-		ontology = json.loads(str(self.ui.OntologyTextEdit.toPlainText()))
+		try:
+			ontology = json.loads(str(self.ui.OntologyTextEdit.toPlainText()))
+		except ValueError:
+			self.ui.UpdateMapperMessageLabel.setText("Ontology is not in JSON format.")
+			self.ui.UpdateMapperMessageLabel.setStyleSheet('color: red')
+			return
 
 		mapper_function['table_sections'] = table_sections
 		mapper_function['list_headers'] = list_headers
@@ -159,6 +184,8 @@ class guiExtractor:
 		self.dump_custom_mappers(mapper_name, mapper_function)
 
 		self.refresh_mappers_list()
+		self.ui.UpdateMapperMessageLabel.setText("Changes Saved.")
+		self.ui.UpdateMapperMessageLabel.setStyleSheet('color: green')
 
 	def dump_custom_mappers(self, mapper_name, mapper_function):
 		''' This method saves the modified custom mappers into the ``custom_mappers.json`` file and \
@@ -207,6 +234,8 @@ class guiExtractor:
 		domain = str(self.ui.DomainsListCombo.currentText())
 		self.ui.DomainNameLineEdit.setText(domain)
 
+		self.ui.UpdateDomainMessageLabel.clear()
+
 		self.mapperListModel = QStandardItemModel()
 		all_mappers = self.custom_mappers.keys() + self.static_mappers
 		for mapper in all_mappers:
@@ -221,7 +250,12 @@ class guiExtractor:
 		self.ui.MappersListView.setModel(self.mapperListModel)
 
 	def updateDomain(self):
-		domain = str(self.ui.DomainNameLineEdit.text())
+		domain = str(self.ui.DomainNameLineEdit.text()).strip()
+
+		if domain == None or domain == "":
+			self.ui.UpdateDomainMessageLabel.setText('Domain name is null/empty.')
+			self.ui.UpdateDomainMessageLabel.setStyleSheet('color: red')
+			return
 
 		model = self.ui.MappersListView.model()
 		mappers=[]
@@ -233,6 +267,8 @@ class guiExtractor:
 		self.domains[domain] = mappers
 		self.dump_settings(self.domains)
 		self.refresh_domains_list()
+		self.ui.UpdateDomainMessageLabel.setText('Changes Saved.')
+		self.ui.UpdateDomainMessageLabel.setStyleSheet('color: green')
 
 	def checkOntology(self):
 		ontology = str(self.ui.CheckOntologyField.text())

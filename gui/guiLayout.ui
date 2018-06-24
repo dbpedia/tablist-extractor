@@ -55,6 +55,74 @@
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QGridLayout" name="gridLayout">
+         <item row="2" column="0" colspan="2">
+          <widget class="QTextBrowser" name="TerminalWindow">
+           <property name="palette">
+            <palette>
+             <active>
+              <colorrole role="Text">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>33</red>
+                 <green>255</green>
+                 <blue>6</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </active>
+             <inactive>
+              <colorrole role="Text">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>33</red>
+                 <green>255</green>
+                 <blue>6</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </inactive>
+             <disabled>
+              <colorrole role="Text">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>128</red>
+                 <green>128</green>
+                 <blue>128</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>236</red>
+                 <green>236</green>
+                 <blue>236</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </disabled>
+            </palette>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="0">
           <widget class="QFrame" name="frame_3">
            <property name="maximumSize">
@@ -151,6 +219,16 @@ For eg., &quot;Kobe_Bryant&quot;, &quot;William_Gibson&quot; for single resource
              <widget class="QComboBox" name="LanguageCombo">
               <property name="toolTip">
                <string>Enter Language of wiki pages</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" colspan="2">
+             <widget class="QLabel" name="ExploreDomainMessageLabel">
+              <property name="styleSheet">
+               <string notr="true">color:red</string>
+              </property>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
@@ -258,92 +336,11 @@ save button to update mappings.</string>
               </property>
              </widget>
             </item>
-            <item row="16" column="0" colspan="2">
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
            </layout>
           </widget>
          </item>
          <item row="1" column="1">
           <widget class="QTextEdit" name="textEdit"/>
-         </item>
-         <item row="2" column="0" colspan="2">
-          <widget class="QTextBrowser" name="TerminalWindow">
-           <property name="palette">
-            <palette>
-             <active>
-              <colorrole role="Text">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>33</red>
-                 <green>255</green>
-                 <blue>6</blue>
-                </color>
-               </brush>
-              </colorrole>
-              <colorrole role="Base">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </colorrole>
-             </active>
-             <inactive>
-              <colorrole role="Text">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>33</red>
-                 <green>255</green>
-                 <blue>6</blue>
-                </color>
-               </brush>
-              </colorrole>
-              <colorrole role="Base">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>0</red>
-                 <green>0</green>
-                 <blue>0</blue>
-                </color>
-               </brush>
-              </colorrole>
-             </inactive>
-             <disabled>
-              <colorrole role="Text">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>128</red>
-                 <green>128</green>
-                 <blue>128</blue>
-                </color>
-               </brush>
-              </colorrole>
-              <colorrole role="Base">
-               <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>236</red>
-                 <green>236</green>
-                 <blue>236</blue>
-                </color>
-               </brush>
-              </colorrole>
-             </disabled>
-            </palette>
-           </property>
-          </widget>
          </item>
         </layout>
        </widget>
@@ -534,7 +531,7 @@ save button to update mappings.</string>
          <item row="8" column="1">
           <widget class="QTextEdit" name="OntologyTextEdit"/>
          </item>
-         <item row="9" column="1">
+         <item row="10" column="1">
           <widget class="QPushButton" name="SaveMapperBtn">
            <property name="text">
             <string>Save</string>
@@ -548,6 +545,13 @@ save button to update mappings.</string>
              <width>200</width>
              <height>0</height>
             </size>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0" colspan="2">
+          <widget class="QLabel" name="UpdateMapperMessageLabel">
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
@@ -723,6 +727,13 @@ save button to update mappings.</string>
          </item>
          <item row="16" column="1">
           <widget class="QLabel" name="CheckOntologyResult">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QLabel" name="UpdateDomainMessageLabel">
            <property name="text">
             <string/>
            </property>
