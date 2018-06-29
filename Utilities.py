@@ -32,7 +32,11 @@ class Utilities:
 			#for using utility functions in UI
 			self.extractor = False
 		elif not self.language:
-			self.read_parameters_research()
+			resource, language, collect_mode, resource_file = Utilities.read_parameters_research()
+			self.resource = resource
+			self.language = language
+			self.collect_mode = collect_mode
+			self.resource_file = resource_file
 			self.setup_log("extractor")
 			self.extractor = True   # utilities called by extractor, so i need to update mapping rules
 			self.mapper = MapperTools.MapperTools(self)
@@ -114,7 +118,8 @@ class Utilities:
 		# brief stat at the beginning of log, it indicates the  wiki/dbpedia chapter and topic selected
 		logging.info("You're analyzing wiki lists and tables of wiki chapter: " + self.language + ", source: " + self.resource)
 
-	def read_parameters_research(self):
+	@staticmethod
+	def read_parameters_research():
 		"""
 		Read parameters defined in header of settings file
 		:return: set all parameters of research
@@ -125,18 +130,20 @@ class Utilities:
 			for name, val in domain_settings.__dict__.iteritems():
 				# read domain
 				if name == settings.DOMAIN_TITLE:
-					self.resource = val
+					resource = val
 				# read language
 				elif name == settings.CHAPTER:
-					self.language = val
+					language = val
 				# read research type (-s -t or -w)
 				elif name == settings.COLLECT_MODE:
-					self.collect_mode = val
+					collect_mode = val
 				# read name of resource's file
 				elif name == settings.RESOURCE_FILE:
-					self.resource_file = val
+					resource_file = val
 		else:
 			sys.exit("File " + settings.FILE_PATH_DOMAIN_EXPLORED + " not found. You should run pyDomainExplorer.")
+
+		return resource, language, collect_mode, resource_file
 
 	def dbpedia_selection(self):
 		"""

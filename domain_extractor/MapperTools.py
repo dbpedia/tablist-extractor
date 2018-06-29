@@ -29,7 +29,7 @@ class MapperTools:
         :return: updated dictionary
         """
         # read mapping rules wrote by user
-        new_mapping_rules = self.read_mapping_rules()
+        new_mapping_rules = MapperTools.read_mapping_rules()
         # check if user has written right properties (that are in dbpedia ontology)
         verified_mapping_rules = self.check_user_input_properties(new_mapping_rules)
         # read mapping rules of pyTableExtractor
@@ -42,7 +42,8 @@ class MapperTools:
         #print(updated_mapping_rules)
         return updated_mapping_rules
 
-    def read_mapping_rules(self):
+    @staticmethod
+    def read_mapping_rules():
         """
         Read mapping rules defined by user and parse it
         :return: parsed mapping rules
@@ -60,10 +61,11 @@ class MapperTools:
                     else:
                         new_mapping_rules[name].append(val)
         # parse mapping rules
-        parsed_mapping_rules = self.parse_mapping_rules(new_mapping_rules)
+        parsed_mapping_rules = MapperTools.parse_mapping_rules(new_mapping_rules)
         return parsed_mapping_rules
 
-    def parse_mapping_rules(self, new_mapping_rules):
+    @staticmethod
+    def parse_mapping_rules(new_mapping_rules):
         """
         Parse mapping rules written by user in order to create an ordinary dictionary
         :param new_mapping_rules: mapping rules read previously
@@ -131,6 +133,7 @@ class MapperTools:
         #print(json.dumps(actual_mapping_rules, indent=2))
         if new_mapping_rules:
             for mapper, mapping_rules in new_mapping_rules.items():
+                mapper = mapper.split("___")[1]
                 for key, value in mapping_rules.items():
                     if value != "":
                         # if user add a new mapping rule

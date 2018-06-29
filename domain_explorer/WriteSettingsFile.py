@@ -50,22 +50,6 @@ class WriteSettingsFile:
 
         domain_explored_file.write(settings.END_OF_FILE)
         domain_explored_file.close()
-
-    def write_table_sections_and_headers(self, domain_explored_file):
-
-        for mapper, sections in self.all_sections.items():
-            domain_explored_file.write("#Mapper used for the following are: "+mapper+"\n\n")
-            domain_explored_file.write(mapper + " = {\n")
-            for key, section_dict in sections.items():
-                # adjust key to print in output
-                key = self.explorer_tools.replace_accents(key.replace(" ", "_").replace("-", "_"))
-                # print comments and first line of section
-                domain_explored_file.write(settings.COMMENT_FOR_EXAMPLE_PAGE + section_dict["exampleWiki"] + "\n")
-                # delete example page that is useless now
-                del section_dict["exampleWiki"]
-                # print section dictionary that contains all table headers.
-                self.print_dictionary_on_file(mapper, domain_explored_file, key, section_dict)
-            domain_explored_file.write("} \n")
         
     def write_file_heading(self, domain_explored_file):
         """
@@ -91,6 +75,21 @@ class WriteSettingsFile:
         domain_explored_file.write(settings.COMMENT_STRUCTURE + "\n\n")
         domain_explored_file.write(settings.COMMENT_FILLED_ELEMENT + "\n\n")
 
+    def write_table_sections_and_headers(self, domain_explored_file):
+
+        for mapper, sections in self.all_sections.items():
+            domain_explored_file.write(mapper + "___TABLES" + " = {\n")
+            for key, section_dict in sections.items():
+                # adjust key to print in output
+                key = self.explorer_tools.replace_accents(key.replace(" ", "_").replace("-", "_"))
+                # print comments and first line of section
+                #domain_explored_file.write(settings.COMMENT_FOR_EXAMPLE_PAGE + section_dict["exampleWiki"] + "\n")
+                # delete example page that is useless now
+                del section_dict["exampleWiki"]
+                # print section dictionary that contains all table headers.
+                self.print_dictionary_on_file(mapper, domain_explored_file, key, section_dict)
+            domain_explored_file.write("} \n")
+
     def print_dictionary_on_file(self, mapper, file_settings, section_name, section_dict):
         """
         Write dictionary in a file. Output format is a variable for defining which output's type produce:
@@ -114,7 +113,7 @@ class WriteSettingsFile:
             printed_keys=[]
             domain_explored_file.write("\n#Following are section mappings of lists found:\n")
             domain_explored_file.write("#Mapper used for the following are: "+mapper+"\n\n")
-            domain_explored_file.write(mapper + " = {\n")
+            domain_explored_file.write(mapper + "___LISTS" + " = {\n")
             for key, value in sections.items():
                 if key not in printed_keys:
                     key = self.explorer_tools.replace_accents(key.replace("'",""))

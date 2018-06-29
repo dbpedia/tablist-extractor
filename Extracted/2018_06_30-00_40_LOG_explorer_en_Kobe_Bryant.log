@@ -1,0 +1,9 @@
+INFO 06/30 12:40:38 AM You're analyzing wiki lists and tables of wiki chapter: en, source: Kobe_Bryant
+INFO 06/30 12:40:38 AM Analyzing resource: Kobe_Bryant
+INFO 06/30 12:40:38 AM Table under section: NBA career statistics
+DEBUG 06/30 12:40:38 AM  E2 Unable to find headers - resource: Kobe_Bryant
+INFO 06/30 12:40:38 AM Table under section: Regular season
+INFO 06/30 12:40:38 AM Headers Found
+INFO 06/30 12:40:38 AM Table under section: Playoffs
+INFO 06/30 12:40:38 AM Headers Found
+INFO 06/30 12:40:41 AM Lists found under Sections: [u'Further reading', u'See also', u'External links', u'Off the court - Endorsements']

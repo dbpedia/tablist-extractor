@@ -110,8 +110,8 @@ def collect_table_sections_and_headers_mappings(all_tables, res_name, rdf_types,
                             check_if_section_is_present(table.table_section, table.headers_refined, res_name, actual_dictionary, table_sections, table_headers)
 
 			if table_sections and table_headers:
-				all_sections[mapper] = table_sections
-				all_headers[mapper] = table_headers
+				all_sections[res_name.upper()+"___"+mapper] = table_sections
+				all_headers[res_name.upper()+"___"+mapper] = table_headers
 
 			mapped_domains.append(mapper)
 
@@ -316,7 +316,7 @@ def collect_list_section_mappings(resDict, res_name, rdf_types, domains, CUSTOM_
                             mapped = True
 
             if list_sections:
-                all_list_sections[mapper] = list_sections
+                all_list_sections[res_name.upper()+"___"+mapper] = list_sections
 
             mapped_domains.append(mapper)
 

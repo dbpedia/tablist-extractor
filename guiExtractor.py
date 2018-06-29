@@ -11,6 +11,7 @@ import Utilities
 import json
 from collections import OrderedDict
 from domain_explorer import Selector
+from domain_extractor import MapperTools
 
 
 class Log(object):
@@ -68,6 +69,11 @@ class guiExtractor:
 		self.ui.CheckBtn.clicked.connect(self.checkOntology)
 		self.ui.ShowResourcesBtn.clicked.connect(self.getResourceList)
 
+		header=QtGui.QTreeWidgetItem(["Ontology","Property"])
+		#...
+		self.ui.DomainSettingsTreeWidget.setHeaderItem(header)   #Another alternative is setHeaderLabels(["Tree","First",...])
+		self.ui.DomainSettingsTreeWidget.header().setResizeMode(QtGui.QHeaderView.ResizeToContents)
+
 		MainWindow.show()
 		sys.exit(app.exec_())
 
@@ -99,15 +105,56 @@ class guiExtractor:
 		self.openDomainSettingsFile()
 
 	def openDomainSettingsFile(self):
-		with open(settings.FILE_PATH_DOMAIN_EXPLORED,'r') as file:
-			data = file.read()
-			self.ui.textEdit.setText(data)
+
+		new_mappings = MapperTools.MapperTools.read_mapping_rules()
+		resource, language, collect_mode, resource_file = Utilities.Utilities.read_parameters_research()
+		self.domainParameters=[resource, language, collect_mode, resource_file]
+		if new_mappings:
+			for mapper, mapping_rules in new_mappings.items():
+				root = QtGui.QTreeWidgetItem(self.ui.DomainSettingsTreeWidget, [mapper])
+				for key, value in mapping_rules.items():
+					item = QtGui.QTreeWidgetItem(root, [key, value])
+					item.setFlags(item.flags() | QtCore.Qt.ItemIsEditable)
 
 	def saveDomainSettingsFile(self):
-		data = self.ui.textEdit.toPlainText()
 		with open(settings.FILE_PATH_DOMAIN_EXPLORED,'w') as file:
-			file.write(data)
-		print("domain_settings.py file saved")
+			self.write_file_heading(file)
+			numberOfTopLevelItems = self.ui.DomainSettingsTreeWidget.topLevelItemCount()
+			for i in range(numberOfTopLevelItems):
+				parent = self.ui.DomainSettingsTreeWidget.topLevelItem(i)
+				file.write(parent.text(0) + " = {\n")
+				for j in range(parent.childCount()):
+					child = parent.child(j)
+					key = child.text(0)
+					value = child.text(1)
+					file.write("'" + key + "': '" + value + "'" + ", \n")
+				file.write("} \n")
+			file.write(settings.END_OF_FILE)
+			print("domain_settings.py file saved")
+
+	def write_file_heading(self, domain_explored_file):
+		"""
+		Write file heading.
+		File heading holds information about user's parameters:
+		- coding type.
+		- domain explored.
+		- chapter, language defined.
+		- research type, that can be single resource, sparql where or dbpedia ontology class.
+		- resource file, that contains all resources involved in user's research.
+		- output format value defined.
+		- comments to facilitate user's work.
+		:param domain_explored_file: reference to the output file
+		:return:
+		"""
+		domain_explored_file.write(settings.CODING_DOMAIN + "\n")
+		domain_explored_file.write(settings.FIRST_COMMENT + "\n")
+		domain_explored_file.write(settings.DOMAIN_TITLE + ' = "' + self.domainParameters[0] + '" \n')
+		domain_explored_file.write(settings.CHAPTER + ' = "' + self.domainParameters[1] + '" \n')
+		domain_explored_file.write(settings.COLLECT_MODE + ' = "' + self.domainParameters[2] + '" \n')
+		domain_explored_file.write(settings.RESOURCE_FILE + ' = "' + self.domainParameters[3] + '" \n\n')
+		domain_explored_file.write(settings.COMMENT_SECTION_PROPERTY + "\n\n")
+		domain_explored_file.write(settings.COMMENT_STRUCTURE + "\n\n")
+		domain_explored_file.write(settings.COMMENT_FILLED_ELEMENT + "\n\n")
 
 	def extractTriples(self):
 		self.domain_extractor = domainExtractor.main()
