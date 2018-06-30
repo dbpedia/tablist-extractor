@@ -69,7 +69,7 @@ class guiExtractor:
 		self.ui.CheckBtn.clicked.connect(self.checkOntology)
 		self.ui.ShowResourcesBtn.clicked.connect(self.getResourceList)
 
-		header=QtGui.QTreeWidgetItem(["Ontology","Property"])
+		header=QtGui.QTreeWidgetItem(["Section/Header","Property"])
 		#...
 		self.ui.DomainSettingsTreeWidget.setHeaderItem(header)   #Another alternative is setHeaderLabels(["Tree","First",...])
 		self.ui.DomainSettingsTreeWidget.header().setResizeMode(QtGui.QHeaderView.ResizeToContents)
@@ -114,7 +114,13 @@ class guiExtractor:
 				root = QtGui.QTreeWidgetItem(self.ui.DomainSettingsTreeWidget, [mapper])
 				for key, value in mapping_rules.items():
 					item = QtGui.QTreeWidgetItem(root, [key, value])
-					item.setFlags(item.flags() | QtCore.Qt.ItemIsEditable)
+			self.ui.DomainSettingsTreeWidget.itemDoubleClicked.connect(self.onDoubleClick)
+
+	def onDoubleClick(self, item, column_number):
+		if column_number==1:
+			item.setFlags(item.flags() | QtCore.Qt.ItemIsEditable)
+		else:
+			item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable)
 
 	def saveDomainSettingsFile(self):
 		with open(settings.FILE_PATH_DOMAIN_EXPLORED,'w') as file:
