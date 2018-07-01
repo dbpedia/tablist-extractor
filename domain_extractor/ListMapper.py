@@ -52,7 +52,11 @@ class ListMapper:
         self.dictionary = self.utils.dictionary
 
         self.mappers=[]
-        rdf_types = self.utils.get_resource_type(self.resource)
+
+        if self.utils.collect_mode == 's':
+            rdf_types = self.utils.get_resource_type(self.resource)
+        else:
+            rdf_types = [self.res_class]
         domains = self.utils.load_settings()
         for rdf_type in rdf_types:
             if rdf_type in domains.keys():

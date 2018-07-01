@@ -70,6 +70,8 @@
                 "Novel": "Novel", 
                 "Stories": "ShortStory", 
                 "fiction": "Fiction", 
+                "Short stories": "Short_story", 
+                "Short Fiction": "Short_story", 
                 "Selected bibliography - Short stories": "ShortStory", 
                 "Selected bibliography - Nonfiction": "Nonfiction", 
                 "Selected bibliography - Novels": "Novel", 

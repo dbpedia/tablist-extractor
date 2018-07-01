@@ -90,7 +90,10 @@ class HtmlTableParser:
 
         self.mappers=[]
         if self.mapping:
-            rdf_types = self.utils.get_resource_type(self.resource)
+            if self.utils.collect_mode == 's':
+                rdf_types = self.utils.get_resource_type(self.resource)
+            else:
+                rdf_types = [self.domain]
             domains = self.utils.load_settings()
             for rdf_type in rdf_types:
                 if rdf_type in domains.keys():

@@ -75,14 +75,18 @@ def get_resource_sections_and_headers(res_name):
 
 def collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri):
 
-	rdf_types = explorer_tools.get_resource_type(single_uri)
+    if explorer_tools.collect_mode == 's':
+        rdf_types = explorer_tools.get_resource_type(single_uri)
+    else:
+        rdf_types = [explorer_tools.resource]
 
-	domains = explorer_tools.utils.load_settings()
-	CUSTOM_MAPPERS = explorer_tools.utils.load_custom_mappers()
 
-	collect_table_sections_and_headers_mappings(all_tables, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
+    domains = explorer_tools.utils.load_settings()
+    CUSTOM_MAPPERS = explorer_tools.utils.load_custom_mappers()
 
-	collect_list_section_mappings(resDict, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
+    collect_table_sections_and_headers_mappings(all_tables, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
+
+    collect_list_section_mappings(resDict, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
 
 def collect_table_sections_and_headers_mappings(all_tables, res_name, rdf_types, domains, CUSTOM_MAPPERS):
 

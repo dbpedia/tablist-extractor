@@ -1,0 +1,10 @@
+INFO 07/01 10:25:23 PM You're analyzing wiki lists and tables of wiki chapter: en, source: William_Gibson
+INFO 07/01 10:25:23 PM Analyzing William_Gibson
+INFO 07/01 10:25:23 PM Analyzing resource: William_Gibson
+INFO 07/01 10:25:23 PM No Tables found for this resource.
+INFO 07/01 10:25:26 PM Lists found under Sections: [u'Selected bibliography - Short stories', u'Further reading', u'Selected bibliography - Novels', u'External links', u'Selected bibliography - Nonfiction', u'Collaborations, adaptations, and miscellanea - Essays and short-form nonfiction']
+INFO 07/01 10:25:30 PM There are 0 sections and sections without mapping rules
+INFO 07/01 10:25:30 PM There are 0 headers and sections without mapping rules
+INFO 07/01 10:25:30 PM End Of File reached, now you can serialize the graph
+INFO 07/01 10:25:30 PM Triples in the graph: 54
+INFO 07/01 10:25:30 PM Graph serialized, filename: /Users/sachinmalepati/Documents/Dbpedia/tablist-extractor/Extracted/2018_07_01-22_25_T_Ext_en_William_Gibson.ttl
