@@ -4,7 +4,7 @@
 # Please do not modify pyDomainExplorer parameters. 
 
 # pyDomainExplorer parameters 
-DOMAIN_EXPLORED = "William_Gibson" 
+DOMAIN_EXPLORED = "Kobe_Bryant" 
 CHAPTER = "en" 
 COLLECT_MODE = "s" 
 RESOURCE_FILE = "" 
@@ -21,14 +21,22 @@ RESOURCE_FILE = ""
 # or on dbpedia ontology.
 # If you empty a field that was filled, you will delete that rule from dictionary.
 
-
-#Following are section mappings of lists found:
-#Mapper used for the following are: WILLIAM_GIBSON___BIBLIOGRAPHY_MAPPER
-
-WILLIAM_GIBSON___BIBLIOGRAPHY_MAPPER___LISTS = {
-'Selected bibliography - Short stories': 'ShortStory', 
-'Selected bibliography - Novels': 'Novel', 
-'Nonfiction': 'Nonfiction', 
+KOBE_BRYANT___BASKETBALL_PLAYER_MAPPER___TABLES = {
+'GS': 'gamesStarted', 
+'BPG': 'blocksPerGame', 
+'GP': 'gamesPlayed', 
+'Team': 'team', 
+'FG%': 'fieldGoal', 
+'MPG': 'minutesPerGame', 
+'PPG': 'pointsPerGame', 
+'APG': 'assistsPerGame', 
+'Regular season': 'regularSeason', 
+'FT%': 'freeThrow', 
+'Playoffs': 'playoff', 
+'RPG': 'reboundsPerGame', 
+'Year': 'Year', 
+'3P%': 'threePoints', 
+'SPG': 'stolePerGame', 
 } 
 
 # END OF FILE 

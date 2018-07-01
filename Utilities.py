@@ -9,7 +9,7 @@ import lxml.etree as etree
 import os
 import errno
 import logging
-import settings
+import staticValues
 import unicodedata
 import sys
 import socket
@@ -50,11 +50,11 @@ class Utilities:
 		self.dbpedia_sparql_url = self.dbpedia_selection()
 
 		# These values are used to compose calls to services as Sparql endpoints or to a html wiki page
-		self.call_format_sparql = settings.SPARQL_CALL_FORMAT
+		self.call_format_sparql = staticValues.SPARQL_CALL_FORMAT
 
 		# Parameters used in methods which need internet connection
-		self.time_to_attend = settings.SECONDS_BTW_TRIES  # seconds to sleep between two internet service call
-		self.max_attempts = settings.MAX_ATTEMPTS  # max number of internet service' call tries
+		self.time_to_attend = staticValues.SECONDS_BTW_TRIES  # seconds to sleep between two internet service call
+		self.max_attempts = staticValues.MAX_ATTEMPTS  # max number of internet service' call tries
 
 		# check if user has written a class that exists in dbpedia ontology
 		if self.collect_mode == "a":
@@ -75,7 +75,7 @@ class Utilities:
 			self.dictionary = self.mapper.update_mapping_rules()
 
 		# define timeout for url request in order to don't wait too much time
-		socket.setdefaulttimeout(settings.REQUEST_TIMEOUT)
+		socket.setdefaulttimeout(staticValues.REQUEST_TIMEOUT)
 
 		# Variables used in final report, see print_report()
 		self.res_analyzed = 0
@@ -125,23 +125,23 @@ class Utilities:
 		:return: set all parameters of research
 		"""
 		# i'm in table_extractor folder so i have to go up
-		if os.path.exists(settings.FILE_PATH_DOMAIN_EXPLORED):
+		if os.path.exists(staticValues.FILE_PATH_DOMAIN_EXPLORED):
 			from domain_explorer import domain_settings
 			for name, val in domain_settings.__dict__.iteritems():
 				# read domain
-				if name == settings.DOMAIN_TITLE:
+				if name == staticValues.DOMAIN_TITLE:
 					resource = val
 				# read language
-				elif name == settings.CHAPTER:
+				elif name == staticValues.CHAPTER:
 					language = val
 				# read research type (-s -t or -w)
-				elif name == settings.COLLECT_MODE:
+				elif name == staticValues.COLLECT_MODE:
 					collect_mode = val
 				# read name of resource's file
-				elif name == settings.RESOURCE_FILE:
+				elif name == staticValues.RESOURCE_FILE:
 					resource_file = val
 		else:
-			sys.exit("File " + settings.FILE_PATH_DOMAIN_EXPLORED + " not found. You should run pyDomainExplorer.")
+			sys.exit("File " + staticValues.FILE_PATH_DOMAIN_EXPLORED + " not found. You should run pyDomainExplorer.")
 
 		return resource, language, collect_mode, resource_file
 
@@ -266,7 +266,7 @@ class Utilities:
 		"""
 		attempts = 0
 		result = ""
-		while attempts < settings.MAX_ATTEMPTS:
+		while attempts < staticValues.MAX_ATTEMPTS:
 			try:
 				# open a call with urllib.urlopen and passing the URL
 				call = urllib.urlopen(url_passed)
@@ -558,7 +558,7 @@ class Utilities:
 		"""
 		:return: resource file
 		"""
-		return settings.PATH_FOLDER_RESOURCE_LIST + "/" + self.resource_file
+		return staticValues.PATH_FOLDER_RESOURCE_LIST + "/" + self.resource_file
 
 	def get_resource_type(self, resource):
 		''' Asks all rdf:type of current resource to the local SPARQL endpoint.

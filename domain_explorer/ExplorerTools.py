@@ -2,7 +2,7 @@ import argparse
 import sys
 import rdflib
 from collections import OrderedDict
-import settings
+import staticValues
 import Utilities
 import Selector, HtmlTableParser, wikiParser
 import json
@@ -50,20 +50,20 @@ class ExplorerTools:
         :return: arguments passed by user
         """
 
-        # initialize a argparse.ArgumentParser with a general description coming from settings.GENERAL_DESCRIPTION
-        parser = argparse.ArgumentParser(description=settings.GENERAL_DESCRIPTION, usage=settings.USAGE)
+        # initialize a argparse.ArgumentParser with a general description coming from staticValues.GENERAL_DESCRIPTION
+        parser = argparse.ArgumentParser(description=staticValues.GENERAL_DESCRIPTION, usage=staticValues.USAGE)
 
-        parser.add_argument('collect_mode', help=settings.COLLECT_MODE_HELP,
-                        choices=settings.COLLECT_MODE_CHOICES )
+        parser.add_argument('collect_mode', help=staticValues.COLLECT_MODE_HELP,
+                        choices=staticValues.COLLECT_MODE_CHOICES )
 
         parser.add_argument('source', type=lambda s: unicode(s, sys.getfilesystemencoding()),
-                        help=settings.SOURCE_HELP)
+                        help=staticValues.SOURCE_HELP)
 
         """ chapter input"""
-        parser.add_argument('language', type=str, default=settings.CHAPTER_DEFAULT, help=settings.CHAPTER_HELP)
+        parser.add_argument('language', type=str, default=staticValues.CHAPTER_DEFAULT, help=staticValues.CHAPTER_HELP)
 
 
-        parser.add_argument('-c', '--classname', type=str, help=settings.CLASSNAME_HELP)
+        parser.add_argument('-c', '--classname', type=str, help=staticValues.CLASSNAME_HELP)
 
         # parsing actual arguments and return them to the caller.
         args = parser.parse_args()
@@ -75,7 +75,7 @@ class ExplorerTools:
         :return: collect mode value
         """
         if self.args.collect_mode:
-            if self.args.collect_mode in settings.COLLECT_MODE_CHOICES:
+            if self.args.collect_mode in staticValues.COLLECT_MODE_CHOICES:
                 return self.args.collect_mode
             else:
                 sys.exit("Wrong collect_mode, available collect_mode are: "+str(ettings.COLLECT_MODE_CHOICES))
@@ -88,11 +88,11 @@ class ExplorerTools:
         if self.args.language:
             ch = self.args.language.lower()
             # search if language is available
-            search = [x for x in settings.LANGUAGES_AVAILABLE if x == ch]
+            search = [x for x in staticValues.LANGUAGES_AVAILABLE if x == ch]
             if len(search) > 0:
                 return search[0]
             else:
-                sys.exit("Wrong chapter, languages available are: " + str(settings.LANGUAGES_AVAILABLE))
+                sys.exit("Wrong chapter, languages available are: " + str(staticValues.LANGUAGES_AVAILABLE))
 
     def set_source(self):
         """
@@ -205,10 +205,10 @@ class ExplorerTools:
         url = ""
         if service == "check_property":
             # header as wrote in table
-            query = settings.SPARQL_CHECK_PROPERTY[0] +\
-                    '{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + data + '"@' + self.language + "} UNION " +\
-                    '{' + settings.SPARQL_CHECK_PROPERTY[1] + '"' + data.lower() + '"@' + self.language + "}" +\
-                    settings.SPARQL_CHECK_PROPERTY[2]
+            query = staticValues.SPARQL_CHECK_PROPERTY[0] +\
+                    '{' + staticValues.SPARQL_CHECK_PROPERTY[1] + '"' + data + '"@' + self.language + "} UNION " +\
+                    '{' + staticValues.SPARQL_CHECK_PROPERTY[1] + '"' + data.lower() + '"@' + self.language + "}" +\
+                    staticValues.SPARQL_CHECK_PROPERTY[2]
             # If I change chapter language of Utilities I will make a sparql query to dbpedia.org ontology
             self.utils.language = "en"
             self.utils.dbpedia_sparql_url = self.utils.dbpedia_selection()
@@ -281,7 +281,7 @@ class ExplorerTools:
         """
         result = ""
         if self.args.collect_mode != 's':
-            result = self.selector.res_list_file.split(settings.PATH_FOLDER_RESOURCE_LIST)[1].replace("/", "")
+            result = self.selector.res_list_file.split(staticValues.PATH_FOLDER_RESOURCE_LIST)[1].replace("/", "")
         return result
 
     def replace_accents(self, string):

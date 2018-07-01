@@ -1,6 +1,6 @@
 # coding=utf-8
 import rdflib
-from settings import APPLY_FILTER_TO_TABLE_DATA, SECTION_NAME
+from staticValues import APPLY_FILTER_TO_TABLE_DATA, SECTION_NAME
 
 resources_found = []
 

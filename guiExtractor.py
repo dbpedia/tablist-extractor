@@ -4,7 +4,8 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import sys
-import settings
+import os
+import staticValues
 import subprocess
 import domainExtractor
 import Utilities
@@ -42,7 +43,7 @@ class guiExtractor:
 		sys.stdout = Log(self.ui.TerminalWindow, True)
 		sys.stderr = Log(self.ui.TerminalWindow, False)
 
-		for lang in settings.LANGUAGES_AVAILABLE:
+		for lang in staticValues.LANGUAGES_AVAILABLE:
 			self.ui.LanguageCombo.addItem(lang)
 			self.ui.DomainLanguageCombo.addItem(lang)
 			self.ui.CheckOntologyLanguageCombo.addItem(lang)
@@ -123,7 +124,7 @@ class guiExtractor:
 			item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable)
 
 	def saveDomainSettingsFile(self):
-		with open(settings.FILE_PATH_DOMAIN_EXPLORED,'w') as file:
+		with open(staticValues.FILE_PATH_DOMAIN_EXPLORED,'w') as file:
 			self.write_file_heading(file)
 			numberOfTopLevelItems = self.ui.DomainSettingsTreeWidget.topLevelItemCount()
 			for i in range(numberOfTopLevelItems):
@@ -135,7 +136,7 @@ class guiExtractor:
 					value = child.text(1)
 					file.write("'" + key + "': '" + value + "'" + ", \n")
 				file.write("} \n")
-			file.write(settings.END_OF_FILE)
+			file.write(staticValues.END_OF_FILE)
 			print("domain_settings.py file saved")
 
 	def write_file_heading(self, domain_explored_file):
@@ -152,15 +153,15 @@ class guiExtractor:
 		:param domain_explored_file: reference to the output file
 		:return:
 		"""
-		domain_explored_file.write(settings.CODING_DOMAIN + "\n")
-		domain_explored_file.write(settings.FIRST_COMMENT + "\n")
-		domain_explored_file.write(settings.DOMAIN_TITLE + ' = "' + self.domainParameters[0] + '" \n')
-		domain_explored_file.write(settings.CHAPTER + ' = "' + self.domainParameters[1] + '" \n')
-		domain_explored_file.write(settings.COLLECT_MODE + ' = "' + self.domainParameters[2] + '" \n')
-		domain_explored_file.write(settings.RESOURCE_FILE + ' = "' + self.domainParameters[3] + '" \n\n')
-		domain_explored_file.write(settings.COMMENT_SECTION_PROPERTY + "\n\n")
-		domain_explored_file.write(settings.COMMENT_STRUCTURE + "\n\n")
-		domain_explored_file.write(settings.COMMENT_FILLED_ELEMENT + "\n\n")
+		domain_explored_file.write(staticValues.CODING_DOMAIN + "\n")
+		domain_explored_file.write(staticValues.FIRST_COMMENT + "\n")
+		domain_explored_file.write(staticValues.DOMAIN_TITLE + ' = "' + self.domainParameters[0] + '" \n')
+		domain_explored_file.write(staticValues.CHAPTER + ' = "' + self.domainParameters[1] + '" \n')
+		domain_explored_file.write(staticValues.COLLECT_MODE + ' = "' + self.domainParameters[2] + '" \n')
+		domain_explored_file.write(staticValues.RESOURCE_FILE + ' = "' + self.domainParameters[3] + '" \n\n')
+		domain_explored_file.write(staticValues.COMMENT_SECTION_PROPERTY + "\n\n")
+		domain_explored_file.write(staticValues.COMMENT_STRUCTURE + "\n\n")
+		domain_explored_file.write(staticValues.COMMENT_FILLED_ELEMENT + "\n\n")
 
 	def extractTriples(self):
 		self.domain_extractor = domainExtractor.main()
@@ -328,7 +329,7 @@ class guiExtractor:
 		language = str(self.ui.CheckOntologyLanguageCombo.currentText())
 
 		utils = Utilities.Utilities(language, None, None, True)
-		query = settings.SPARQL_CHECK_IN_ONTOLOGY[0] + ontology + settings.SPARQL_CHECK_IN_ONTOLOGY[1]
+		query = staticValues.SPARQL_CHECK_IN_ONTOLOGY[0] + ontology + staticValues.SPARQL_CHECK_IN_ONTOLOGY[1]
 		url = utils.url_composer(query, "dbpedia")
 		# get response of request
 		response = utils.json_answer_getter(url)['boolean']

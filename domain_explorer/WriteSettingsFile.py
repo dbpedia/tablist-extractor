@@ -1,4 +1,4 @@
-import settings
+import staticValues
 from collections import OrderedDict
 
 
@@ -40,7 +40,7 @@ class WriteSettingsFile:
         :return:
         """
         # Create new file
-        domain_explored_file = file(settings.FILE_PATH_DOMAIN_EXPLORED, 'w')
+        domain_explored_file = file(staticValues.FILE_PATH_DOMAIN_EXPLORED, 'w')
         # Print file heading
         self.write_file_heading(domain_explored_file)
 
@@ -48,7 +48,7 @@ class WriteSettingsFile:
 
         self.write_list_section_names(domain_explored_file)
 
-        domain_explored_file.write(settings.END_OF_FILE)
+        domain_explored_file.write(staticValues.END_OF_FILE)
         domain_explored_file.close()
         
     def write_file_heading(self, domain_explored_file):
@@ -65,15 +65,15 @@ class WriteSettingsFile:
         :param domain_explored_file: reference to the output file
         :return:
         """
-        domain_explored_file.write(settings.CODING_DOMAIN + "\n")
-        domain_explored_file.write(settings.FIRST_COMMENT + "\n")
-        domain_explored_file.write(settings.DOMAIN_TITLE + ' = "' + self.resource + '" \n')
-        domain_explored_file.write(settings.CHAPTER + ' = "' + self.language + '" \n')
-        domain_explored_file.write(settings.COLLECT_MODE + ' = "' + self.explorer_tools.collect_mode + '" \n')
-        domain_explored_file.write(settings.RESOURCE_FILE + ' = "' + self.explorer_tools.get_res_list_file() + '" \n\n')
-        domain_explored_file.write(settings.COMMENT_SECTION_PROPERTY + "\n\n")
-        domain_explored_file.write(settings.COMMENT_STRUCTURE + "\n\n")
-        domain_explored_file.write(settings.COMMENT_FILLED_ELEMENT + "\n\n")
+        domain_explored_file.write(staticValues.CODING_DOMAIN + "\n")
+        domain_explored_file.write(staticValues.FIRST_COMMENT + "\n")
+        domain_explored_file.write(staticValues.DOMAIN_TITLE + ' = "' + self.resource + '" \n')
+        domain_explored_file.write(staticValues.CHAPTER + ' = "' + self.language + '" \n')
+        domain_explored_file.write(staticValues.COLLECT_MODE + ' = "' + self.explorer_tools.collect_mode + '" \n')
+        domain_explored_file.write(staticValues.RESOURCE_FILE + ' = "' + self.explorer_tools.get_res_list_file() + '" \n\n')
+        domain_explored_file.write(staticValues.COMMENT_SECTION_PROPERTY + "\n\n")
+        domain_explored_file.write(staticValues.COMMENT_STRUCTURE + "\n\n")
+        domain_explored_file.write(staticValues.COMMENT_FILLED_ELEMENT + "\n\n")
 
     def write_table_sections_and_headers(self, domain_explored_file):
 
@@ -83,7 +83,7 @@ class WriteSettingsFile:
                 # adjust key to print in output
                 key = self.explorer_tools.replace_accents(key.replace(" ", "_").replace("-", "_"))
                 # print comments and first line of section
-                #domain_explored_file.write(settings.COMMENT_FOR_EXAMPLE_PAGE + section_dict["exampleWiki"] + "\n")
+                #domain_explored_file.write(staticValues.COMMENT_FOR_EXAMPLE_PAGE + section_dict["exampleWiki"] + "\n")
                 # delete example page that is useless now
                 del section_dict["exampleWiki"]
                 # print section dictionary that contains all table headers.
@@ -101,8 +101,8 @@ class WriteSettingsFile:
         """
         for key, value in section_dict.items():
             # don't print header already printed
-            if key == settings.SECTION_NAME_PROPERTY:
-                file_settings.write("'" + settings.SECTION_NAME+section_name + "' : '" + value + "'" + ", \n")
+            if key == staticValues.SECTION_NAME_PROPERTY:
+                file_staticValues.write("'" + staticValues.SECTION_NAME+section_name + "' : '" + value + "'" + ", \n")
             elif self.all_headers[mapper][key] != "printed":
                 file_settings.write("'" + key + "': '" + value + "'" + ", \n")
                 self.all_headers[mapper].__setitem__(key, "printed")

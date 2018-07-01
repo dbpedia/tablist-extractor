@@ -1,8 +1,9 @@
 from collections import OrderedDict
-import settings
+import staticValues
 import string
 import os
 import json
+from domain_explorer import domain_settings
 
 class MapperTools:
     """
@@ -49,9 +50,9 @@ class MapperTools:
         :return: parsed mapping rules
         """
         # Import is there for being sure that the file exists.
-        from domain_explorer import domain_settings
+        reload(domain_settings)
         new_mapping_rules = OrderedDict()
-        if os.path.isfile(settings.FILE_PATH_DOMAIN_EXPLORED):
+        if os.path.isfile(staticValues.FILE_PATH_DOMAIN_EXPLORED):
             # search for right dictionary
             for name, val in domain_settings.__dict__.iteritems():
                 if "_MAPPER" in name:
@@ -60,8 +61,10 @@ class MapperTools:
                         new_mapping_rules[name].update(val)
                     else:
                         new_mapping_rules[name].append(val)
+        print(str(new_mapping_rules))
         # parse mapping rules
         parsed_mapping_rules = MapperTools.parse_mapping_rules(new_mapping_rules)
+
         return parsed_mapping_rules
 
     @staticmethod
@@ -78,9 +81,9 @@ class MapperTools:
                 # i need to delete all punctuation: ontology properties hasn't that type of character
                 value = value.translate(None, string.punctuation).replace(" ", "")
                 # Change the sectionProperty with the name of the section
-                if settings.SECTION_NAME in key:
+                if staticValues.SECTION_NAME in key:
                     # split sections by _tte_ character
-                    sections = (key.split(settings.SECTION_NAME)[1]).split(settings.CHARACTER_SEPARATOR)
+                    sections = (key.split(staticValues.SECTION_NAME)[1]).split(staticValues.CHARACTER_SEPARATOR)
                     # for each section I have to add it to dictionary
                     for section in sections:
                         # each section will have prefix to distinguish it from header that could have same name
@@ -105,12 +108,12 @@ class MapperTools:
         :param new_mapping_rules: mapping rules defined by user in settings file
         :return:
         """
-        if settings.CHECK_USER_INPUT_PROPERTY:
+        if staticValues.CHECK_USER_INPUT_PROPERTY:
             for mapper, mappings in new_mapping_rules:
                 for key, value in mappings:
                     # don't check table's row
-                    query = settings.SPARQL_CHECK_IN_ONTOLOGY[0] + new_mapping_rules[key] + \
-                            settings.SPARQL_CHECK_IN_ONTOLOGY[1]
+                    query = staticValues.SPARQL_CHECK_IN_ONTOLOGY[0] + new_mapping_rules[key] + \
+                            staticValues.SPARQL_CHECK_IN_ONTOLOGY[1]
                     url = self.utils.url_composer(query, "dbpedia")
                     # get response of request
                     response = self.utils.json_answer_getter(url)['boolean']

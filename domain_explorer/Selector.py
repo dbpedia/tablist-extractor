@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import settings
+import staticValues
 
 __author__ = 'papalinis - Simone Papalini - papalini.simone.an@gmail.com'
 
@@ -33,13 +33,13 @@ class Selector:
         self.current_res_list = []
 
         # set the  SPARQL query used therefore to retrieve a list of 1000 resources at a time.
-        self.query_res_list = settings.SPARQL_RES_LIST_QUERY[0] + str(self.where_clause) + \
-            settings.SPARQL_RES_LIST_QUERY[1]
+        self.query_res_list = staticValues.SPARQL_RES_LIST_QUERY[0] + str(self.where_clause) + \
+            staticValues.SPARQL_RES_LIST_QUERY[1]
 
         """ set the  SPARQL query used to know the total number of resources involved in collection.
            It then will be used by the collect_resources() method to augment the offset till the end of resources set"""
-        self.query_num_res = settings.SPARQL_NUM_RES_QUERY[0] + str(self.where_clause) + \
-            settings.SPARQL_NUM_RES_QUERY[1]
+        self.query_num_res = staticValues.SPARQL_NUM_RES_QUERY[0] + str(self.where_clause) + \
+            staticValues.SPARQL_NUM_RES_QUERY[1]
 
         # set total number of resources interested in this resource passing the query_num_res to utils.tot_res_interested()
         self.tot_res_interested = self.utils.tot_res_interested(self.query_num_res)
@@ -64,7 +64,7 @@ class Selector:
         :return: path_to_file  absolute path to the file we want to create
         """
         # call test_dir_existence() from Utilities class to test if '../Resource_lists' exists.
-        self.utils.test_dir_existence(settings.PATH_FOLDER_RESOURCE_LIST)
+        self.utils.test_dir_existence(staticValues.PATH_FOLDER_RESOURCE_LIST)
 
         # get current directory
         current_dir = self.utils.get_current_dir()
@@ -74,7 +74,7 @@ class Selector:
         #else:
         filename = self.utils.get_date() + "_" + self.resource + "_" + self.language + ".txt"
         # recreating abs path from 2 paths
-        path_to_file = self.utils.join_paths(current_dir, settings.PATH_FOLDER_RESOURCE_LIST+"/" + filename)
+        path_to_file = self.utils.join_paths(current_dir, staticValues.PATH_FOLDER_RESOURCE_LIST+"/" + filename)
         return path_to_file
 
     def collect_resources(self):

@@ -3,7 +3,7 @@
 from collections import OrderedDict
 from domain_explorer.ExplorerTools import ExplorerTools
 from domain_explorer import WriteSettingsFile
-import settings
+import staticValues
 import re
 __author__ = "sachinmalepati - Sachin Malepati (sachinmalepati@gmail.com)"
 
@@ -163,16 +163,16 @@ def check_if_similar_section_is_present(string_to_check, res_name, actual_dictio
         # I have also to delete previous key value in favour of the new key.
         if similar_key:
             # crete new key
-            new_key = similar_key[0] + settings.CHARACTER_SEPARATOR + string_to_check
+            new_key = similar_key[0] + staticValues.CHARACTER_SEPARATOR + string_to_check
             # delete previous dictionary and create a new one with this new key
             app_dict = dict(table_sections[similar_key[0]])
             del table_sections[similar_key[0]]
             table_sections[new_key] = OrderedDict()
             # search if this new_key is defined in actual_dictionary
             if new_key in actual_dictionary:
-                table_sections[new_key].__setitem__(settings.SECTION_NAME_PROPERTY, actual_dictionary[new_key])
+                table_sections[new_key].__setitem__(staticValues.SECTION_NAME_PROPERTY, actual_dictionary[new_key])
             else:
-                table_sections[new_key].__setitem__(settings.SECTION_NAME_PROPERTY, "")
+                table_sections[new_key].__setitem__(staticValues.SECTION_NAME_PROPERTY, "")
             table_sections[new_key].update(app_dict)
         # If there isn't similar key, I simply create a new one in all_sections dictionary.
         else:
@@ -180,16 +180,16 @@ def check_if_similar_section_is_present(string_to_check, res_name, actual_dictio
             # search if this new_key is defined in actual_dictionary
             section_rule = "" + new_key
             if section_rule in actual_dictionary:
-                table_sections[new_key].__setitem__(settings.SECTION_NAME_PROPERTY, actual_dictionary[section_rule])
+                table_sections[new_key].__setitem__(staticValues.SECTION_NAME_PROPERTY, actual_dictionary[section_rule])
             else:
-                table_sections[new_key].__setitem__(settings.SECTION_NAME_PROPERTY, "")
+                table_sections[new_key].__setitem__(staticValues.SECTION_NAME_PROPERTY, "")
             # example of wiki pages where i found a particular section
             table_sections[new_key].__setitem__("exampleWiki", res_name)
     else:
         new_key = equal_key
         # check if there is already an example page of wikipedia and i want at most NUMBER_OF_WIKI_EXAMPLES examples
         if "exampleWiki" in table_sections[new_key] and len(table_sections[new_key]["exampleWiki"].split(",")) <\
-                settings.NUMBER_OF_WIKI_EXAMPLES:
+                staticValues.NUMBER_OF_WIKI_EXAMPLES:
             old_example = table_sections[new_key]["exampleWiki"]
             table_sections[new_key].__setitem__("exampleWiki", old_example + ", " + res_name)
     return new_key
@@ -226,6 +226,8 @@ def check_if_header_already_exists(header, section_name, actual_dictionary, tabl
         if (section_name + "_" + header) in actual_dictionary:
             # if it's associated to section (depend on output format value)
             header_property = actual_dictionary[section_name + "_" + header]
+            if header_property == 'fieldGoal':
+                print("^^^^ "+header)
         elif header in actual_dictionary:
             # if it's not related to section
             header_property = actual_dictionary[header]
@@ -260,7 +262,7 @@ def check_if_property_exists(header, table_sections, table_headers):
             property_found = 0
             for row in answer["results"]["bindings"]:
                 # sparql results can be wikidata or dbpedia uri, i have to filter to catch only dbpedia ontology uri
-                for property_type in settings.ONTOLOGY_TYPE:
+                for property_type in staticValues.ONTOLOGY_TYPE:
                     if property_type in row["s"]["value"] and property_found == 0:
                         property_to_check = explorer_tools.get_ontology_name_from_uri(row["s"]["value"])
                         property_found = 1
@@ -281,7 +283,7 @@ def search_equal_key(array_string, string_to_check):
     result = ""
     for string in array_string:
         # split by _tte_ to get each sections
-        keys = string.split(settings.CHARACTER_SEPARATOR)
+        keys = string.split(staticValues.CHARACTER_SEPARATOR)
         for key in keys:
             if key == string_to_check:
                 result = string
