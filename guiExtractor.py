@@ -331,6 +331,14 @@ class guiExtractor:
         ontology = str(self.ui.CheckOntologyField.text())
         language = str(self.ui.CheckOntologyLanguageCombo.currentText())
 
+        if ontology == "" :
+            message = "Ontology cannot be empty"
+            color = 'red'
+            self.ui.CheckOntologyResult.setText(message)
+            self.ui.CheckOntologyResult.setStyleSheet('color: ' + color)
+
+            return 
+
         utils = Utilities.Utilities(language, None, None, True)
         query = staticValues.SPARQL_CHECK_IN_ONTOLOGY[0] + ontology + staticValues.SPARQL_CHECK_IN_ONTOLOGY[1]
         url = utils.url_composer(query, "dbpedia")
