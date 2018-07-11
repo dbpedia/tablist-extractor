@@ -61,7 +61,6 @@ class MapperTools:
                         new_mapping_rules[name].update(val)
                     else:
                         new_mapping_rules[name].append(val)
-        print(str(new_mapping_rules))
         # parse mapping rules
         parsed_mapping_rules = MapperTools.parse_mapping_rules(new_mapping_rules)
 

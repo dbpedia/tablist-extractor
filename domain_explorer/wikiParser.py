@@ -219,7 +219,7 @@ class wikiParser:
                     print("JSONpedia error: Invalid wiki page."),
                     raise
                 elif 'Expected DocumentElement found' in sections['message']:
-                    print(("JSONpedia error: something went wrong (DocumentElement expected).")),
+                    print("JSONpedia error: something went wrong (DocumentElement expected)."),
                     raise
                 else:
                     print("JSONpedia error! - the web service may be currently overloaded, retrying... "

@@ -15,50 +15,50 @@ all_headers = {}
 all_list_sections = {}
 
 def start_exploration():
-	"""
-	Start domain exploration.
-	It will take resources list and give in output a settings file organized
-	like a dictionary ---> "Header name":"Ontology property associated"
-	:return:
-	"""
+    """
+    Start domain exploration.
+    It will take resources list and give in output a settings file organized
+    like a dictionary ---> "Header name":"Ontology property associated"
+    :return:
+    """
 
-	# Read pyTableExtractor dictionary
-	#actual_dictionary = explorer_tools.read_actual_dictionary()
-	# Read uri resources
-	uri_resource_list = explorer_tools.get_uri_resources()
+    # Read pyTableExtractor dictionary
+    #actual_dictionary = explorer_tools.read_actual_dictionary()
+    # Read uri resources
+    uri_resource_list = explorer_tools.get_uri_resources()
 
-	# If resources are found
-	if uri_resource_list:
-		# Analyze uri list
-		analyze_uri_resource_list(uri_resource_list)
-		#print report of extractor
-		#explorer_tools.utils.print_report()
-		write_sections_and_headers()
-	else:
-		print "No resources found. Please check arguments passed to pyDomainExplorer"
+    # If resources are found
+    if uri_resource_list:
+        # Analyze uri list
+        analyze_uri_resource_list(uri_resource_list)
+        #print report of extractor
+        #explorer_tools.utils.print_report()
+        write_sections_and_headers()
+    else:
+        print "No resources found. Please check arguments passed to pyDomainExplorer"
 
 def analyze_uri_resource_list(uri_resource_list):
-	"""
-	Analyze each resource's uri to get sections and headers of related table.
-	:param uri_resource_list: list of all resource's uri
-	:param actual_dictionary: mapping rules defined in pyTableExtractor dictionary
-	:return:
-	"""
-	total_resources = len(uri_resource_list)
-	offset = 0
+    """
+    Analyze each resource's uri to get sections and headers of related table.
+    :param uri_resource_list: list of all resource's uri
+    :param actual_dictionary: mapping rules defined in pyTableExtractor dictionary
+    :return:
+    """
+    total_resources = len(uri_resource_list)
+    offset = 0
 
-	for single_uri in uri_resource_list:
-		print "Resource: ", single_uri
-		# get section and headers
-		all_tables = get_resource_sections_and_headers(single_uri)
-		# get titles and list contents
-		resDict = get_titles_and_list_contents(single_uri)
-		# update number of resources analyzed
-		explorer_tools.utils.res_analyzed += 1
-		# progress bar to warn user about how many resources have been analyzed
-		explorer_tools.print_progress_bar(explorer_tools.utils.res_analyzed, total_resources)
+    for single_uri in uri_resource_list:
+        print "Resource: ", single_uri
+        # get section and headers
+        all_tables = get_resource_sections_and_headers(single_uri)
+        # get titles and list contents
+        resDict = get_titles_and_list_contents(single_uri)
+        # update number of resources analyzed
+        explorer_tools.utils.res_analyzed += 1
+        # progress bar to warn user about how many resources have been analyzed
+        explorer_tools.print_progress_bar(explorer_tools.utils.res_analyzed, total_resources)
 
-		collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri)
+        collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri)
 
 def get_resource_sections_and_headers(res_name):
     """
@@ -113,11 +113,11 @@ def collect_table_sections_and_headers_mappings(all_tables, res_name, rdf_types,
                         if table.n_rows > 1:
                             check_if_section_is_present(table.table_section, table.headers_refined, res_name, actual_dictionary, table_sections, table_headers)
 
-			if table_sections and table_headers:
-				all_sections[res_name.upper()+"___"+mapper] = table_sections
-				all_headers[res_name.upper()+"___"+mapper] = table_headers
+            if table_sections and table_headers:
+                all_sections[res_name.upper()+"___"+mapper] = table_sections
+                all_headers[res_name.upper()+"___"+mapper] = table_headers
 
-			mapped_domains.append(mapper)
+            mapped_domains.append(mapper)
 
 def check_if_section_is_present(string_to_check, headers_refined, res_name, actual_dictionary, table_sections, table_headers):
     """
@@ -290,9 +290,9 @@ def search_equal_key(array_string, string_to_check):
     return result
 
 def get_titles_and_list_contents(res_name):
-	resDict = explorer_tools.wiki_parser(res_name)
+    resDict = explorer_tools.wiki_parser(res_name)
 
-	return resDict
+    return resDict
 
 def collect_list_section_mappings(resDict, res_name, rdf_types, domains, CUSTOM_MAPPERS):
     mappers=[]
@@ -327,12 +327,12 @@ def collect_list_section_mappings(resDict, res_name, rdf_types, domains, CUSTOM_
             mapped_domains.append(mapper)
 
 def write_sections_and_headers():
-	"""
-	Write sections and headers found. I will use WriteSettingsFile to create output file.
-	:return:
-	"""
-	# write output file
-	WriteSettingsFile.WriteSettingsFile(all_sections, all_headers, all_list_sections, explorer_tools)
+    """
+    Write sections and headers found. I will use WriteSettingsFile to create output file.
+    :return:
+    """
+    # write output file
+    WriteSettingsFile.WriteSettingsFile(all_sections, all_headers, all_list_sections, explorer_tools)
 
 if __name__ == "__main__":
     # instantiate tools that are useful for domain exploration
