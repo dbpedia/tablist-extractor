@@ -337,7 +337,7 @@ class guiExtractor:
             self.ui.CheckOntologyResult.setText(message)
             self.ui.CheckOntologyResult.setStyleSheet('color: ' + color)
 
-            return 
+            return
 
         utils = Utilities.Utilities(language, None, None, True)
         query = staticValues.SPARQL_CHECK_IN_ONTOLOGY[0] + ontology + staticValues.SPARQL_CHECK_IN_ONTOLOGY[1]
@@ -357,6 +357,11 @@ class guiExtractor:
     def getResourceList(self):
         domain = str(self.ui.DomainLineEdit.text())
         language = str(self.ui.DomainLanguageCombo.currentText())
+
+        if domain == "" :
+            self.ui.ResourcesListResult.setText("Domain cannot be empty!")
+            return
+
         utils = Utilities.Utilities(language, domain, 't', True)
         selector = Selector.Selector(utils)
 
