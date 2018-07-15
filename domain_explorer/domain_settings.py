@@ -4,7 +4,7 @@
 # Please do not modify pyDomainExplorer parameters. 
 
 # pyDomainExplorer parameters 
-DOMAIN_EXPLORED = "William_Gibson" 
+DOMAIN_EXPLORED = "Dan_Brown" 
 CHAPTER = "en" 
 COLLECT_MODE = "s" 
 RESOURCE_FILE = "" 
@@ -23,12 +23,11 @@ RESOURCE_FILE = ""
 
 
 #Following are section mappings of lists found:
-#Mapper used for the following are: WILLIAM_GIBSON___BIBLIOGRAPHY_MAPPER
+#Mapper used for the following are: DAN_BROWN___BIBLIOGRAPHY_MAPPER
 
-WILLIAM_GIBSON___BIBLIOGRAPHY_MAPPER___LISTS = {
-'Selected bibliography - Short stories': 'ShortStory', 
-'Selected bibliography - Novels': 'Novel', 
-'Nonfiction': 'Nonfiction', 
+DAN_BROWN___BIBLIOGRAPHY_MAPPER___LISTS = {
+'Novel': 'Novel', 
+'Bibliography - Robert Langdon series': '', 
 } 
 
 # END OF FILE 

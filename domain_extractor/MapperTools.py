@@ -3,7 +3,6 @@ import staticValues
 import string
 import os
 import json
-from domain_explorer import domain_settings
 
 class MapperTools:
     """
@@ -50,12 +49,17 @@ class MapperTools:
         :return: parsed mapping rules
         """
         # Import is there for being sure that the file exists.
-        reload(domain_settings)
+        from domain_explorer import domain_settings
+        for name, val in domain_settings.__dict__.iteritems():
+            if "_MAPPER" in name:
+                domain_settings.__dict__[name] = ""
+        domain_settings = reload(domain_settings)
+
         new_mapping_rules = OrderedDict()
         if os.path.isfile(staticValues.FILE_PATH_DOMAIN_EXPLORED):
             # search for right dictionary
             for name, val in domain_settings.__dict__.iteritems():
-                if "_MAPPER" in name:
+                if "_MAPPER" in name and val != "":
                     if name not in new_mapping_rules.keys():
                         new_mapping_rules[name] = OrderedDict()
                         new_mapping_rules[name].update(val)

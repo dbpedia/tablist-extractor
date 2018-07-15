@@ -23,12 +23,6 @@ class Log(object):
             self.out = sys.stderr
         self.textBrowser = edit
 
-    def __del__(self):
-        # Restore sys.stdout
-        if isStdout:
-            sys.stdout = sys.__stdout__
-        else:
-            sys.stderr = sys.__stderr__
     def write(self, message):
         self.out.write(message)
         self.textBrowser.insertPlainText(message)
@@ -87,7 +81,9 @@ class guiExtractor:
         if self.ui.CollectmodeTBtn.isChecked():
             collect_mode = "t"
         language = str(self.ui.LanguageCombo.currentText())
+
         self.ui.ExploreDomainMessageLabel.clear()
+
         if resource == None or resource == "":
             self.ui.ExploreDomainMessageLabel.setText('Error in resource name.')
             return
@@ -100,7 +96,7 @@ class guiExtractor:
             proc.wait() # wait for the subprocess to exit
         except Exception as e:
             print(e)
-            self.ui.ExploreDomainMessageLabel.setText('Exception during execution of domainExplorer.\nCheck console for error log.')
+            self.ui.ExploreDomainMessageLabel.setText('Exception during spawning a new process.')
             return
 
         self.openDomainSettingsFile()
@@ -109,7 +105,7 @@ class guiExtractor:
 
         new_mappings = MapperTools.MapperTools.read_mapping_rules()
         resource, language, collect_mode, resource_file = Utilities.Utilities.read_parameters_research()
-        self.domainParameters=[resource, language, collect_mode, resource_file]
+        self.domainParameters = [resource, language, collect_mode, resource_file]
 
         self.ui.DomainSettingsTreeWidget.clear()
 
