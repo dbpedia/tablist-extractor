@@ -154,6 +154,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.TerminalWindow, 1, 1, 1, 2)
         self.DomainSettingsTreeWidget = QtGui.QTreeWidget(self.tab)
         self.DomainSettingsTreeWidget.setObjectName(_fromUtf8("DomainSettingsTreeWidget"))
+        self.DomainSettingsTreeWidget.headerItem().setText(0, _fromUtf8("1"))
         self.gridLayout.addWidget(self.DomainSettingsTreeWidget, 0, 2, 1, 1)
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
@@ -210,6 +211,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QtGui.QHBoxLayout(self.frame_11)
         self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
         self.ExtractorsLabel = QtGui.QLabel(self.frame_11)
+        self.ExtractorsLabel.setToolTip(_fromUtf8(""))
         self.ExtractorsLabel.setObjectName(_fromUtf8("ExtractorsLabel"))
         self.horizontalLayout_3.addWidget(self.ExtractorsLabel)
         self.extractor_checkBox_1 = QtGui.QCheckBox(self.frame_11)
@@ -425,27 +427,73 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Extractor", None))
         self.updateMapperLabel.setText(_translate("MainWindow", "Add/Edit Mappers", None))
         self.ListOfMappersLabel.setText(_translate("MainWindow", "List of Mappers:", None))
+        self.ListOfMappersCombo.setToolTip(_translate("MainWindow", "Select from list of available mappers.", None))
         self.ShowMappersBtn.setText(_translate("MainWindow", "Show", None))
         self.MapperNameLabel.setText(_translate("MainWindow", "Mapper Name:", None))
         self.ListSectionsLabel.setText(_translate("MainWindow", "List Headers:", None))
+        self.ListHeadersTextEdit.setToolTip(_translate("MainWindow", "Contains list of headers with its associated language.\n"
+"These headers are searched in the wiki page, for extracting list elements.\n"
+"\n"
+"Follow the structure as shown\n"
+"Format:\n"
+"{\n"
+"    \"language1\" : [ , , ],\n"
+"    \"language2\" : [ , , ],\n"
+"     ..\n"
+"}\n"
+"", None))
         self.TableHeadersLabel.setText(_translate("MainWindow", "Table Sections:", None))
+        self.TableSectionsTextEdit.setToolTip(_translate("MainWindow", "Contains list of sections with its associated language.\n"
+"These table sections are searched in the wiki page, for extracting table elements.\n"
+"\n"
+"Follow the structure as shown\n"
+"Format:\n"
+"{\n"
+"    \"language1\" : [ , , ],\n"
+"    \"language2\" : [ , , ],\n"
+"     ..\n"
+"}\n"
+"", None))
         self.ExtractorsLabel.setText(_translate("MainWindow", "Extractors:", None))
+        self.extractor_checkBox_1.setToolTip(_translate("MainWindow", "Italic Mapper", None))
         self.extractor_checkBox_1.setText(_translate("MainWindow", "1", None))
+        self.extractor_checkBox_2.setToolTip(_translate("MainWindow", "Reference Mapper", None))
         self.extractor_checkBox_2.setText(_translate("MainWindow", "2", None))
+        self.extractor_checkBox_3.setToolTip(_translate("MainWindow", "Quote Mapper", None))
         self.extractor_checkBox_3.setText(_translate("MainWindow", "3", None))
+        self.extractor_checkBox_4.setToolTip(_translate("MainWindow", "General Mapper", None))
         self.extractor_checkBox_4.setText(_translate("MainWindow", "4", None))
+        self.extractor_checkBox_5.setToolTip(_translate("MainWindow", "isbn Mapper", None))
         self.extractor_checkBox_5.setText(_translate("MainWindow", "5", None))
+        self.extractor_checkBox_6.setToolTip(_translate("MainWindow", "Alumni Profession Mapper", None))
         self.extractor_checkBox_6.setText(_translate("MainWindow", "6", None))
         self.YearsLabel.setText(_translate("MainWindow", "Includes Years:", None))
         self.YearsYesRadio.setText(_translate("MainWindow", "Yes", None))
         self.YearsNoRadio.setText(_translate("MainWindow", "No", None))
         self.OntologyLabel.setText(_translate("MainWindow", "Ontology:", None))
+        self.OntologyTextEdit.setToolTip(_translate("MainWindow", "Contains dictionary of ontologies with its associated language.\n"
+"\n"
+"Follow the structure as shown\n"
+"Format:\n"
+"{\n"
+"    \"language1\" : [ \"key\" : \"Ontology\",\n"
+"                               , ..  ],\n"
+"    \"language2\" : [ \"key\" : \"Ontology\",\n"
+"                               , ..  ],\n"
+"     ..\n"
+"}\n"
+"", None))
         self.SaveMapperBtn.setText(_translate("MainWindow", "Save", None))
+        self.MapperNameLineEdit.setToolTip(_translate("MainWindow", "Name of the mapper", None))
+        self.frame_4.setToolTip(_translate("MainWindow", "Select a Domain", None))
         self.UpdateDomainLabel.setText(_translate("MainWindow", "Add/Edit Domain", None))
         self.DomainsListLabel.setText(_translate("MainWindow", "Domains:", None))
         self.ShowDomainBtn.setText(_translate("MainWindow", "Show", None))
         self.DomainNameLabel.setText(_translate("MainWindow", "Domain:", None))
+        self.DomainNameLineEdit.setToolTip(_translate("MainWindow", "Domain Name", None))
         self.AddDomainMappersLabel.setText(_translate("MainWindow", "Mappers:", None))
+        self.MappersListView.setToolTip(_translate("MainWindow", "List of mappers associated with the domain.\n"
+"Do not change the format.", None))
         self.SaveDomainBtn.setText(_translate("MainWindow", "Save", None))
         self.label_10.setText(_translate("MainWindow", "Check Existence of Ontology", None))
         self.CheckOntologyLabel.setText(_translate("MainWindow", "Ontology:", None))
@@ -455,6 +503,9 @@ class Ui_MainWindow(object):
         self.CheckOntologyLanguageLabel.setText(_translate("MainWindow", "Language :", None))
         self.ResourcesListLabel.setText(_translate("MainWindow", "List of Resources in a Domain", None))
         self.DomainLabel.setText(_translate("MainWindow", "Domain:", None))
+        self.DomainLineEdit.setToolTip(_translate("MainWindow", "Get list of associated resources in a specific domain.\n"
+"\n"
+"Eg., Writer, BasketballPlayer etc.", None))
         self.DomainLanguageLabel.setText(_translate("MainWindow", "Language :", None))
         self.ShowResourcesBtn.setText(_translate("MainWindow", "Show Resources", None))
         self.DomainLanguageCombo.setToolTip(_translate("MainWindow", "Enter Language of wiki pages", None))

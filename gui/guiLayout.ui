@@ -310,7 +310,13 @@ save button to update mappings.</string>
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QTreeWidget" name="DomainSettingsTreeWidget"/>
+         <widget class="QTreeWidget" name="DomainSettingsTreeWidget">
+          <column>
+           <property name="text">
+            <string notr="true">1</string>
+           </property>
+          </column>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -353,7 +359,11 @@ save button to update mappings.</string>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="ListOfMappersCombo"/>
+            <widget class="QComboBox" name="ListOfMappersCombo">
+             <property name="toolTip">
+              <string>Select from list of available mappers.</string>
+             </property>
+            </widget>
            </item>
            <item row="2" column="1">
             <widget class="QPushButton" name="ShowMappersBtn">
@@ -377,7 +387,21 @@ save button to update mappings.</string>
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QTextEdit" name="ListHeadersTextEdit"/>
+            <widget class="QTextEdit" name="ListHeadersTextEdit">
+             <property name="toolTip">
+              <string>Contains list of headers with its associated language.
+These headers are searched in the wiki page, for extracting list elements.
+
+Follow the structure as shown
+Format:
+{
+    &quot;language1&quot; : [ , , ],
+    &quot;language2&quot; : [ , , ],
+     ..
+}
+</string>
+             </property>
+            </widget>
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="TableHeadersLabel">
@@ -387,7 +411,21 @@ save button to update mappings.</string>
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QTextEdit" name="TableSectionsTextEdit"/>
+            <widget class="QTextEdit" name="TableSectionsTextEdit">
+             <property name="toolTip">
+              <string>Contains list of sections with its associated language.
+These table sections are searched in the wiki page, for extracting table elements.
+
+Follow the structure as shown
+Format:
+{
+    &quot;language1&quot; : [ , , ],
+    &quot;language2&quot; : [ , , ],
+     ..
+}
+</string>
+             </property>
+            </widget>
            </item>
            <item row="6" column="0" colspan="2">
             <widget class="QFrame" name="frame_11">
@@ -405,6 +443,9 @@ save button to update mappings.</string>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
                <widget class="QLabel" name="ExtractorsLabel">
+                <property name="toolTip">
+                 <string/>
+                </property>
                 <property name="text">
                  <string>Extractors:</string>
                 </property>
@@ -412,6 +453,9 @@ save button to update mappings.</string>
               </item>
               <item>
                <widget class="QCheckBox" name="extractor_checkBox_1">
+                <property name="toolTip">
+                 <string>Italic Mapper</string>
+                </property>
                 <property name="text">
                  <string>1</string>
                 </property>
@@ -419,6 +463,9 @@ save button to update mappings.</string>
               </item>
               <item>
                <widget class="QCheckBox" name="extractor_checkBox_2">
+                <property name="toolTip">
+                 <string>Reference Mapper</string>
+                </property>
                 <property name="text">
                  <string>2</string>
                 </property>
@@ -426,6 +473,9 @@ save button to update mappings.</string>
               </item>
               <item>
                <widget class="QCheckBox" name="extractor_checkBox_3">
+                <property name="toolTip">
+                 <string>Quote Mapper</string>
+                </property>
                 <property name="text">
                  <string>3</string>
                 </property>
@@ -433,6 +483,9 @@ save button to update mappings.</string>
               </item>
               <item>
                <widget class="QCheckBox" name="extractor_checkBox_4">
+                <property name="toolTip">
+                 <string>General Mapper</string>
+                </property>
                 <property name="text">
                  <string>4</string>
                 </property>
@@ -440,6 +493,9 @@ save button to update mappings.</string>
               </item>
               <item>
                <widget class="QCheckBox" name="extractor_checkBox_5">
+                <property name="toolTip">
+                 <string>isbn Mapper</string>
+                </property>
                 <property name="text">
                  <string>5</string>
                 </property>
@@ -447,6 +503,9 @@ save button to update mappings.</string>
               </item>
               <item>
                <widget class="QCheckBox" name="extractor_checkBox_6">
+                <property name="toolTip">
+                 <string>Alumni Profession Mapper</string>
+                </property>
                 <property name="text">
                  <string>6</string>
                 </property>
@@ -496,7 +555,22 @@ save button to update mappings.</string>
             </widget>
            </item>
            <item row="8" column="1">
-            <widget class="QTextEdit" name="OntologyTextEdit"/>
+            <widget class="QTextEdit" name="OntologyTextEdit">
+             <property name="toolTip">
+              <string>Contains dictionary of ontologies with its associated language.
+
+Follow the structure as shown
+Format:
+{
+    &quot;language1&quot; : [ &quot;key&quot; : &quot;Ontology&quot;,
+                               , ..  ],
+    &quot;language2&quot; : [ &quot;key&quot; : &quot;Ontology&quot;,
+                               , ..  ],
+     ..
+}
+</string>
+             </property>
+            </widget>
            </item>
            <item row="10" column="1">
             <widget class="QPushButton" name="SaveMapperBtn">
@@ -513,6 +587,9 @@ save button to update mappings.</string>
                <height>0</height>
               </size>
              </property>
+             <property name="toolTip">
+              <string>Name of the mapper</string>
+             </property>
             </widget>
            </item>
            <item row="9" column="0" colspan="2">
@@ -527,6 +604,9 @@ save button to update mappings.</string>
         </item>
         <item>
          <widget class="QFrame" name="frame_4">
+          <property name="toolTip">
+           <string>Select a Domain</string>
+          </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
@@ -589,7 +669,11 @@ save button to update mappings.</string>
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QLineEdit" name="DomainNameLineEdit"/>
+            <widget class="QLineEdit" name="DomainNameLineEdit">
+             <property name="toolTip">
+              <string>Domain Name</string>
+             </property>
+            </widget>
            </item>
            <item row="5" column="0">
             <widget class="QLabel" name="AddDomainMappersLabel">
@@ -599,7 +683,12 @@ save button to update mappings.</string>
             </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QListView" name="MappersListView"/>
+            <widget class="QListView" name="MappersListView">
+             <property name="toolTip">
+              <string>List of mappers associated with the domain.
+Do not change the format.</string>
+             </property>
+            </widget>
            </item>
            <item row="7" column="1">
             <widget class="QPushButton" name="SaveDomainBtn">
@@ -743,7 +832,13 @@ save button to update mappings.</string>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLineEdit" name="DomainLineEdit"/>
+            <widget class="QLineEdit" name="DomainLineEdit">
+             <property name="toolTip">
+              <string>Get list of associated resources in a specific domain.
+
+Eg., Writer, BasketballPlayer etc.</string>
+             </property>
+            </widget>
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="DomainLanguageLabel">
