@@ -12,17 +12,17 @@ __author__ = 'papalinis - Simone Papalini - papalini.simone.an@gmail.com'
 
 class Analyzer:
     """
-    Analyzer class takes resources from a list and call a HtmlTableParser  over them.
+    Analyzer class takes resources from a list and call a HtmlTableParser and wikiParser over them.
 
     It takes resources from .txt file (generally created by Selector objects) or from a string if a single_resource is
      involved.
-    Therefore a Table Parser object is called over their wiki page representation.
+    Therefore a Table Parser and Wiki Parser object is called over their wiki page representation.
      This representation is retrieved by a utilities object (calling html_object_getter()).
     Once the list of resources is finished or the analysis of a resource is done some useful statistics values are set.
     Some of them are passed to the utilities object (res_analyzed), as they are useful to print a final cumulative
      report, while some others (headers with no mapping rules found) are just print out and to the log.
-    They are used to give to the user an idea of which headers he can find in tables but which has not yet a
-     corresponding mapping rule. This is so important, as tables in wiki pages (even in pages with same topic
+    They are used to give to the user an idea of which headers/sections he can find in tables and lists but which has not yet have a
+     corresponding mapping rule. This is so important, as tables and lists in wiki pages (even in pages with same topic
      or describing the same phenomenons) are as well heterogeneous as the taste of users who wrote them.
 
     Public Methods:
@@ -47,8 +47,7 @@ class Analyzer:
          list of resources or over the single_resource passed.
 
         Arguments:
-        :param chapter (str): a two alpha-characters string representing the chapter of wikipedia user chose.
-        :param topic (str): a string representing the common topic of the resources considered.
+        :param language (str): a two alpha-characters string representing the language of wikipedia user chose.
         :param utils (Utilities object): utilities object used to access common log and to set statistics values used to
                 print a final report.
         :param filename (str): DEFAULT:None filename of a resources' list. It should be a .txt file containing name
@@ -104,7 +103,7 @@ class Analyzer:
 
     def setup_iterator(self):
         """
-        setup_iterator tries to make a iterable object from self.res_list.
+        setup_iterator tries to make an iterable object from self.res_list.
 
         Note: res_list should be set to a list of string (use open_file() method)
         :return:
@@ -186,7 +185,7 @@ class Analyzer:
                         # Add to the total the number of tables found for this resource
                         self.total_table_num += html_parser.tables_num
 
-                    #Extracting list triples
+                    # Extracting list triples
                     resDict = wikiParser.wikiParser(self.language, resource, self.utils).main_parser()
                     self.tot_list_elems += self.utils.count_listelem_dict(resDict)
                     if resDict:

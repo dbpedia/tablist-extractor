@@ -293,7 +293,7 @@ class wikiParser:
                     print("JSONpedia error: Invalid wiki page."),
                     raise
                 elif 'Expected DocumentElement found' in sections['message']:
-                    print(("JSONpedia error: something went wrong (DocumentElement expected).")),
+                    print("JSONpedia error: something went wrong (DocumentElement expected)."),
                     raise
                 else:
                     print("JSONpedia error! - the web service may be currently overloaded, retrying... "
@@ -320,8 +320,8 @@ class wikiParser:
         try:
             # spawn a new process that makes a call to the json wrapper, which creates the required
             # json for the given resource, then load the string into a dict using json.loads()
-            proc = subprocess.Popen(['java','-jar','domain_explorer/jsonpedia_wrapper.jar','-l', language,
-                                '-r', resource, '-p', 'Structure'], stdout=subprocess.PIPE, shell = False)
+            proc = subprocess.Popen(['java','-jar','domain_explorer/jsonpedia_wrapper.jar','-l', lang,
+                                '-r', res, '-p', 'Structure'], stdout=subprocess.PIPE, shell = False)
             pipe_output = proc.stdout.read()   #redirect the input into python variable
             proc.kill()  #kill the spawned process
             result = json.load(pipe_output)  #load the string as a python dict

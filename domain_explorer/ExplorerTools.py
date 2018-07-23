@@ -10,10 +10,9 @@ import urllib
 
 class ExplorerTools:
     """
-    ExplorerTools implements all methods to support DomainExplorer.py
+    ExplorerTools implements all methods to support domainExplorer.py
     In this script you will find functions that goes from parsing arguments given by user to get dbpedia resources.
-    This is also an interface to class Utilities, HtmlTableParser from table_extractor, because
-    I used some methods from those classes.
+    This is also an interface to class Utilities, HtmlTableParser.
 
     """
 
@@ -28,7 +27,6 @@ class ExplorerTools:
         self.collect_mode = self.set_collect_mode()
         self.resource = self.set_source()
         self.language = self.set_language()
-        self.classname = self.set_classname()
 
         self.utils = Utilities.Utilities(self.language, self.resource, self.collect_mode)
 
@@ -42,10 +40,8 @@ class ExplorerTools:
         - mutual exclusive group:
             - s: single resource.
             - t: dbpedia ontology class.
-            - w: where clause of sparql query built by user.
         - language: language specified by two letters.
-        - output organization: number that can be 1 or 2, that will change settings file format.
-        - classname: Provide a classname from settings.json and use its mapper functions.
+        - resource: a string representing a class of resources from DBpedia ontology, or a single Wikipedia page.
 
         :return: arguments passed by user
         """
@@ -59,11 +55,7 @@ class ExplorerTools:
         parser.add_argument('source', type=lambda s: unicode(s, sys.getfilesystemencoding()),
                         help=staticValues.SOURCE_HELP)
 
-        """ chapter input"""
         parser.add_argument('language', type=str, default=staticValues.CHAPTER_DEFAULT, help=staticValues.CHAPTER_HELP)
-
-
-        parser.add_argument('-c', '--classname', type=str, help=staticValues.CLASSNAME_HELP)
 
         # parsing actual arguments and return them to the caller.
         args = parser.parse_args()
@@ -78,7 +70,7 @@ class ExplorerTools:
             if self.args.collect_mode in staticValues.COLLECT_MODE_CHOICES:
                 return self.args.collect_mode
             else:
-                sys.exit("Wrong collect_mode, available collect_mode are: "+str(ettings.COLLECT_MODE_CHOICES))
+                sys.exit("Wrong collect_mode, available collect_mode are: "+str(staticValues.COLLECT_MODE_CHOICES))
 
     def set_language(self):
         """
@@ -96,21 +88,11 @@ class ExplorerTools:
 
     def set_source(self):
         """
-        Read source and set research_type to identify which input type is selected.
+        Read and set source.
         :return: source value
         """
         if self.args.source:
             return self.args.source.encode('utf-8')
-
-    def set_classname(self):
-        """
-        Read and set classname.
-        :return: classname value if mentioned or else return none.
-        """
-        if self.args.classname:
-            return self.args.classname
-        else:
-            return None
 
     def get_uri_resources(self):
         """
@@ -189,6 +171,11 @@ class ExplorerTools:
             return ""
 
     def wiki_parser(self, res_name):
+        """
+        Method to instantiate wikiParser, analyze lists and then give a dictionary of list's content as output.
+        :param res_name: resource that has to be analyzed
+        :return: dictionary containing section names as keys and featured lists as values
+        """
         wiki_parser = wikiParser.wikiParser(self.language, res_name, self.utils)
         resDict = wiki_parser.main_parser()
 
@@ -233,13 +220,13 @@ class ExplorerTools:
         return res_name
 
     def get_resource_type(self, resource):
-        ''' Asks all rdf:type of current resource to the local SPARQL endpoint.
+        """ Asks all rdf:type of current resource to the local SPARQL endpoint.
 
         :param resource: current resource with unknown type.
         :param lang: language/endpoint.
 
         :return: a list containing all types associated to the resource in the local endpoint.
-        '''
+        """
         lang = self.language
         if lang == 'en':
             local = ""
@@ -256,13 +243,13 @@ class ExplorerTools:
         return types
 
     def sparql_query(self, query, lang):
-        ''' Returns a JSON representation of data from a query to a given SPARQL endpoint.
+        """ Returns a JSON representation of data from a query to a given SPARQL endpoint.
 
         :param query: string containing the query.
         :param lang: prefix representing the local endpoint to query (e.g. 'en', 'it'..).
 
         :return: JSON result obtained from the endpoint.
-        '''
+        """
         if lang == 'en':
             local = ""
         else:

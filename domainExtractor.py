@@ -8,9 +8,15 @@ __author__ = 'papalinis - Simone Papalini - papalini.simone.an@gmail.com'
 
 def main():
     """
+    This consists of both tables and lists extractor combined.
+
     The table_extractor is a 2016&2017 GSoC project; here you have the [first project idea]
-     (wiki.dbpedia.org/ideas/idea/59/the-table-extractor/), assigned to Simone Papalini(s.papalini) in 2016
+     (https://github.com/dbpedia/table-extractor/wiki), assigned to Simone Papalini(s.papalini) in 2016
      and to Luca Virgili in 2017. Developed for DBpedia Spotlight organization.
+
+    The list_extractor is a 2016&2017 GSoC project; here you have the [first project idea]
+     (https://github.com/dbpedia/list-extractor/wiki), assigned to Federica in 2016
+     and to Krishanu Konar in 2017. Developed for DBpedia Spotlight organization.
 
     Note: Python 2.7, RDFlib, lxml are strictly required, so please install them in your environment.
 
@@ -21,10 +27,9 @@ def main():
 
     CONTACTS: feel free to e-mail me at: papalini.simone.an@gmail.com
 
-    pyTableExtractor is a Python script used to carve out data from tables tou can find in wiki pages and to compose a
+    domainExtractor is a Python script used to carve out data from tables and lists in wiki pages and to compose a
      RDF data set (.ttl file) with them.
-    Please refer to project's Readme, [Github project page](https://github.com/dbpedia/table-extractor) and [2017 GSoC
-     progress page](https://github.com/dbpedia/table-extractor/wiki/GSoC-2017:-Luca-Virgili-progress) to understand
+    Please refer to project's Readme, [Github project page](https://github.com/dbpedia/tablist-extractor) to understand
      script's usage, purposes and options.
 
     """
@@ -63,16 +68,16 @@ def main():
         analyzer = Analyzer.Analyzer(language, resource, utils, res_list_filename, single_res)
 
         """
-        To actually analyze the wiki pages and tables in them, you have to call the analyze() method.
-        Note: Once analyze has started, it carves out tables from every single resource passed to the Analyzer, 
-            and then trying to apply mapping rules to every single data cells of those tables. 
+        To actually analyze the wiki pages and tables, lists in them, you have to call the analyze() method.
+        Note: Once analyze has started, it carves out tables and lists from every single resource passed to the Analyzer, 
+            and then trying to apply mapping rules to every single data of those tables and lists. 
             See Mapper class to get an idea of the decision algorithm for the mapping.
         """
         analyzer.analyze()
 
         """
         At last, you surely want to serialize the RDF graph obtained with serialize() method.
-        You can find the .ttl file containing the graph serialized in /Extractions/ along with
+        You can find the .ttl file containing the graph serialized in /Extracted/ along with
              the corresponding log file.
         """
         analyzer.serialize()

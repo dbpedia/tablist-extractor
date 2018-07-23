@@ -54,8 +54,8 @@ CHARACTER_SEPARATOR = "_tte_"
 SECTION_NAME_PROPERTY = "sectionProperty"
 # comments for user
 FIRST_COMMENT = "# Comments below will help you in filling this file settings. Remember to change only " +\
-                SECTION_NAME + " variables.\n# Please do not modify pyDomainExplorer parameters. \n\n" \
-                               "# pyDomainExplorer parameters "
+                "dictionary values.\n# Please do not modify DomainExplorer parameters. \n\n" \
+                               "# DomainExplorer parameters "
 COMMENT_FOR_EXAMPLE_PAGE = "# Example page where it was found this section: "
 
 COMMENT_SECTION_PROPERTY = "# The entry named " + SECTION_NAME_PROPERTY + " represents ontology property associated " +\
@@ -64,12 +64,12 @@ COMMENT_SECTION_PROPERTY = "# The entry named " + SECTION_NAME_PROPERTY + " repr
     " 'playoffMatch').\n# Triple example: <http://dbpedia.org/resource/Kobe_Bryant> " \
     "<http://dbpedia.org/ontology/playoffMatch>\n# <http://dbpedia.org/resource/Kobe_Bryant__1>"
 
-COMMENT_FILLED_ELEMENT = "# Elements already filled  means that I have already found that header" \
-                         " in pyTableExtractor dictionary\n# or on dbpedia ontology.\n" \
+COMMENT_FILLED_ELEMENT = "# Elements which are already depicts that they have already been found" \
+                         " in the common dictionary\n# or on dbpedia ontology.\n" \
                          "# If you empty a field that was filled, you will delete that rule from dictionary."
 
-COMMENT_STRUCTURE = "# Writing mapping rules is simple --> you have to fill all empty field remembering this" \
-                    " structure:\n# 'table's header':'ontology property' (Example:  'year':'Year', " \
+COMMENT_STRUCTURE = "# Writing mapping rules is simple --> you have to fill all empty fields remembering this" \
+                    " structure:\n# 'table's header / list's section':'ontology property' (Example:  'year':'Year', " \
                     "'GP':'gamesPlayed','High school name':'nameSchool'). "
 
 RESOURCE_FILE = "RESOURCE_FILE"
@@ -104,16 +104,16 @@ CHAPTER_HELP = "Language of Wikipedia pages/resources to analyze. \n \
                 DEFAULT = "+CHAPTER_DEFAULT
 
 # Here you have a general description of what the script (pyTableExtraction.py) do
-GENERAL_DESCRIPTION = "This script try to parse data from list and tables in wiki pages.\n " \
+GENERAL_DESCRIPTION = "This script tries to parse data from list and tables in wiki pages.\n " \
                       " To do so, it uses a WYSIWYG approach, using mapping rules " \
                       "over cells of data depending on topic, wiki chapter and on some other parameters." \
                       "Data found are reorganized in a RDF dataset and serialized in turtle format."
 
 USAGE = "domainExplorer.py [--help] collection_mode resource language \nUse domainExplorer.py -h for more details.\n "
 
-COLLECT_MODE_HELP = "'s' to specify a single Wikipedia page;\n'a' for all resources from a DBpedia class.\n "
+COLLECT_MODE_HELP = "'s' to specify a single Wikipedia page;\n't' for all resources from a DBpedia class.\n "
 
-SOURCE_HELP = "Select resource to extract lists and from. Options are:" \
+SOURCE_HELP = "Select resource to extract lists and tables from. Options are:" \
                             "\nSingle Wikipedia page (example: William_Gibson) " \
                             "\nDBpedia ontology class (example: Writer)\n "
 

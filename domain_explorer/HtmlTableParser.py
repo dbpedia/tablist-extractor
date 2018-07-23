@@ -41,9 +41,8 @@ class HtmlTableParser:
         After the creation of a HtmlTableParser please call the analyze_tables() method to start the analysis.
 
         :param html_doc_tree: is a lxml.etree._ElementTree object containing a html representation of the wiki page
-        :param chapter: (str) a two alpha-characters string representing the chapter of wikipedia user chose.
+        :param language: (str) a two alpha-characters string representing the chapter of wikipedia user chose.
         :param graph: a RDFlib graph
-        :param topic: (str) a string representing the common topic of the resources considered.
         :param resource: (str) the resource selected
         :param utils: (Utilities object) utilities object used to access common log and to set statistics values used to
                 print a final report.
@@ -65,9 +64,6 @@ class HtmlTableParser:
         self.tables_num = 0  # number of tables
         self.tables_analyzed = 0  # number of tables analyzed
 
-        #to store parsed information
-        self.table_parse_info_dict = {}
-
         # Errors or problems regarding a table
         # This value is used to count the times parser cannot find the text inside a header cell
         self.headers_not_resolved = 0
@@ -88,16 +84,18 @@ class HtmlTableParser:
         # As HtmlTableParsed is correctly initialized, we find tables with find_wiki_tables()
         self.find_wiki_tables()
 
-        self.mappers=[]
+        self.mappers = []
+        # get resource types from sparql query, do only if it is a domainExtraction phase.
         if self.mapping:
             if self.utils.collect_mode == 's':
                 rdf_types = self.utils.get_resource_type(self.resource)
             else:
                 rdf_types = [self.domain]
+            # get rdf types from configs.json file
             domains = self.utils.load_settings()
             for rdf_type in rdf_types:
                 if rdf_type in domains.keys():
-                    self.mappers+=domains[rdf_type]
+                    self.mappers += domains[rdf_type]
 
     def find_wiki_tables(self):
         """

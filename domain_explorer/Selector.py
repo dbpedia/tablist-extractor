@@ -63,15 +63,12 @@ class Selector:
         Used to set the file which will contain the list of resources involved in this extraction
         :return: path_to_file  absolute path to the file we want to create
         """
-        # call test_dir_existence() from Utilities class to test if '../Resource_lists' exists.
+        # call test_dir_existence() from Utilities class to test if 'Resources' exists.
         self.utils.test_dir_existence(staticValues.PATH_FOLDER_RESOURCE_LIST)
 
         # get current directory
         current_dir = self.utils.get_current_dir()
         # compose list filename
-        #if self.utils.research_type == "w":
-        #    filename = self.utils.get_date() + "_" + "custom" + "_" + self.language + ".txt"
-        #else:
         filename = self.utils.get_date() + "_" + self.resource + "_" + self.language + ".txt"
         # recreating abs path from 2 paths
         path_to_file = self.utils.join_paths(current_dir, staticValues.PATH_FOLDER_RESOURCE_LIST+"/" + filename)
@@ -136,7 +133,6 @@ class Selector:
         There are three possible cases:
         - dbpedia ontology class (-t)
         - single resource (-s)
-        - where clause given by user (-w)
         :return:
         """
         # DBpedia mapping class search
@@ -145,6 +141,3 @@ class Selector:
         # single resource
         elif self.utils.collect_mode == "s":
             return self.utils.resource
-        # query defined by user
-        #elif self.utils.research_type == "w":
-        #    return self.utils.topic

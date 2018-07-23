@@ -9,7 +9,7 @@
 
 
 * This module mainly consists of the mapping functions that are used by the extractors based on \
-rules present in ``setting.json``, ``mapping_rules.py`` and ``custom_mappers.json``.
+rules present in ``configs.json``, ``mapping_rules.py`` and ``custom_mappers.json``.
 
 
 * This module also contains the extractors and some other helper functions that are used by the mapping \
@@ -36,7 +36,7 @@ class ListMapper:
         self.res_class = res_class
         self.utils = utils
         self.graph = graph
-        #defining namespaces to be used in the extracted triples
+        # defining namespaces to be used in the extracted triples
         self.dbo = rdflib.Namespace("http://dbpedia.org/ontology/")
         if self.language != 'en':  # correct dbpedia resource domain for non-english language
             self.dbr = rdflib.Namespace("http://" + self.language + ".dbpedia.org/resource/")
@@ -51,30 +51,26 @@ class ListMapper:
         # mapper functions. These are initially empty and loaded when mapper functions are selected for each resource.
         self.dictionary = self.utils.dictionary
 
-        self.mappers=[]
+        # get resource types from sparql query.
+        self.mappers = []
 
         if self.utils.collect_mode == 's':
             rdf_types = self.utils.get_resource_type(self.resource)
         else:
             rdf_types = [self.res_class]
+        # get rdf types from configs.json file
         domains = self.utils.load_settings()
         for rdf_type in rdf_types:
             if rdf_type in domains.keys():
-                self.mappers+=domains[rdf_type]
+                self.mappers += domains[rdf_type]
 
 
     def select_mapping(self):
         ''' Calls mapping functions for each matching section of the resource, thus constructing the associated RDF graph.
 
-        Firstly selects the mapping type(s) to apply from ``MAPPING`` (loaded from ``settings.json``) based on resource class (domain).
+        Firstly selects the mapping type(s) to apply from ``MAPPING`` (loaded from ``configs.json``) based on resource class (domain).
         If a match is found, it tries to find another match between section names and key-words related to that domain.
         Finally, it applies related mapping functions for the list elements contained in that section.
-
-        :param resDict: dictionary representing current resource.
-        :param res: current resource name.
-        :param res_class: resource class/type (e.g. ``Writer``).
-        :param lang: resource language.
-        :param g: RDF graph to be created.
 
         :return: number of list elements actually mapped in the graph.
         '''
@@ -82,7 +78,7 @@ class ListMapper:
         # initialize the number of triples extracted
         res_elems = 0
 
-        #if required class is a valid and existing class in the mapping, run suitable mapper functions
+        # if required class is a valid and existing class in the mapping, run suitable mapper functions
         if self.mappers:
             for mapper in self.mappers:
                 if mapper in self.mapped_domains:
@@ -138,7 +134,6 @@ class ListMapper:
 
         return res_elems
 
-
     def map_user_defined_mappings(self, mapper_fn_name, elem_list, sect_name, res, lang, g, elems):
         ''' **This is the made module that runs all user-defined mapper functions.**
 
@@ -160,11 +155,11 @@ class ListMapper:
         :return: number of list elements actually mapped in the graph.
         '''
         CUSTOM_MAPPERS = self.dictionary
-        #determine if the custom mapper function exists; if yes, load it.
+        # determine if the custom mapper function exists; if yes, load it.
         mapper_settings = dict()
         try:
             mapper_settings = CUSTOM_MAPPERS[mapper_fn_name]
-        except: #not found, skip the rest of the process
+        except: # not found, skip the rest of the process
             print 'Did not find', mapper_fn_name, 'in CUSTOM_MAPPERS!'
             return 0
 
@@ -176,84 +171,84 @@ class ListMapper:
             else:
                 elem = elem.encode('utf-8')  # apply utf-8 encoding
                 years = []
-                if mapper_settings["years"] == "Yes": #extract years related to the resource.
+                if mapper_settings["years"] == "Yes": # extract years related to the resource.
                     years = self.month_year_mapper(elem)
                 
-                #load the ontologies to be used in the triple generation
+                # load the ontologies to be used in the triple generation
                 ontology_class = None
                 for class_type in mapper_settings["ontology"][lang]:
                     try:
-                        #find a matching sub-section from the ontology class
+                        # find a matching sub-section from the ontology class
                         if class_type.decode('utf-8').lower() in sect_name.decode('utf-8').lower():
                             ontology_class = class_type
                     except UnicodeEncodeError:
                         break
 
-                if ontology_class == None:   #No possible mapping found; try default mapping
+                if ontology_class == None:   # No possible mapping found; try default mapping
                     if mapper_settings["ontology"][lang]["default"] == "None": 
-                        return 0 #default wasn't allowed
+                        return 0 # default wasn't allowed
                     else: 
                         ontology_class = "default"
                         # print 'Matching Header not found, using default ontology relation:', str(ontology_class)
                 
-                #final ontology class/property for the current element
+                # final ontology class/property for the current element
                 p = mapper_settings["ontology"][lang][ontology_class]
                 
-                #selection of the extractors to be used in the triple generation
+                # selection of the extractors to be used in the triple generation
                 extractor_choices = mapper_settings["extractors"]
 
-                #initital uri and resource names of the triple (triple form: <uri dbo:p res_name>)
+                # initital uri and resource names of the triple (triple form: <uri dbo:p res_name>)
                 uri = None
                 res_name = None
                 isbn = None
                 work = None
 
-                if res_name == None and 1 in extractor_choices: #italics mapper was chosen
+                if res_name == None and 1 in extractor_choices: # italics mapper was chosen
                     res_name = self.italic_mapper(elem)
                     if res_name:
-                        elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                        elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                         res_name = res_name.replace(' ', '_')
-                        res_name = urllib2.quote(res_name)  #quoting res_name in proper format
+                        res_name = urllib2.quote(res_name)  # quoting res_name in proper format
                         uri = self.dbr + res_name.decode('utf-8', errors='ignore')
 
-                if res_name == None and 2 in extractor_choices: #reference mapper was chosen
+                if res_name == None and 2 in extractor_choices: # reference mapper was chosen
                     res_name = self.reference_mapper(elem)
                     if res_name:  # current element contains a reference
-                        uri = self.wikidataAPI_call(res_name, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(res_name, lang)  # try to reconcile resource with Wikidata API
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
                             if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
                                 uri = dbpedia_uri
                         else:  # Take the reference name anyway if you can't reconcile it
                             res_name = self.list_elem_clean(res_name)
-                            elem = elem.replace(res_name, "")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(res_name, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = res_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  #quoting res_name in proper format
+                            uri_name = urllib2.quote(uri_name)  # quoting res_name in proper format
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                if res_name == None and 3 in extractor_choices: #quote mapper was chosen
+                if res_name == None and 3 in extractor_choices: # quote mapper was chosen
                     res_name = self.quote_mapper(elem)
                     if res_name:
-                        elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                        elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                         res_name = res_name.replace(' ', '_')
-                        res_name = urllib2.quote(res_name)  #quoting res_name in proper format
+                        res_name = urllib2.quote(res_name)  # quoting res_name in proper format
                         uri = self.dbr + res_name.decode('utf-8', errors='ignore')
 
 
-                if res_name == None and 4 in extractor_choices: #general mapper was chosen
+                if res_name == None and 4 in extractor_choices: # general mapper was chosen
                     res_name = self.general_mapper(elem)
                     if (res_name and res_name != "" and res_name != res):
                             res_name = res_name.replace(' ', '_')
-                            res_name = urllib2.quote(res_name)  #quoting res_name in proper format
+                            res_name = urllib2.quote(res_name)  # quoting res_name in proper format
                             uri = self.dbr + res_name.decode('utf-8', errors='ignore')
 
-                if 5 in extractor_choices: #isbn mapper was chosen
+                if 5 in extractor_choices: # isbn mapper was chosen
                     isbn = self.isbn_mapper(elem)
 
-                if 6 in extractor_choices: #alumni profession mapper was chosen
+                if 6 in extractor_choices: # alumni profession mapper was chosen
                     work = self.alumni_profession_mapper(elem)
 
-                #if successfully found a triple, add that to the existing graph
+                # if successfully found a triple, add that to the existing graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.dbo[p], res))
                     elems += 1
@@ -266,7 +261,6 @@ class ListMapper:
 
         if elems == 0: print 'Could not extract any elements. Try adding more extractors....'
         return elems
-
 
     def map_discography(self, elem_list, sect_name, res, lang, g, elems):
         ''' Handles albums list present inside a section containing a match with ``DISCOGRAPHY``.
@@ -289,14 +283,14 @@ class ListMapper:
                 self.map_discography(elem, sect_name, res, lang, g, elems)   # handle recursive lists
             
             else:
-                year = self.month_year_mapper(elem) #map years present in the list
+                year = self.month_year_mapper(elem)  # map years present in the list
                 uri = None
                 elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 if res_name == None: res_name = self.quote_mapper(elem)
                 
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                    elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name)  ###
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
@@ -304,14 +298,14 @@ class ListMapper:
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
                             if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
                                 uri = dbpedia_uri
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref, "")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -323,7 +317,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
                 
-                #add successfuly extracted triples into the graph
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.rdf.type, self.dbo.Album))
                     g.add((rdflib.URIRef(uri), self.dbo.musicalArtist, res))
@@ -362,7 +356,7 @@ class ListMapper:
                 if res_name == None: res_name = self.quote_mapper(elem)
                
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                    elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name)
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
@@ -370,14 +364,14 @@ class ListMapper:
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
                             if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
                                 uri = dbpedia_uri
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref, "")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -389,7 +383,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
                 
-                #add successfuly extracted triples into the graph
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.rdf.type, self.dbo.concertTour))
                     g.add((rdflib.URIRef(uri), self.dbo.musicalArtist, res))
@@ -426,7 +420,7 @@ class ListMapper:
                 res_name = self.italic_mapper(elem)
                 
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                    elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name) 
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
@@ -434,14 +428,14 @@ class ListMapper:
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
                             if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
                                 uri = dbpedia_uri
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref, "")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -453,7 +447,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph            
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.dbo.alumni, res))
                     elems += 1
@@ -489,7 +483,7 @@ class ListMapper:
                 res_name = self.italic_mapper(elem)
                 
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                    elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name)  
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
@@ -497,14 +491,14 @@ class ListMapper:
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
                             if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
                                 uri = dbpedia_uri
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref, "")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -516,7 +510,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph            
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), dbo.academicDiscipline, res))
                     elems+=1
@@ -549,25 +543,25 @@ class ListMapper:
             else:
                 uri = None
 
-                #find out the status of the award; i.e winner or nominated
+                # find out the status of the award; i.e winner or nominated
                 if award_status == None: award_status = self.award_status_mapper(elem, lang)
-                if award_status == None: award_status = "Winner" #if no information is found, assume winner.
+                if award_status == None: award_status = "Winner" # if no information is found, assume winner.
 
                 elem = elem.encode('utf-8')  # apply utf-8 encoding
 
-                #remove status from the element
+                # remove status from the element
                 elem = elem.replace("Winner","").replace("Won","").replace("Nominated","").replace("Nominee","")
                 
-                #find out the resource for which the award was given
+                # find out the resource for which the award was given
                 for_entity = self.sentence_splitter(elem,"for",lang)
 
-                #the entity providing the award
+                # the entity providing the award
                 from_entity = self.sentence_splitter(elem,"from",lang)
                 year = self.month_year_mapper(elem)
 
                 ref = self.reference_mapper(elem)  # look for resource references
                 if ref:  # current element contains a reference
-                    uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                    uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         
                     if uri:
                         dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
@@ -576,19 +570,19 @@ class ListMapper:
                         
                     else:  # Take the reference name anyway if you can't reconcile it
                         ref = self.list_elem_clean(ref)
-                        elem = elem.replace(ref, "")  #subtract reference part from list element, to facilitate further parsing
+                        elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                         uri_name = ref.replace(' ', '_')
                         uri_name = urllib2.quote(uri_name)  
                         uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
                 else:
-                    uri_name = self.quote_mapper(elem)  #try finding awards in quotes
+                    uri_name = self.quote_mapper(elem)  # try finding awards in quotes
                     if uri_name == None: uri_name = self.general_mapper(elem)  # no reference found, try general mapping (less accurate
                     if (uri_name and uri_name != "" and uri_name != res):
                         uri_name = uri_name.replace(' ', '_')
                         uri_name = urllib2.quote(uri_name)  
                         uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph            
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.dbo.awardedTo, res))
                     g.add((rdflib.URIRef(uri), self.dbo.awardStatus, self.dbo + rdflib.URIRef(award_status)))
@@ -630,7 +624,7 @@ class ListMapper:
                 res_name = self.italic_mapper(elem)
                 
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                    elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name)  ###
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
@@ -638,14 +632,14 @@ class ListMapper:
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
                             if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
                                 uri = dbpedia_uri
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref, "")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -657,7 +651,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph                
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     if len(list(g.triples((rdflib.URIRef(uri), self.dbo.alumni, res)))) == 0 and \
                         len(list(g.triples((rdflib.URIRef(uri), self.dbo.academicDiscipline, res)))) ==0: # if already mapped
@@ -696,13 +690,13 @@ class ListMapper:
                     if other_type.decode('utf-8').lower() in sect_name.decode('utf-8').lower():
                         other_details = other_type
 
-                if other_details == None:   #No possible mapping found; leave the element
+                if other_details == None:   # No possible mapping found; leave the element
                     return 0
                 
                 p = PERSON_DETAILS[lang][other_details]
                 
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                    elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name)  
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
@@ -717,14 +711,14 @@ class ListMapper:
                     ref = None
                     if uri == None: ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
                             if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
                                 uri = dbpedia_uri
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref, "")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  ###
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -736,7 +730,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  ###
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.dbo[p], res))
                     elems+=1
@@ -773,14 +767,14 @@ class ListMapper:
 
                 other_details = None
                 for other_type in CAREER[lang]:
-                    #print other_type
+                    # print other_type
                     if other_type.encode('utf-8').lower() in sect_name.encode('utf-8').lower():
                         other_details = other_type
 
-                if other_details == None:   #No possible mapping found; leave the element
+                if other_details == None:   # No possible mapping found; leave the element
                     return 0
                 
-                #ontology property/class to be used for this resource
+                # ontology property/class to be used for this resource
                 p = PERSON_DETAILS[lang][other_details]
                 
                 uri_name = self.quote_mapper(elem)
@@ -790,7 +784,7 @@ class ListMapper:
                     uri_name = urllib2.quote(uri_name)  ###
                     uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph            
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.dbo[p], res))
                     elems += 1
@@ -815,9 +809,9 @@ class ListMapper:
         :return: number of list elements extracted.
         '''
         film_particip = self.filmpart_mapper(sect_name, lang)  # applied to every list element of the section, default:starring
-        filmography_type = self.filmtype_mapper(sect_name, lang)  #same as above
+        filmography_type = self.filmtype_mapper(sect_name, lang)  # same as above
         for elem in elem_list:
-            if type(elem) == list:  #for nested lists (recursively call this function)
+            if type(elem) == list:  # for nested lists (recursively call this function)
                 elems += 1
                 self.map_filmography(elem, sect_name, res, lang, g, elems)
             
@@ -828,20 +822,20 @@ class ListMapper:
                 res_name = self.italic_mapper(elem)  # Try to extract italic formatted text (more precise)
                 
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete occurence of matched text for further extraction
+                    elem = elem.replace(res_name, "")  # delete occurence of matched text for further extraction
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name)
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
                 
-                else:  #if unsuccessful, apply general mapping (lower accuracy)
-                    uri_name = self.quote_mapper(elem)  #try finding names in quotes
+                else:  # if unsuccessful, apply general mapping (lower accuracy)
+                    uri_name = self.quote_mapper(elem)  # try finding names in quotes
                     if uri_name == None: uri_name = self.general_mapper(elem)  # no reference found, try general mapping (less accurate
                     if (uri_name and uri_name != "" and uri_name != res):
                         uri_name = uri_name.replace(' ', '_')
                         uri_name = urllib2.quote(uri_name)
                         uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph            
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.rdf.type, self.dbo + rdflib.URIRef(filmography_type)))
                     if year:
@@ -869,7 +863,7 @@ class ListMapper:
         '''
 
         # literary genre depends on the name of the section, so it is the same for every element of the list
-        lit_genre = self.litgenre_mapper(sect_name, lang)  #literary genre is the same for every element of the list
+        lit_genre = self.litgenre_mapper(sect_name, lang)  # literary genre is the same for every element of the list
         for elem in elem_list:
             if type(elem) == list:  # for nested lists (recursively call this function)
                 elems += 1
@@ -881,7 +875,7 @@ class ListMapper:
                 elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                    elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name)  
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
@@ -889,7 +883,7 @@ class ListMapper:
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
                             if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
@@ -897,20 +891,20 @@ class ListMapper:
                         
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref,"")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref,"")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
                     
                     else:
-                        uri_name = self.quote_mapper(elem)  #try finding awards in quotes
+                        uri_name = self.quote_mapper(elem)  # try finding awards in quotes
                         if uri_name == None or uri_name == res: uri_name = self.general_mapper(elem)  # no reference found, try general mapping (less accurate
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph            
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.dbo.author, res))
                     elems += 1
@@ -950,7 +944,7 @@ class ListMapper:
                 elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 if res_name:
-                    elem = elem.replace(res_name, "")  #delete resource name found from element for further mapping
+                    elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
                     res_name = urllib2.quote(res_name)  
                     uri = self.dbr + res_name.decode('utf-8', errors='ignore')
@@ -958,7 +952,7 @@ class ListMapper:
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
@@ -967,7 +961,7 @@ class ListMapper:
                         
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref,"")  #subtract reference part from list element to facilitate further parsing
+                            elem = elem.replace(ref,"")  # subtract reference part from list element to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -979,7 +973,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     g.add((rdflib.URIRef(uri), self.dbo.bandMember, res))
                     elems += 1
@@ -1011,29 +1005,29 @@ class ListMapper:
                 contrib_type, subsection = None, None
                 search_str = sect_name
 
-                #Find if the contribution has a predefined type(editor, writer etc.)
+                # Find if the contribution has a predefined type(editor, writer etc.)
                 try: subsection = sect_name.split('-')[1].strip()
                 except: pass
                 
                 for t in CONTRIBUTION_TYPE[lang].keys():
                     if subsection: search_str = subsection
-                    #if subsection exists, select corresponding ontology class from CONTRIBUTION_TYPE
+                    # if subsection exists, select corresponding ontology class from CONTRIBUTION_TYPE
                     if re.search(t, search_str, flags=re.IGNORECASE):
                         contrib_type = CONTRIBUTION_TYPE[lang][t]
                         break
 
-                #if subsection name fails, try the individual list element for the contribution
+                # if subsection name fails, try the individual list element for the contribution
                 if contrib_type == None:
                     feature = self.bracket_feature_mapper(elem)
                     for t in CONTRIBUTION_TYPE[lang]:
                         try:
-                            #if list element has contribution type, select corresponding ontology class from CONTRIBUTION_TYPE
+                            # if list element has contribution type, select corresponding ontology class from CONTRIBUTION_TYPE
                             if re.search(t, feature, re.IGNORECASE):
                                 contrib_type = CONTRIBUTION_TYPE[lang][t]
                                 break
                         except: continue
 
-                #extract and remove the time period present in the list element
+                # extract and remove the time period present in the list element
                 year = self.month_year_mapper(elem)
                 if year: 
                     for y in year:
@@ -1051,7 +1045,7 @@ class ListMapper:
                 if True:
                     ref = self.reference_mapper(elem)  # look for resource references
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
@@ -1060,7 +1054,7 @@ class ListMapper:
                         
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.list_elem_clean(ref)
-                            elem = elem.replace(ref,"")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref,"")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -1072,7 +1066,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph 
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     if contrib_type:
                         g.add((rdflib.URIRef(uri), self.dbo[contrib_type], res))
@@ -1100,9 +1094,9 @@ class ListMapper:
         :return: number of list elements extracted.
         '''
 
-        #check if the existing element has already been mapped; if yes, skip element
+        # check if the existing element has already been mapped; if yes, skip element
         for c in CONTRIBUTORS[lang]:
-            if re.search(c, sect_name, re.I):   #Already mapped
+            if re.search(c, sect_name, re.I):   # Already mapped
                 return 0
 
         for elem in elem_list:
@@ -1112,7 +1106,7 @@ class ListMapper:
 
             else:
                 detail_type = None
-                #if subsection exists, select corresponding ontology class from OTHER_LITERATURE_DETAILS
+                # if subsection exists, select corresponding ontology class from OTHER_LITERATURE_DETAILS
                 for t in OTHER_LITERATURE_DETAILS[lang].keys():
                     if re.search(t, sect_name, flags=re.IGNORECASE):
                         detail_type = OTHER_LITERATURE_DETAILS[lang][t]
@@ -1121,13 +1115,13 @@ class ListMapper:
                 if detail_type == None:
                     feature = self.bracket_feature_mapper(elem)
                     for t in OTHER_LITERATURE_DETAILS[lang]:
-                        #if list element has contribution type, select corresponding ontology class 
-                        #from OTHER_LITERATURE_DETAILS
+                        # if list element has contribution type, select corresponding ontology class
+                        # from OTHER_LITERATURE_DETAILS
                         if re.search(t, feature, re.IGNORECASE):
                             detail_type = OTHER_LITERATURE_DETAILS[lang][t]
                             break
 
-                #extract and remove the time period present in the list element
+                # extract and remove the time period present in the list element
                 year = self.month_year_mapper(elem)
                 if year: 
                     for y in year:
@@ -1149,7 +1143,7 @@ class ListMapper:
                     map_failed = True
 
                     if ref:  # current element contains a reference
-                        uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                        uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         
                         if uri:
                             dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
@@ -1158,7 +1152,7 @@ class ListMapper:
                         
                         else:  # Take the reference name anyway if you can't reconcile it
                             ref = self.ist_elem_clean(ref)
-                            elem = elem.replace(ref,"")  #subtract reference part from list element, to facilitate further parsing
+                            elem = elem.replace(ref,"")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
@@ -1178,7 +1172,7 @@ class ListMapper:
                             uri_name = urllib2.quote(uri_name)  
                             uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
 
-                #add successfuly extracted triples into the graph
+                # add successfuly extracted triples into the graph
                 if uri and uri != "":
                     if detail_type:
                         g.add((rdflib.URIRef(uri), self.dbo[detail_type], res))
@@ -1207,19 +1201,19 @@ class ListMapper:
         :return: void
         '''
 
-        #default ontologies
+        # default ontologies
         y_ontology = { 'activeYear':'activeYear', 'activeYearsStartDate': 'activeYearsStartDate',
                            'activeYearsEndDate' : 'activeYearsEndDate'}
         
-        #update if user provides a dictionary to override default ontologies
+        # update if user provides a dictionary to override default ontologies
         for ontology in year_ontology.keys():
             if ontology in y_ontology:
                 y_ontology[ontology] = year_ontology[ontology]
 
         try:
-            #start creating triples from years
+            # start creating triples from years
             for y in year:
-                if type(y) != list:  #Single date (not a time-period)
+                if type(y) != list:  # Single date (not a time-period)
                     if "^" in y:  # '^' is a seperator used for month and year
                         d = y.replace("^","-")
                         g.add((rdflib.URIRef(uri), self.dbo[y_ontology['activeYear']], rdflib.Literal(d, datatype=rdflib.XSD.gYearMonth)))
@@ -1227,7 +1221,7 @@ class ListMapper:
                     else:    
                         g.add((rdflib.URIRef(uri), self.dbo[y_ontology['activeYear']], rdflib.Literal(y, datatype=rdflib.XSD.gYear)))
                 
-                else:   #if the date is a time period (has a start-end date)
+                else:   # if the date is a time period (has a start-end date)
                     start_period, end_period = y[0], y[1]
                     if "^" in y[0]:   # '^' is a seperator used for month and year
                         d = y[0].replace("^","-")
@@ -1255,11 +1249,11 @@ class ListMapper:
 
         :return: a match for profession, if present.
         '''
-        #regex for finding profession in the list element
+        # regex for finding profession in the list element
      
         profession = re.search(r'(?:–|-)[^-|,]+$', list_elem)
 
-        #if found, return the profession
+        # if found, return the profession
         if profession != None:
             profession = profession.group()
             profession = profession.replace("{{", "").replace("}}","").replace("-","").replace("–","").strip()
@@ -1278,10 +1272,10 @@ class ListMapper:
         :return: a match for a isbn code, if present.
         '''
 
-        #regex for finding ISBN in the list element
+        # regex for finding ISBN in the list element
         match_isbn = re.search(r'ISBN ([0-9]|-)*X?', list_elem)
 
-        #if found, return the ISBN
+        # if found, return the ISBN
         if match_isbn != None:
             match_isbn = match_isbn.group()
             match_isbn = match_isbn.replace('ISBN ', "")
@@ -1321,50 +1315,50 @@ class ListMapper:
         month_present = False
         period_dates = False
 
-        #check if the time period only contains year or if it also contain months
+        # check if the time period only contains year or if it also contain months
         for mon in month_list:
             if re.search(mon, list_elem, re.IGNORECASE):
-                #find and replace the month name with corresponding month code from month_list
+                # find and replace the month name with corresponding month code from month_list
                 rep = re.search(mon, list_elem, re.IGNORECASE).group(1)
                 list_elem = re.sub(rep, month_list[mon], list_elem, flags=re.I)
                 month_present = True
 
-        #regex for finding out whether the date consists of a time period or a single year.
+        # regex for finding out whether the date consists of a time period or a single year.
         period_regex = ur'(?:\(?\d{1,2}\^)?\s?\d{4}\s?(?:–|-)\s?(?:\d{1,2}\^)?\s?\d{4}(?:\))?'  
 
         if re.search(period_regex, list_elem, flags=re.IGNORECASE):
             period_dates = True
 
-        #check for the 4 possible cases of months and time periods
+        # check for the 4 possible cases of months and time periods
 
-        #if the year doesn't have months or time period, use less complicated year_mapper()
+        # if the year doesn't have months or time period, use less complicated year_mapper()
         if month_present == False and period_dates == False:
             return self.year_mapper(list_elem)
         
         years = []
 
-        #if only yearly time period is present
+        # if only yearly time period is present
         if month_present == False and period_dates == True:
             match_num =  re.findall(period_regex, list_elem, flags=re.IGNORECASE)
             if len(match_num) == 0: return self.year_mapper(list_elem)
             
-            for y in match_num:   #split start and end year
+            for y in match_num:   # split start and end year
                 year = re.split(ur'\s?[–-]\s?', y)
                 years.append([year[0], year[1]])
             
             for x in match_num:
                 list_elem = list_elem.replace(x,"")
 
-            #append the list of the years and return them
+            # append the list of the years and return them
             single_years = self.year_mapper(list_elem)   
             if single_years != None: years.extend(single_years)
             return years
             
-        #if only month is present, no time-periods
+        # if only month is present, no time-periods
         if month_present == True and period_dates == False:
             match_num = re.findall(r'[0-9]{1,2}\^\s?[0-9]{4}', list_elem)
             for x in match_num:
-                #replace and format the time period in appropriate form (month^year) and append it int the list
+                # replace and format the time period in appropriate form (month^year) and append it int the list
                 list_elem = list_elem.replace(x,"")
                 x = x.replace(" ","")
                 z = "^".join(x.split('^')[::-1])
@@ -1374,13 +1368,13 @@ class ListMapper:
             if single_years != None: years.extend(single_years)
             return years
 
-        else: #if both months and periiods are present
+        else: # if both months and periiods are present
             match_num = re.findall(period_regex, list_elem, flags=re.IGNORECASE)
             if len(match_num) == 0: return self.year_mapper(list_elem)
 
             for y in match_num:
-                #replace and format the time period in appropriate form [(month^year), (month^year)] 
-                #and append it int the list
+                # replace and format the time period in appropriate form [(month^year), (month^year)]
+                # and append it int the list
                 year = re.split(r'\s?(–|-)\s?', y)
                 list_elem = list_elem.replace(y,"")
                 years.append(["^".join(year[0].replace(" ","").split("^")[::-1]), "^".join(year[2].replace(" ","").split("^")[::-1])])
@@ -1407,7 +1401,7 @@ class ListMapper:
                 for other_bg in b_genres.keys():
                     # sect_name = sect_name.replace(bg, "")
                     if other_bg != bg and re.search(other_bg, sect_name,
-                                                    re.IGNORECASE):  #if another genre also matches the current section
+                                                    re.IGNORECASE):  # if another genre also matches the current section
                         return None
                 
                 return b_genres[bg]
@@ -1420,7 +1414,7 @@ class ListMapper:
         
         :return: a property if there is a match, ``None`` otherwise.
         '''
-        film_particip = 'starring'  #default property for Actors is 'starring'
+        film_particip = 'starring'  # default property for Actors is 'starring'
         f_parts = FILMOGRAPHY_PARTICIPATION[lang]
         for fp in f_parts.keys():
             if re.search(fp, sect_name, re.IGNORECASE):
@@ -1478,17 +1472,17 @@ class ListMapper:
         '''
         entity = None
 
-        #finding the term for different languages
+        # finding the term for different languages
         term = TRANSLATIONS[word][lang]
         
-        #take the ending from the sentence and try to find if it has a reference uri
+        # take the ending from the sentence and try to find if it has a reference uri
         val = re.split(term,elem)
         if len(val)>1:
             entity = val[-1]
 
             ref = self.reference_mapper(entity)  # look for resource references
             if ref:  # current element contains a reference
-                uri = self.wikidataAPI_call(ref, lang)  #try to reconcile resource with Wikidata API
+                uri = self.wikidataAPI_call(ref, lang)  # try to reconcile resource with Wikidata API
                         
                 if uri:
                     dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
@@ -1497,13 +1491,13 @@ class ListMapper:
                         
                 else:  # Take the reference name anyway if you can't reconcile it
                     ref = self.list_elem_clean(ref)
-                    elem = elem.replace(ref, "")  #subtract reference part from list element, to facilitate further parsing
+                    elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                     uri_name = ref.replace(' ', '_')
                     uri_name = urllib2.quote(uri_name).decode('utf-8', errors='ignore')
                     entity = uri_name
 
-            #no reference found; go ahead with the general mapping, which might be inaccurate
-            #comment the below else case for more precise triples.
+            # no reference found; go ahead with the general mapping, which might be inaccurate
+            # comment the below else case for more precise triples.
             else: 
                 entity = entity.replace("{{","").replace("}}","").replace("\'\'","").strip().replace(" ","_")
                 entity = urllib2.quote(entity).decode('utf-8', errors='ignore')
@@ -1722,7 +1716,6 @@ class ListMapper:
         
         return match_str
 
-
     def quote_mapper(self, list_elem):
         '''Looks for a quotation marks inside the element and returns the string inside quotes.
         It also ignores date references because they are non-relevant.
@@ -1738,6 +1731,6 @@ class ListMapper:
             if match_num:  # date references must be ignored for this mapping
                 num = match_num.group()
                 new_ref = re.sub(r'\".*?\"', "", num, count=1)  # delete the number part
-                match_ref = self.quote_mapper(new_ref)  #call again reference_mapper passing the new reference
+                match_ref = self.quote_mapper(new_ref)  # call again reference_mapper passing the new reference
         
         return match_ref

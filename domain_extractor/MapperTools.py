@@ -39,7 +39,6 @@ class MapperTools:
                                                                              verified_mapping_rules)
         # print out mapping rules obtained previously
         self.print_updated_mapping_rules(updated_mapping_rules)
-        #print(updated_mapping_rules)
         return updated_mapping_rules
 
     @staticmethod
@@ -136,7 +135,6 @@ class MapperTools:
         :param new_mapping_rules: properties dictionary defined by user
         :return: updated dictionary with old and new mapping rules
         """
-        #print(json.dumps(actual_mapping_rules, indent=2))
         if new_mapping_rules:
             for mapper, mapping_rules in new_mapping_rules.items():
                 mapper = mapper.split("___")[1]

@@ -9,7 +9,7 @@ class TableMapper:
     """
     Mapper is a class used to choose mapping rules to apply over data extracted from a wiki table.
 
-    It fundamentally use topic and the wiki chapter to choose which method to use in order to map data passed to
+    It fundamentally uses the domain and wiki language to choose which method to use in order to map data passed to
     the class as an argument (table_data).
     Please, use map() method to start mapping process
 
@@ -22,12 +22,12 @@ class TableMapper:
         """
         Mapper is a class used to choose mapping rules over refined cells of data in order to compose a rdf dataset.
 
-        It uses chapter and topic to choose which method use in a extraction.
+        It uses language to choose which method use in a extraction.
         Once you have created a mapper object, simply call map() method
 
-        :param chapter (str): a two alpha-characters string representing the chapter of wikipedia user chose.
+        :param language (str): a two alpha-characters string representing the chapter of wikipedia user chose.
         :param graph: (rdflib graph) graph which will contain our RDF triples set
-        :param topic (str): a string representing the common topic of the resources considered.
+        :param domain (str): a string representing the common topic of the resources considered.
         :param resource (str): string representing the resource we are analyzing
         :param table_data: (list) list of data rows. Every row is a unique dictionary containing  'header1':[values1]
             and so on.
@@ -64,7 +64,6 @@ class TableMapper:
         # user can disable filter on table's data
         if APPLY_FILTER_TO_TABLE_DATA:
             self.table_data = self.mapperTools.filter_table_data(self.table_data, self.table_section)
-
 
     def define_namespace(self):
         """
@@ -119,7 +118,6 @@ class TableMapper:
                                     self.utils.mapped_cells += 1
                     break
             explored_mappers.append(mapper)
-            
 
         if section_property == "":
             message = "Section " + self.table_section + " not found. Check actual dictionary"

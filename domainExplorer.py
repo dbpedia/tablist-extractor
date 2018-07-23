@@ -11,7 +11,7 @@ __author__ = "sachinmalepati - Sachin Malepati (sachinmalepati@gmail.com)"
 all_sections = {}
 # All headers found in tables analyzed
 all_headers = {}
-
+# All sections of lists found
 all_list_sections = {}
 
 def start_exploration():
@@ -41,7 +41,6 @@ def analyze_uri_resource_list(uri_resource_list):
     """
     Analyze each resource's uri to get sections and headers of related table.
     :param uri_resource_list: list of all resource's uri
-    :param actual_dictionary: mapping rules defined in pyTableExtractor dictionary
     :return:
     """
     total_resources = len(uri_resource_list)
@@ -57,16 +56,14 @@ def analyze_uri_resource_list(uri_resource_list):
         explorer_tools.utils.res_analyzed += 1
         # progress bar to warn user about how many resources have been analyzed
         explorer_tools.print_progress_bar(explorer_tools.utils.res_analyzed, total_resources)
-
+        # get table headers/sections and lists sections ontology mappings
         collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri)
 
 def get_resource_sections_and_headers(res_name):
     """
-    If there are defined tables, I will analyze each of them.
-    First of all I will study section's table, then I will go on headers' table.
+    Get all the tables information of that particular resource
     :param res_name: resource name that has to be analyzed
-    :param actual_dictionary: mapping rules defined in pyTableExtractor dictionary
-    :return:
+    :return: tables data from html table parser
     """
     # Get all tables
     all_tables = explorer_tools.html_table_parser(res_name)
@@ -74,28 +71,51 @@ def get_resource_sections_and_headers(res_name):
     return all_tables
 
 def collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri):
+    """
+    Get ontology mappings of both lists and tables sections/headers to
+    write them into a domain_settings.py file.
+    :param all_tables: contains all the tables information
+    :param resDict: list dictinoary from wikiParser
+    :param single_uri: resource name that has to be analyzed
+    :return:
+    """
 
+    # Obtain resource types associated with each resource
     if explorer_tools.collect_mode == 's':
         rdf_types = explorer_tools.get_resource_type(single_uri)
     else:
         rdf_types = [explorer_tools.resource]
 
-
+    # Load configs.json file
     domains = explorer_tools.utils.load_settings()
+    # Load custom_mappers.json file
     CUSTOM_MAPPERS = explorer_tools.utils.load_custom_mappers()
 
+    # Get ontology mappings of tables headers/sections
     collect_table_sections_and_headers_mappings(all_tables, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
 
+    # Get ontology mappings of lists headers/sections
     collect_list_section_mappings(resDict, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
 
 def collect_table_sections_and_headers_mappings(all_tables, res_name, rdf_types, domains, CUSTOM_MAPPERS):
-
+    """
+    First, get all the mappers associated with that resource/domain.
+    For each table in all_tables, get ontology mappings of each section/header with
+    the help of their associated mappers.
+    :param all_tables: contains all the tables information
+    :param res_name: name of the resource
+    :param rdf_types: associated rdf types with that resource
+    :param domains: associated domains with that resource
+    :param CUSTOM_MAPPERS: mappers present in custom_mappers.json
+    :return:
+    """
     mappers=[]
     mapped_domains=[]
 
+    # Get mappers associated with resource domains.
     for rdf_type in rdf_types:
         if rdf_type in domains.keys():
-            mappers+=domains[rdf_type]
+            mappers += domains[rdf_type]
 
     for mapper in mappers:
         if mapper not in mapped_domains:
@@ -128,6 +148,8 @@ def check_if_section_is_present(string_to_check, headers_refined, res_name, actu
     :param headers_refined: all headers of this sections (JSON object that contains properties like 'colspan', etc..)
     :param res_name: resource name that has to be analyzed
     :param actual_dictionary: mapping rules defined in pyTableExtractor dictionary
+    :param table_sections: all table sections found
+    :param table_headers: all table headers found
     :return:
     """
     # get section name of resource (that can be a single value or grouped and so separated by _tte_
@@ -142,6 +164,8 @@ def check_if_similar_section_is_present(string_to_check, res_name, actual_dictio
     :param string_to_check: section name to check
     :param res_name: resource name that has to be analyzed
     :param actual_dictionary: mapping rules defined in pyTableExtractor dictionary
+    :param table_sections: all table sections found
+    :param table_headers: all table headers found
     :return: section name that can be:
                 - already defined in all_sections dictionary.
                 - same as before.
@@ -290,11 +314,27 @@ def search_equal_key(array_string, string_to_check):
     return result
 
 def get_titles_and_list_contents(res_name):
+    """
+    Method to get lists content from wikipedia pages.
+
+    :param res_name: name of resource
+    :return: dictionary containing all lists contents found in the wiki page.
+    """
     resDict = explorer_tools.wiki_parser(res_name)
 
     return resDict
 
 def collect_list_section_mappings(resDict, res_name, rdf_types, domains, CUSTOM_MAPPERS):
+    """
+    Method to get ontology mappings of lists sections found.
+
+    :param resDict: dictionary of lists content of that resource
+    :param res_name: name of resource
+    :param rdf_types: rdf types associated with the resource
+    :param domains: domains associated with the resource
+    :param CUSTOM_MAPPERS: mappers present in custom_mappers.json
+    :return: dictionary containing all lists contents found in the wiki page.
+    """
     mappers=[]
     mapped_domains=[]
 
