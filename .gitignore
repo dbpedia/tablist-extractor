@@ -17,3 +17,11 @@
 ./.DS_Store
 ./domain_explorer/.DS_Store
 ./Extracted/.DS_Store
+*.pyc
+*.bak
+*.iml
+*.xml
+gui/.DS_Store
+Extracted/.DS_Store
+domain_explorer/.DS_Store
+.DS_Store
