@@ -32,11 +32,13 @@ class Utilities:
             #for using utility functions in UI
             self.extractor = False
         elif not self.language:
-            resource, language, collect_mode, resource_file = Utilities.read_parameters_research()
+            resource, language, collect_mode, resource_file, toExtractTables, toExtractLists = Utilities.read_parameters_research()
             self.resource = resource
             self.language = language
             self.collect_mode = collect_mode
             self.resource_file = resource_file
+            self.toExtractTables = toExtractTables
+            self.toExtractLists = toExtractLists
             self.setup_log("extractor")
             self.extractor = True   # utilities called by extractor, so i need to update mapping rules
             self.mapper = MapperTools.MapperTools(self)
@@ -140,10 +142,16 @@ class Utilities:
                 # read name of resource's file
                 elif name == staticValues.RESOURCE_FILE:
                     resource_file = val
+                # read if tables data are to be extracted or not
+                elif name == staticValues.TABLES_INCLUDED:
+                    toExtractTables = val
+                # read if lists data are to be extracted or not
+                elif name == staticValues.LISTS_INCLUDED:
+                    toExtractLists = val
         else:
             sys.exit("File " + staticValues.FILE_PATH_DOMAIN_EXPLORED + " not found. You should run pyDomainExplorer.")
 
-        return resource, language, collect_mode, resource_file
+        return resource, language, collect_mode, resource_file, toExtractTables, toExtractLists
 
     def dbpedia_selection(self):
         """
@@ -511,6 +519,14 @@ class Utilities:
             return dict()  #in case of failure, assume no user defined mappers and return empty dict
 
     def get_list_section_ontology_class(self, sect_name, mapper, CUSTOM_MAPPERS):
+        """
+        Get the corresponding ontology property for a word.
+
+        :param sect_name: list section name
+        :param mapper: mapper to be searched for
+        :param CUSTOM_MAPPERS: dictionary
+        :return: ontology value of a given word
+        """
         ontology_class = None
         for class_type in CUSTOM_MAPPERS[mapper]["ontology"][self.language]:
             try:

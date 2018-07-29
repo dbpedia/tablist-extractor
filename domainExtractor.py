@@ -46,6 +46,8 @@ def main():
     if check_parameters == "valid_input":
         resource = utils.resource
         language = utils.language
+        toExtractTables = utils.toExtractTables
+        toExtractLists = utils.toExtractLists
         """
         res_list_filename is created but not set. In fact, if a user want to test a single resource, there isn't a
            list of resources to collect.
@@ -65,7 +67,7 @@ def main():
         Note: the last two parameters (res_list_filename and single_res) are actually mutual exclusive, so 
         in both cases, one of them is None.
         """
-        analyzer = Analyzer.Analyzer(language, resource, utils, res_list_filename, single_res)
+        analyzer = Analyzer.Analyzer(language, resource, utils, toExtractTables, toExtractLists, res_list_filename, single_res)
 
         """
         To actually analyze the wiki pages and tables, lists in them, you have to call the analyze() method.

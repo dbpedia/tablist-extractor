@@ -39,7 +39,7 @@ def start_exploration():
 
 def analyze_uri_resource_list(uri_resource_list):
     """
-    Analyze each resource's uri to get sections and headers of related table.
+    Analyze each resource's uri to get sections and headers of related table/lists.
     :param uri_resource_list: list of all resource's uri
     :return:
     """
@@ -48,10 +48,18 @@ def analyze_uri_resource_list(uri_resource_list):
 
     for single_uri in uri_resource_list:
         print "Resource: ", single_uri
-        # get section and headers
-        all_tables = get_resource_sections_and_headers(single_uri)
-        # get titles and list contents
-        resDict = get_titles_and_list_contents(single_uri)
+        if explorer_tools.toExtractTables == "true":
+            # get section and headers
+            all_tables = get_resource_sections_and_headers(single_uri)
+        else:
+            all_tables=[]
+
+        if explorer_tools.toExtractLists == "true":
+            # get titles and list contents
+            resDict = get_titles_and_list_contents(single_uri)
+        else:
+            resDict=[]
+
         # update number of resources analyzed
         explorer_tools.utils.res_analyzed += 1
         # progress bar to warn user about how many resources have been analyzed
@@ -91,11 +99,13 @@ def collect_table_and_list_ontology_mappings(all_tables, resDict, single_uri):
     # Load custom_mappers.json file
     CUSTOM_MAPPERS = explorer_tools.utils.load_custom_mappers()
 
-    # Get ontology mappings of tables headers/sections
-    collect_table_sections_and_headers_mappings(all_tables, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
+    if explorer_tools.toExtractTables == "true":
+        # Get ontology mappings of tables headers/sections
+        collect_table_sections_and_headers_mappings(all_tables, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
 
-    # Get ontology mappings of lists headers/sections
-    collect_list_section_mappings(resDict, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
+    if explorer_tools.toExtractLists == "true":
+        # Get ontology mappings of lists headers/sections
+        collect_list_section_mappings(resDict, single_uri, rdf_types, domains, CUSTOM_MAPPERS)
 
 def collect_table_sections_and_headers_mappings(all_tables, res_name, rdf_types, domains, CUSTOM_MAPPERS):
     """

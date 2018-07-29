@@ -37,7 +37,7 @@ class Analyzer:
             Please call serialize() after analyze() method!
     """
 
-    def __init__(self, language, resource, utils, filename=None, single_res=None):
+    def __init__(self, language, resource, utils, toExtractTables, toExtractLists, filename=None, single_res=None):
         """
         Analyzer object takes resources from a list and call a TableParser (html |json) over them.
 
@@ -59,6 +59,8 @@ class Analyzer:
 
         """
         # parameters are registered in the object
+        self.toExtractLists = toExtractLists
+        self.toExtractTables = toExtractTables
         self.language = language
         self.resource = resource
         self.utils = utils
@@ -172,27 +174,29 @@ class Analyzer:
                     # uses chose to analyze only one resource
                     self.utils.print_progress_bar(self.res_analyzed, 1)
                 if resource:
-                    html_doc_tree = self.utils.html_object_getter(resource)
-                    if html_doc_tree:
-                        """
-                        Then a HtmlTableParser object is created and the tables for the current resource are
-                            analyzed with HtmlTableParser.analyze_tables() method.
-                        """
-                        html_parser = HtmlTableParser.HtmlTableParser(html_doc_tree, self.language, self.graph,
-                                                                      self.resource, resource, self.utils, mapping=True)
-                        html_parser.analyze_tables()
+                    if self.toExtractTables == "true":
+                        html_doc_tree = self.utils.html_object_getter(resource)
+                        if html_doc_tree:
+                            """
+                            Then a HtmlTableParser object is created and the tables for the current resource are
+                                analyzed with HtmlTableParser.analyze_tables() method.
+                            """
+                            html_parser = HtmlTableParser.HtmlTableParser(html_doc_tree, self.language, self.graph,
+                                                                          self.resource, resource, self.utils, mapping=True)
+                            html_parser.analyze_tables()
 
-                        # Add to the total the number of tables found for this resource
-                        self.total_table_num += html_parser.tables_num
+                            # Add to the total the number of tables found for this resource
+                            self.total_table_num += html_parser.tables_num
 
-                    # Extracting list triples
-                    resDict = wikiParser.wikiParser(self.language, resource, self.utils).main_parser()
-                    self.tot_list_elems += self.utils.count_listelem_dict(resDict)
-                    if resDict:
-                        listMapper = ListMapper.ListMapper(resDict, self.language, resource, self.resource, self.graph, self.utils)
-                        extr_list_elems = listMapper.select_mapping()
-                        self.tot_extracted_list_elems += extr_list_elems
-                        print(">>> Mapped " + self.language + ":" + resource + ", extracted elements: " + str(extr_list_elems) + "  <<<\n")
+                    if self.toExtractLists == "true":
+                        # Extracting list triples
+                        resDict = wikiParser.wikiParser(self.language, resource, self.utils).main_parser()
+                        self.tot_list_elems += self.utils.count_listelem_dict(resDict)
+                        if resDict:
+                            listMapper = ListMapper.ListMapper(resDict, self.language, resource, self.resource, self.graph, self.utils)
+                            extr_list_elems = listMapper.select_mapping()
+                            self.tot_extracted_list_elems += extr_list_elems
+                            print(">>> Mapped " + self.language + ":" + resource + ", extracted elements: " + str(extr_list_elems) + "  <<<\n")
  
             except StopIteration:
                 self.lines_to_read = False
@@ -235,9 +239,7 @@ class Analyzer:
             # join path of execution with that of ../Extraction
 
             destination = self.utils.join_paths(cur_dir, 'Extracted/'+filename)
-            for s,p,o in self.graph:
-                print(s,p,o)
-                break
+
             # setting the rdf_format
             rdf_format = "turtle"
             # serialize the graph using graph.serialize. It needs destination and the rdf format as parameters

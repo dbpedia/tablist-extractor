@@ -117,18 +117,34 @@ class guiExtractor:
             collect_mode = "t"
         # get the language from the text edit
         language = str(self.ui.LanguageCombo.currentText())
+        # get what to extract
+        if self.ui.listsCheckBox.isChecked():
+            toExtractLists = "true"
+        else:
+            toExtractLists = "false"
+        if self.ui.tablesCheckBox.isChecked():
+            toExtractTables = "true"
+        else:
+            toExtractTables = "false"
 
         self.ui.ExploreDomainMessageLabel.clear()
 
         # validate the resource string
-        if resource == None or resource == "":
+        if resource is None or resource == "":
             self.ui.ExploreDomainMessageLabel.setText('Error in resource name.')
+            self.ui.ExploreDomainMessageLabel.setStyleSheet('color: red')
+            return
+
+        if toExtractTables == "false" and toExtractLists == "false":
+            self.ui.ExploreDomainMessageLabel.setText('Select tables/lists to extract')
+            self.ui.ExploreDomainMessageLabel.setStyleSheet('color: red')
             return
 
         try:
             # try spawning a new subprocess for executing the command
-            proc = subprocess.Popen(['python','domainExplorer.py', collect_mode, resource, language],
-                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False)
+            proc = subprocess.Popen(['python','domainExplorer.py', collect_mode, resource, language,
+                                     "-t", toExtractTables, "-l", toExtractLists],
+                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False)
             for line in iter(proc.stdout.readline, b''):
                 print line.rstrip()
             proc.wait() # wait for the subprocess to exit
@@ -148,8 +164,8 @@ class guiExtractor:
         # get the mappings from domain_settings.py file.
         new_mappings = MapperTools.MapperTools.read_mapping_rules()
         # get the parameters.
-        resource, language, collect_mode, resource_file = Utilities.Utilities.read_parameters_research()
-        self.domainParameters = [resource, language, collect_mode, resource_file]
+        resource, language, collect_mode, resource_file, toExtractTables, toExtractLists = Utilities.Utilities.read_parameters_research()
+        self.domainParameters = [resource, language, collect_mode, resource_file, toExtractTables, toExtractLists]
 
         # clear the tree widget contents.
         self.ui.DomainSettingsTreeWidget.clear()
@@ -228,6 +244,8 @@ class guiExtractor:
         domain_explored_file.write(staticValues.CHAPTER + ' = "' + self.domainParameters[1] + '" \n')
         domain_explored_file.write(staticValues.COLLECT_MODE + ' = "' + self.domainParameters[2] + '" \n')
         domain_explored_file.write(staticValues.RESOURCE_FILE + ' = "' + self.domainParameters[3] + '" \n\n')
+        domain_explored_file.write(staticValues.TABLES_INCLUDED + ' = "' + self.domainParameters[4] + '" \n')
+        domain_explored_file.write(staticValues.LISTS_INCLUDED + ' = "' + self.domainParameters[5] + '" \n')
         domain_explored_file.write(staticValues.COMMENT_SECTION_PROPERTY + "\n\n")
         domain_explored_file.write(staticValues.COMMENT_STRUCTURE + "\n\n")
         domain_explored_file.write(staticValues.COMMENT_FILLED_ELEMENT + "\n\n")

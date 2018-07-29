@@ -1,33 +1,31 @@
 # coding:utf-8 
 
-# Comments below will help you in filling this file settings. Remember to change only SECTION_ variables.
-# Please do not modify pyDomainExplorer parameters. 
+# Comments below will help you in filling this file settings. Remember to change only dictionary values.
+# Please do not modify DomainExplorer parameters. 
 
-# pyDomainExplorer parameters 
-DOMAIN_EXPLORED = "Dan_Brown" 
+# DomainExplorer parameters 
+DOMAIN_EXPLORED = "William_Gibson" 
 CHAPTER = "en" 
 COLLECT_MODE = "s" 
+TABLES_INCLUDED ="false" 
+LISTS_INCLUDED ="true" 
 RESOURCE_FILE = "" 
 
-# The entry named sectionProperty represents ontology property associated to table's section.
-# (Eg. in basket domain, section named playoff can be mapped with something like 'playoff' or  'playoffMatch').
-# Triple example: <http://dbpedia.org/resource/Kobe_Bryant> <http://dbpedia.org/ontology/playoffMatch>
-# <http://dbpedia.org/resource/Kobe_Bryant__1>
+# Writing mapping rules is simple --> you have to fill all empty fields remembering this structure:
+# 'table's header / list's section':'ontology property' (Example:  'year':'Year', 'GP':'gamesPlayed','High school name':'nameSchool'). 
 
-# Writing mapping rules is simple --> you have to fill all empty field remembering this structure:
-# 'table's header':'ontology property' (Example:  'year':'Year', 'GP':'gamesPlayed','High school name':'nameSchool'). 
-
-# Elements already filled  means that I have already found that header in pyTableExtractor dictionary
+# Elements which are already depicts that they have already been found in the common dictionary
 # or on dbpedia ontology.
 # If you empty a field that was filled, you will delete that rule from dictionary.
 
 
 #Following are section mappings of lists found:
-#Mapper used for the following are: DAN_BROWN___BIBLIOGRAPHY_MAPPER
+#Mapper used for the following are: BIBLIOGRAPHY_MAPPER
 
-DAN_BROWN___BIBLIOGRAPHY_MAPPER___LISTS = {
-'Novel': 'Novel', 
-'Bibliography - Robert Langdon series': '', 
+WILLIAM_GIBSON___BIBLIOGRAPHY_MAPPER___LISTS = {
+'Selected bibliography - Short stories': 'ShortStory', 
+'Selected bibliography - Novels': 'Novel', 
+'Nonfiction': 'Nonfiction', 
 } 
 
 # END OF FILE 

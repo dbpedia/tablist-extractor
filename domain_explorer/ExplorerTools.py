@@ -27,6 +27,8 @@ class ExplorerTools:
         self.collect_mode = self.set_collect_mode()
         self.resource = self.set_source()
         self.language = self.set_language()
+        self.toExtractLists = self.set_toExtractLists()
+        self.toExtractTables = self.set_toExtractTables()
 
         self.utils = Utilities.Utilities(self.language, self.resource, self.collect_mode)
 
@@ -56,6 +58,10 @@ class ExplorerTools:
                         help=staticValues.SOURCE_HELP)
 
         parser.add_argument('language', type=str, default=staticValues.CHAPTER_DEFAULT, help=staticValues.CHAPTER_HELP)
+
+        parser.add_argument('-t', '--extract_tables', help="true, if you want to extract table's elements or false otherwise", default="true")
+
+        parser.add_argument('-l', '--extract_lists', help="true, if you want to extract list's elements or false otherwise", default="true")
 
         # parsing actual arguments and return them to the caller.
         args = parser.parse_args()
@@ -279,3 +285,9 @@ class ExplorerTools:
         :return:  string without accents
         """
         return self.utils.delete_accented_characters(string)
+
+    def set_toExtractLists(self):
+        return self.args.extract_lists.encode('utf-8')
+
+    def set_toExtractTables(self):
+        return self.args.extract_tables.encode('utf-8')

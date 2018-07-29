@@ -30,6 +30,8 @@ class WriteSettingsFile:
         self.explorer_tools = explorer_tools
         self.language = explorer_tools.language
         self.resource = explorer_tools.resource
+        self.toExtractTables = explorer_tools.toExtractTables
+        self.toExtractLists = explorer_tools.toExtractLists
         # start to write
         self.write_sections_and_headers()
 
@@ -68,6 +70,8 @@ class WriteSettingsFile:
         domain_explored_file.write(staticValues.DOMAIN_TITLE + ' = "' + self.resource + '" \n')
         domain_explored_file.write(staticValues.CHAPTER + ' = "' + self.language + '" \n')
         domain_explored_file.write(staticValues.COLLECT_MODE + ' = "' + self.explorer_tools.collect_mode + '" \n')
+        domain_explored_file.write(staticValues.TABLES_INCLUDED + ' = "' + self.toExtractTables + '" \n')
+        domain_explored_file.write(staticValues.LISTS_INCLUDED + ' = "' + self.toExtractLists + '" \n')
         domain_explored_file.write(staticValues.RESOURCE_FILE + ' = "' + self.explorer_tools.get_res_list_file() + '" \n\n')
         #domain_explored_file.write(staticValues.COMMENT_SECTION_PROPERTY + "\n\n")
         domain_explored_file.write(staticValues.COMMENT_STRUCTURE + "\n\n")
