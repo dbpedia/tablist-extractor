@@ -1,6 +1,10 @@
 # coding=utf-8
 
+#import urllib.request, urllib.parse, urllib.error
 import urllib
+from urllib.request import urlopen
+from urllib.parse import *
+from urllib.error import *
 import json
 import time
 import datetime
@@ -107,9 +111,9 @@ class Utilities:
         current_dir = self.get_current_dir()
         # composing the log filename as current_date_and_time + _LOG_T_EXT + chapter_chosen + topic_chosen
         if self.collect_mode == "w":
-            filename = current_date_time + "_LOG_" + script_name + "_" + self.chapter + '_' + "custom" + ".log"
+            filename = current_date_time + "_LOG_" + script_name + "_" + self.language + '_' + "custom" + ".log"
         else:
-            filename = current_date_time + "_LOG_" + script_name + "_" + self.language + '_' + self.resource + ".log"
+            filename = current_date_time + "_LOG_" + script_name + "_" + self.language + "_" + self.resource + ".log"
         # composing the absolute path of the log
         path_desired = self.join_paths(current_dir, 'Extracted/' + filename)
 
@@ -129,7 +133,7 @@ class Utilities:
         # i'm in table_extractor folder so i have to go up
         if os.path.exists(staticValues.FILE_PATH_DOMAIN_EXPLORED):
             from domain_explorer import domain_settings
-            for name, val in domain_settings.__dict__.iteritems():
+            for name, val in domain_settings.__dict__.items():
                 # read domain
                 if name == staticValues.DOMAIN_TITLE:
                     resource = val
@@ -249,7 +253,7 @@ class Utilities:
         :return url: the url composed
         """
         # use quote_plus method from urllib to encode special character (must to do with web service)
-        query = urllib.quote_plus(query)
+        query = quote_plus(query)
 
         """
         The following if clause are differentiated by service requested Eg. 'dbpedia',..
@@ -277,16 +281,17 @@ class Utilities:
         while attempts < staticValues.MAX_ATTEMPTS:
             try:
                 # open a call with urllib.urlopen and passing the URL
-                call = urllib.urlopen(url_passed)
+                with urllib.request.urlopen(url_passed) as call:
+                #call = urllib.request.urlopen(url_passed)
                 # read the answer
-                answer = call.read()
+                    answer = call.read()
                 # decode the answer in json
                 json_parsed = json.loads(answer)
                 # return the answer parsed
                 result = json_parsed
                 return result
             except IOError:
-                print ("Try, again, some problems due to Internet connection or empty url: " + url_passed)
+                print("Try, again, some problems due to Internet connection or empty url: " + url_passed)
                 attempts += 1
                 result = "Internet problems"
             except ValueError:
@@ -294,7 +299,7 @@ class Utilities:
                 result = "ValueE"
                 attempts += 1
             except:
-                print "Exception with url:" + str(url_passed)
+                print("Exception with url:" + str(url_passed))
                 result = "GeneralE"
                 attempts += 1
         return result
@@ -338,7 +343,7 @@ class Utilities:
             return res_list
         except:
             logging.info("Lost resources with this offset range: " + str(offset) + " / " + str(offset + 1000))
-            print ("ERROR RETRIEVING RESOURCES FROM " + str(offset) + " TO " + str(offset + 1000))
+            print("ERROR RETRIEVING RESOURCES FROM " + str(offset) + " TO " + str(offset + 1000))
 
     def print_progress_bar(self, iteration, total, prefix='Progress: ', suffix='Complete', decimals=1, length=30,
                             fill='#'):
@@ -365,18 +370,19 @@ class Utilities:
         :return: html document of that url
         """
         try:
-            call = urllib.urlopen(url_passed)
+            call = urlopen(url_passed)
             html_document = lxml.html.parse(call, self.parser)
+            #print(etree.tostring(html_document,pretty_print=True))
             return html_document
         except IOError:
-            print ("Try, again, some problems due to Internet connection, url: " + url_passed)
+            print("Try, again, some problems due to Internet connection, url: " + url_passed)
 
             return "Internet Error"
         except ValueError:
             print ("Not a HTML object.")
             return "Value Error"
         except:
-            print "Exception with url:" + str(url_passed)
+            print("Exception with url:" + str(url_passed))
             return "General Error"
 
     def html_object_getter(self, resource):
@@ -430,8 +436,9 @@ class Utilities:
         :return:
         """
         try:
-            text = unicode(text, "utf-8")
-            result = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
+            text = str(text, "utf-8")
+            #result = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
+            result = unicodedata.normalize('NFD', text)
             return result
         except TypeError:
             return text
@@ -443,7 +450,7 @@ class Utilities:
 
         :return: a dictionary without empty values.
         '''
-        for key in listDict.keys() :
+        for key in list(listDict.keys()) :
             if listDict[key] == '' :
                 listDict.pop(key)
             #if key in EXCLUDED_SECTIONS[language]:  #remove excluded sections
@@ -477,7 +484,7 @@ class Utilities:
         :return: a JSON representation of data obtained from a call to an online service.
         '''
         try:
-            call = urllib.urlopen(req)
+            call = urlopen(req)
             answer = call.read()
             json_ans = json.loads(answer)
             return json_ans
@@ -499,7 +506,7 @@ class Utilities:
                 MAPPING = settings['MAPPING']
                 return MAPPING
         except IOError:
-            print "Settings files doesn't exist!!! "
+            print("Settings files doesn't exist!!! ")
             sys.exit(1)
 
     @staticmethod
@@ -515,7 +522,7 @@ class Utilities:
                 CUSTOM_MAPPERS = json.load(custom_mappers, object_pairs_hook=OrderedDict)  #load mappers from file into the dict
                 return CUSTOM_MAPPERS
         except IOError:
-            print "Custom mappers not found!"
+            print("Custom mappers not found!")
             return dict()  #in case of failure, assume no user defined mappers and return empty dict
 
     def get_list_section_ontology_class(self, sect_name, mapper, CUSTOM_MAPPERS):
@@ -531,7 +538,7 @@ class Utilities:
         for class_type in CUSTOM_MAPPERS[mapper]["ontology"][self.language]:
             try:
                 #find a matching sub-section from the ontology class
-                if class_type.decode('utf-8').lower() in sect_name.decode('utf-8').lower():
+                if class_type.lower() in sect_name.lower():
                     ontology_class = class_type
             except UnicodeEncodeError:
                 break
@@ -612,7 +619,7 @@ class Utilities:
         else:
             local = lang + "."
 
-        enc_query = urllib.quote_plus(query)
+        enc_query = quote_plus(query)
         endpoint_url = "http://" + local + "dbpedia.org/sparql?default-graph-uri=&query=" + enc_query + \
                        "&format=application%2Fsparql-results%2Bjson&debug=on"
         json_result = self.json_req(endpoint_url)
@@ -627,7 +634,7 @@ class Utilities:
         :return: total list elements.
         '''
         list_el_num = 0
-        for k in res_dict.keys():
+        for k in list(res_dict.keys()):
             for el in res_dict[k]:
                 list_el_num += 1
         return list_el_num
@@ -642,16 +649,16 @@ class Utilities:
         :return: void.
         '''
         try:
-            print "\nEvaluation:\n===========\n"
-            print "Resource Type:", lang + ":" + source
-            print "Resources Found:", tot_res
-            print "Resources successfully processed:", tot_res_success
-            print "List elements found:", tot_elems
-            print "List elements extracted:", tot_extracted_elems
-            print "Triples Created:", num_statements
+            print("\nEvaluation:\n===========\n")
+            print("Resource Type:", lang + ":" + source)
+            print("Resources Found:", tot_res)
+            print("Resources successfully processed:", tot_res_success)
+            print("List elements found:", tot_elems)
+            print("List elements extracted:", tot_extracted_elems)
+            print("Triples Created:", num_statements)
             accuracy = (1.0*tot_extracted_elems)/tot_elems
-            print "Accuracy:", accuracy
-            print ""
+            print("Accuracy:", accuracy)
+            print("")
 
             #write the evaluation results in evaluation.csv
             with open('evaluation.csv', 'a') as csvfile:
@@ -659,4 +666,4 @@ class Utilities:
                 filewriter.writerow([lang, source, tot_res, tot_res_success, tot_extracted_elems, tot_elems,
                                         num_statements, accuracy])
         except ZeroDivisionError:
-            print '\nNo elements extracted!'
+            print('\nNo elements extracted!')

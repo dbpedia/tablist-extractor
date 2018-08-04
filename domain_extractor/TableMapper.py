@@ -191,7 +191,7 @@ class TableMapper:
                 if value == "":
                     # lack that could be due to header
                     self.utils.no_mapping_rule_errors_headers += 1
-                    print message
+                    print(message)
         return value
 
     def is_section_in_mapper(self, table_section, mapper):

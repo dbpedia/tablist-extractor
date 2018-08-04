@@ -42,7 +42,7 @@ class Table:
         # i don't want to count empty cell (empty cell has "-") --> no data in there
         # counting empty cell will give a wrong final report
         for row in self.data_refined:
-            keys = row.keys()
+            keys = list(row.keys())
             for key in keys:
                 # row[key] is a list
                 if row[key][0] != "-":

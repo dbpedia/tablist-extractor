@@ -4,7 +4,7 @@ import lxml.html as html
 from lxml import etree
 import re
 import string
-import Table
+from . import Table
 import json
 from domain_extractor import TableMapper
 __author__ = 'papalinis - Simone Papalini - papalini.simone.an@gmail.com'
@@ -94,7 +94,7 @@ class HtmlTableParser:
             # get rdf types from configs.json file
             domains = self.utils.load_settings()
             for rdf_type in rdf_types:
-                if rdf_type in domains.keys():
+                if rdf_type in list(domains.keys()):
                     self.mappers += domains[rdf_type]
 
     def find_wiki_tables(self):
@@ -155,6 +155,8 @@ class HtmlTableParser:
             # set as a class attribute the current html table
             self.current_html_table = html_table
 
+            #print(etree.tostring(html_table,pretty_print=True))
+
             # create a Table object to contain data structures and statistics for a table
             tab = Table.Table()
             # set tab.n_rows as a result of count_rows()
@@ -164,7 +166,7 @@ class HtmlTableParser:
             # find out the table section using find_table_section()
             tab.table_section = self.find_table_section()
 
-            print "Section found: ", tab.table_section
+            print("Section found: ", tab.table_section)
             self.logging.info("Table under section: %s" % tab.table_section)
 
             # find headers for this table
@@ -221,7 +223,7 @@ class HtmlTableParser:
                 # Update the count of tables with this condition (no headers found)
                 self.no_headers += 1
 
-        print "Resource analysis completed \n\n"
+        print("Resource analysis completed \n\n")
         # Adding statistics values and errors to the extraction errors, in order to print a final report
         self.utils.tot_tables_analyzed += self.tables_analyzed
         self.utils.headers_errors += self.no_headers
@@ -263,17 +265,18 @@ class HtmlTableParser:
                                 if not section_text:
                                     section_text += text
 
-                        # encode in utf-8 the section text
+
                         section_text = self.utils.delete_accented_characters(section_text)
-                        section_text = section_text.encode('utf-8')
-                        section_text = section_text.translate(None, string.punctuation)
+                        # encode in utf-8 the section text
+                        #section_text = section_text.encode('utf-8')
+                        section_text = section_text.translate(str.maketrans('', '', string.punctuation))
                         return section_text
 
         # if a <h> tag was not found return the page's title
         resource = self.resource.replace("_", " ")
         # I need that section hasn't accented characters
         resource = self.utils.delete_accented_characters(resource)
-        resource = resource.encode('utf-8')
+        #resource = resource.encode('utf-8')
         resource = resource.translate(None, string.punctuation)
         return resource
 
@@ -297,10 +300,11 @@ class HtmlTableParser:
             started_data = 0    # variable for checking if we started reading data, so we can't find other headers
             # used to delete header that are in last row.
             for row in self.current_html_table:
+                #print(etree.tostring(row))
                 # find header cell
-                html_header_row = row.findall('th')
+                html_header_row = row.findall('.//th')
                 # find also data cell in the same row
-                html_data = row.findall('td')
+                html_data = row.findall('.//td')
                 header_row = ""
                 # we consider as a table header rows, only those ones with no data cells
                 # we will use this case only if the tables if well formed.
@@ -412,7 +416,7 @@ class HtmlTableParser:
         self.resolve_rowspan(tab.headers)
 
         # Remove text encoding errors. Eg here we delete u'\xa0' == html'&nbsp'
-        self.remove_html_encode_errors(tab.headers, u'\xa0')
+        self.remove_html_encode_errors(tab.headers, '\xa0')
 
         # Remove possible citations in the text of headers. They are noisy and useless for mapping purpose.
         self.remove_citations(tab)
@@ -496,7 +500,7 @@ class HtmlTableParser:
             # Iterate over header cells
             for header in row:
                 # Replace 'error' with u'' in the text of this header cell
-                header['th'] = header['th'].replace(error, u'')
+                header['th'] = header['th'].replace(error, '')
 
     def remove_citations(self, tab):
         """
@@ -605,7 +609,7 @@ class HtmlTableParser:
         """
 
         for header in tab.headers_refined:
-            header['th'] = header['th'].encode('ascii', 'replace')
+            #header['th'] = header['th'].encode('ascii', 'replace')
             if "?" in header['th']:
                 header['th'] = header['th'].replace("?", ".")
 
@@ -618,10 +622,10 @@ class HtmlTableParser:
         # Iterates over rows in tab.data_refined
         for row in tab.data_refined:
             # Iterates over the headers
-            for key in row.keys():
+            for key in list(row.keys()):
                 # Iterates over data ( row= {'header': [data], 'header':[data],...})
                 for data in row[key]:
-                    if type(data) == unicode:
+                    if type(data) == str:
                         data = data.encode('ascii', 'replace')
 
     def extract_data(self, tab):
@@ -750,9 +754,9 @@ class HtmlTableParser:
             cell_text += text
 
         # replace some encode errors
-        if type(cell_text) == unicode:
-            if u'\xa0' in cell_text:
-                cell_text = cell_text.replace(u'\xa0', u' ')
+        if type(cell_text) == str:
+            if '\xa0' in cell_text:
+                cell_text = cell_text.replace('\xa0', ' ')
 
         # Adding the cell text to the cell's data dictionary
         if cell_text:
@@ -785,7 +789,7 @@ class HtmlTableParser:
             self.join_data_and_headers(tab)
 
             # Encode data
-            self.encode_data(tab)
+            #self.encode_data(tab)
             self.logging.info("Data refined")
         except:
             self.logging.debug("Exception refining data")
@@ -966,7 +970,7 @@ class HtmlTableParser:
                     except:
                         self.logging.debug("Exception building rows. \n index = %s" % index)
                         print("Exception building rows.")
-                        print ("index: =" + str(index))
+                        print("index: =" + str(index))
 
                 # If temporary row has some data, append it to
                 if temp_row:
@@ -979,9 +983,9 @@ class HtmlTableParser:
         :param tab: table to print
         :return: nothing
         """
-        print "section ", tab.table_section, " vertical table: ", tab.vertical_table
+        print("section ", tab.table_section, " vertical table: ", tab.vertical_table)
         for value in self.current_html_table:
             str_to_print = ""
             for x in value.itertext():
                 str_to_print = str_to_print + x
-            print str_to_print.replace("\n", " ")
+            print(str_to_print.replace("\n", " "))

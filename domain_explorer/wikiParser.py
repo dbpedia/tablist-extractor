@@ -20,10 +20,10 @@ import time
 import json
 import sys
 import subprocess
+import imp
 
 #set default encoding
-reload(sys)
-sys.setdefaultencoding('utf8')
+imp.reload(sys)
 
 last_sec_title = ""  # last section title parsed
 header_title = ""  # last header (main section) title parsed
@@ -68,7 +68,7 @@ class wikiParser:
 
         cleanlists = self.utils.clean_dictionary(self.language, lists)  #clean resulting dictionary and leave only meaningful keys
 
-        self.logging.info("Lists found under Sections: "+ str(cleanlists.keys()))
+        self.logging.info("Lists found under Sections: "+ str(list(cleanlists.keys())))
 
         return cleanlists
 
@@ -104,7 +104,7 @@ class wikiParser:
             
             last_sec_title = title
             last_sec_lev = section['level']
-            content = section['content'].values()  # don't consider keys since they are non-relevant (e.g. @an0, @an1,..)
+            content = list(section['content'].values())  # don't consider keys since they are non-relevant (e.g. @an0, @an1,..)
             sect_list = []  # will contain the list extracted from current section
             """Extract section content - values inside dictionary inside 'content' key """
             
@@ -144,7 +144,7 @@ class wikiParser:
                     if (cont_type == 'template' or cont_type == 'link'):  #Take only content field
                         tl_cont = cont['content']
                         if type(tl_cont) == list:
-                            for tl_val in tl_cont.values():  # look for significant info in templates or links
+                            for tl_val in list(tl_cont.values()):  # look for significant info in templates or links
                                 list_content += tl_val[0] + " "
                         elif type(tl_cont) == dict:
                             if '@an0' in tl_cont:  # recurring structure type with an anonymous field '@an0'
@@ -290,10 +290,10 @@ class wikiParser:
             #JSONpedia call was succesfull
             if 'success' in sections and sections['success'] == "false":
                 if sections['message'] == 'Invalid page metadata.':
-                    print("JSONpedia error: Invalid wiki page."),
+                    print("JSONpedia error: Invalid wiki page.")
                     raise
                 elif 'Expected DocumentElement found' in sections['message']:
-                    print("JSONpedia error: something went wrong (DocumentElement expected)."),
+                    print("JSONpedia error: something went wrong (DocumentElement expected).")
                     raise
                 else:
                     print("JSONpedia error! - the web service may be currently overloaded, retrying... "
@@ -342,5 +342,6 @@ class wikiParser:
             dom = result['wikitext-dom'][0]
             if 'structure' in dom:
                 new_res = dom['structure'][1]['label']
-                redirect = new_res.replace(" ", "_").encode('utf-8')
+                #redirect = new_res.replace(" ", "_").encode('utf-8')
+                redirect = new_res.replace(" ", "_");
         return redirect

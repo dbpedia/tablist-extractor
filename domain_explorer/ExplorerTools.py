@@ -4,9 +4,9 @@ import rdflib
 from collections import OrderedDict
 import staticValues
 import Utilities
-import Selector, HtmlTableParser, wikiParser
+from . import Selector, HtmlTableParser, wikiParser
 import json
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 class ExplorerTools:
     """
@@ -54,8 +54,7 @@ class ExplorerTools:
         parser.add_argument('collect_mode', help=staticValues.COLLECT_MODE_HELP,
                         choices=staticValues.COLLECT_MODE_CHOICES )
 
-        parser.add_argument('source', type=lambda s: unicode(s, sys.getfilesystemencoding()),
-                        help=staticValues.SOURCE_HELP)
+        parser.add_argument('source', type=str, help=staticValues.SOURCE_HELP)
 
         parser.add_argument('language', type=str, default=staticValues.CHAPTER_DEFAULT, help=staticValues.CHAPTER_HELP)
 
@@ -98,7 +97,7 @@ class ExplorerTools:
         :return: source value
         """
         if self.args.source:
-            return self.args.source.encode('utf-8')
+            return self.args.source
 
     def get_uri_resources(self):
         """
@@ -222,7 +221,8 @@ class ExplorerTools:
         """
         # split by '/', i need last two elements (e.g. 'resource/Kobe_Bryant' or 'ontology/weight')
         split_uri = uri.split("/")
-        res_name = split_uri[-1].encode('utf-8')
+        res_name = split_uri[-1]
+        #res_name = split_uri[-1].encode('utf-8')
         return res_name
 
     def get_resource_type(self, resource):
@@ -261,7 +261,7 @@ class ExplorerTools:
         else:
             local = lang + "."
         
-        enc_query = urllib.quote_plus(query)
+        enc_query = urllib.parse.quote_plus(query)
         endpoint_url = "http://" + local + "dbpedia.org/sparql?default-graph-uri=&query=" + enc_query + \
                        "&format=application%2Fsparql-results%2Bjson&debug=on"
         json_result = self.utils.json_req(endpoint_url)
@@ -287,7 +287,7 @@ class ExplorerTools:
         return self.utils.delete_accented_characters(string)
 
     def set_toExtractLists(self):
-        return self.args.extract_lists.encode('utf-8')
+        return self.args.extract_lists
 
     def set_toExtractTables(self):
-        return self.args.extract_tables.encode('utf-8')
+        return self.args.extract_tables

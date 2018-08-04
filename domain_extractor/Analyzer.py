@@ -6,7 +6,7 @@ from rdflib import URIRef, BNode, Literal
 from rdflib.namespace import RDF
 from domain_explorer import HtmlTableParser
 from domain_explorer import wikiParser
-import ListMapper
+from . import ListMapper
 __author__ = 'papalinis - Simone Papalini - papalini.simone.an@gmail.com'
 
 
@@ -101,7 +101,7 @@ class Analyzer:
             file_opened = open(self.filename, 'r')
             return file_opened.readlines()
         except IOError:
-            print "IOError opening the file: " + str(self.filename)
+            print("IOError opening the file: " + str(self.filename))
 
     def setup_iterator(self):
         """
@@ -114,7 +114,7 @@ class Analyzer:
             res_iterator = iter(self.res_list)
             return res_iterator
         except TypeError:
-            print "Check file's existence. "
+            print("Check file's existence. ")
             sys.exit(0)
 
     def open_stream(self):
@@ -131,7 +131,7 @@ class Analyzer:
             # set the iterator from that self.res_list
             self.res_iterator = self.setup_iterator()
         else:
-            print " File name not set, please check it. "
+            print(" File name not set, please check it. ")
             sys.exit(0)
 
     def get_filename(self):
@@ -160,7 +160,7 @@ class Analyzer:
 
             try:
                 # set resource to the next element in the iterator
-                resource = self.res_iterator.next()
+                resource = next(self.res_iterator)
                 # delete newline tag from the resource name
                 resource = resource.replace("\n", "")
                 print("Analyzing " + str(resource))

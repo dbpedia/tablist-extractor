@@ -112,7 +112,7 @@ class Selector:
                 self.__update_offset()
 
             except:
-                print "exception during the iteration of collection of resources"
+                print("exception during the iteration of collection of resources")
         # close the file
         self.list.close()
 

@@ -1,8 +1,10 @@
 import sys
+
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+
 from gui import guiLayout
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 import sys
 import os
 import staticValues
@@ -42,15 +44,14 @@ class Log(object):
         self.textBrowser.insertPlainText(message)
 
 
-class guiExtractor:
+class guiExtractor(QMainWindow):
     def __init__(self):
         """
         Initialising all the required variables.
         """
-        app = QtGui.QApplication(sys.argv)
-        MainWindow = QtGui.QMainWindow()
+        QMainWindow.__init__(self)
         self.ui = guiLayout.Ui_MainWindow()
-        self.ui.setupUi(MainWindow)
+        self.ui.setupUi(self)
 
         # setting stdout to Log object so that when something is written to stdout,
         # write function of Log object is called.
@@ -90,12 +91,12 @@ class guiExtractor:
         self.ui.CheckBtn.clicked.connect(self.checkOntology)
         self.ui.ShowResourcesBtn.clicked.connect(self.getResourceList)
 
-        header = QtGui.QTreeWidgetItem(["Section/Header", "Property"])
+        header = QTreeWidgetItem(["Section/Header", "Property"])
         self.ui.DomainSettingsTreeWidget.setHeaderItem(header)
-        self.ui.DomainSettingsTreeWidget.header().setResizeMode(QtGui.QHeaderView.ResizeToContents)
+        self.ui.DomainSettingsTreeWidget.header().setSectionResizeMode(QHeaderView.ResizeToContents)
 
-        MainWindow.show()
-        sys.exit(app.exec_())
+        self.setAttribute(Qt.WA_DeleteOnClose)
+
 
     def exploreDomain(self):
         """
@@ -146,7 +147,7 @@ class guiExtractor:
                                      "-t", toExtractTables, "-l", toExtractLists],
                                     stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False)
             for line in iter(proc.stdout.readline, b''):
-                print line.rstrip()
+                print(line.rstrip())
             proc.wait() # wait for the subprocess to exit
         except Exception as e:
             print(e)
@@ -172,10 +173,10 @@ class guiExtractor:
 
         if new_mappings:
             # if the file is not empty, display the contents in tree format.
-            for mapper, mapping_rules in new_mappings.items():
-                root = QtGui.QTreeWidgetItem(self.ui.DomainSettingsTreeWidget, [mapper])
-                for key, value in mapping_rules.items():
-                    item = QtGui.QTreeWidgetItem(root, [key, value])
+            for mapper, mapping_rules in list(new_mappings.items()):
+                root = QTreeWidgetItem(self.ui.DomainSettingsTreeWidget, [mapper])
+                for key, value in list(mapping_rules.items()):
+                    item = QTreeWidgetItem(root, [key, value])
             # link every item to onDoubleClick event.
             self.ui.DomainSettingsTreeWidget.itemDoubleClicked.connect(self.onDoubleClick)
 
@@ -190,9 +191,9 @@ class guiExtractor:
 
         # make it editable only if it is a ontology field, which is column number 1.
         if column_number == 1:
-            item.setFlags(item.flags() | QtCore.Qt.ItemIsEditable)
+            item.setFlags(item.flags() | Qt.ItemIsEditable)
         else:
-            item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable)
+            item.setFlags(item.flags() & ~Qt.ItemIsEditable)
 
     def saveDomainSettingsFile(self):
         """
@@ -434,7 +435,7 @@ class guiExtractor:
 
         self.mapperListModel = QStandardItemModel()
         # get all the mappers list
-        all_mappers = self.custom_mappers.keys() + self.static_mappers
+        all_mappers = list(self.custom_mappers.keys()) + self.static_mappers
         # keep only the associated mappers in check state.
         for mapper in all_mappers:
             item = QStandardItem(mapper)
@@ -468,7 +469,7 @@ class guiExtractor:
         mappers=[]
         for index in range(model.rowCount()):
             item = model.item(index)
-            if item.checkState() == QtCore.Qt.Checked:
+            if item.checkState() == Qt.Checked:
                 mappers.append(str(item.text()))
 
         self.domains[domain] = mappers
@@ -496,7 +497,6 @@ class guiExtractor:
             color = 'red'
             self.ui.CheckOntologyResult.setText(message)
             self.ui.CheckOntologyResult.setStyleSheet('color: ' + color)
-
             return
 
         # create utils instance
@@ -550,11 +550,14 @@ class guiExtractor:
                 item.setEditable(False)
                 self.resourcesListModel.appendRow(item)
             self.ui.ResoucesListView.setModel(self.resourcesListModel)
-            self.ui.ResourcesListResult.setText(QString("Total resources found: "+str(selector.tot_res_interested)))
+            self.ui.ResourcesListResult.setText("Total resources found: "+str(selector.tot_res_interested))
 
 
         else:
-            self.ui.ResourcesListResult.setText(QString("No resources found."))
+            self.ui.ResourcesListResult.setText("No resources found.")
 
 if __name__ == '__main__':
-    extractor = guiExtractor()
+    app = QApplication(sys.argv)
+    MainWindow = guiExtractor()
+    MainWindow.show()
+    sys.exit(app.exec_())

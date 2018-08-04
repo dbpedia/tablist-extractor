@@ -24,7 +24,7 @@ class WriteSettingsFile:
         :param explorer_tools: explorer_tools class that will be useful for public methods.
         """
         # order dictionary by key
-        self.all_sections = OrderedDict(sorted(all_sections.iteritems(), key=lambda x: x[0]))
+        self.all_sections = OrderedDict(sorted(iter(list(all_sections.items())), key=lambda x: x[0]))
         self.all_headers = all_headers
         self.all_list_sections = all_list_sections
         self.explorer_tools = explorer_tools
@@ -42,7 +42,7 @@ class WriteSettingsFile:
         :return:
         """
         # Create new file
-        domain_explored_file = file(staticValues.FILE_PATH_DOMAIN_EXPLORED, 'w')
+        domain_explored_file = open(staticValues.FILE_PATH_DOMAIN_EXPLORED, 'w')
         # Print file heading
         self.write_file_heading(domain_explored_file)
 
@@ -84,9 +84,9 @@ class WriteSettingsFile:
         :return:
         """
 
-        for mapper, sections in self.all_sections.items():
+        for mapper, sections in list(self.all_sections.items()):
             domain_explored_file.write(mapper + "___TABLES" + " = {\n")
-            for key, section_dict in sections.items():
+            for key, section_dict in list(sections.items()):
                 # adjust key to print in output
                 key = self.explorer_tools.replace_accents(key.replace(" ", "_").replace("-", "_"))
                 # print comments and first line of section
@@ -106,7 +106,7 @@ class WriteSettingsFile:
         :param section_name: reference to section name of the table
         :return:
         """
-        for key, value in section_dict.items():
+        for key, value in list(section_dict.items()):
             if key == staticValues.SECTION_NAME_PROPERTY:
                 file_settings.write("'" + staticValues.SECTION_NAME+section_name + "' : '" + value + "'" + ", \n")
             # don't print header already printed
@@ -121,12 +121,12 @@ class WriteSettingsFile:
         :return:
         """
 
-        for mapper, sections in self.all_list_sections.items():
+        for mapper, sections in list(self.all_list_sections.items()):
             printed_keys=[]
             domain_explored_file.write("\n#Following are section mappings of lists found:\n")
             domain_explored_file.write("#Mapper used for the following are: "+mapper.split('___')[1]+"\n\n")
             domain_explored_file.write(mapper + "___LISTS" + " = {\n")
-            for key, value in sections.items():
+            for key, value in list(sections.items()):
                 if key not in printed_keys:
                     # adjust key to print in output
                     key = self.explorer_tools.replace_accents(key.replace("'",""))

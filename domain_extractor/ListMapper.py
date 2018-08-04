@@ -18,13 +18,13 @@ functions to generate triples.
 
 '''
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import json
 import re
 import rdflib
 import sys
 import time
-from mapping_rules import *
+from domain_extractor.mapping_rules import *
 
 class ListMapper:
 
@@ -43,7 +43,7 @@ class ListMapper:
         else:
             self.dbr = rdflib.Namespace("http://dbpedia.org/resource/")
         self.rdf = rdflib.Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
-        self.db_res = rdflib.URIRef(self.dbr + self.resource.decode('utf-8'))
+        self.db_res = rdflib.URIRef(self.dbr + self.resource)
 
         self.mapped_domains = []  # used to prevent duplicate mappings
 
@@ -61,7 +61,7 @@ class ListMapper:
         # get rdf types from configs.json file
         domains = self.utils.load_settings()
         for rdf_type in rdf_types:
-            if rdf_type in domains.keys():
+            if rdf_type in list(domains.keys()):
                 self.mappers += domains[rdf_type]
 
 
@@ -102,17 +102,15 @@ class ListMapper:
                             print("The language provided is not available yet for this mapping!")
                             sys.exit(1)
                     except NameError:
-                        print "Cannot find the domain's mapper function!!"
-                        print 'You can add a mapper function for this mapping using rulesGenerator.py and try again...\n'
+                        print("Cannot find the domain's mapper function!!")
+                        print('You can add a mapper function for this mapping using rulesGenerator.py and try again...\n')
                         sys.exit(1)
 
                 self.mapped_domains.append(mapper)  #this domain won't be used again for mapping
-                
-                for res_key in self.resDict.keys():  # iterate on resource dictionary keys
+                for res_key in list(self.resDict.keys()):  # iterate on resource dictionary keys
                     mapped = False
                     for dk in domain_keys:  # search for resource keys related to the selected domain
                         # if the section hasn't been mapped yet and the title match, apply domain related mapping
-                        dk = dk.decode('utf-8') #make sure utf-8 mismatches don't skip sections 
                         if not mapped and re.search(dk, res_key, re.IGNORECASE):
                             try:
                                 if is_custom_map_fn == False:
@@ -125,7 +123,7 @@ class ListMapper:
                                     res_elems += mapper_elems  # calls the proper mapping for that domain and counts extracted elements
                                     mapped = True  # prevents the same section to be mapped again
                             except:
-                                print 'exception occured in resDict, skipping....'
+                                print('exception occured in resDict, skipping....')
 
         else:
             # print 'This domain has not been mapped yet!'
@@ -160,7 +158,7 @@ class ListMapper:
         try:
             mapper_settings = CUSTOM_MAPPERS[mapper_fn_name]
         except: # not found, skip the rest of the process
-            print 'Did not find', mapper_fn_name, 'in CUSTOM_MAPPERS!'
+            print('Did not find', mapper_fn_name, 'in CUSTOM_MAPPERS!')
             return 0
 
         for elem in elem_list:
@@ -169,7 +167,7 @@ class ListMapper:
                 self.map_user_defined_mappings(mapper_fn_name, elem, sect_name, res, lang, g, elems)   # handle recursive lists
 
             else:
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.decode('utf-8')  # apply utf-8 encoding
                 years = []
                 if mapper_settings["years"] == "Yes": # extract years related to the resource.
                     years = self.month_year_mapper(elem)
@@ -179,17 +177,21 @@ class ListMapper:
                 for class_type in mapper_settings["ontology"][lang]:
                     try:
                         # find a matching sub-section from the ontology class
-                        if class_type.decode('utf-8').lower() in sect_name.decode('utf-8').lower():
+                        if class_type.lower() in sect_name.lower():
                             ontology_class = class_type
-                    except UnicodeEncodeError:
+                    except UnicodeEncodeError as e:
+                        print(e)
                         break
 
                 if ontology_class == None:   # No possible mapping found; try default mapping
-                    if mapper_settings["ontology"][lang]["default"] == "None": 
-                        return 0 # default wasn't allowed
-                    else: 
-                        ontology_class = "default"
-                        # print 'Matching Header not found, using default ontology relation:', str(ontology_class)
+                    try:
+                        if "default" not in list(mapper_settings["ontology"][lang].keys()):
+                            return 0 # default wasn't allowed
+                        else:
+                            ontology_class = "default"
+                            # print 'Matching Header not found, using default ontology relation:', str(ontology_class)
+                    except Exception as e:
+                        print(e)
                 
                 # final ontology class/property for the current element
                 p = mapper_settings["ontology"][lang][ontology_class]
@@ -202,64 +204,66 @@ class ListMapper:
                 res_name = None
                 isbn = None
                 work = None
-
-                if res_name == None and 1 in extractor_choices: # italics mapper was chosen
-                    res_name = self.italic_mapper(elem)
-                    if res_name:
-                        elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
-                        res_name = res_name.replace(' ', '_')
-                        res_name = urllib2.quote(res_name)  # quoting res_name in proper format
-                        uri = self.dbr + res_name.decode('utf-8', errors='ignore')
-
-                if res_name == None and 2 in extractor_choices: # reference mapper was chosen
-                    res_name = self.reference_mapper(elem)
-                    if res_name:  # current element contains a reference
-                        uri = self.wikidataAPI_call(res_name, lang)  # try to reconcile resource with Wikidata API
-                        if uri:
-                            dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
-                            if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
-                                uri = dbpedia_uri
-                        else:  # Take the reference name anyway if you can't reconcile it
-                            res_name = self.list_elem_clean(res_name)
-                            elem = elem.replace(res_name, "")  # subtract reference part from list element, to facilitate further parsing
-                            uri_name = res_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  # quoting res_name in proper format
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
-
-                if res_name == None and 3 in extractor_choices: # quote mapper was chosen
-                    res_name = self.quote_mapper(elem)
-                    if res_name:
-                        elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
-                        res_name = res_name.replace(' ', '_')
-                        res_name = urllib2.quote(res_name)  # quoting res_name in proper format
-                        uri = self.dbr + res_name.decode('utf-8', errors='ignore')
-
-
-                if res_name == None and 4 in extractor_choices: # general mapper was chosen
-                    res_name = self.general_mapper(elem)
-                    if (res_name and res_name != "" and res_name != res):
+                try:
+                    if res_name == None and 1 in extractor_choices: # italics mapper was chosen
+                        res_name = self.italic_mapper(elem)
+                        if res_name:
+                            elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                             res_name = res_name.replace(' ', '_')
-                            res_name = urllib2.quote(res_name)  # quoting res_name in proper format
-                            uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                            res_name = urllib.parse.quote(res_name)  # quoting res_name in proper format
+                            uri = self.dbr + res_name
 
-                if 5 in extractor_choices: # isbn mapper was chosen
-                    isbn = self.isbn_mapper(elem)
+                    if res_name == None and 2 in extractor_choices: # reference mapper was chosen
+                        res_name = self.reference_mapper(elem)
+                        if res_name:  # current element contains a reference
+                            uri = self.wikidataAPI_call(res_name, lang)  # try to reconcile resource with Wikidata API
+                            if uri:
+                                dbpedia_uri = self.find_DBpedia_uri(uri, lang)  # try to find equivalent DBpedia resource
+                                if dbpedia_uri:  # if you can find a DBpedia res, use it as the statement subject
+                                    uri = dbpedia_uri
+                            else:  # Take the reference name anyway if you can't reconcile it
+                                res_name = self.list_elem_clean(res_name)
+                                elem = elem.replace(res_name, "")  # subtract reference part from list element, to facilitate further parsing
+                                uri_name = res_name.replace(' ', '_')
+                                uri_name = urllib.parse.quote(uri_name)  # quoting res_name in proper format
+                                uri = self.dbr + uri_name
 
-                if 6 in extractor_choices: # alumni profession mapper was chosen
-                    work = self.alumni_profession_mapper(elem)
+                    if res_name == None and 3 in extractor_choices: # quote mapper was chosen
+                        res_name = self.quote_mapper(elem)
+                        if res_name:
+                            elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
+                            res_name = res_name.replace(' ', '_')
+                            res_name = urllib.parse.quote(res_name)  # quoting res_name in proper format
+                            uri = self.dbr + res_name
 
-                # if successfully found a triple, add that to the existing graph
-                if uri and uri != "":
-                    g.add((rdflib.URIRef(uri), self.dbo[p], res))
-                    elems += 1
-                    if isbn:
-                        g.add((rdflib.URIRef(uri), dbo.isbn, rdflib.Literal(isbn, datatype=rdflib.XSD.string)))
-                    if work:
-                        g.add((rdflib.URIRef(uri), dbo.notableWork, rdflib.Literal(work, datatype=rdflib.XSD.string)))
-                    if years:
-                        self.add_years_to_graph(g, uri, years)
 
-        if elems == 0: print 'Could not extract any elements. Try adding more extractors....'
+                    if res_name == None and 4 in extractor_choices: # general mapper was chosen
+                        res_name = self.general_mapper(elem)
+                        if (res_name and res_name != "" and res_name != res):
+                                res_name = res_name.replace(' ', '_')
+                                res_name = urllib.parse.quote(res_name)  # quoting res_name in proper format
+                                uri = self.dbr + res_name
+
+                    if 5 in extractor_choices: # isbn mapper was chosen
+                        isbn = self.isbn_mapper(elem)
+
+                    if 6 in extractor_choices: # alumni profession mapper was chosen
+                        work = self.alumni_profession_mapper(elem)
+
+                    # if successfully found a triple, add that to the existing graph
+                    if uri and uri != "":
+                        g.add((rdflib.URIRef(uri), self.dbo[p], res))
+                        elems += 1
+                        if isbn:
+                            g.add((rdflib.URIRef(uri), self.dbo.isbn, rdflib.Literal(isbn, datatype=rdflib.XSD.string)))
+                        if work:
+                            g.add((rdflib.URIRef(uri), self.dbo.notableWork, rdflib.Literal(work, datatype=rdflib.XSD.string)))
+                        if years:
+                            self.add_years_to_graph(g, uri, years)
+                except Exception as e:
+                    print(e)
+
+        if elems == 0: print('Could not extract any elements. Try adding more extractors....')
         return elems
 
     def map_discography(self, elem_list, sect_name, res, lang, g, elems):
@@ -285,15 +289,15 @@ class ListMapper:
             else:
                 year = self.month_year_mapper(elem)  # map years present in the list
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 if res_name == None: res_name = self.quote_mapper(elem)
                 
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name)  ###
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name)  ###
+                    uri = self.dbr + res_name
                 
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -307,15 +311,15 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                     
                     else:  # no reference found, try general mapping (less accurate)
                         uri_name = self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -351,15 +355,15 @@ class ListMapper:
             else:
                 year = self.month_year_mapper(elem)
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 if res_name == None: res_name = self.quote_mapper(elem)
                
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name)
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name)
+                    uri = self.dbr + res_name
                 
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -373,15 +377,15 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                     
                     else:  # no reference found, try general mapping (less accurate)
                         uri_name = self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -416,14 +420,14 @@ class ListMapper:
             
             else:
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name) 
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name) 
+                    uri = self.dbr + res_name
                 
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -437,15 +441,15 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                     
                     else:  # no reference found, try general mapping (less accurate)
                         uri_name = self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -479,14 +483,14 @@ class ListMapper:
             
             else:
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name)  
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name)  
+                    uri = self.dbr + res_name
                 
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -500,19 +504,19 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                     
                     else:  # no reference found, try general mapping (less accurate)
                         uri_name = self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
-                    g.add((rdflib.URIRef(uri), dbo.academicDiscipline, res))
+                    g.add((rdflib.URIRef(uri), self.dbo.academicDiscipline, res))
                     elems+=1
                 
         return elems
@@ -547,7 +551,7 @@ class ListMapper:
                 if award_status == None: award_status = self.award_status_mapper(elem, lang)
                 if award_status == None: award_status = "Winner" # if no information is found, assume winner.
 
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
 
                 # remove status from the element
                 elem = elem.replace("Winner","").replace("Won","").replace("Nominated","").replace("Nominee","")
@@ -572,15 +576,15 @@ class ListMapper:
                         ref = self.list_elem_clean(ref)
                         elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                         uri_name = ref.replace(' ', '_')
-                        uri_name = urllib2.quote(uri_name)  
-                        uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                        uri_name = urllib.parse.quote(uri_name)  
+                        uri = self.dbr + uri_name
                 else:
                     uri_name = self.quote_mapper(elem)  # try finding awards in quotes
                     if uri_name == None: uri_name = self.general_mapper(elem)  # no reference found, try general mapping (less accurate
                     if (uri_name and uri_name != "" and uri_name != res):
                         uri_name = uri_name.replace(' ', '_')
-                        uri_name = urllib2.quote(uri_name)  
-                        uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                        uri_name = urllib.parse.quote(uri_name)  
+                        uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -620,14 +624,14 @@ class ListMapper:
             
             else:
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name)  ###
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name)  ###
+                    uri = self.dbr + res_name
                 
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -641,15 +645,15 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                     
                     else:  # no reference found, try general mapping (less accurate)
                         uri_name = self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -682,12 +686,12 @@ class ListMapper:
             
             else:
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 
                 other_details = None
                 for other_type in OTHER_PERSON_DETAILS[lang]:
-                    if other_type.decode('utf-8').lower() in sect_name.decode('utf-8').lower():
+                    if other_type.lower() in sect_name.lower():
                         other_details = other_type
 
                 if other_details == None:   # No possible mapping found; leave the element
@@ -698,15 +702,15 @@ class ListMapper:
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name)  
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name)  
+                    uri = self.dbr + res_name
                 
                 else:
                     uri_name = self.quote_mapper(elem)
                     if (uri_name and uri_name != "" and uri_name != res):
                         uri_name = uri_name.replace(' ', '_')
-                        uri_name = urllib2.quote(uri_name)  
-                        uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                        uri_name = urllib.parse.quote(uri_name)  
+                        uri = self.dbr + uri_name
 
                     ref = None
                     if uri == None: ref = self.reference_mapper(elem)  # look for resource references
@@ -720,15 +724,15 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  ###
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  ###
+                            uri = self.dbr + uri_name
 
                     else:  # no reference found, try general mapping (less accurate)
                         uri_name = self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  ###
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  ###
+                            uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -763,12 +767,12 @@ class ListMapper:
             else:
                 year = self.month_year_mapper(elem)            
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
 
                 other_details = None
                 for other_type in CAREER[lang]:
                     # print other_type
-                    if other_type.encode('utf-8').lower() in sect_name.encode('utf-8').lower():
+                    if other_type.lower() in sect_name.lower():
                         other_details = other_type
 
                 if other_details == None:   # No possible mapping found; leave the element
@@ -781,8 +785,8 @@ class ListMapper:
                 if uri_name == None or uri_name == res: uri_name = self.general_mapper(elem)
                 if (uri_name and uri_name != "" and uri_name != res):
                     uri_name = uri_name.replace(' ', '_')
-                    uri_name = urllib2.quote(uri_name)  ###
-                    uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                    uri_name = urllib.parse.quote(uri_name)  ###
+                    uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -818,22 +822,22 @@ class ListMapper:
             else:
                 year = self.month_year_mapper(elem)
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)  # Try to extract italic formatted text (more precise)
                 
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete occurence of matched text for further extraction
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name)
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name)
+                    uri = self.dbr + res_name
                 
                 else:  # if unsuccessful, apply general mapping (lower accuracy)
                     uri_name = self.quote_mapper(elem)  # try finding names in quotes
                     if uri_name == None: uri_name = self.general_mapper(elem)  # no reference found, try general mapping (less accurate
                     if (uri_name and uri_name != "" and uri_name != res):
                         uri_name = uri_name.replace(' ', '_')
-                        uri_name = urllib2.quote(uri_name)
-                        uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                        uri_name = urllib.parse.quote(uri_name)
+                        uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -872,13 +876,13 @@ class ListMapper:
             else:
                 uri = None
                 year = self.month_year_mapper(elem)
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name)  
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name)  
+                    uri = self.dbr + res_name
                 
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -893,16 +897,16 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref,"")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                     
                     else:
                         uri_name = self.quote_mapper(elem)  # try finding awards in quotes
                         if uri_name == None or uri_name == res: uri_name = self.general_mapper(elem)  # no reference found, try general mapping (less accurate
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -941,13 +945,13 @@ class ListMapper:
 
             else:
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 res_name = self.italic_mapper(elem)
                 if res_name:
                     elem = elem.replace(res_name, "")  # delete resource name found from element for further mapping
                     res_name = res_name.replace(' ', '_')
-                    res_name = urllib2.quote(res_name)  
-                    uri = self.dbr + res_name.decode('utf-8', errors='ignore')
+                    res_name = urllib.parse.quote(res_name)  
+                    uri = self.dbr + res_name
                 
                 else:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -963,15 +967,15 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref,"")  # subtract reference part from list element to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                     
                     else:  # no reference found, try general mapping (less accurate)
                         uri_name =self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -1009,7 +1013,7 @@ class ListMapper:
                 try: subsection = sect_name.split('-')[1].strip()
                 except: pass
                 
-                for t in CONTRIBUTION_TYPE[lang].keys():
+                for t in list(CONTRIBUTION_TYPE[lang].keys()):
                     if subsection: search_str = subsection
                     # if subsection exists, select corresponding ontology class from CONTRIBUTION_TYPE
                     if re.search(t, search_str, flags=re.IGNORECASE):
@@ -1040,7 +1044,7 @@ class ListMapper:
                     elem = elem.strip()
 
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 
                 if True:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -1056,15 +1060,15 @@ class ListMapper:
                             ref = self.list_elem_clean(ref)
                             elem = elem.replace(ref,"")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                     else:  # no reference found, try general mapping (less accurate)
                         uri_name = self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -1107,7 +1111,7 @@ class ListMapper:
             else:
                 detail_type = None
                 # if subsection exists, select corresponding ontology class from OTHER_LITERATURE_DETAILS
-                for t in OTHER_LITERATURE_DETAILS[lang].keys():
+                for t in list(OTHER_LITERATURE_DETAILS[lang].keys()):
                     if re.search(t, sect_name, flags=re.IGNORECASE):
                         detail_type = OTHER_LITERATURE_DETAILS[lang][t]
                         break
@@ -1136,7 +1140,7 @@ class ListMapper:
 
 
                 uri = None
-                elem = elem.encode('utf-8')  # apply utf-8 encoding
+                #elem = elem.encode('utf-8')  # apply utf-8 encoding
                 
                 if True:
                     ref = self.reference_mapper(elem)  # look for resource references
@@ -1154,23 +1158,23 @@ class ListMapper:
                             ref = self.ist_elem_clean(ref)
                             elem = elem.replace(ref,"")  # subtract reference part from list element, to facilitate further parsing
                             uri_name = ref.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                     elif (ref is not None):  # no reference found, try general mapping (less accurate)
                         uri_name = self.quote_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
                             map_failed = False
 
                     if map_failed:  # no reference found, try general mapping (less accurate)
                         uri_name = self.general_mapper(elem)
                         if (uri_name and uri_name != "" and uri_name != res):
                             uri_name = uri_name.replace(' ', '_')
-                            uri_name = urllib2.quote(uri_name)  
-                            uri = self.dbr + uri_name.decode('utf-8', errors='ignore')
+                            uri_name = urllib.parse.quote(uri_name)  
+                            uri = self.dbr + uri_name
 
                 # add successfuly extracted triples into the graph
                 if uri and uri != "":
@@ -1206,7 +1210,7 @@ class ListMapper:
                            'activeYearsEndDate' : 'activeYearsEndDate'}
         
         # update if user provides a dictionary to override default ontologies
-        for ontology in year_ontology.keys():
+        for ontology in list(year_ontology.keys()):
             if ontology in y_ontology:
                 y_ontology[ontology] = year_ontology[ontology]
 
@@ -1237,7 +1241,7 @@ class ListMapper:
                         g.add((rdflib.URIRef(uri), self.dbo[y_ontology['activeYearsEndDate']], rdflib.Literal(y[1], datatype=rdflib.XSD.gYear)))
 
         except:
-            print 'Year exception! Skipping...'
+            print('Year exception! Skipping...')
             raise
         return
 
@@ -1305,9 +1309,9 @@ class ListMapper:
         # month_list a dictionaly that contain regex for different months as keys and a corresponding number
         # to that month with a '^' sign as value. This would be useful while mapping the years in the triples.
         month_list = { r'(january\s?)\d{4}':'1^', r'\W(jan\s?)\d{4}':'1^', r'(february\s?)\d{4}':'2^', r'\W(feb\s?)\d{4}':'2^',
-                        r'(march\s?)\d{4}':'3^', r'\W(mar\s?)\d{4}':'3^',r'(april\s?)\d{4}':'4^',r'\W(apr\s?)\d{4}':'4^', 
+                        r'(march\s?)\d{4}':'3^', r'\W(mar\s?)\d{4}':'3^',r'(april\s?)\d{4}':'4^',r'\W(apr\s?)\d{4}':'4^',
                         r'(may\s?)\d{4}':'5^', r'\W(may\s?)\d{4}':'5^',r'(june\s?)\d{4}':'6^',r'\W(jun\s?)\d{4}':'6^',
-                        r'(july\s?)\d{4}':'7^',r'\W(jul\s?)\d{4}':'7^', r'(august\s?)\d{4}':'8^', r'\W(aug\s?)\d{4}':'8^', 
+                        r'(july\s?)\d{4}':'7^',r'\W(jul\s?)\d{4}':'7^', r'(august\s?)\d{4}':'8^', r'\W(aug\s?)\d{4}':'8^',
                         r'(september\s?)\d{4}':'9^', r'\W(sep\s?)\d{4}':'9^',r'\W(sept\s?)\d{4}':'9^', r'(october\s?)\d{4}':'10^',
                         r'\W(oct\s?)\d{4}':'10^',r'(november\s?)\d{4}':'11^', r'\W(nov\s?)\d{4}':'11^' ,
                         r'(december\s?)\d{4}':'12^', r'\W(dec\s?)\d{4}':'12^'}
@@ -1317,14 +1321,17 @@ class ListMapper:
 
         # check if the time period only contains year or if it also contain months
         for mon in month_list:
-            if re.search(mon, list_elem, re.IGNORECASE):
-                # find and replace the month name with corresponding month code from month_list
-                rep = re.search(mon, list_elem, re.IGNORECASE).group(1)
-                list_elem = re.sub(rep, month_list[mon], list_elem, flags=re.I)
-                month_present = True
+            try:
+                if re.search(mon, list_elem, re.IGNORECASE):
+                    # find and replace the month name with corresponding month code from month_list
+                    rep = re.search(mon, list_elem, re.IGNORECASE).group(1)
+                    list_elem = re.sub(rep, month_list[mon], list_elem, flags=re.I)
+                    month_present = True
+            except Exception as e:
+                print(e)
 
         # regex for finding out whether the date consists of a time period or a single year.
-        period_regex = ur'(?:\(?\d{1,2}\^)?\s?\d{4}\s?(?:–|-)\s?(?:\d{1,2}\^)?\s?\d{4}(?:\))?'  
+        period_regex = r'(?:\(?\d{1,2}\^)?\s?\d{4}\s?(?:–|-)\s?(?:\d{1,2}\^)?\s?\d{4}(?:\))?'
 
         if re.search(period_regex, list_elem, flags=re.IGNORECASE):
             period_dates = True
@@ -1343,7 +1350,7 @@ class ListMapper:
             if len(match_num) == 0: return self.year_mapper(list_elem)
             
             for y in match_num:   # split start and end year
-                year = re.split(ur'\s?[–-]\s?', y)
+                year = re.split(r'\s?[–-]\s?', y)
                 years.append([year[0], year[1]])
             
             for x in match_num:
@@ -1396,9 +1403,9 @@ class ListMapper:
         :return: a literary genre if there is a match, ``None`` otherwise.
         '''
         b_genres = BIBLIO_GENRE[lang]
-        for bg in b_genres.keys():  # iterate on literary genres provided for the given language
+        for bg in list(b_genres.keys()):  # iterate on literary genres provided for the given language
             if re.search(bg, sect_name, re.IGNORECASE):  # try to match section name with a genre
-                for other_bg in b_genres.keys():
+                for other_bg in list(b_genres.keys()):
                     # sect_name = sect_name.replace(bg, "")
                     if other_bg != bg and re.search(other_bg, sect_name,
                                                     re.IGNORECASE):  # if another genre also matches the current section
@@ -1416,7 +1423,7 @@ class ListMapper:
         '''
         film_particip = 'starring'  # default property for Actors is 'starring'
         f_parts = FILMOGRAPHY_PARTICIPATION[lang]
-        for fp in f_parts.keys():
+        for fp in list(f_parts.keys()):
             if re.search(fp, sect_name, re.IGNORECASE):
                 film_particip = f_parts[fp]
         
@@ -1433,7 +1440,7 @@ class ListMapper:
         '''
         filmtype = 'Film'  # default type for Filmography elements is 'Film'
         f_types = FILMOGRAPHY_TYPE[lang]
-        for ft in f_types.keys():
+        for ft in list(f_types.keys()):
             if re.search(ft, sect_name, re.IGNORECASE):
                 filmtype = f_types[ft]
         
@@ -1449,7 +1456,7 @@ class ListMapper:
         '''
         status = None
         s_types = AWARD_STATUS_TYPE[lang]
-        for st in s_types.keys():
+        for st in list(s_types.keys()):
             if re.search(st, sect_name, re.IGNORECASE):
                 status = s_types[st]
         
@@ -1493,14 +1500,14 @@ class ListMapper:
                     ref = self.list_elem_clean(ref)
                     elem = elem.replace(ref, "")  # subtract reference part from list element, to facilitate further parsing
                     uri_name = ref.replace(' ', '_')
-                    uri_name = urllib2.quote(uri_name).decode('utf-8', errors='ignore')
+                    uri_name = urllib.parse.quote(uri_name)
                     entity = uri_name
 
             # no reference found; go ahead with the general mapping, which might be inaccurate
             # comment the below else case for more precise triples.
             else: 
                 entity = entity.replace("{{","").replace("}}","").replace("\'\'","").strip().replace(" ","_")
-                entity = urllib2.quote(entity).decode('utf-8', errors='ignore')
+                entity = urllib.parse.quote(entity)
 
         return entity
 
@@ -1512,7 +1519,7 @@ class ListMapper:
         :return: an entity if there is a match, ``None`` otherwise.
         '''
         entity = None
-        val = re.search('\(.*\)', elem, re.IGNORECASE)
+        val = re.search(r'\(.*\)', elem, re.IGNORECASE)
         if val:
             val = val.group()
             entity = val.replace('(',"").replace(')',"").strip()
@@ -1541,9 +1548,9 @@ class ListMapper:
         base_req = 'http://lookup.dbpedia.org/api/search/PrefixSearch?MaxHits=1&QueryString='
         req = base_req + str(keyword)
         try:
-            call = urllib2.Request(req)
+            call = urllib.request.Request(req)
             call.add_header('Accept', 'application/json')
-            resp = urllib2.urlopen(call)
+            resp = urllib.request.urlopen(call)
             answer = resp.read()
             parsed_ans = json.loads(answer)
         
@@ -1563,11 +1570,11 @@ class ListMapper:
         :return: answer in json format.
         '''
 
-        enc_res = urllib2.quote(res)  # then encode the string to be used in a URL
+        enc_res = urllib.parse.quote(res)  # then encode the string to be used in a URL
         req = 'https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&search=' + enc_res + '&language=' + lang
         try:
-            call = urllib2.Request(req)
-            resp = urllib2.urlopen(call)
+            call = urllib.request.Request(req)
+            resp = urllib.request.urlopen(call)
             answer = resp.read()
             parsed_ans = json.loads(answer)
             result = parsed_ans['search']
@@ -1575,13 +1582,13 @@ class ListMapper:
                 return None
             uri = result[0]['concepturi']
         
-        except urllib2.URLError:  # sometimes the host can refuse too many connections and returns a socket error
+        except urllib.error.URLError:  # sometimes the host can refuse too many connections and returns a socket error
             time.sleep(5)  #wait 5 seconds and then retry
             print("retrying Wikidata API call...")
             self.wikidataAPI_call(res, lang)
         
         except:
-            print ("Wikidata API error on request " + req)
+            print("Wikidata API error on request " + req)
         
         else:
             return uri
@@ -1597,7 +1604,7 @@ class ListMapper:
         '''
         query = "select distinct ?s where {?s <http://www.w3.org/2002/07/owl#sameAs> <" + wk_uri + "> }"
         try:
-            json = utilities.sparql_query(query, lang)
+            json = self.utils.sparql_query(query, lang)
         
         except IOError:
             time.sleep(5)
@@ -1618,24 +1625,27 @@ class ListMapper:
         :param list_elem: the list element to be cleaned.
         :return: cleaned element.
         '''
-        list_elem = list_elem.lstrip()
-        list_elem = list_elem.lstrip('\'')
-        list_elem = list_elem.rstrip('\'')
-        list_elem = list_elem.replace("{", "")
-        list_elem = list_elem.replace("}", "")
-        list_elem = list_elem.replace("[", "")
-        list_elem = list_elem.replace("]", "")
-        list_elem = list_elem.replace("“", "")
-        list_elem = list_elem.replace("”", "")
-        list_elem = list_elem.replace("«", "")
-        list_elem = list_elem.replace("»", "")
-        list_elem = list_elem.replace("《", "")
-        list_elem = list_elem.replace("《", "")
-        list_elem = list_elem.replace("\'\'", "")
-        list_elem = list_elem.replace("\"", "")
-        list_elem = list_elem.replace("#", "")
-        list_elem = list_elem.lstrip()
-        list_elem = list_elem.rstrip()
+        try:
+            list_elem = list_elem.lstrip()
+            list_elem = list_elem.lstrip('\'')
+            list_elem = list_elem.rstrip('\'')
+            list_elem = list_elem.replace("{", "")
+            list_elem = list_elem.replace("}", "")
+            list_elem = list_elem.replace("[", "")
+            list_elem = list_elem.replace("]", "")
+            list_elem = list_elem.replace("“", "")
+            list_elem = list_elem.replace("”", "")
+            list_elem = list_elem.replace("«", "")
+            list_elem = list_elem.replace("»", "")
+            list_elem = list_elem.replace("《", "")
+            list_elem = list_elem.replace("《", "")
+            list_elem = list_elem.replace("\'\'", "")
+            list_elem = list_elem.replace("\"", "")
+            list_elem = list_elem.replace("#", "")
+            list_elem = list_elem.lstrip()
+            list_elem = list_elem.rstrip()
+        except Exception as e:
+            print(e)
         
         return list_elem
 

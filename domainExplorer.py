@@ -5,7 +5,6 @@ from domain_explorer.ExplorerTools import ExplorerTools
 from domain_explorer import WriteSettingsFile
 import staticValues
 import re
-__author__ = "sachinmalepati - Sachin Malepati (sachinmalepati@gmail.com)"
 
 # All table's section found
 all_sections = {}
@@ -35,7 +34,7 @@ def start_exploration():
         #explorer_tools.utils.print_report()
         write_sections_and_headers()
     else:
-        print "No resources found. Please check arguments passed to pyDomainExplorer"
+        print("No resources found. Please check arguments passed to pyDomainExplorer")
 
 def analyze_uri_resource_list(uri_resource_list):
     """
@@ -47,7 +46,7 @@ def analyze_uri_resource_list(uri_resource_list):
     offset = 0
 
     for single_uri in uri_resource_list:
-        print "Resource: ", single_uri
+        print("Resource: ", single_uri)
         if explorer_tools.toExtractTables == "true":
             # get section and headers
             all_tables = get_resource_sections_and_headers(single_uri)
@@ -124,7 +123,7 @@ def collect_table_sections_and_headers_mappings(all_tables, res_name, rdf_types,
 
     # Get mappers associated with resource domains.
     for rdf_type in rdf_types:
-        if rdf_type in domains.keys():
+        if rdf_type in list(domains.keys()):
             mappers += domains[rdf_type]
 
     for mapper in mappers:
@@ -260,8 +259,6 @@ def check_if_header_already_exists(header, section_name, actual_dictionary, tabl
         if (section_name + "_" + header) in actual_dictionary:
             # if it's associated to section (depend on output format value)
             header_property = actual_dictionary[section_name + "_" + header]
-            if header_property == 'fieldGoal':
-                print("^^^^ "+header)
         elif header in actual_dictionary:
             # if it's not related to section
             header_property = actual_dictionary[header]
@@ -349,18 +346,17 @@ def collect_list_section_mappings(resDict, res_name, rdf_types, domains, CUSTOM_
     mapped_domains=[]
 
     for rdf_type in rdf_types:
-        if rdf_type in domains.keys():
+        if rdf_type in list(domains.keys()):
             mappers+=domains[rdf_type]
 
     for mapper in mappers:
-        if mapper not in mapped_domains and mapper in CUSTOM_MAPPERS.keys():
+        if mapper not in mapped_domains and mapper in list(CUSTOM_MAPPERS.keys()):
             list_sections = OrderedDict()
             domain_keys = CUSTOM_MAPPERS[mapper]["list_headers"][explorer_tools.language]
 
-            for res_key in resDict.keys():
+            for res_key in list(resDict.keys()):
                 mapped = False
                 for dk in domain_keys:
-                    dk = dk.decode('utf-8') #make sure utf-8 mismatches don't skip sections 
                     if not mapped and re.search(dk, res_key, re.IGNORECASE):
                         ontology_class = explorer_tools.utils.get_list_section_ontology_class(res_key, mapper, CUSTOM_MAPPERS)
                         if ontology_class:

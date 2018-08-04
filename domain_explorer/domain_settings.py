@@ -4,11 +4,11 @@
 # Please do not modify DomainExplorer parameters. 
 
 # DomainExplorer parameters 
-DOMAIN_EXPLORED = "William_Gibson" 
+DOMAIN_EXPLORED = "Chris_Paul" 
 CHAPTER = "en" 
 COLLECT_MODE = "s" 
-TABLES_INCLUDED ="false" 
-LISTS_INCLUDED ="true" 
+TABLES_INCLUDED = "true" 
+LISTS_INCLUDED = "true" 
 RESOURCE_FILE = "" 
 
 # Writing mapping rules is simple --> you have to fill all empty fields remembering this structure:
@@ -18,14 +18,5 @@ RESOURCE_FILE = ""
 # or on dbpedia ontology.
 # If you empty a field that was filled, you will delete that rule from dictionary.
 
-
-#Following are section mappings of lists found:
-#Mapper used for the following are: BIBLIOGRAPHY_MAPPER
-
-WILLIAM_GIBSON___BIBLIOGRAPHY_MAPPER___LISTS = {
-'Selected bibliography - Short stories': 'ShortStory', 
-'Selected bibliography - Novels': 'Novel', 
-'Nonfiction': 'Nonfiction', 
-} 
 
 # END OF FILE 

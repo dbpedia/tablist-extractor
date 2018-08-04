@@ -3,6 +3,7 @@ import staticValues
 import string
 import os
 import json
+import imp
 
 class MapperTools:
     """
@@ -49,17 +50,17 @@ class MapperTools:
         """
         # Import is there for being sure that the file exists.
         from domain_explorer import domain_settings
-        for name, val in domain_settings.__dict__.iteritems():
+        for name, val in domain_settings.__dict__.items():
             if "_MAPPER" in name:
                 domain_settings.__dict__[name] = ""
-        domain_settings = reload(domain_settings)
+        domain_settings = imp.reload(domain_settings)
 
         new_mapping_rules = OrderedDict()
         if os.path.isfile(staticValues.FILE_PATH_DOMAIN_EXPLORED):
             # search for right dictionary
-            for name, val in domain_settings.__dict__.iteritems():
+            for name, val in domain_settings.__dict__.items():
                 if "_MAPPER" in name and val != "":
-                    if name not in new_mapping_rules.keys():
+                    if name not in list(new_mapping_rules.keys()):
                         new_mapping_rules[name] = OrderedDict()
                         new_mapping_rules[name].update(val)
                     else:
@@ -77,11 +78,11 @@ class MapperTools:
         :return: parsed mapping rules
         """
         parsed_mapping_rules = OrderedDict()
-        for mapper, section_dict in new_mapping_rules.items():
+        for mapper, section_dict in list(new_mapping_rules.items()):
             parsed_mapping_rules[mapper]= OrderedDict()
-            for key, value in section_dict.items():
+            for key, value in list(section_dict.items()):
                 # i need to delete all punctuation: ontology properties hasn't that type of character
-                value = value.translate(None, string.punctuation).replace(" ", "")
+                value = value.translate(str.maketrans('', '', string.punctuation)).replace(" ", "")
                 # Change the sectionProperty with the name of the section
                 if staticValues.SECTION_NAME in key:
                     # split sections by _tte_ character
@@ -123,7 +124,7 @@ class MapperTools:
                     if not response:
                         message = "Property: " + new_mapping_rules[mapper][key] +\
                                ", doesn't exist in dbpedia ontology. Please add it."
-                        print message, "\n"
+                        print(message, "\n")
                         del new_mapping_rules[mapper][key]
                         self.utils.logging.warn(message)
         return new_mapping_rules
@@ -136,16 +137,16 @@ class MapperTools:
         :return: updated dictionary with old and new mapping rules
         """
         if new_mapping_rules:
-            for mapper, mapping_rules in new_mapping_rules.items():
+            for mapper, mapping_rules in list(new_mapping_rules.items()):
                 mapper = mapper.split("___")[1]
-                for key, value in mapping_rules.items():
+                for key, value in list(mapping_rules.items()):
                     if value != "":
                         # if user add a new mapping rule
                         actual_mapping_rules[mapper]['ontology'][self.language].__setitem__(key, value)
                     else:
                         # user deleted a property that was filled in domain_settings, so I will empty that
                         # mapping rule.
-                        if key in actual_mapping_rules[mapper]['ontology'][self.language].keys():
+                        if key in list(actual_mapping_rules[mapper]['ontology'][self.language].keys()):
                             del actual_mapping_rules[mapper]['ontology'][self.language][key]
         return actual_mapping_rules
 
@@ -222,7 +223,7 @@ class MapperTools:
                     if not self.is_float(actual) and not self.is_float(previous) and char_difference >= 7:
                         deleted = True
             if deleted:
-                print "Deleted row ", i + 1, " of table ", table_section, " because it looks like as summary row."
+                print("Deleted row ", i + 1, " of table ", table_section, " because it looks like as summary row.")
                 for key in table_data[i]:
                     value = self.extract_value_from_cell(table_data[i][key])
                     if value != "-":
@@ -305,7 +306,7 @@ class MapperTools:
             result = value[0]
         else:
             result = value
-        if isinstance(result, basestring):
+        if isinstance(result, str):
             return result
         else:
             return str(result)

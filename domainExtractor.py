@@ -88,6 +88,6 @@ def main():
         #utils.print_report()
     else:
         # print parameters error
-        print check_parameters
+        print(check_parameters)
 if __name__ == "__main__":
     main()
