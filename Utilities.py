@@ -99,6 +99,10 @@ class Utilities:
         self.no_mapping_rule_errors_section = 0
         self.mapped_cells = 0
         self.triples_row = 0  # number of triples created for table's rows
+        # number of list sections found
+        self.list_sections_found = 0
+        self.tot_extracted_list_elems = 0
+        self.tot_list_elems = 0
 
     def setup_log(self, script_name):
         """
@@ -667,3 +671,87 @@ class Utilities:
                                         num_statements, accuracy])
         except ZeroDivisionError:
             print('\nNo elements extracted!')
+
+    def print_report(self):
+        """ Method used to print a final report of table extractor execution.
+
+            It has statistics regarding # of:
+            - Total res collected
+            - Total res analyzed
+            - Total tables found
+            - Total table rows successfully extracted
+            - Total table cells successfully extracted
+            - Total errors trying to extract table's data
+            - Total table headers which the Parser wasn't able to resolve
+            - Total of error of searching if a table header has its own mapping rule
+            - Total list sections found
+            - Total list elements found
+            - Total list elements extracted
+            - Total triples created to represent table's rows
+            - Total triples created for table's cells
+            - Total triples added to graph
+            - Percentage of effectiveness of table mapping process
+            - Percentage of effectiveness of list mapping process
+
+            Usually other classes set these values during their normal working cycle
+            Simply call print_report() as last method of entire extraction
+        """
+        self.logging.info("REPORT:")
+        # if the table_extractor is executed in single_res mode, no resources are collected
+        # from dbpedia sparql endpoints
+        if self.res_collected:
+            self.logging.info("+           # of resources collected for this topic (%s) : %d" %
+                              (self.resource, self.res_collected))
+
+        self.logging.info("+           Total # resources analyzed: %d" % self.res_analyzed)
+
+        self.logging.info("+           Total # tables found : %d" % self.tot_tables)
+
+        self.logging.info("+           Total # tables analyzed : %d" % self.tot_tables_analyzed)
+
+        self.logging.info("+           Total # of table rows extracted: %d" % self.rows_extracted)
+
+        self.logging.info("+           Total # of table data cells extracted : %d" % self.data_extracted)
+
+        self.logging.info("+           Total # of exceptions extracting table's data : %d" % self.data_extraction_errors)
+
+        self.logging.info("+           Total # of \'header not resolved\' errors : %d" %
+                          self.not_resolved_header_errors)
+
+        self.logging.info("+           Total # of \'no headers\' errors : %d" % self.headers_errors)
+
+        self.logging.info("+           Total # of list sections found : %d" % self.list_sections_found)
+
+        if self.extractor:
+            self.logging.info("+           Total # of \'no mapping rule\' errors for section : %d" %
+                              self.no_mapping_rule_errors_section)
+
+            self.logging.info("+           Total # of \'no mapping rule\' errors for headers : %d" %
+                              self.no_mapping_rule_errors_headers)
+
+            self.logging.info("+           Total # of data cells extracted that needs to be mapped: %d" %
+                              self.data_extracted_to_map)
+
+            self.logging.info("+           Total # of table's rows triples serialized : %d" % self.triples_row)
+
+            self.logging.info("+           Total # of table's cells triples serialized : %d" % self.mapped_cells)
+
+            self.logging.info("+           Total # of triples serialized : %d" % int(self.mapped_cells +
+                                                                                     self.triples_row))
+
+            if self.data_extracted_to_map > 0:
+                effectiveness = self.mapped_cells / float(self.data_extracted_to_map)
+            else:
+                effectiveness = 0
+            self.logging.info("+           Percentage of table mapping effectiveness  : %.3f" % effectiveness)
+
+            # for lists data
+            self.logging.info("+           Total # of lists elements found : %d" % self.tot_list_elems)
+
+            self.logging.info("+           Total # of list elements extracted : %d" % self.tot_extracted_list_elems)
+
+            if self.tot_list_elems > 0:
+                effectiveness = self.tot_extracted_list_elems / float(self.tot_list_elems)
+            else:
+                effectiveness = 0
+            self.logging.info("+           Percentage of list mapping effectiveness  : %.3f" % effectiveness)

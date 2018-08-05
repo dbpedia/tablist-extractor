@@ -54,6 +54,8 @@ class ListMapper:
         # get resource types from sparql query.
         self.mappers = []
 
+        self.logging = utils.logging
+
         if self.utils.collect_mode == 's':
             rdf_types = self.utils.get_resource_type(self.resource)
         else:
@@ -91,6 +93,7 @@ class ListMapper:
                         domain_keys = self.dictionary[mapper]["list_headers"][self.language]
                     else:
                         print("The language provided is not available yet for this mapping!")
+                        self.logging.warn("The language provided is not available yet for this mapping!")
                         sys.exit(1)
 
                 except KeyError:  #key not found(predefined mappers)
@@ -100,10 +103,12 @@ class ListMapper:
                             is_custom_map_fn = False
                         else:
                             print("The language provided is not available yet for this mapping!")
+                            self.logging.warn("The language provided is not available yet for this mapping!")
                             sys.exit(1)
                     except NameError:
                         print("Cannot find the domain's mapper function!!")
                         print('You can add a mapper function for this mapping using rulesGenerator.py and try again...\n')
+                        self.logging.warn("You can add a mapper function for this mapping using rulesGenerator.py and try again...")
                         sys.exit(1)
 
                 self.mapped_domains.append(mapper)  #this domain won't be used again for mapping
@@ -123,7 +128,9 @@ class ListMapper:
                                     res_elems += mapper_elems  # calls the proper mapping for that domain and counts extracted elements
                                     mapped = True  # prevents the same section to be mapped again
                             except:
-                                print('exception occured in resDict, skipping....')
+                                print('exception occurred in resDict, skipping....')
+                                self.logging.warn('exception occurred in resDict, skipping....')
+
 
         else:
             # print 'This domain has not been mapped yet!'
@@ -192,6 +199,7 @@ class ListMapper:
                             # print 'Matching Header not found, using default ontology relation:', str(ontology_class)
                     except Exception as e:
                         print(e)
+
                 
                 # final ontology class/property for the current element
                 p = mapper_settings["ontology"][lang][ontology_class]

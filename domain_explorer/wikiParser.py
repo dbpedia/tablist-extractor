@@ -68,6 +68,7 @@ class wikiParser:
 
         cleanlists = self.utils.clean_dictionary(self.language, lists)  #clean resulting dictionary and leave only meaningful keys
 
+        self.utils.list_sections_found+=len(cleanlists)
         self.logging.info("Lists found under Sections: "+ str(list(cleanlists.keys())))
 
         return cleanlists
@@ -216,14 +217,18 @@ class wikiParser:
     #     else:
     #         if 'success' in sections and sections['success'] == "false":
     #             if sections['message'] == 'Invalid page metadata.':
-    #                 print("JSONpedia error: Invalid wiki page."),
+    #                 print("JSONpedia error: Invalid wiki page.")
+    #                 self.utils.logging.exception("JSONpedia error: Invalid wiki page for res %s", resource)
     #                 raise
     #             elif 'Expected DocumentElement found' in sections['message']:
-    #                 print("JSONpedia error: something went wrong (DocumentElement expected)."),
+    #                 print("JSONpedia error: something went wrong (DocumentElement expected).")
+    #                 self.utils.logging.exception("JSONpedia error: something went wrong (DocumentElement expected), res: %s", resource)
     #                 raise
     #             else:
     #                 print("JSONpedia error! - the web service may be currently overloaded, retrying... "
     #                       "Error: " + sections['message'])
+    #                 self.utils.logging.exception("JSONpedia error! - the web service may be currently overloaded, retrying... "
+    #                     "Error: " + sections['message'])
     #                 time.sleep(1)  # wait one second before retrying
     #                 return self.jsonpedia_convert(language, resource)  #try again JSONpedia call
     #
@@ -291,12 +296,16 @@ class wikiParser:
             if 'success' in sections and sections['success'] == "false":
                 if sections['message'] == 'Invalid page metadata.':
                     print("JSONpedia error: Invalid wiki page.")
+                    self.utils.logging.exception("JSONpedia error: Invalid wiki page for res %s", resource)
                     raise
                 elif 'Expected DocumentElement found' in sections['message']:
                     print("JSONpedia error: something went wrong (DocumentElement expected).")
+                    self.utils.logging.exception("JSONpedia error: something went wrong (DocumentElement expected), res: %s", resource)
                     raise
                 else:
                     print("JSONpedia error! - the web service may be currently overloaded, retrying... "
+                          "Error: " + sections['message'])
+                    self.utils.logging.exception("JSONpedia error! - the web service may be currently overloaded, retrying... "
                           "Error: " + sections['message'])
                     time.sleep(1)  # wait one second before retrying
                     return self.jsonpedia_convert(language, resource)  #try again JSONpedia call
@@ -329,11 +338,13 @@ class wikiParser:
         #handle different exceptions
         except (IOError):
             print('Network Error - please check your connection and try again')
+            self.utils.logging.exception('Network Error - please check your connection and try again')
             raise
         except (ValueError):
             raise
         except (OSError):
             print('Error spawning process!')
+            self.utils.logging.exception('Error spawning process!')
             raise
 
         redirect = []

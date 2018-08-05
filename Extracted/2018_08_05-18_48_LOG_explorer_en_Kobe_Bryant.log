@@ -1,0 +1,19 @@
+INFO 08/05 06:48:46 PM You're analyzing wiki lists and tables of wiki chapter: en, source: Kobe_Bryant
+INFO 08/05 06:48:48 PM Analyzing resource: Kobe_Bryant
+INFO 08/05 06:48:48 PM Table under section: NBA career statistics
+DEBUG 08/05 06:48:48 PM  E2 Unable to find headers - resource: Kobe_Bryant
+INFO 08/05 06:48:48 PM Table under section: Regular season
+INFO 08/05 06:48:48 PM Headers Found
+INFO 08/05 06:48:48 PM Table under section: Playoffs
+INFO 08/05 06:48:48 PM Headers Found
+INFO 08/05 06:48:52 PM Lists found under Sections: ['Off the court - Endorsements', 'See also', 'Further reading', 'External links']
+INFO 08/05 06:48:52 PM REPORT:
+INFO 08/05 06:48:52 PM +           Total # resources analyzed: 1
+INFO 08/05 06:48:52 PM +           Total # tables found : 3
+INFO 08/05 06:48:52 PM +           Total # tables analyzed : 3
+INFO 08/05 06:48:52 PM +           Total # of table rows extracted: 0
+INFO 08/05 06:48:52 PM +           Total # of table data cells extracted : 0
+INFO 08/05 06:48:52 PM +           Total # of exceptions extracting table's data : 0
+INFO 08/05 06:48:52 PM +           Total # of 'header not resolved' errors : 0
+INFO 08/05 06:48:52 PM +           Total # of 'no headers' errors : 1
+INFO 08/05 06:48:52 PM +           Total # of list sections found : 4

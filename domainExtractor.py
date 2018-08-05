@@ -85,7 +85,7 @@ def main():
         analyzer.serialize()
 
         # Finally, print a report for the current extraction, then exits.
-        #utils.print_report()
+        utils.print_report()
     else:
         # print parameters error
         print(check_parameters)

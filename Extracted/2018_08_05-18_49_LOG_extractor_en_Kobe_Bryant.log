@@ -1,0 +1,40 @@
+INFO 08/05 06:49:32 PM You're analyzing wiki lists and tables of wiki chapter: en, source: Kobe_Bryant
+INFO 08/05 06:49:32 PM Analyzing Kobe_Bryant
+INFO 08/05 06:49:32 PM Analyzing resource: Kobe_Bryant
+INFO 08/05 06:49:33 PM Table under section: NBA career statistics
+DEBUG 08/05 06:49:33 PM  E2 Unable to find headers - resource: Kobe_Bryant
+INFO 08/05 06:49:33 PM Table under section: Regular season
+INFO 08/05 06:49:33 PM Headers Found
+INFO 08/05 06:49:33 PM Data refined
+DEBUG 08/05 06:49:33 PM E3 - UNABLE TO EXTRACT DATA - resource: Kobe_Bryant
+INFO 08/05 06:49:33 PM Table under section: Playoffs
+INFO 08/05 06:49:33 PM Headers Found
+INFO 08/05 06:49:33 PM Data refined
+DEBUG 08/05 06:49:33 PM E3 - UNABLE TO EXTRACT DATA - resource: Kobe_Bryant
+INFO 08/05 06:49:37 PM Lists found under Sections: ['Off the court - Endorsements', 'See also', 'Further reading', 'External links']
+INFO 08/05 06:49:37 PM There are 0 sections and sections without mapping rules
+INFO 08/05 06:49:37 PM There are 0 headers and sections without mapping rules
+INFO 08/05 06:49:37 PM There are 0 list sections extracted
+INFO 08/05 06:49:37 PM There are 15 list sections found
+INFO 08/05 06:49:37 PM End Of File reached, now you can serialize the graph
+WARNING 08/05 06:49:37 PM Nothing to serialize, you have to choose right scope or resource,or something went wrong scraping tables
+INFO 08/05 06:49:37 PM REPORT:
+INFO 08/05 06:49:37 PM +           Total # resources analyzed: 1
+INFO 08/05 06:49:37 PM +           Total # tables found : 3
+INFO 08/05 06:49:37 PM +           Total # tables analyzed : 3
+INFO 08/05 06:49:37 PM +           Total # of table rows extracted: 0
+INFO 08/05 06:49:37 PM +           Total # of table data cells extracted : 0
+INFO 08/05 06:49:37 PM +           Total # of exceptions extracting table's data : 2
+INFO 08/05 06:49:37 PM +           Total # of 'header not resolved' errors : 0
+INFO 08/05 06:49:37 PM +           Total # of 'no headers' errors : 1
+INFO 08/05 06:49:37 PM +           Total # of list sections found : 4
+INFO 08/05 06:49:37 PM +           Total # of 'no mapping rule' errors for section : 0
+INFO 08/05 06:49:37 PM +           Total # of 'no mapping rule' errors for headers : 0
+INFO 08/05 06:49:37 PM +           Total # of data cells extracted that needs to be mapped: 0
+INFO 08/05 06:49:37 PM +           Total # of table's rows triples serialized : 0
+INFO 08/05 06:49:37 PM +           Total # of table's cells triples serialized : 0
+INFO 08/05 06:49:37 PM +           Total # of triples serialized : 0
+INFO 08/05 06:49:37 PM +           Percentage of table mapping effectiveness  : 0.000
+INFO 08/05 06:49:37 PM +           Total # of lists elements found : 15
+INFO 08/05 06:49:37 PM +           Total # of list elements extracted : 0
+INFO 08/05 06:49:37 PM +           Percentage of list mapping effectiveness  : 0.000

@@ -74,9 +74,6 @@ class Analyzer:
 
         self.res_list = None
 
-        self.tot_extracted_list_elems = 0
-        self.tot_list_elems = 0
-
         # setup a list of resources  from the file (filename) passed to __init__
         if self.filename:
                 self.open_stream()
@@ -191,11 +188,11 @@ class Analyzer:
                     if self.toExtractLists == "true":
                         # Extracting list triples
                         resDict = wikiParser.wikiParser(self.language, resource, self.utils).main_parser()
-                        self.tot_list_elems += self.utils.count_listelem_dict(resDict)
+                        self.utils.tot_list_elems += self.utils.count_listelem_dict(resDict)
                         if resDict:
                             listMapper = ListMapper.ListMapper(resDict, self.language, resource, self.resource, self.graph, self.utils)
                             extr_list_elems = listMapper.select_mapping()
-                            self.tot_extracted_list_elems += extr_list_elems
+                            self.utils.tot_extracted_list_elems += extr_list_elems
                             print(">>> Mapped " + self.language + ":" + resource + ", extracted elements: " + str(extr_list_elems) + "  <<<\n")
  
             except StopIteration:
@@ -210,9 +207,15 @@ class Analyzer:
                 print("There are %d headers without mapping rules." % self.utils.no_mapping_rule_errors_headers)
                 self.logging.info("There are %d headers and sections without mapping rules" %
                                   self.utils.no_mapping_rule_errors_headers)
+                # Print out and in the log every list section found and extracted
+                print("There are %d list sections extracted" % self.utils.tot_extracted_list_elems)
+                self.logging.info("There are %d list sections extracted" % self.utils.tot_extracted_list_elems)
+                # Print out and in the log every list section found
+                print("There are %d list sections found" % self.utils.tot_list_elems)
+                self.logging.info("There are %d list sections found" % self.utils.tot_list_elems)
                 # end of resources involved
                 self.logging.info("End Of File reached, now you can serialize the graph")
-                print ("\nEnd Of Resource File reached")
+                print("\nEnd Of Resource File reached")
 
     def serialize(self):
         """

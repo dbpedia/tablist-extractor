@@ -4,7 +4,7 @@
 # Please do not modify DomainExplorer parameters. 
 
 # DomainExplorer parameters 
-DOMAIN_EXPLORED = "Chris_Paul" 
+DOMAIN_EXPLORED = "Kobe_Bryant" 
 CHAPTER = "en" 
 COLLECT_MODE = "s" 
 TABLES_INCLUDED = "true" 

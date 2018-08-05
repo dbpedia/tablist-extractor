@@ -21,8 +21,6 @@ def start_exploration():
     :return:
     """
 
-    # Read pyTableExtractor dictionary
-    #actual_dictionary = explorer_tools.read_actual_dictionary()
     # Read uri resources
     uri_resource_list = explorer_tools.get_uri_resources()
 
@@ -30,9 +28,10 @@ def start_exploration():
     if uri_resource_list:
         # Analyze uri list
         analyze_uri_resource_list(uri_resource_list)
-        #print report of extractor
-        #explorer_tools.utils.print_report()
+
         write_sections_and_headers()
+        # print report of extractor
+        explorer_tools.utils.print_report()
     else:
         print("No resources found. Please check arguments passed to pyDomainExplorer")
 
@@ -47,12 +46,14 @@ def analyze_uri_resource_list(uri_resource_list):
 
     for single_uri in uri_resource_list:
         print("Resource: ", single_uri)
+        # check if tables data are to be extracted or not
         if explorer_tools.toExtractTables == "true":
             # get section and headers
             all_tables = get_resource_sections_and_headers(single_uri)
         else:
             all_tables=[]
 
+        # check if lists data are to be extracted or not
         if explorer_tools.toExtractLists == "true":
             # get titles and list contents
             resDict = get_titles_and_list_contents(single_uri)
