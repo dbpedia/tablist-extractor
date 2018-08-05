@@ -8,10 +8,10 @@ The main idea of this project is to analyze the resources choosen by the user an
 
 ### Requirements
 
-* The extractor is written in Python 2.7. All the requirements needed to run this project can be installed by executing the below line in the terminal.
-	`pip install -r requirements.txt`
+* The extractor is written in Python 3.6. All the requirements needed to run this project can be installed by executing the below line in the terminal.
+	`pip3 install -r requirements.txt`
 
-* For GUI, PyQt4 is needed which can be downloaded and installed from this **[link](https://riverbankcomputing.com/software/pyqt/download)**
+* For GUI, PyQt5 is needed which can be downloaded and installed from this **[link](https://www.riverbankcomputing.com/software/pyqt/download5)**
 
 ### How to run tablist-extractor
 
@@ -19,7 +19,7 @@ The main idea of this project is to analyze the resources choosen by the user an
 
 In this phase, the program will analyze the tables, lists information present in wiki pages and collects all the ontology mappings required to form RDF triples.
 
-`python domainExplorer.py [collect_mode] [resource] [language]`
+`python domainExplorer.py <collect_mode> <resource> <language> [-t {true}] [-l {true}]`
 
 * `collect_mode`: `s` or `t`
 	* Use `s` for a single resource and `t` for a whole topic/ domain.
@@ -29,6 +29,12 @@ In this phase, the program will analyze the tables, lists information present in
 * `language`: `en`, `it`, `de` etc. (for now, available only some languages, for selected domains)
 
     * a two-letter prefix corresponding to the desired language of Wikipedia pages and SPARQL endpoint to be queried.
+
+* Arguments to specify what data to be extracted. Default values are true.
+
+    * `-t`: a boolean which mentions if tables data are to be extracted or not. Default value is "true".
+
+    * `-l`: a boolean which mentions if lists data are to be extracted or not. Default value is "true".
 
 By running the above command, the mappings required for creating triples are stored in `domain_settings.py` file of `domain_explorer` directory. `domain_settings.py` contains all sections and headers found in exploration of the domain. You will observe a dictionary structure and some fields that have to be filled.
 
