@@ -153,9 +153,7 @@ class HtmlTableParser:
             self.data_extracted_num = 0
 
             # set as a class attribute the current html table
-            self.current_html_table = html_table
-
-            #print(etree.tostring(html_table,pretty_print=True))
+            self.current_html_table = self.delete_thead_tbody(html_table)
 
             # create a Table object to contain data structures and statistics for a table
             tab = Table.Table()
@@ -989,3 +987,23 @@ class HtmlTableParser:
             for x in value.itertext():
                 str_to_print = str_to_print + x
             print(str_to_print.replace("\n", " "))
+
+    def delete_thead_tbody(self, table):
+        thead_children = []
+        tbody_children = []
+        for parent in table.findall('thead'):
+            for element in parent:
+                thead_children.append(element)
+            previous_tag = parent.find("..")
+            previous_tag.remove(parent)
+        for element in thead_children:
+            table.append(element)
+
+        for parent in table.findall('tbody'):
+            for element in parent:
+                tbody_children.append(element)
+            previous_tag = parent.find("..")
+            previous_tag.remove(parent)
+        for element in tbody_children:
+            table.append(element)
+        return table
