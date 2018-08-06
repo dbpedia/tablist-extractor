@@ -8,10 +8,10 @@ The main idea of this project is to analyze the resources choosen by the user an
 
 ### Requirements
 
-* The extractor is written in Python 3.6. All the requirements needed to run this project can be installed by executing the below line in the terminal.
-	`pip3 install -r requirements.txt`
+* The project requires python 3 and java 1.8 version.
 
-* For GUI, PyQt5 is needed which can be downloaded and installed from this **[link](https://www.riverbankcomputing.com/software/pyqt/download5)**
+* The extractor is written in Python 3 and all the requirements needed to run this project can be installed by executing the below line in the terminal.
+	`pip3 install -r requirements.txt`
 
 ### How to run tablist-extractor
 
