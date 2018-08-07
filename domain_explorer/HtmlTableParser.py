@@ -380,6 +380,8 @@ class HtmlTableParser:
 
             # Append this cell to the headers list then continues for other cells
             header_cell['th'] = header_cell['th'].replace("'", ".")
+            # Strip whitespaces
+            header_cell['th'] = header_cell['th'].strip()
             headers.append(header_cell)
 
         # Once every row has been tested, return headers
