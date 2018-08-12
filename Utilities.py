@@ -19,6 +19,9 @@ import sys
 import socket
 from domain_extractor import MapperTools
 from collections import OrderedDict
+from domain_extractor import mapping_rules
+from domain_extractor.mapping_rules import EXCLUDED_SECTIONS
+
 
 class Utilities:
 
@@ -457,8 +460,8 @@ class Utilities:
         for key in list(listDict.keys()) :
             if listDict[key] == '' :
                 listDict.pop(key)
-            #if key in EXCLUDED_SECTIONS[language]:  #remove excluded sections
-            #	listDict.pop(key)
+            if key in EXCLUDED_SECTIONS[language]:  #remove excluded sections
+                listDict.pop(key)
             else:
                 listDict[key] = self.remove_symbols(listDict[key])
 

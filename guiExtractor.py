@@ -16,6 +16,9 @@ from collections import OrderedDict
 from domain_explorer import Selector
 from domain_extractor import MapperTools
 
+def no_abort(a, b, c):
+    sys.__excepthook__(a, b, c)
+sys.excepthook = no_abort
 
 class Log(object):
 

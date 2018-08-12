@@ -86,7 +86,8 @@
                 "Nonfiction": "Nonfiction",
                 "Poetry": "Poetry",
                 "Science fiction": "Science_fiction",
-                "Biographies": "Biography"
+                "Biographies": "Biography",
+                "Bibliography": "Bibliography"
             },
             "it": {
                 "Romanzi": "Novel",
@@ -548,5 +549,103 @@
             }
         },
         "years": "No"
+    },
+    "BASEBALL_PLAYER_MAPPER": {
+        "table_sections": {
+            "en": [
+                "National league statistical leader",
+                "Awards",
+                "Accomplishments",
+                "Hitting",
+                "Fielding",
+                "Value",
+                "Statistics",
+                "Managerial record",
+                "Overall record",
+                "Statistical achievements",
+                "Accomplishments and awards",
+                "Other accomplishments",
+                "Awards & distinctions",
+                "Career accomplishments",
+                "Annual statistical achievements",
+                "Early years",
+                "Collegiate National Rankings",
+                "Career statistics",
+                "Major League managerial records"
+            ]
+        },
+        "list_headers": {
+            "en": [
+                "pitching style",
+                "championships",
+                "league statistical leader",
+                "Statistical highlights"
+            ]
+        },
+        "extractors": [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        "ontology": {
+            "en": {
+                "Awards": "award",
+                "Award / Honor": "award",
+                "Time(s)": "time",
+                "Date(s)": "date",
+                "Managerial record": "ManagerialRecord",
+                "Team": "team",
+                "From": "from",
+                "To": "to",
+                "Regular season record - W": "BaseballSeasonWon",
+                "Regular season record - L": "BaseballSeasonLost",
+                "Regular season record - Win%": "BaseballSeasonWonPercentage",
+                "Post-season record - W": "PostSeasonWon",
+                "Post-season record - L": "PostSeasonLost",
+                "Post-season record - Win%": "PostSeasonWonPercentage",
+                "Statistical achievements": "achievement",
+                "Category": "category",
+                "Times": "Count",
+                "Seasons": "BaseballSeason",
+                "Accomplishments and awards": "award",
+                "Other accomplishments": "achievement",
+                "Awards & distinctions": "award",
+                "Award/Honor": "award",
+                "Date": "date",
+                "Ref": "reference",
+                "Pitching style": "throwingSide",
+                "Career accomplishments": "achievement",
+                "Year": "Year",
+                "Refs": "reference",
+                "Name of award": "award",
+                "Dates": "TimePeriod",
+                "Annual statistical achievements": "achievement",
+                "Award": "Award",
+                "# of Times": "count",
+                "Statistics": "statistics",
+                "Age": "age",
+                "Career highlights - Statistical highlights": "achievements",
+                "Overall record": "record",
+                "Lg": "MinorLeagueLevel",
+                "G": "Games",
+                "AB": "AtBats",
+                "R": "Runs",
+                "H": "Hits",
+                "2B": "Doubles",
+                "3B": "Triples",
+                "HR": "HomeRuns",
+                "RBI": "RunsBattedIn",
+                "SB": "StolenBases",
+                "SO": "StrikeOuts",
+                "OBP": "OnBasePercentage",
+                "SLG": "SluggingPercentage",
+                "OPS": "OnBasePlusSlugging",
+                "Regular season record - G": "BaseballSeasonGames",
+                "Post-season record - G": "PostSeasonGames"
+            }
+        },
+        "years": "Yes"
     }
 }

@@ -33,7 +33,12 @@ class WriteSettingsFile:
         self.toExtractTables = explorer_tools.toExtractTables
         self.toExtractLists = explorer_tools.toExtractLists
         # start to write
-        self.write_sections_and_headers()
+        try:
+            self.write_sections_and_headers()
+        except Exception as e:
+            print(e)
+
+
 
     def write_sections_and_headers(self):
         """

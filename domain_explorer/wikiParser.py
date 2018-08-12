@@ -60,11 +60,14 @@ class wikiParser:
         if result == []:  #if the result is empty, try again looking for page redirects
             new_resource = self.find_page_redirects(self.resource, self.language)
             result = self.jsonpedia_convert(self.language, new_resource)
-        
-        for res in result:  # iterate on every section
-            if '@type' in res and res['@type'] == 'section':
-                parsed_sect = self.parse_section(res)
-                lists.update(parsed_sect)
+
+        if result:
+            for res in result:  # iterate on every section
+                if '@type' in res and res['@type'] == 'section':
+                    parsed_sect = self.parse_section(res)
+                    lists.update(parsed_sect)
+        else:
+            lists = {}
 
         cleanlists = self.utils.clean_dictionary(self.language, lists)  #clean resulting dictionary and leave only meaningful keys
 
@@ -290,6 +293,8 @@ class wikiParser:
         except (OSError):
             print('Error spawning process!')
             raise
+        except Exception as e:
+            print('Exception: '+str(e))
         
         else:
             #JSONpedia call was succesfull
@@ -326,6 +331,8 @@ class wikiParser:
         
         :return: the redirection page, if found.
         '''
+
+        result = ""
         try:
             # spawn a new process that makes a call to the json wrapper, which creates the required
             # json for the given resource, then load the string into a dict using json.loads()
@@ -333,7 +340,11 @@ class wikiParser:
                                 '-r', res, '-p', 'Structure'], stdout=subprocess.PIPE, shell = False)
             pipe_output = proc.stdout.read()   #redirect the input into python variable
             proc.kill()  #kill the spawned process
-            result = json.load(pipe_output)  #load the string as a python dict
+            try:
+                result = json.load(pipe_output)  #load the string as a python dict
+            except Exception as e:
+                print(e)
+                result = ""
             
         #handle different exceptions
         except (IOError):
@@ -345,6 +356,10 @@ class wikiParser:
         except (OSError):
             print('Error spawning process!')
             self.utils.logging.exception('Error spawning process!')
+            raise
+        except Exception as e:
+            print(e)
+            self.utils.logging.exception('Exception during spawning a process: '+str(e))
             raise
 
         redirect = []

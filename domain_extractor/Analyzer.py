@@ -185,6 +185,12 @@ class Analyzer:
                             # Add to the total the number of tables found for this resource
                             self.total_table_num += html_parser.tables_num
 
+                            print(">>> Mapped " + self.language + ":" + resource + ", table rows extracted: " + str(
+                                html_parser.rows_extracted_num) + "  <<<\n")
+
+                            print(">>> Mapped " + self.language + ":" + resource + ", table data extracted: " + str(
+                                html_parser.data_extracted_num) + "  <<<\n")
+
                     if self.toExtractLists == "true":
                         # Extracting list triples
                         resDict = wikiParser.wikiParser(self.language, resource, self.utils).main_parser()
@@ -193,7 +199,7 @@ class Analyzer:
                             listMapper = ListMapper.ListMapper(resDict, self.language, resource, self.resource, self.graph, self.utils)
                             extr_list_elems = listMapper.select_mapping()
                             self.utils.tot_extracted_list_elems += extr_list_elems
-                            print(">>> Mapped " + self.language + ":" + resource + ", extracted elements: " + str(extr_list_elems) + "  <<<\n")
+                            print(">>> Mapped " + self.language + ":" + resource + ", extracted list elements: " + str(extr_list_elems) + "  <<<\n")
  
             except StopIteration:
                 self.lines_to_read = False

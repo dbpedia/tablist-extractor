@@ -1,22 +1,93 @@
 {
-	"MAPPING": {
-		"School": ["ALUMNI_MAPPER", "PROGRAMS_OFFERED_MAPPER", "STAFF"],
-		"Writer": ["BIBLIOGRAPHY_MAPPER", "HONORS", "OTHER_PERSON_DETAILS_MAPPER"],
-		"Group": ["BAND_MEMBERS_MAPPER"],
-		"Band": ["DISCOGRAPHY", "CONCERT_TOURS", "BAND_MEMBERS_MAPPER", "HONORS"],
-		"Athlete": ["HONORS"],
-		"EducationalInstitution": ["ALUMNI_MAPPER", "PROGRAMS_OFFERED_MAPPER", "STAFF"],
-		"CUSTOM_MUSICAL_ARTIST": ["CUSTOM_ARTIST_MAPPER"],
-		"Actor": ["FILMOGRAPHY", "DISCOGRAPHY", "HONORS"],
-		"Person": ["FILMOGRAPHY", "DISCOGRAPHY", "BIBLIOGRAPHY_MAPPER", "HONORS", "OTHER_PERSON_DETAILS_MAPPER", "CAREER_MAPPER", "CONCERT_TOURS"],
-		"Magazine": ["CONTRIBUTORS", "OTHER_LITERATURE_DETAILS", "HONORS", "BIBLIOGRAPHY_MAPPER"],
-		"PeriodicalLiterature": ["CONTRIBUTORS", "OTHER_LITERATURE_DETAILS", "HONORS", "BIBLIOGRAPHY_MAPPER"],
-		"MusicGenre": ["MUSIC_GENRE_MAPPER" ],
-		"MusicalArtist": ["DISCOGRAPHY", "FILMOGRAPHY", "CONCERT_TOURS", "HONORS"],
-		"Newspaper": ["CONTRIBUTORS", "OTHER_LITERATURE_DETAILS", "HONORS", "BIBLIOGRAPHY_MAPPER"],
-		"CUSTOM_WRITER": ["BIBLIOGRAPHY_MAPPER"],
-		"University": ["ALUMNI_MAPPER", "PROGRAMS_OFFERED_MAPPER", "STAFF"],
-		"Politician": ["CAREER_MAPPER"],
-		"BasketballPlayer": ["BASKETBALL_PLAYER_MAPPER"]
-	}
+    "MAPPING": {
+        "School": [
+            "ALUMNI_MAPPER",
+            "PROGRAMS_OFFERED_MAPPER",
+            "STAFF"
+        ],
+        "Writer": [
+            "BIBLIOGRAPHY_MAPPER",
+            "HONORS",
+            "OTHER_PERSON_DETAILS_MAPPER"
+        ],
+        "Group": [
+            "BAND_MEMBERS_MAPPER"
+        ],
+        "Band": [
+            "DISCOGRAPHY",
+            "CONCERT_TOURS",
+            "BAND_MEMBERS_MAPPER",
+            "HONORS"
+        ],
+        "Athlete": [
+            "HONORS"
+        ],
+        "EducationalInstitution": [
+            "ALUMNI_MAPPER",
+            "PROGRAMS_OFFERED_MAPPER",
+            "STAFF"
+        ],
+        "CUSTOM_MUSICAL_ARTIST": [
+            "CUSTOM_ARTIST_MAPPER"
+        ],
+        "Actor": [
+            "FILMOGRAPHY",
+            "DISCOGRAPHY",
+            "HONORS"
+        ],
+        "Person": [
+            "FILMOGRAPHY",
+            "DISCOGRAPHY",
+            "BIBLIOGRAPHY_MAPPER",
+            "HONORS",
+            "OTHER_PERSON_DETAILS_MAPPER",
+            "CAREER_MAPPER",
+            "CONCERT_TOURS"
+        ],
+        "Magazine": [
+            "CONTRIBUTORS",
+            "OTHER_LITERATURE_DETAILS",
+            "HONORS",
+            "BIBLIOGRAPHY_MAPPER"
+        ],
+        "PeriodicalLiterature": [
+            "CONTRIBUTORS",
+            "OTHER_LITERATURE_DETAILS",
+            "HONORS",
+            "BIBLIOGRAPHY_MAPPER"
+        ],
+        "MusicGenre": [
+            "MUSIC_GENRE_MAPPER"
+        ],
+        "MusicalArtist": [
+            "DISCOGRAPHY",
+            "FILMOGRAPHY",
+            "CONCERT_TOURS",
+            "HONORS"
+        ],
+        "Newspaper": [
+            "CONTRIBUTORS",
+            "OTHER_LITERATURE_DETAILS",
+            "HONORS",
+            "BIBLIOGRAPHY_MAPPER"
+        ],
+        "CUSTOM_WRITER": [
+            "BIBLIOGRAPHY_MAPPER"
+        ],
+        "University": [
+            "ALUMNI_MAPPER",
+            "PROGRAMS_OFFERED_MAPPER",
+            "STAFF"
+        ],
+        "Politician": [
+            "CAREER_MAPPER"
+        ],
+        "BasketballPlayer": [
+            "BASKETBALL_PLAYER_MAPPER"
+        ],
+        "BaseballPlayer": [
+            "BASEBALL_PLAYER_MAPPER",
+            "HONORS"
+        ]
+    }
 }

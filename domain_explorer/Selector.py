@@ -98,7 +98,7 @@ class Selector:
                             i = split_uri.index('resource') + 1
                             res_name = split_uri[i]
                             # encode res_name in utf-8
-                            res_name = res_name.encode('utf-8')
+                            res_name = res_name
                             # write the resource in the file with a newline tag
                             self.list.write(str(res_name) + '\n')
                             # update the number of resources serialized
@@ -137,7 +137,8 @@ class Selector:
         """
         # DBpedia mapping class search
         if self.utils.collect_mode == "t":
-            return "?s ?o <http://dbpedia.org/ontology/" + self.utils.resource + ">"
+            return "?s a <http://dbpedia.org/ontology/" + self.utils.resource + "> .?s <http://dbpedia.org/ontology" \
+                                                                                 "/wikiPageID> ?f "
         # single resource
         elif self.utils.collect_mode == "s":
             return self.utils.resource

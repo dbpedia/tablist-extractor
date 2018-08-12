@@ -140,7 +140,7 @@ PROGRAMS_OFFERED = {
 }
 
 HONORS = {
-    'en': ['Recognition','awards','honors','honours', 'legacy','titles', 'accomplishments']
+    'en': ['Recognition','awards','honors','honours', 'legacy','titles', 'accomplishments', 'records', 'achievements']
 }
 
 CAREER = {

@@ -157,7 +157,7 @@ class ExplorerTools:
         """
         html_doc_tree = self.html_object_getter(res_name)
         # if html doc is defined
-        if html_doc_tree:
+        if html_doc_tree is not None:
             graph = rdflib.Graph()
             # instantiate html table parser
             html_table_parser = HtmlTableParser.HtmlTableParser(html_doc_tree, self.language, graph,

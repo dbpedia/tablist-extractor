@@ -275,7 +275,7 @@ class HtmlTableParser:
         # I need that section hasn't accented characters
         resource = self.utils.delete_accented_characters(resource)
         #resource = resource.encode('utf-8')
-        resource = resource.translate(None, string.punctuation)
+        resource = resource.translate(str.maketrans('', '', string.punctuation))
         return resource
 
     def count_rows(self):

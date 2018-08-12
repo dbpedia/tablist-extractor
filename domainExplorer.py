@@ -1,5 +1,5 @@
 # coding = utf-8
-
+import string
 from collections import OrderedDict
 from domain_explorer.ExplorerTools import ExplorerTools
 from domain_explorer import WriteSettingsFile
@@ -144,8 +144,8 @@ def collect_table_sections_and_headers_mappings(all_tables, res_name, rdf_types,
                             check_if_section_is_present(table.table_section, table.headers_refined, res_name, actual_dictionary, table_sections, table_headers)
 
             if table_sections and table_headers:
-                all_sections[res_name.upper()+"___"+mapper] = table_sections
-                all_headers[res_name.upper()+"___"+mapper] = table_headers
+                all_sections[res_name.translate(str.maketrans('', '', string.punctuation)).upper()+"___"+mapper] = table_sections
+                all_headers[res_name.translate(str.maketrans('', '', string.punctuation)).upper()+"___"+mapper] = table_headers
 
             mapped_domains.append(mapper)
 
@@ -346,6 +346,8 @@ def collect_list_section_mappings(resDict, res_name, rdf_types, domains, CUSTOM_
     mappers=[]
     mapped_domains=[]
 
+    print('List sections found: ' + str(resDict.keys()))
+
     for rdf_type in rdf_types:
         if rdf_type in list(domains.keys()):
             mappers+=domains[rdf_type]
@@ -369,7 +371,7 @@ def collect_list_section_mappings(resDict, res_name, rdf_types, domains, CUSTOM_
                             mapped = True
 
             if list_sections:
-                all_list_sections[res_name.upper()+"___"+mapper] = list_sections
+                all_list_sections[res_name.translate(str.maketrans('', '', string.punctuation)).upper()+"___"+mapper] = list_sections
 
             mapped_domains.append(mapper)
 
