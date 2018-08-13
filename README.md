@@ -19,7 +19,7 @@ The main idea of this project is to analyze the resources choosen by the user an
 
 In this phase, the program will analyze the tables, lists information present in wiki pages and collects all the ontology mappings required to form RDF triples.
 
-`python domainExplorer.py <collect_mode> <resource> <language> [-t {true}] [-l {true}]`
+`python domainExplorer.py <collect_mode> <resource> <language> [-t {true | false}] [-l {true | false}]`
 
 * `collect_mode`: `s` or `t`
 	* Use `s` for a single resource and `t` for a whole topic/ domain.
@@ -61,6 +61,8 @@ The above command creates a .ttl file for the respective resources in the `Extra
 * `python guiExtractor.py`
 
 * Follow the instructions step by step as guided in the UI. For hints to fill the required fields, hover onto the field area.
+
+* An in-depth explanation of GUI working is explained [here](https://github.com/dbpedia/tablist-extractor/wiki)
 
 ### Notes
 
