@@ -8,7 +8,11 @@ The main idea of this project is to analyze the resources choosen by the user an
 
 ### Requirements
 
-* The project requires python 3 and java 1.8 version.
+* The project requires python 3 and java 1.8 version. Presently the extractor runs for the following configurations. Project might *crash* for different JDK versions.
+    * java.runtime.version = 1.8.0_172-b11
+    * java.specification.vendor = Oracle Corporation
+    * java.specification.version = 1.8
+    * java.version = 1.8.0_172
 
 * The extractor is written in Python 3 and all the requirements needed to run this project can be installed by executing the below line in the terminal.
 	`pip3 install -r requirements.txt`
