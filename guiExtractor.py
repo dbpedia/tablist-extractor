@@ -110,6 +110,7 @@ class guiExtractor(QMainWindow):
         :return:
         """
 
+        self.ui.TerminalWindow.clear()
         # get the resource/domain to be explored.
         resource = str(self.ui.ResourceField.text())
         # strip if has any whitespaces.
