@@ -186,10 +186,10 @@ class Analyzer:
                             self.total_table_num += html_parser.tables_num
 
                             print(">>> Mapped " + self.language + ":" + resource + ", table rows extracted: " + str(
-                                html_parser.rows_extracted_num) + "  <<<\n")
+                                html_parser.utils.rows_extracted) + "  <<<\n")
 
                             print(">>> Mapped " + self.language + ":" + resource + ", table data extracted: " + str(
-                                html_parser.data_extracted_num) + "  <<<\n")
+                                html_parser.utils.data_extracted) + "  <<<\n")
 
                     if self.toExtractLists == "true":
                         # Extracting list triples

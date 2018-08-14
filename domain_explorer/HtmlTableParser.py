@@ -76,9 +76,9 @@ class HtmlTableParser:
         self.reification_index = 1
 
         # statistics regarding a table
-        self.headers_found_num = 0  # counts header cells found
-        self.rows_extracted_num = 0  # counts the extracted data rows
-        self.data_extracted_num = 0  # counts the extracted data cells
+        self.headers_found_num = 0  # counts header cells found in each table
+        self.rows_extracted_num = 0  # counts the extracted data rows in each table
+        self.data_extracted_num = 0  # counts the extracted data cells in each table
 
         self.utils.logging.info("Analyzing resource: " + self.resource)
         # As HtmlTableParsed is correctly initialized, we find tables with find_wiki_tables()
