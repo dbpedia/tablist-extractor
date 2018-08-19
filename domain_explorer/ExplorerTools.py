@@ -6,7 +6,7 @@ import staticValues
 import Utilities
 from . import Selector, HtmlTableParser, wikiParser
 import json
-import urllib.request, urllib.parse, urllib.error
+import urllib
 
 class ExplorerTools:
     """
@@ -115,7 +115,7 @@ class ExplorerTools:
                 uri_resource_file = self.selector.res_list_file
                 uri_resource_list = self.extract_resources(uri_resource_file)
             else:
-                sys.exit("No resources found. Please check arguments passed to pyDomainExplorer")
+                sys.exit("No resources found. Please check arguments passed to domainExplorer")
         else:
             uri_resource_list.append(self.args.source)
         return uri_resource_list
@@ -127,7 +127,8 @@ class ExplorerTools:
         :param uri_resource_file: file that contains resources' uri
         :return: list of uri
         """
-        content = open(uri_resource_file).read().split('\n')
+        #current_dir = self.utils.get_current_dir()
+        content = open(uri_resource_file, encoding='utf8').read().split('\n')
         # Last resource is empty due to '\n'
         content = content[:-1]
         return content
@@ -222,7 +223,6 @@ class ExplorerTools:
         # split by '/', i need last two elements (e.g. 'resource/Kobe_Bryant' or 'ontology/weight')
         split_uri = uri.split("/")
         res_name = split_uri[-1]
-        #res_name = split_uri[-1].encode('utf-8')
         return res_name
 
     def get_resource_type(self, resource):

@@ -54,10 +54,11 @@ class wikiParser:
 
         global header_title  # used to concatenate sections and subsections titles
         lists = {}  # initialize dictionary
-        result = self.jsonpedia_convert(self.language, self.resource)  # result obtained from JSONpedia in form of a list of sections
+        result = self.jsonpedia_convert(self.language, str(self.resource.encode('utf-8').decode('utf-8')))  # result obtained from JSONpedia in form of a list of sections
         
-
-        if result == []:  #if the result is empty, try again looking for page redirects
+        if result == "":
+            lists={}
+        elif result == []:  #if the result is empty, try again looking for page redirects
             new_resource = self.find_page_redirects(self.resource, self.language)
             result = self.jsonpedia_convert(self.language, new_resource)
 
@@ -162,11 +163,14 @@ class wikiParser:
                                             list_content += tlv + " "  # for actual values
                     elif (cont_type == 'reference'):
                         list_content += " {{" + cont['label'] + "}} "  #this format helps me to discriminate the references
-                elif ('label' in cont):  # if there is a label key, take only its value
-                    cont = cont['label']
-                    list_content = list_content + " " + cont + " "  # necessary to avoid lack of spaces between words
                 elif ('attributes' not in cont):  # Take everything else but ignore bottom page references
                     list_content += cont
+                elif ('label' in cont):  # if there is a label key, take only its value
+                    try:
+                        cont = cont['label']
+                    except IndexError:
+                        continue
+                    list_content = list_content + " " + cont + " "  # necessary to avoid lack of spaces between words
         return list_content
 
 
@@ -256,7 +260,7 @@ class wikiParser:
     #         dom = result['wikitext-dom'][0]
     #         if 'structure' in dom:
     #             new_res = dom['structure'][1]['label']
-    #             redirect = new_res.replace(" ", "_").encode('utf-8')
+    #             redirect = new_res.replace(" ", "_")
     #     return redirect
 
 
@@ -282,7 +286,10 @@ class wikiParser:
                                 '-r', resource, '-p', 'Structure', '-f', 'section'], stdout=subprocess.PIPE, shell=False)
             pipe_output = proc.stdout.read()  #redirect the input into python variable
             proc.kill()  #kill the spawned process
-            sections = json.loads(pipe_output) #load the string as a python dict
+            if pipe_output == b'':
+                return ""
+            else:
+                sections = json.loads(pipe_output) #load the string as a python dict
 
         #handle different errors
         except (IOError):
@@ -295,6 +302,7 @@ class wikiParser:
             raise
         except Exception as e:
             print('Exception: '+str(e))
+            raise
         
         else:
             #JSONpedia call was succesfull
@@ -362,12 +370,11 @@ class wikiParser:
             self.utils.logging.exception('Exception during spawning a process: '+str(e))
             raise
 
-        redirect = []
+        redirect = ""
         #find  if any redirects are present, if yes, return the redirect.
         if 'wikitext-dom' in result:
             dom = result['wikitext-dom'][0]
             if 'structure' in dom:
                 new_res = dom['structure'][1]['label']
-                #redirect = new_res.replace(" ", "_").encode('utf-8')
-                redirect = new_res.replace(" ", "_");
+                redirect = new_res.replace(" ", "_")
         return redirect

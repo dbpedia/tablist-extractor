@@ -95,7 +95,7 @@ class Analyzer:
         """
         try:
             # open file in read mode
-            file_opened = open(self.filename, 'r')
+            file_opened = open(self.filename, 'r', encoding='utf-8')
             return file_opened.readlines()
         except IOError:
             print("IOError opening the file: " + str(self.filename))
@@ -161,7 +161,7 @@ class Analyzer:
                 # delete newline tag from the resource name
                 resource = resource.replace("\n", "")
                 print("Analyzing " + str(resource))
-                self.logging.info("Analyzing " + str(resource))
+                self.logging.info("Analyzing " + str(resource.encode('utf-8')))
                 # update res_analyzed index
                 self.res_analyzed += 1
                 if self.res_list:
@@ -186,10 +186,10 @@ class Analyzer:
                             self.total_table_num += html_parser.tables_num
 
                             print(">>> Mapped " + self.language + ":" + resource + ", table rows extracted: " + str(
-                                html_parser.utils.rows_extracted) + "  <<<\n")
+                                html_parser.rows_extracted_num_resource) + "  <<<\n")
 
                             print(">>> Mapped " + self.language + ":" + resource + ", table data extracted: " + str(
-                                html_parser.utils.data_extracted) + "  <<<\n")
+                                html_parser.data_extracted_num_resource) + "  <<<\n")
 
                     if self.toExtractLists == "true":
                         # Extracting list triples

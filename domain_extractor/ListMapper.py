@@ -18,7 +18,7 @@ functions to generate triples.
 
 '''
 
-import urllib.request, urllib.error, urllib.parse
+import urllib
 import json
 import re
 import rdflib
@@ -780,7 +780,7 @@ class ListMapper:
                 other_details = None
                 for other_type in CAREER[lang]:
                     # print other_type
-                    if other_type.lower() in sect_name.lower():
+                    if other_type.encode('utf-8').lower() in sect_name.encode('utf-8').lower():
                         other_details = other_type
 
                 if other_details == None:   # No possible mapping found; leave the element

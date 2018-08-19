@@ -24,6 +24,8 @@ def start_exploration():
     # Read uri resources
     uri_resource_list = explorer_tools.get_uri_resources()
 
+    #uri_resource_list = explorer_tools.utils.resourcesList[0:500]
+
     # If resources are found
     if uri_resource_list:
         # Analyze uri list
@@ -33,7 +35,7 @@ def start_exploration():
         # print report of extractor
         explorer_tools.utils.print_report()
     else:
-        print("No resources found. Please check arguments passed to pyDomainExplorer")
+        print("No resources found. Please check arguments passed to domainExplorer")
 
 def analyze_uri_resource_list(uri_resource_list):
     """
@@ -43,22 +45,21 @@ def analyze_uri_resource_list(uri_resource_list):
     """
     total_resources = len(uri_resource_list)
     offset = 0
-
     for single_uri in uri_resource_list:
-        print("Resource: ", single_uri)
+        print("Resource: ", str(single_uri))
         # check if tables data are to be extracted or not
         if explorer_tools.toExtractTables == "true":
             # get section and headers
             all_tables = get_resource_sections_and_headers(single_uri)
         else:
-            all_tables=[]
+            all_tables = []
 
         # check if lists data are to be extracted or not
         if explorer_tools.toExtractLists == "true":
             # get titles and list contents
             resDict = get_titles_and_list_contents(single_uri)
         else:
-            resDict=[]
+            resDict = []
 
         # update number of resources analyzed
         explorer_tools.utils.res_analyzed += 1
