@@ -54,7 +54,7 @@ class Selector:
             self.res_list_file = self.set_file()
 
             # open the list's file as self.list
-            self.list = open(self.res_list_file, 'w')
+            self.list = open(self.res_list_file, 'w', encoding='utf8')
             # Informing user where to find the file created
             self.utils.logging.info("The file which contains the list of resources is: %s" % self.res_list_file)
 
@@ -98,9 +98,9 @@ class Selector:
                             i = split_uri.index('resource') + 1
                             res_name = split_uri[i]
                             # encode res_name in utf-8
-                            res_name = res_name
+                            self.utils.resourcesList.append(split_uri[-1])
                             # write the resource in the file with a newline tag
-                            self.list.write(str(res_name) + '\n')
+                            self.list.write(res_name + '\n')
                             # update the number of resources serialized
                             self.resources_serialized += 1
 

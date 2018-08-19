@@ -2,12 +2,11 @@
 
 #import urllib.request, urllib.parse, urllib.error
 import urllib
-from urllib.request import urlopen
-from urllib.parse import *
-from urllib.error import *
 import json
 import time
 import datetime
+from urllib.parse import quote_plus
+
 import lxml.html
 import lxml.etree as etree
 import os
@@ -31,6 +30,8 @@ class Utilities:
         self.resource = resource
         self.collect_mode = collect_mode
         self.resource_file = None
+
+        self.resourcesList = []
 
         # test if the directory ../Extracted exists (or create it)
         self.test_dir_existence('Extracted')
@@ -129,7 +130,7 @@ class Utilities:
                             format='%(levelname)-3s %(asctime)-4s %(message)s', datefmt='%m/%d %I:%M:%S %p')
 
         # brief stat at the beginning of log, it indicates the  wiki/dbpedia chapter and topic selected
-        logging.info("You're analyzing wiki lists and tables of wiki chapter: " + self.language + ", source: " + self.resource)
+        logging.info("You're analyzing wiki lists and tables of wiki chapter: " + self.language + ", source: " + str(self.resource.encode('utf-8')))
 
     @staticmethod
     def read_parameters_research():
@@ -377,7 +378,7 @@ class Utilities:
         :return: html document of that url
         """
         try:
-            call = urlopen(url_passed)
+            call = urllib.request.urlopen(url_passed)
             html_document = lxml.html.parse(call, self.parser)
             #print(etree.tostring(html_document,pretty_print=True))
             return html_document
@@ -444,8 +445,7 @@ class Utilities:
         """
         try:
             text = str(text, "utf-8")
-            #result = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
-            result = unicodedata.normalize('NFD', text)
+            result = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
             return result
         except TypeError:
             return text
@@ -491,7 +491,7 @@ class Utilities:
         :return: a JSON representation of data obtained from a call to an online service.
         '''
         try:
-            call = urlopen(req)
+            call = urllib.request.urlopen(req)
             answer = call.read()
             json_ans = json.loads(answer)
             return json_ans

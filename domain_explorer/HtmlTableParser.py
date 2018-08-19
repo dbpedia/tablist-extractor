@@ -80,7 +80,11 @@ class HtmlTableParser:
         self.rows_extracted_num = 0  # counts the extracted data rows in each table
         self.data_extracted_num = 0  # counts the extracted data cells in each table
 
-        self.utils.logging.info("Analyzing resource: " + self.resource)
+        # statistics regarding a single resource
+        self.rows_extracted_num_resource = 0  # counts the extracted data rows in this resource
+        self.data_extracted_num_resource = 0  # counts the extracted data cells in this resource
+
+        self.utils.logging.info("Analyzing resource: " + str(self.resource.encode('utf-8')))
         # As HtmlTableParsed is correctly initialized, we find tables with find_wiki_tables()
         self.find_wiki_tables()
 
@@ -193,8 +197,10 @@ class HtmlTableParser:
 
                         # update data cells extracted in order to <make a final report
                         self.utils.data_extracted += tab.cells_refined
+                        self.data_extracted_num_resource += tab.cells_refined  # Tracking for each resource
                         self.utils.data_extracted_to_map += tab.cells_refined
                         self.utils.rows_extracted += tab.data_refined_rows
+                        self.rows_extracted_num_resource += tab.data_refined_rows  # Tracking for each resource
                         # Start the mapping process
                         self.all_tables.append(tab)
                         # if i have to map table found (HtmlTableParser can be called even by pyDomainExplorer)
@@ -263,18 +269,18 @@ class HtmlTableParser:
                                 if not section_text:
                                     section_text += text
 
-
-                        section_text = self.utils.delete_accented_characters(section_text)
+                        #section_text = self.utils.delete_accented_characters(section_text)
                         # encode in utf-8 the section text
-                        #section_text = section_text.encode('utf-8')
+                        #section_text = str(section_text.encode('utf-8'))
                         section_text = section_text.translate(str.maketrans('', '', string.punctuation))
+
                         return section_text
 
         # if a <h> tag was not found return the page's title
         resource = self.resource.replace("_", " ")
         # I need that section hasn't accented characters
         resource = self.utils.delete_accented_characters(resource)
-        #resource = resource.encode('utf-8')
+        #resource = str(resource.encode('utf-8'))
         resource = resource.translate(str.maketrans('', '', string.punctuation))
         return resource
 
@@ -609,7 +615,7 @@ class HtmlTableParser:
         """
 
         for header in tab.headers_refined:
-            #header['th'] = header['th'].encode('ascii', 'replace')
+            header['th'] = str(header['th'].encode('ascii', 'replace').decode('utf-8'))
             if "?" in header['th']:
                 header['th'] = header['th'].replace("?", ".")
 
