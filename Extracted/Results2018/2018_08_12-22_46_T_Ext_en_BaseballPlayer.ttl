@@ -1,0 +1,2010 @@
+@prefix ns1: <http://dbpedia.org/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://dbpedia.org/resource/%3F_AL_Most_Valuable_Player> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Baseball_America_Top_100_prospect> ns1:activeYear "2010-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/%3F_Baseball_Digest_Player_of_the_Year> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Batting_champion> ns1:activeYear "2011-01-01"^^xsd:gYear,
+        "2015-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Double_plays_grounded_into_leader> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Doubles_leader> ns1:activeYear "2011-01-01"^^xsd:gYear,
+        "2014-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Florida_Marlins_Most_Valuable_Player> ns1:activeYear "2004-01-01"^^xsd:gYear,
+        "2006-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Home_run_leader> ns1:activeYear "2008-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Intentional_bases_on_balls_leader> ns1:activeYear "2010-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_MLB_All-Star> ns1:activeYear "2004-01-01"^^xsd:gYear,
+        "2007-01-01"^^xsd:gYear,
+        "2010-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_MLB_Player_of_the_Month> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_MLB_Player_of_the_Week> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_MLB_Player_of_the_Year> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_NL_Rookie_of_the_Month> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_On-base_percentage_leader> ns1:activeYear "2010-01-01"^^xsd:gYear,
+        "2011-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2015-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_On-base_plus_slugging_percentage_leader> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Players_Choice_Award_for_Major_League_Player_of_the_Year> ns1:AwardedFor <http://dbpedia.org/resource/Major_League_Player_of_the_Year%282012%2C_2013%29> ;
+    ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Runs_batted_in_leader> ns1:activeYear "2010-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Slugging_percentage_leader> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Tiger_of_the_Year> ns1:activeYear "2008-01-01"^^xsd:gYear,
+        "2010-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/%3F_Total_bases_leader> ns1:activeYear "2008-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/A._J._Hinch> ns1:ManagerialRecord <http://dbpedia.org/resource/A._J._Hinch__1>,
+        <http://dbpedia.org/resource/A._J._Hinch__2> .
+
+<http://dbpedia.org/resource/AL_MVP_voting> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> ;
+    ns1:activeYear "1997-01-01"^^xsd:gYear,
+        "2001-01-01"^^xsd:gYear,
+        "2003-01-01"^^xsd:gYear,
+        "2009-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/AL_hitters> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> ;
+    ns1:activeYear "1997-01-01"^^xsd:gYear,
+        "1999-01-01"^^xsd:gYear,
+        "2000-01-01"^^xsd:gYear,
+        "2003-01-01"^^xsd:gYear,
+        "2009-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/All-Star_Futures_Game> ns1:activeYear "2010-01-01"^^xsd:gYear,
+        "2011-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey>,
+        <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/American_Broadcasting_Company> ns1:AwardedFor <http://dbpedia.org/resource/ABC_Afterschool_Special> ;
+    ns1:activeYear "1978-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Jackie_Robinson> .
+
+<http://dbpedia.org/resource/Andre_Braugher> ns1:activeYear "1990-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Jackie_Robinson> .
+
+<http://dbpedia.org/resource/Baseball_America> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Baseball_America_Minor_League_Player_of_the_Year_Award> ns1:activeYear "2011-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Batting_average> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> ;
+    ns1:activeYear "1998-01-01"^^xsd:gYear,
+        "2001-01-01"^^xsd:gYear,
+        "2003-01-01"^^xsd:gYear,
+        "2007-01-01"^^xsd:gYear,
+        "2009-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Became_the_first_player_in_history_with_more_times_on_base> ns1:AwardedFor <http://dbpedia.org/resource/the_376_number.> ;
+    ns1:activeYear "2004-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Billy_Hatcher> ns1:AwardedFor <http://dbpedia.org/resource/all-time_postseason_consecutive_on-base_streak_%2810%29> ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Blair_Underwood> ns1:activeYear "1996-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Jackie_Robinson> .
+
+<http://dbpedia.org/resource/Bobby_Bonds> ns1:activeYear "2007-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Bobby_Cox> ns1:ManagerialRecord <http://dbpedia.org/resource/Bobby_Cox__1>,
+        <http://dbpedia.org/resource/Bobby_Cox__2>,
+        <http://dbpedia.org/resource/Bobby_Cox__3> .
+
+<http://dbpedia.org/resource/Bryce_Harper> ns1:achievement <http://dbpedia.org/resource/Bryce_Harper__1>,
+        <http://dbpedia.org/resource/Bryce_Harper__10>,
+        <http://dbpedia.org/resource/Bryce_Harper__11>,
+        <http://dbpedia.org/resource/Bryce_Harper__12>,
+        <http://dbpedia.org/resource/Bryce_Harper__13>,
+        <http://dbpedia.org/resource/Bryce_Harper__14>,
+        <http://dbpedia.org/resource/Bryce_Harper__15>,
+        <http://dbpedia.org/resource/Bryce_Harper__16>,
+        <http://dbpedia.org/resource/Bryce_Harper__17>,
+        <http://dbpedia.org/resource/Bryce_Harper__18>,
+        <http://dbpedia.org/resource/Bryce_Harper__19>,
+        <http://dbpedia.org/resource/Bryce_Harper__2>,
+        <http://dbpedia.org/resource/Bryce_Harper__20>,
+        <http://dbpedia.org/resource/Bryce_Harper__21>,
+        <http://dbpedia.org/resource/Bryce_Harper__22>,
+        <http://dbpedia.org/resource/Bryce_Harper__23>,
+        <http://dbpedia.org/resource/Bryce_Harper__24>,
+        <http://dbpedia.org/resource/Bryce_Harper__25>,
+        <http://dbpedia.org/resource/Bryce_Harper__3>,
+        <http://dbpedia.org/resource/Bryce_Harper__4>,
+        <http://dbpedia.org/resource/Bryce_Harper__5>,
+        <http://dbpedia.org/resource/Bryce_Harper__6>,
+        <http://dbpedia.org/resource/Bryce_Harper__7>,
+        <http://dbpedia.org/resource/Bryce_Harper__8>,
+        <http://dbpedia.org/resource/Bryce_Harper__9> .
+
+<http://dbpedia.org/resource/CBS> ns1:activeYear "2005-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Jackie_Robinson> .
+
+<http://dbpedia.org/resource/Chadwick_Boseman> ns1:activeYear "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Jackie_Robinson> .
+
+<http://dbpedia.org/resource/Changeup> ns1:Hits <http://dbpedia.org/resource/Zack_Greinke> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw> ns1:achievement <http://dbpedia.org/resource/Clayton_Kershaw__23>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__24>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__25>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__26>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__27>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__28>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__29>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__30>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__31>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__32> ;
+    ns1:award <http://dbpedia.org/resource/Clayton_Kershaw__1>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__10>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__11>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__12>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__13>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__14>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__15>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__16>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__17>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__18>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__19>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__2>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__20>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__21>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__22>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__3>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__4>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__5>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__6>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__7>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__8>,
+        <http://dbpedia.org/resource/Clayton_Kershaw__9> .
+
+<http://dbpedia.org/resource/Clint_Hurdle> ns1:ManagerialRecord <http://dbpedia.org/resource/Clint_Hurdle__1>,
+        <http://dbpedia.org/resource/Clint_Hurdle__2> .
+
+<http://dbpedia.org/resource/Consecutive_MVP_awards> ns1:activeYear "2001-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Consecutive_games_with_a_walk> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Consecutive_plate_appearances_reaching_base> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Consecutive_plate_appearances_with_a_walk> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Consecutive_seasons_with_.600_slugging_percentage_or_higher> ns1:activeYear "1998-01-01"^^xsd:gYear,
+        "2005-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Consecutive_seasons_with_30_or_more_home_runs> ns1:activeYear "1992-01-01"^^xsd:gYear,
+        "2004-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Curveball> ns1:Hits <http://dbpedia.org/resource/Zack_Greinke> .
+
+<http://dbpedia.org/resource/Cutter_%28baseball%29> ns1:Hits <http://dbpedia.org/resource/Zack_Greinke> .
+
+<http://dbpedia.org/resource/David_Alan_Grier> ns1:activeYear "1981-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Jackie_Robinson> .
+
+<http://dbpedia.org/resource/ESPY_Award> ns1:AwardedFor <http://dbpedia.org/resource/Best_Major_League_Baseball_Player_ESPY_Award> ;
+    ns1:activeYear "2015-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Earl_Weaver> ns1:ManagerialRecord <http://dbpedia.org/resource/Earl_Weaver__1>,
+        <http://dbpedia.org/resource/Earl_Weaver__2> .
+
+<http://dbpedia.org/resource/Extra_base_hits_leader> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/Fielding_Bible_Award> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/First_player_ever_to_hit_two_walk-off_home_runs_in_the_same_postseason> ns1:activeYear "2004-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/First_player_in_Red_Sox_history_to_hit_40_or_more_home_runs_in_three_consecutive_seasons> ns1:activeYear "2004-01-01"^^xsd:gYear,
+        "2006-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Florida_State_League> ns1:activeYear "2011-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey> .
+
+<http://dbpedia.org/resource/Four-seam_fastball> ns1:Hits <http://dbpedia.org/resource/Zack_Greinke> .
+
+<http://dbpedia.org/resource/Games_played_leader> ns1:activeYear "2011-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/Hank_Aaron_Award> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2014-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera>,
+        <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Heart_%26_Hustle_Award> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Hits> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> ;
+    ns1:activeYear "1997-01-01"^^xsd:gYear,
+        "1999-01-01"^^xsd:gYear,
+        "2002-01-01"^^xsd:gYear,
+        "2004-01-01"^^xsd:gYear,
+        "2007-01-01"^^xsd:gYear,
+        "2009-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Home_runs_against_different_pitchers> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Home_runs_in_a_single_post-season> ns1:activeYear "2002-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Home_runs_in_the_year_he_turned_43_years_old> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Home_runs_since_turning_40_years_old> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Intentional_walks_in_a_single_season> ns1:activeYear "2004-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/International_League> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey> .
+
+<http://dbpedia.org/resource/Jake_Arrieta> ns1:award <http://dbpedia.org/resource/Jake_Arrieta__1>,
+        <http://dbpedia.org/resource/Jake_Arrieta__10>,
+        <http://dbpedia.org/resource/Jake_Arrieta__11>,
+        <http://dbpedia.org/resource/Jake_Arrieta__12>,
+        <http://dbpedia.org/resource/Jake_Arrieta__13>,
+        <http://dbpedia.org/resource/Jake_Arrieta__14>,
+        <http://dbpedia.org/resource/Jake_Arrieta__15>,
+        <http://dbpedia.org/resource/Jake_Arrieta__16>,
+        <http://dbpedia.org/resource/Jake_Arrieta__17>,
+        <http://dbpedia.org/resource/Jake_Arrieta__18>,
+        <http://dbpedia.org/resource/Jake_Arrieta__19>,
+        <http://dbpedia.org/resource/Jake_Arrieta__2>,
+        <http://dbpedia.org/resource/Jake_Arrieta__20>,
+        <http://dbpedia.org/resource/Jake_Arrieta__21>,
+        <http://dbpedia.org/resource/Jake_Arrieta__22>,
+        <http://dbpedia.org/resource/Jake_Arrieta__23>,
+        <http://dbpedia.org/resource/Jake_Arrieta__24>,
+        <http://dbpedia.org/resource/Jake_Arrieta__25>,
+        <http://dbpedia.org/resource/Jake_Arrieta__26>,
+        <http://dbpedia.org/resource/Jake_Arrieta__3>,
+        <http://dbpedia.org/resource/Jake_Arrieta__4>,
+        <http://dbpedia.org/resource/Jake_Arrieta__5>,
+        <http://dbpedia.org/resource/Jake_Arrieta__6>,
+        <http://dbpedia.org/resource/Jake_Arrieta__7>,
+        <http://dbpedia.org/resource/Jake_Arrieta__8>,
+        <http://dbpedia.org/resource/Jake_Arrieta__9> .
+
+<http://dbpedia.org/resource/John_McGraw> ns1:record <http://dbpedia.org/resource/John_McGraw__17>,
+        <http://dbpedia.org/resource/John_McGraw__18>,
+        <http://dbpedia.org/resource/John_McGraw__19>,
+        <http://dbpedia.org/resource/John_McGraw__20>,
+        <http://dbpedia.org/resource/John_McGraw__21>,
+        <http://dbpedia.org/resource/John_McGraw__22> ;
+    ns1:statistics <http://dbpedia.org/resource/John_McGraw__1>,
+        <http://dbpedia.org/resource/John_McGraw__10>,
+        <http://dbpedia.org/resource/John_McGraw__11>,
+        <http://dbpedia.org/resource/John_McGraw__12>,
+        <http://dbpedia.org/resource/John_McGraw__13>,
+        <http://dbpedia.org/resource/John_McGraw__14>,
+        <http://dbpedia.org/resource/John_McGraw__15>,
+        <http://dbpedia.org/resource/John_McGraw__16>,
+        <http://dbpedia.org/resource/John_McGraw__2>,
+        <http://dbpedia.org/resource/John_McGraw__3>,
+        <http://dbpedia.org/resource/John_McGraw__4>,
+        <http://dbpedia.org/resource/John_McGraw__5>,
+        <http://dbpedia.org/resource/John_McGraw__6>,
+        <http://dbpedia.org/resource/John_McGraw__7>,
+        <http://dbpedia.org/resource/John_McGraw__8>,
+        <http://dbpedia.org/resource/John_McGraw__9> .
+
+<http://dbpedia.org/resource/League_Championship_Series> ns1:activeYear "2003-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/League_Top%3FTen> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> .
+
+<http://dbpedia.org/resource/Led_League> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> .
+
+<http://dbpedia.org/resource/List_of_Major_League_Baseball_batting_champions> ns1:activeYear "2011-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2015-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/List_of_World_Series_champions> ns1:activeYear "2003-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/List_of_lifetime_home_run_leaders_in_Major_League_Baseball> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Luis_Aparicio_Award> ns1:activeYear "2005-01-01"^^xsd:gYear,
+        "2011-01-01"^^xsd:gYear,
+        "2015-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/MLB.com> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/MLB_All-Star_Game> ns1:activeYear "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey> .
+
+<http://dbpedia.org/resource/MLB_Most_Valuable_Player_award> ns1:activeYear "2003-01-01"^^xsd:gYear,
+        "2004-01-01"^^xsd:gYear,
+        "2005-01-01"^^xsd:gYear,
+        "2006-01-01"^^xsd:gYear,
+        "2007-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_All-Century_Team> ns1:activeYear "1999-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_All-Star_Game> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2017-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_All-Star_Game_Most_Valuable_Player_Award> ns1:activeYear "2014-01-01"^^xsd:gYear,
+        "2015-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_Comeback_Player_of_the_Year_Award> ns1:activeYear "2015-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_Most_Valuable_Player_Award> ns1:activeYear "1990-01-01"^^xsd:gYear,
+        "1992-01-01"^^xsd:gYear,
+        "2001-01-01"^^xsd:gYear,
+        "2014-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds>,
+        <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_Pitcher_of_the_Month> ns1:activeYear "2013-01-01"^^xsd:gYearMonth ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_Player_of_the_Month_Award> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2014-01-01"^^xsd:gYear,
+        "2015-01-01"^^xsd:gYear,
+        "2017-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds>,
+        <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_Player_of_the_Week_Award> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2014-01-01"^^xsd:gYear,
+        "2015-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey>,
+        <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_Rookie_of_the_Month_Award> ns1:activeYear "2012-01-01"^^xsd:gYearMonth ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_Rookie_of_the_Year_Award> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Major_League_Baseball_Triple_Crown> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/MiLB.com> ns1:activeYear "2011-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey> .
+
+<http://dbpedia.org/resource/Minor_League_Baseball> ns1:activeYear "2010-01-01"^^xsd:gYear,
+        "2011-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Off-Broadway> ns1:activeYear "1989-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Jackie_Robinson> .
+
+<http://dbpedia.org/resource/On-base_percentage_in_a_single_season> ns1:activeYear "2004-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Only_the_second_player_to_twice_have_a_single-season_slugging_percentage_over_.800> ns1:activeYear "1920-01-01"^^xsd:gYear,
+        "1921-01-01"^^xsd:gYear,
+        "2001-01-01"^^xsd:gYear,
+        "2004-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Ortiz%27s_home_run_total_increased_each_year_from_2000_to_2006> ns1:activeYear "2000-01-01"^^xsd:gYear,
+        "2006-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Played_minor_league_baseball_in_both_Alaska_and_Hawaii._In_1983> ns1:AwardedFor <http://dbpedia.org/resource/the_Hawaii_Islanders_in_the_Pacific_Coast_League.> ;
+    ns1:activeYear "1983-01-01"^^xsd:gYear,
+        "1986-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Players_Choice_Award_for_American_League_Outstanding_Rookie> ns1:AwardedFor <http://dbpedia.org/resource/American_League_Outstanding_Rookie_%282012%29> ;
+    ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Players_Choice_Awards> ns1:AwardedFor <http://dbpedia.org/resource/American_League_Outstanding_Player_%282012%2C_2013%29>,
+        <http://dbpedia.org/resource/American_League_Outstanding_Player_%282014%29> ;
+    ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2014-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera>,
+        <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Progression_of_the_single-season_MLB_home_run_record> ns1:activeYear "2001-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Rating_of_352_on_Baseball-Reference.com%27s_Hall_of_Fame_monitor> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Red_Sox_single-season_home-run_leader> ns1:activeYear "2006-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Runs_scored> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> ;
+    ns1:activeYear "1997-01-01"^^xsd:gYear,
+        "1998-01-01"^^xsd:gYear,
+        "2006-01-01"^^xsd:gYear,
+        "2009-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Silver_Slugger_Award> ns1:activeYear "2005-01-01"^^xsd:gYear,
+        "2006-01-01"^^xsd:gYear,
+        "2010-01-01"^^xsd:gYear,
+        "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2015-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera>,
+        <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Singles> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> ;
+    ns1:activeYear "1997-01-01"^^xsd:gYear,
+        "1998-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Slider> ns1:Hits <http://dbpedia.org/resource/Zack_Greinke> .
+
+<http://dbpedia.org/resource/Slugging_percentage_in_a_World_Series> ns1:activeYear "2002-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Slugging_percentage_in_a_single_season> ns1:activeYear "2001-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Sporting_News> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Sporting_News_Player_of_the_Year_Award> ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera> .
+
+<http://dbpedia.org/resource/Sports_Illustrated> ns1:activeYear "2013-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Ten_seasons_of_100_or_more_RBIs> ns1:activeYear "2003-01-01"^^xsd:gYear,
+        "2007-01-01"^^xsd:gYear,
+        "2010-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Ten_seasons_of_30_or_more_home_runs> ns1:activeYear "2003-01-01"^^xsd:gYear,
+        "2007-01-01"^^xsd:gYear,
+        "2010-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Ten_seasons_of_30_or_more_home_runs_and_100_or_more_RBIs> ns1:activeYear "2003-01-01"^^xsd:gYear,
+        "2007-01-01"^^xsd:gYear,
+        "2010-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Terry_Francona> ns1:ManagerialRecord <http://dbpedia.org/resource/Terry_Francona__1>,
+        <http://dbpedia.org/resource/Terry_Francona__2>,
+        <http://dbpedia.org/resource/Terry_Francona__3> .
+
+<http://dbpedia.org/resource/The_Sporting_News> ns1:activeYear "2005-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/This_Year_in_Baseball_Award_for_Rookie_of_the_Year> ns1:AwardedFor <http://dbpedia.org/resource/Rookie_of_the_Year_%282012%29> ;
+    ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/This_Year_in_Baseball_Awards> ns1:AwardedFor <http://dbpedia.org/resource/Best_Major_Leaguer_%282016%29>,
+        <http://dbpedia.org/resource/Hitter_of_the_Year_%282012%2C_2013%29> ;
+    ns1:activeYear "2012-01-01"^^xsd:gYear,
+        "2013-01-01"^^xsd:gYear,
+        "2016-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Miguel_Cabrera>,
+        <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/This_Year_in_Baseball_Hitter_of_the_Year> ns1:activeYear "2014-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Tied_World_Series_record_with_on-base_streak_of_nine_in_a_row> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Tied_with_Babe_Ruth_for_AL_single-season_home_run_record_in_road_games> ns1:AwardedFor <http://dbpedia.org/resource/AL_single-season_home_run_record_in_road_games_%2832%3B_2006%29> ;
+    ns1:activeYear "2006-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Tied_with_his_father> ns1:AwardedFor <http://dbpedia.org/resource/most_seasons_with_30_home_runs_and_30_stolen_bases_%285%29%3B_they_are_the_only_father-son_members_of_the_30%3F30_club> ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Time_NL_Hank_Aaron_Award_winner> ns1:activeYear "2001-01-01"^^xsd:gYear,
+        "2004-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Topps> ns1:activeYear "2010-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/ToppsAwards> ns1:activeYear "2010-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Total_bases> ns1:Hits <http://dbpedia.org/resource/Derek_Jeter> ;
+    ns1:activeYear "1999-01-01"^^xsd:gYear .
+
+<http://dbpedia.org/resource/Twice_set_single_season_record_for_home_runs_by_a_designated_hitter> ns1:AwardedFor <http://dbpedia.org/resource/home_runs_by_a_designated_hitter%3A_First_in_2005_%2843%29%2C_then_again_in_2006_%2847%29> ;
+    ns1:activeYear "2005-01-01"^^xsd:gYear,
+        "2006-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Two-seam_fastball> ns1:Hits <http://dbpedia.org/resource/Zack_Greinke> .
+
+<http://dbpedia.org/resource/USA_Today> ns1:activeYear "2011-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/Walk-off_home_run> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/Walks_in_a_single_season> ns1:activeYear "2004-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/Wilson_Sporting_Goods> ns1:activeYear "2012-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Mike_Trout> .
+
+<http://dbpedia.org/resource/World_Series_career_record_.455_batting_average> ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/David_Ortiz> .
+
+<http://dbpedia.org/resource/batting_average> ns1:AwardedFor <http://dbpedia.org/resource/the_first_time%2C_2002> ;
+    ns1:activeYear "2002-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/time_SF_Giants_Player_of_the_Year> ns1:activeYear "1998-01-01"^^xsd:gYear,
+        "2001-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Barry_Bonds> .
+
+<http://dbpedia.org/resource/x_FSL_Pitcher_of_the_Week> ns1:activeYear "2011-01-01"^^xsd:gYear ;
+    ns1:awardStatus ns1:Winner ;
+    ns1:awardedTo <http://dbpedia.org/resource/Matt_Harvey> .
+
+<http://dbpedia.org/resource/A._J._Hinch__1> ns1:BaseballSeasonGames "212.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "123.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "89.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWon <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "2009.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Arizona_Diamondbacks> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/A._J._Hinch__2> ns1:BaseballSeasonGames "493.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "216.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "277.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames "24.0"^^xsd:float ;
+    ns1:PostSeasonLost "10.0"^^xsd:float ;
+    ns1:PostSeasonWon "14.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "2015.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Houston_Astros> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__1> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__10> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__11> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__12> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__13> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__14> ns1:Award <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:count <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__15> ns1:Award <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:count <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__16> ns1:Award <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:count <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__17> ns1:Award <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:count <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__18> ns1:Award <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:count <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__19> ns1:Award <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:count <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__2> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__20> ns1:Award <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:count <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__3> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__4> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__5> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__6> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__7> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__8> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Barry_Bonds__9> ns1:BaseballSeason <http://dbpedia.org/resource//> ;
+    ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bobby_Cox__1> ns1:BaseballSeasonGames "589.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "323.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "266.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWon <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1978.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Atlanta_Braves> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bobby_Cox__2> ns1:BaseballSeasonGames "647.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "292.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "355.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames "7.0"^^xsd:float ;
+    ns1:PostSeasonLost "4.0"^^xsd:float ;
+    ns1:PostSeasonWon "3.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1982.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Toronto_Blue_Jays> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bobby_Cox__3> ns1:BaseballSeasonGames "3,269"^^xsd:string ;
+    ns1:BaseballSeasonLost "1,386"^^xsd:string ;
+    ns1:BaseballSeasonWon "1,883"^^xsd:string ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames "129.0"^^xsd:float ;
+    ns1:PostSeasonLost "65.0"^^xsd:float ;
+    ns1:PostSeasonWon "64.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1990.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Atlanta_Braves> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__1> ns1:Year "2017.0"^^xsd:float ;
+    ns1:award "MLB National League All-Star"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__10> ns1:Year "2010.0"^^xsd:float ;
+    ns1:award "MLB Draft: First overall Pick by the Washington Nationals"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__11> ns1:Year "2010.0"^^xsd:float ;
+    ns1:award <http://dbpedia.org/resource/Golden_Spikes_Award> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__12> ns1:Year "2010.0"^^xsd:float ;
+    ns1:award "SWAC Player of the Year"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__13> ns1:Year "2009.0"^^xsd:float ;
+    ns1:award "Baseball America High School Player of the Year"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__14> ns1:Year "2009.0"^^xsd:float ;
+    ns1:award "Longest HR in International Power Showcase HS Home Run Derby (Tropicana Field Record: 502 feet)"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__15> ns1:Year "2008.0"^^xsd:float ;
+    ns1:award "First Team All Sunrise Division Catcher"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__16> ns1:Year "2008.0"^^xsd:float ;
+    ns1:award "First Team All State Catcher"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__17> ns1:Year "2008.0"^^xsd:float ;
+    ns1:award "Player of the Year North-East Division"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__18> ns1:Year "2008.0"^^xsd:float ;
+    ns1:award "Batting Average Leader for the state of Nevada"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__19> ns1:Year "2008.0"^^xsd:float ;
+    ns1:award "All World Team"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__2> ns1:Year "2016.0"^^xsd:float ;
+    ns1:award "ESPN MLB Person of the Year"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__20> ns1:Year "2008.0"^^xsd:float ;
+    ns1:award "All Area Code Team"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__21> ns1:Year "2007.0"^^xsd:float ;
+    ns1:award "TBS 14u All American Team"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__22> ns1:Year "2007.0"^^xsd:float ;
+    ns1:award "TBS 14u Player of the Year"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__23> ns1:Year "2006.0"^^xsd:float ;
+    ns1:award "TBS 13u All American Team"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__24> ns1:Year "2005.0"^^xsd:float ;
+    ns1:award "TBS 12u All American Team"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__25> ns1:Year "2005.0"^^xsd:float ;
+    ns1:award "NYBB All American Team"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__3> ns1:Year "2015.0"^^xsd:float ;
+    ns1:award <http://dbpedia.org/resource/NL_Most_Valuable_Player> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__4> ns1:Year "2014.0"^^xsd:float ;
+    ns1:award <http://dbpedia.org/resource/NL_Hank_Aaron_Award> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__5> ns1:Year "2014.0"^^xsd:float ;
+    ns1:award "MLB National League All-Star"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__6> ns1:Year "2012.0"^^xsd:float ;
+    ns1:award "MLB National League All-Star"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__7> ns1:Year "2012.0"^^xsd:float ;
+    ns1:award <http://dbpedia.org/resource/NL_Rookie_of_the_Year> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__8> ns1:Year "2011.0"^^xsd:float ;
+    ns1:award "MLB National League All-Star"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Bryce_Harper__9> ns1:Year "2010.0"^^xsd:float ;
+    ns1:award "AFL Champion"^^xsd:string ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__1> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__10> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__11> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__12> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__13> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__14> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__15> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__16> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__17> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__18> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__19> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__2> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__20> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__21> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__22> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__23> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__24> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__25> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__26> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__27> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__28> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__29> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__3> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__30> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__31> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__32> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__4> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__5> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__6> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__7> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__8> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clayton_Kershaw__9> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:award <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clint_Hurdle__1> ns1:BaseballSeasonLost "625.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "534.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost "4.0"^^xsd:float ;
+    ns1:PostSeasonWon "7.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from <http://dbpedia.org/resource//> ;
+    ns1:team <http://dbpedia.org/resource//> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Clint_Hurdle__2> ns1:BaseballSeasonLost "602.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "641.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost "5.0"^^xsd:float ;
+    ns1:PostSeasonWon "3.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from <http://dbpedia.org/resource//> ;
+    ns1:team <http://dbpedia.org/resource//> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__1> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__2> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__3> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__4> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__5> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__6> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__7> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__8> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/David_Ortiz__9> ns1:Count <http://dbpedia.org/resource//> ;
+    ns1:TimePeriod <http://dbpedia.org/resource//> ;
+    ns1:category <http://dbpedia.org/resource//> ;
+    ns1:reference <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__1> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__10> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__11> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__12> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__13> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__14> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__15> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__16> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__17> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__18> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__19> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__2> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__20> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__21> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__22> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__23> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__24> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__25> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__26> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__27> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__28> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__29> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__3> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__30> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__31> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__32> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__33> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__34> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__35> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__36> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__37> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__38> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__39> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__4> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__40> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__5> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__6> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__7> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__8> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter__9> ns1:award <http://dbpedia.org/resource//> ;
+    ns1:date <http://dbpedia.org/resource//> ;
+    ns1:time <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Earl_Weaver__1> ns1:BaseballSeasonLost "919.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "1354.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost "20.0"^^xsd:float ;
+    ns1:PostSeasonWon "26.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from <http://dbpedia.org/resource//> ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Earl_Weaver__2> ns1:BaseballSeasonLost "141.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "126.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost "0.0"^^xsd:float ;
+    ns1:PostSeasonWon "0.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from <http://dbpedia.org/resource//> ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Jake_Arrieta__1> ns1:award "Major League Accomplishments & Awards/"^^xsd:string ;
+    ns1:date "Major League Accomplishments & Awards/"^^xsd:string ;
+    ns1:reference "Major League Accomplishments & Awards/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__10> ns1:award "Eastern League Pitcher of the Week/"^^xsd:string ;
+    ns1:date "2009 (May 18–24 & June 8–14)/"^^xsd:string ;
+    ns1:reference "[63]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__11> ns1:award "All-Star Futures Game/"^^xsd:string ;
+    ns1:date "2008/"^^xsd:string ;
+    ns1:reference "[64]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__12> ns1:award "Carolina League Pitcher of the Year/"^^xsd:string ;
+    ns1:date "2008/"^^xsd:string ;
+    ns1:reference "[63]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__13> ns1:award "Carolina League Postseason All-Star/"^^xsd:string ;
+    ns1:date "2008/"^^xsd:string ;
+    ns1:reference "[63]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__14> ns1:award "Carolina League Mid-Season All-Star/"^^xsd:string ;
+    ns1:date "2008/"^^xsd:string ;
+    ns1:reference "[65]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__15> ns1:award "Carolina League Pitcher of the Week/"^^xsd:string ;
+    ns1:date "2008 (May 12–18 & May 26 – June 1)/"^^xsd:string ;
+    ns1:reference "[63]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__16> ns1:award "Arizona Fall League All-Prospect Team/"^^xsd:string ;
+    ns1:date "2007/"^^xsd:string ;
+    ns1:reference "[63]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__17> ns1:award "College Baseball Accomplishments & Awards/"^^xsd:string ;
+    ns1:date "College Baseball Accomplishments & Awards/"^^xsd:string ;
+    ns1:reference "College Baseball Accomplishments & Awards/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__18> ns1:award "Baseball America Second-Team All-American/"^^xsd:string ;
+    ns1:date "2006/"^^xsd:string ;
+    ns1:reference "[66]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__19> ns1:award "NCBWA second-team All-American/"^^xsd:string ;
+    ns1:date "2006/"^^xsd:string ;
+    ns1:reference "[67]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__2> ns1:award "Chicago Cubs Opening Day starting pitcher/"^^xsd:string ;
+    ns1:date "April 4, 2016/"^^xsd:string ;
+    ns1:reference "[44]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__20> ns1:award "NCAA Division I baseball Wins leader/"^^xsd:string ;
+    ns1:date "2006/"^^xsd:string ;
+    ns1:reference "[68]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__21> ns1:award "Mountain West Conference Co-Pitcher of the Year/"^^xsd:string ;
+    ns1:date "2006/"^^xsd:string ;
+    ns1:reference "[1]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__22> ns1:award "First-team All-Mountain West/"^^xsd:string ;
+    ns1:date "2006 & 2007/"^^xsd:string ;
+    ns1:reference "[1]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__23> ns1:award "Mountain West Conference Pitcher of the Week/"^^xsd:string ;
+    ns1:date "2006 (Feb. 13–19, May 8–14, May 22–28)/"^^xsd:string ;
+    ns1:reference "[1]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__24> ns1:award "Houston College Classic All-Tournament team/"^^xsd:string ;
+    ns1:date "2006/"^^xsd:string ;
+    ns1:reference "[1]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__25> ns1:award "Other/"^^xsd:string ;
+    ns1:date "Other/"^^xsd:string ;
+    ns1:reference "Other/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__26> ns1:award "Best Breakthrough Athlete ESPY Award/"^^xsd:string ;
+    ns1:date "2016/"^^xsd:string ;
+    ns1:reference "[69]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__3> ns1:award "National League Cy Young Award/"^^xsd:string ;
+    ns1:date "2015/"^^xsd:string ;
+    ns1:reference "[42]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__4> ns1:award "MLB Wins Leader/"^^xsd:string ;
+    ns1:date "2015/"^^xsd:string ;
+    ns1:reference "[42]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__5> ns1:award "Pitched a no-hitter/"^^xsd:string ;
+    ns1:date "August 30, 2015; April 21, 2016/"^^xsd:string ;
+    ns1:reference "[29]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__6> ns1:award "National League Pitcher of the Month/"^^xsd:string ;
+    ns1:date "2015 (August & September); 2016 (April); 2017 (August)/"^^xsd:string ;
+    ns1:reference "[29][34]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__7> ns1:award "National League Player of the Week/"^^xsd:string ;
+    ns1:date "2015 (July 6–12, August 24–30, & September 21–27)/"^^xsd:string ;
+    ns1:reference "[28]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__8> ns1:award "Baltimore Orioles Opening Day starting pitcher/"^^xsd:string ;
+    ns1:date "April 5, 2012/"^^xsd:string ;
+    ns1:reference "[62]/"^^xsd:string .
+
+<http://dbpedia.org/resource/Jake_Arrieta__9> ns1:award "Minor League Accomplishments & Awards/"^^xsd:string ;
+    ns1:date "Minor League Accomplishments & Awards/"^^xsd:string ;
+    ns1:reference "Minor League Accomplishments & Awards/"^^xsd:string .
+
+<http://dbpedia.org/resource/John_McGraw__1> ns1:AtBats "115.0"^^xsd:float ;
+    ns1:Doubles "3.0"^^xsd:float ;
+    ns1:Games "33.0"^^xsd:float ;
+    ns1:Hits "31.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/AA> ;
+    ns1:OnBasePercentage "0.359"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "17.0"^^xsd:float ;
+    ns1:RunsBattedIn "14.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.383"^^xsd:float ;
+    ns1:StolenBases "4.0"^^xsd:float ;
+    ns1:StrikeOuts "17.0"^^xsd:float ;
+    ns1:Triples "5.0"^^xsd:float ;
+    ns1:Year "1891.0"^^xsd:float ;
+    ns1:age "18.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__10> ns1:AtBats "334.0"^^xsd:float ;
+    ns1:Doubles "10.0"^^xsd:float ;
+    ns1:Games "99.0"^^xsd:float ;
+    ns1:Hits "115.0"^^xsd:float ;
+    ns1:HomeRuns "2.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.505"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "84.0"^^xsd:float ;
+    ns1:RunsBattedIn "33.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.416"^^xsd:float ;
+    ns1:StolenBases "29.0"^^xsd:float ;
+    ns1:StrikeOuts "9.0"^^xsd:float ;
+    ns1:Triples "4.0"^^xsd:float ;
+    ns1:Year "1900.0"^^xsd:float ;
+    ns1:age "27.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/St._Louis_Cardinals> .
+
+<http://dbpedia.org/resource/John_McGraw__11> ns1:AtBats "232.0"^^xsd:float ;
+    ns1:Doubles "14.0"^^xsd:float ;
+    ns1:Games "73.0"^^xsd:float ;
+    ns1:Hits "81.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/AL> ;
+    ns1:OnBasePercentage "0.508"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "71.0"^^xsd:float ;
+    ns1:RunsBattedIn "28.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.487"^^xsd:float ;
+    ns1:StolenBases "24.0"^^xsd:float ;
+    ns1:StrikeOuts "6.0"^^xsd:float ;
+    ns1:Triples "9.0"^^xsd:float ;
+    ns1:Year "1901.0"^^xsd:float ;
+    ns1:age "28.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__12> ns1:AtBats "170.0"^^xsd:float ;
+    ns1:Doubles "3.0"^^xsd:float ;
+    ns1:Games "55.0"^^xsd:float ;
+    ns1:Hits "43.0"^^xsd:float ;
+    ns1:HomeRuns "1.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/AL> ;
+    ns1:OnBasePercentage "0.42"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "27.0"^^xsd:float ;
+    ns1:RunsBattedIn "8.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.312"^^xsd:float ;
+    ns1:StolenBases "12.0"^^xsd:float ;
+    ns1:StrikeOuts "17.0"^^xsd:float ;
+    ns1:Triples "2.0"^^xsd:float ;
+    ns1:Year "1902.0"^^xsd:float ;
+    ns1:age "29.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__13> ns1:AtBats "11.0"^^xsd:float ;
+    ns1:Doubles "0.0"^^xsd:float ;
+    ns1:Games "12.0"^^xsd:float ;
+    ns1:Hits "3.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.467"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "2.0"^^xsd:float ;
+    ns1:RunsBattedIn "1.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.273"^^xsd:float ;
+    ns1:StolenBases "1.0"^^xsd:float ;
+    ns1:StrikeOuts "0.0"^^xsd:float ;
+    ns1:Triples "0.0"^^xsd:float ;
+    ns1:Year "1903.0"^^xsd:float ;
+    ns1:age "30.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/New_York_Giants> .
+
+<http://dbpedia.org/resource/John_McGraw__14> ns1:AtBats "12.0"^^xsd:float ;
+    ns1:Doubles "0.0"^^xsd:float ;
+    ns1:Games "5.0"^^xsd:float ;
+    ns1:Hits "4.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.467"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "0.0"^^xsd:float ;
+    ns1:RunsBattedIn "0.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.333"^^xsd:float ;
+    ns1:StolenBases "0.0"^^xsd:float ;
+    ns1:StrikeOuts "0.0"^^xsd:float ;
+    ns1:Triples "0.0"^^xsd:float ;
+    ns1:Year "1904.0"^^xsd:float ;
+    ns1:age "31.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/New_York_Giants> .
+
+<http://dbpedia.org/resource/John_McGraw__15> ns1:AtBats "0.0"^^xsd:float ;
+    ns1:Doubles "0.0"^^xsd:float ;
+    ns1:Games "3.0"^^xsd:float ;
+    ns1:Hits "0.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "0.0"^^xsd:float ;
+    ns1:RunsBattedIn "0.0"^^xsd:float ;
+    ns1:StolenBases "1.0"^^xsd:float ;
+    ns1:StrikeOuts "0.0"^^xsd:float ;
+    ns1:Triples "0.0"^^xsd:float ;
+    ns1:Year "1905.0"^^xsd:float ;
+    ns1:age "32.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/New_York_Giants> .
+
+<http://dbpedia.org/resource/John_McGraw__16> ns1:AtBats "2.0"^^xsd:float ;
+    ns1:Doubles "0.0"^^xsd:float ;
+    ns1:Games "4.0"^^xsd:float ;
+    ns1:Hits "0.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.333"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "0.0"^^xsd:float ;
+    ns1:RunsBattedIn "0.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.0"^^xsd:float ;
+    ns1:StolenBases "0.0"^^xsd:float ;
+    ns1:StrikeOuts "0.0"^^xsd:float ;
+    ns1:Triples "0.0"^^xsd:float ;
+    ns1:Year "1906.0"^^xsd:float ;
+    ns1:age "33.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/New_York_Giants> .
+
+<http://dbpedia.org/resource/John_McGraw__17> ns1:BaseballSeasonGames "148.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "62.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "86.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWon <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1899.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/NL> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/John_McGraw__18> ns1:BaseballSeasonGames "190.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "96.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "94.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWon <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1901.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/AL> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/John_McGraw__19> ns1:BaseballSeasonGames "3249.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "1288.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "1961.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames "47.0"^^xsd:float ;
+    ns1:PostSeasonLost "24.0"^^xsd:float ;
+    ns1:PostSeasonWon "23.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1902.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/New_York_Giants> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/John_McGraw__2> ns1:AtBats "286.0"^^xsd:float ;
+    ns1:Doubles "13.0"^^xsd:float ;
+    ns1:Games "79.0"^^xsd:float ;
+    ns1:Hits "77.0"^^xsd:float ;
+    ns1:HomeRuns "1.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.355"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "41.0"^^xsd:float ;
+    ns1:RunsBattedIn "26.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.339"^^xsd:float ;
+    ns1:StolenBases "15.0"^^xsd:float ;
+    ns1:StrikeOuts "21.0"^^xsd:float ;
+    ns1:Triples "2.0"^^xsd:float ;
+    ns1:Year "1892.0"^^xsd:float ;
+    ns1:age "19.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__20> ns1:BaseballSeasonGames "94.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "39.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "55.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames "7.0"^^xsd:float ;
+    ns1:PostSeasonLost "4.0"^^xsd:float ;
+    ns1:PostSeasonWon "3.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1924.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/New_York_Giants> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/John_McGraw__21> ns1:BaseballSeasonGames "379.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "180.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "199.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWon <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1925.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/New_York_Giants> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/John_McGraw__22> ns1:BaseballSeasonGames "651.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "283.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "368.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonGames <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWon <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1928.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/New_York_Giants> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/John_McGraw__3> ns1:AtBats "480.0"^^xsd:float ;
+    ns1:Doubles "9.0"^^xsd:float ;
+    ns1:Games "127.0"^^xsd:float ;
+    ns1:Hits "154.0"^^xsd:float ;
+    ns1:HomeRuns "5.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.454"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "123.0"^^xsd:float ;
+    ns1:RunsBattedIn "64.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.413"^^xsd:float ;
+    ns1:StolenBases "38.0"^^xsd:float ;
+    ns1:StrikeOuts "11.0"^^xsd:float ;
+    ns1:Triples "10.0"^^xsd:float ;
+    ns1:Year "1893.0"^^xsd:float ;
+    ns1:age "20.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__4> ns1:AtBats "512.0"^^xsd:float ;
+    ns1:Doubles "18.0"^^xsd:float ;
+    ns1:Games "124.0"^^xsd:float ;
+    ns1:Hits "174.0"^^xsd:float ;
+    ns1:HomeRuns "1.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.451"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "156.0"^^xsd:float ;
+    ns1:RunsBattedIn "92.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.436"^^xsd:float ;
+    ns1:StolenBases "78.0"^^xsd:float ;
+    ns1:StrikeOuts "12.0"^^xsd:float ;
+    ns1:Triples "14.0"^^xsd:float ;
+    ns1:Year "1894.0"^^xsd:float ;
+    ns1:age "21.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__5> ns1:AtBats "388.0"^^xsd:float ;
+    ns1:Doubles "13.0"^^xsd:float ;
+    ns1:Games "96.0"^^xsd:float ;
+    ns1:Hits "143.0"^^xsd:float ;
+    ns1:HomeRuns "2.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.459"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "110.0"^^xsd:float ;
+    ns1:RunsBattedIn "48.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.448"^^xsd:float ;
+    ns1:StolenBases "61.0"^^xsd:float ;
+    ns1:StrikeOuts "9.0"^^xsd:float ;
+    ns1:Triples "6.0"^^xsd:float ;
+    ns1:Year "1895.0"^^xsd:float ;
+    ns1:age "22.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__6> ns1:AtBats "77.0"^^xsd:float ;
+    ns1:Doubles "2.0"^^xsd:float ;
+    ns1:Games "23.0"^^xsd:float ;
+    ns1:Hits "25.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.422"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "20.0"^^xsd:float ;
+    ns1:RunsBattedIn "14.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.403"^^xsd:float ;
+    ns1:StolenBases "13.0"^^xsd:float ;
+    ns1:StrikeOuts "4.0"^^xsd:float ;
+    ns1:Triples "2.0"^^xsd:float ;
+    ns1:Year "1896.0"^^xsd:float ;
+    ns1:age "23.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__7> ns1:AtBats "391.0"^^xsd:float ;
+    ns1:Doubles "15.0"^^xsd:float ;
+    ns1:Games "106.0"^^xsd:float ;
+    ns1:Hits "127.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.471"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "90.0"^^xsd:float ;
+    ns1:RunsBattedIn "48.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.379"^^xsd:float ;
+    ns1:StolenBases "44.0"^^xsd:float ;
+    ns1:StrikeOuts "15.0"^^xsd:float ;
+    ns1:Triples "3.0"^^xsd:float ;
+    ns1:Year "1897.0"^^xsd:float ;
+    ns1:age "24.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__8> ns1:AtBats "515.0"^^xsd:float ;
+    ns1:Doubles "8.0"^^xsd:float ;
+    ns1:Games "143.0"^^xsd:float ;
+    ns1:Hits "176.0"^^xsd:float ;
+    ns1:HomeRuns "0.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.475"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "143.0"^^xsd:float ;
+    ns1:RunsBattedIn "53.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.396"^^xsd:float ;
+    ns1:StolenBases "43.0"^^xsd:float ;
+    ns1:StrikeOuts "13.0"^^xsd:float ;
+    ns1:Triples "10.0"^^xsd:float ;
+    ns1:Year "1898.0"^^xsd:float ;
+    ns1:age "25.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/John_McGraw__9> ns1:AtBats "399.0"^^xsd:float ;
+    ns1:Doubles "13.0"^^xsd:float ;
+    ns1:Games "117.0"^^xsd:float ;
+    ns1:Hits "156.0"^^xsd:float ;
+    ns1:HomeRuns "1.0"^^xsd:float ;
+    ns1:MinorLeagueLevel <http://dbpedia.org/resource/NL> ;
+    ns1:OnBasePercentage "0.547"^^xsd:float ;
+    ns1:OnBasePlusSlugging <http://dbpedia.org/resource//> ;
+    ns1:Runs "140.0"^^xsd:float ;
+    ns1:RunsBattedIn "33.0"^^xsd:float ;
+    ns1:SluggingPercentage "0.446"^^xsd:float ;
+    ns1:StolenBases "73.0"^^xsd:float ;
+    ns1:StrikeOuts "21.0"^^xsd:float ;
+    ns1:Triples "3.0"^^xsd:float ;
+    ns1:Year "1899.0"^^xsd:float ;
+    ns1:age "26.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Baltimore_Orioles> .
+
+<http://dbpedia.org/resource/Mike_Trout__1> ns1:BaseballSeason "2012, 2015–17/"^^xsd:string ;
+    ns1:Count "4/"^^xsd:string ;
+    ns1:category "Adjusted OPS+ leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__10> ns1:BaseballSeason "2014/"^^xsd:string ;
+    ns1:Count "1/"^^xsd:string ;
+    ns1:category "Total bases leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__11> ns1:BaseballSeason "2012, 2013, 2015, 2016/"^^xsd:string ;
+    ns1:Count "4/"^^xsd:string ;
+    ns1:category "Wins above replacement leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__12> ns1:BaseballSeason "Notes: Per Baseball-Reference.com. Through 2017 season./"^^xsd:string ;
+    ns1:Count "Notes: Per Baseball-Reference.com. Through 2017 season./"^^xsd:string ;
+    ns1:category "Notes: Per Baseball-Reference.com. Through 2017 season./"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__2> ns1:BaseballSeason "2013, 2016/"^^xsd:string ;
+    ns1:Count "2/"^^xsd:string ;
+    ns1:category "Bases on balls leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__3> ns1:BaseballSeason "2014/"^^xsd:string ;
+    ns1:Count "1/"^^xsd:string ;
+    ns1:category "Extra base hits leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__4> ns1:BaseballSeason "2016, 2017/"^^xsd:string ;
+    ns1:Count "2/"^^xsd:string ;
+    ns1:category "On-base percentage leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__5> ns1:BaseballSeason "2015, 2017/"^^xsd:string ;
+    ns1:Count "2/"^^xsd:string ;
+    ns1:category "On-base plus slugging leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__6> ns1:BaseballSeason "2014/"^^xsd:string ;
+    ns1:Count "1/"^^xsd:string ;
+    ns1:category "Runs batted in leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__7> ns1:BaseballSeason "2012−14, 2016/"^^xsd:string ;
+    ns1:Count "4/"^^xsd:string ;
+    ns1:category "Runs scored leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__8> ns1:BaseballSeason "2015, 2017/"^^xsd:string ;
+    ns1:Count "2/"^^xsd:string ;
+    ns1:category "Slugging percentage leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Mike_Trout__9> ns1:BaseballSeason "2012/"^^xsd:string ;
+    ns1:Count "1/"^^xsd:string ;
+    ns1:category "Stolen bases leader/"^^xsd:string .
+
+<http://dbpedia.org/resource/Terry_Francona__1> ns1:BaseballSeasonGames "648.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "363.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "285.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage "0.44"^^xsd:float ;
+    ns1:PostSeasonGames <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonLost <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWon <http://dbpedia.org/resource//> ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "1997.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Philadelphia_Phillies> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Terry_Francona__2> ns1:BaseballSeasonGames "1296.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "552.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "744.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage "0.574"^^xsd:float ;
+    ns1:PostSeasonGames "45.0"^^xsd:float ;
+    ns1:PostSeasonLost "17.0"^^xsd:float ;
+    ns1:PostSeasonWon "28.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "2004.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Boston_Red_Sox> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Terry_Francona__3> ns1:BaseballSeasonGames "808.0"^^xsd:float ;
+    ns1:BaseballSeasonLost "354.0"^^xsd:float ;
+    ns1:BaseballSeasonWon "454.0"^^xsd:float ;
+    ns1:BaseballSeasonWonPercentage "0.562"^^xsd:float ;
+    ns1:PostSeasonGames "21.0"^^xsd:float ;
+    ns1:PostSeasonLost "9.0"^^xsd:float ;
+    ns1:PostSeasonWon "12.0"^^xsd:float ;
+    ns1:PostSeasonWonPercentage <http://dbpedia.org/resource//> ;
+    ns1:from "2013.0"^^xsd:float ;
+    ns1:team <http://dbpedia.org/resource/Cleveland_Indians> ;
+    ns1:to <http://dbpedia.org/resource//> .
+
+<http://dbpedia.org/resource/Derek_Jeter> ns1:award <http://dbpedia.org/resource/Derek_Jeter__1>,
+        <http://dbpedia.org/resource/Derek_Jeter__10>,
+        <http://dbpedia.org/resource/Derek_Jeter__11>,
+        <http://dbpedia.org/resource/Derek_Jeter__12>,
+        <http://dbpedia.org/resource/Derek_Jeter__13>,
+        <http://dbpedia.org/resource/Derek_Jeter__14>,
+        <http://dbpedia.org/resource/Derek_Jeter__15>,
+        <http://dbpedia.org/resource/Derek_Jeter__16>,
+        <http://dbpedia.org/resource/Derek_Jeter__17>,
+        <http://dbpedia.org/resource/Derek_Jeter__18>,
+        <http://dbpedia.org/resource/Derek_Jeter__19>,
+        <http://dbpedia.org/resource/Derek_Jeter__2>,
+        <http://dbpedia.org/resource/Derek_Jeter__20>,
+        <http://dbpedia.org/resource/Derek_Jeter__21>,
+        <http://dbpedia.org/resource/Derek_Jeter__22>,
+        <http://dbpedia.org/resource/Derek_Jeter__23>,
+        <http://dbpedia.org/resource/Derek_Jeter__24>,
+        <http://dbpedia.org/resource/Derek_Jeter__25>,
+        <http://dbpedia.org/resource/Derek_Jeter__26>,
+        <http://dbpedia.org/resource/Derek_Jeter__27>,
+        <http://dbpedia.org/resource/Derek_Jeter__28>,
+        <http://dbpedia.org/resource/Derek_Jeter__29>,
+        <http://dbpedia.org/resource/Derek_Jeter__3>,
+        <http://dbpedia.org/resource/Derek_Jeter__30>,
+        <http://dbpedia.org/resource/Derek_Jeter__31>,
+        <http://dbpedia.org/resource/Derek_Jeter__32>,
+        <http://dbpedia.org/resource/Derek_Jeter__33>,
+        <http://dbpedia.org/resource/Derek_Jeter__34>,
+        <http://dbpedia.org/resource/Derek_Jeter__35>,
+        <http://dbpedia.org/resource/Derek_Jeter__36>,
+        <http://dbpedia.org/resource/Derek_Jeter__37>,
+        <http://dbpedia.org/resource/Derek_Jeter__38>,
+        <http://dbpedia.org/resource/Derek_Jeter__39>,
+        <http://dbpedia.org/resource/Derek_Jeter__4>,
+        <http://dbpedia.org/resource/Derek_Jeter__40>,
+        <http://dbpedia.org/resource/Derek_Jeter__5>,
+        <http://dbpedia.org/resource/Derek_Jeter__6>,
+        <http://dbpedia.org/resource/Derek_Jeter__7>,
+        <http://dbpedia.org/resource/Derek_Jeter__8>,
+        <http://dbpedia.org/resource/Derek_Jeter__9> .
+
+<http://dbpedia.org/resource/David_Ortiz> ns1:achievement <http://dbpedia.org/resource/David_Ortiz__1>,
+        <http://dbpedia.org/resource/David_Ortiz__2>,
+        <http://dbpedia.org/resource/David_Ortiz__3>,
+        <http://dbpedia.org/resource/David_Ortiz__4>,
+        <http://dbpedia.org/resource/David_Ortiz__5>,
+        <http://dbpedia.org/resource/David_Ortiz__6>,
+        <http://dbpedia.org/resource/David_Ortiz__7>,
+        <http://dbpedia.org/resource/David_Ortiz__8>,
+        <http://dbpedia.org/resource/David_Ortiz__9> .
+
+<http://dbpedia.org/resource/Mike_Trout> ns1:achievement <http://dbpedia.org/resource/Mike_Trout__1>,
+        <http://dbpedia.org/resource/Mike_Trout__10>,
+        <http://dbpedia.org/resource/Mike_Trout__11>,
+        <http://dbpedia.org/resource/Mike_Trout__12>,
+        <http://dbpedia.org/resource/Mike_Trout__2>,
+        <http://dbpedia.org/resource/Mike_Trout__3>,
+        <http://dbpedia.org/resource/Mike_Trout__4>,
+        <http://dbpedia.org/resource/Mike_Trout__5>,
+        <http://dbpedia.org/resource/Mike_Trout__6>,
+        <http://dbpedia.org/resource/Mike_Trout__7>,
+        <http://dbpedia.org/resource/Mike_Trout__8>,
+        <http://dbpedia.org/resource/Mike_Trout__9> .
+
+<http://dbpedia.org/resource/Barry_Bonds> ns1:achievement <http://dbpedia.org/resource/Barry_Bonds__1>,
+        <http://dbpedia.org/resource/Barry_Bonds__10>,
+        <http://dbpedia.org/resource/Barry_Bonds__11>,
+        <http://dbpedia.org/resource/Barry_Bonds__12>,
+        <http://dbpedia.org/resource/Barry_Bonds__13>,
+        <http://dbpedia.org/resource/Barry_Bonds__14>,
+        <http://dbpedia.org/resource/Barry_Bonds__15>,
+        <http://dbpedia.org/resource/Barry_Bonds__16>,
+        <http://dbpedia.org/resource/Barry_Bonds__17>,
+        <http://dbpedia.org/resource/Barry_Bonds__18>,
+        <http://dbpedia.org/resource/Barry_Bonds__19>,
+        <http://dbpedia.org/resource/Barry_Bonds__2>,
+        <http://dbpedia.org/resource/Barry_Bonds__20>,
+        <http://dbpedia.org/resource/Barry_Bonds__3>,
+        <http://dbpedia.org/resource/Barry_Bonds__4>,
+        <http://dbpedia.org/resource/Barry_Bonds__5>,
+        <http://dbpedia.org/resource/Barry_Bonds__6>,
+        <http://dbpedia.org/resource/Barry_Bonds__7>,
+        <http://dbpedia.org/resource/Barry_Bonds__8>,
+        <http://dbpedia.org/resource/Barry_Bonds__9> .
+
+ns1:Winner ns1:AwardedBy <http://dbpedia.org/resource/2000_to_2006%2C_starting_with_10_home_runs%2C_and_ending_with_54> .
+

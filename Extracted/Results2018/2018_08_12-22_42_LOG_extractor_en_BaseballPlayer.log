@@ -1,0 +1,344 @@
+INFO 08/12 10:42:45 PM You're analyzing wiki lists and tables of wiki chapter: en, source: BaseballPlayer
+INFO 08/12 10:42:45 PM Analyzing Mike_Trout
+INFO 08/12 10:42:45 PM Analyzing resource: Mike_Trout
+INFO 08/12 10:42:45 PM Table under section: Statistical achievements
+INFO 08/12 10:42:45 PM Headers Found
+INFO 08/12 10:42:45 PM Data refined
+INFO 08/12 10:42:45 PM Rows extracted: 12
+INFO 08/12 10:42:45 PM Data extracted for this table: 36
+INFO 08/12 10:42:45 PM Header: Category mapped with: category
+INFO 08/12 10:42:46 PM Header: Times mapped with: Count
+INFO 08/12 10:42:46 PM Header: Seasons mapped with: BaseballSeason
+INFO 08/12 10:43:05 PM Lists found under Sections: ['Awards and achievements - Awards and exhibition team selections']
+INFO 08/12 10:43:21 PM Analyzing Babe_Ruth
+INFO 08/12 10:43:22 PM Analyzing resource: Babe_Ruth
+INFO 08/12 10:43:22 PM No Tables found for this resource.
+INFO 08/12 10:43:29 PM Lists found under Sections: ['Bibliography', 'Further reading - Articles', 'Further reading - Books']
+INFO 08/12 10:43:29 PM Analyzing Cy_Young
+INFO 08/12 10:43:30 PM Analyzing resource: Cy_Young
+INFO 08/12 10:43:30 PM No Tables found for this resource.
+INFO 08/12 10:43:36 PM Lists found under Sections: ['Notes']
+INFO 08/12 10:43:36 PM Analyzing Jake_Arrieta
+INFO 08/12 10:43:36 PM Analyzing resource: Jake_Arrieta
+INFO 08/12 10:43:36 PM Table under section: Accomplishments and awards
+INFO 08/12 10:43:36 PM Headers Found
+INFO 08/12 10:43:36 PM Data refined
+INFO 08/12 10:43:36 PM Rows extracted: 26
+INFO 08/12 10:43:36 PM Data extracted for this table: 78
+INFO 08/12 10:43:36 PM Header: Award/Honor mapped with: award
+INFO 08/12 10:43:37 PM Header: Date mapped with: date
+INFO 08/12 10:43:37 PM Header: Ref mapped with: reference
+INFO 08/12 10:44:07 PM Lists found under Sections: []
+INFO 08/12 10:44:07 PM Analyzing Zack_Greinke
+INFO 08/12 10:44:07 PM Analyzing resource: Zack_Greinke
+INFO 08/12 10:44:07 PM No Tables found for this resource.
+INFO 08/12 10:44:11 PM Lists found under Sections: ['Pitching style']
+INFO 08/12 10:44:15 PM Analyzing Jackie_Robinson
+INFO 08/12 10:44:16 PM Analyzing resource: Jackie_Robinson
+INFO 08/12 10:44:16 PM No Tables found for this resource.
+INFO 08/12 10:44:20 PM Lists found under Sections: ['Legacy - Portrayals on stage, film and television', 'References - Bibliography']
+INFO 08/12 10:44:25 PM Analyzing Bryce_Harper
+INFO 08/12 10:44:26 PM Analyzing resource: Bryce_Harper
+INFO 08/12 10:44:26 PM Table under section: Career accomplishments
+INFO 08/12 10:44:26 PM Headers Found
+INFO 08/12 10:44:26 PM Data refined
+INFO 08/12 10:44:26 PM Rows extracted: 25
+INFO 08/12 10:44:26 PM Data extracted for this table: 75
+INFO 08/12 10:44:26 PM Header: Year mapped with: Year
+INFO 08/12 10:44:26 PM Header: Award / Honor mapped with: award
+INFO 08/12 10:44:26 PM Header: Refs mapped with: reference
+INFO 08/12 10:44:39 PM Lists found under Sections: []
+INFO 08/12 10:44:39 PM Analyzing Barry_Bonds
+INFO 08/12 10:44:39 PM Analyzing resource: Barry_Bonds
+INFO 08/12 10:44:39 PM Table under section: Other accomplishments
+INFO 08/12 10:44:39 PM Headers Found
+INFO 08/12 10:44:39 PM Data refined
+INFO 08/12 10:44:39 PM Rows extracted: 13
+INFO 08/12 10:44:39 PM Data extracted for this table: 39
+INFO 08/12 10:44:39 PM Header: Category mapped with: category
+INFO 08/12 10:44:39 PM Header: Times mapped with: Count
+INFO 08/12 10:44:39 PM Header: Seasons mapped with: BaseballSeason
+INFO 08/12 10:44:39 PM Table under section: Other accomplishments
+INFO 08/12 10:44:39 PM Headers Found
+INFO 08/12 10:44:39 PM Data refined
+INFO 08/12 10:44:39 PM Rows extracted: 7
+INFO 08/12 10:44:39 PM Data extracted for this table: 28
+INFO 08/12 10:44:39 PM Header: Award mapped with: Award
+INFO 08/12 10:44:39 PM Header: # of Times mapped with: count
+INFO 08/12 10:44:39 PM Header: Dates mapped with: TimePeriod
+INFO 08/12 10:44:39 PM Header: Refs mapped with: reference
+INFO 08/12 10:44:43 PM Lists found under Sections: ['Career distinctions - Records held', 'Career distinctions - Records shared', 'Career distinctions - Other accomplishments']
+INFO 08/12 10:44:48 PM Analyzing Clayton_Kershaw
+INFO 08/12 10:44:49 PM Analyzing resource: Clayton_Kershaw
+INFO 08/12 10:44:49 PM Table under section: Awards
+INFO 08/12 10:44:49 PM Headers Found
+INFO 08/12 10:44:49 PM Data refined
+INFO 08/12 10:44:49 PM Rows extracted: 22
+INFO 08/12 10:44:49 PM Data extracted for this table: 88
+INFO 08/12 10:44:49 PM Header: Name of award mapped with: award
+INFO 08/12 10:44:49 PM Header: Times mapped with: Count
+INFO 08/12 10:44:49 PM Header: Dates mapped with: TimePeriod
+INFO 08/12 10:44:49 PM Header: Ref mapped with: reference
+INFO 08/12 10:44:49 PM Table under section: Annual statistical achievements
+INFO 08/12 10:44:49 PM Headers Found
+INFO 08/12 10:44:49 PM Data refined
+INFO 08/12 10:44:49 PM Rows extracted: 10
+INFO 08/12 10:44:49 PM Data extracted for this table: 30
+INFO 08/12 10:44:49 PM Header: Category mapped with: category
+INFO 08/12 10:44:49 PM Header: Times mapped with: Count
+INFO 08/12 10:44:49 PM Header: Dates mapped with: TimePeriod
+INFO 08/12 10:44:53 PM Lists found under Sections: []
+INFO 08/12 10:44:53 PM Analyzing Hank_Aaron
+INFO 08/12 10:44:53 PM Analyzing resource: Hank_Aaron
+INFO 08/12 10:44:53 PM No Tables found for this resource.
+INFO 08/12 10:44:57 PM Lists found under Sections: []
+INFO 08/12 10:44:57 PM Analyzing Derek_Jeter
+INFO 08/12 10:44:57 PM Analyzing resource: Derek_Jeter
+INFO 08/12 10:44:58 PM Table under section: Awards
+INFO 08/12 10:44:58 PM Headers Found
+INFO 08/12 10:44:58 PM Data refined
+INFO 08/12 10:44:58 PM Rows extracted: 40
+INFO 08/12 10:44:58 PM Data extracted for this table: 120
+INFO 08/12 10:44:58 PM Header: Award / Honor mapped with: award
+INFO 08/12 10:44:58 PM Header: Time(s) mapped with: time
+INFO 08/12 10:44:58 PM Header: Date(s) mapped with: date
+INFO 08/12 10:45:01 PM Lists found under Sections: ['Career highlights - Statistical highlights']
+INFO 08/12 10:45:02 PM Analyzing Miguel_Cabrera
+INFO 08/12 10:45:03 PM Analyzing resource: Miguel_Cabrera
+INFO 08/12 10:45:03 PM No Tables found for this resource.
+INFO 08/12 10:45:07 PM Lists found under Sections: ['Awards and highlights']
+INFO 08/12 10:45:12 PM Analyzing Stan_Musial
+INFO 08/12 10:45:13 PM Analyzing resource: Stan_Musial
+INFO 08/12 10:45:13 PM Table under section: Hitting
+DEBUG 08/12 10:45:13 PM  E2 Unable to find headers - resource: Stan_Musial
+INFO 08/12 10:45:13 PM Table under section: Fielding
+DEBUG 08/12 10:45:13 PM  E2 Unable to find headers - resource: Stan_Musial
+INFO 08/12 10:45:13 PM Table under section: Value
+DEBUG 08/12 10:45:13 PM  E2 Unable to find headers - resource: Stan_Musial
+INFO 08/12 10:45:17 PM Lists found under Sections: ['Bibliography']
+INFO 08/12 10:45:17 PM Analyzing John_McGraw
+INFO 08/12 10:45:17 PM Analyzing resource: John_McGraw
+INFO 08/12 10:45:17 PM Table under section: Statistics
+INFO 08/12 10:45:17 PM Headers Found
+INFO 08/12 10:45:17 PM Data refined
+INFO 08/12 10:45:17 PM Rows extracted: 16
+INFO 08/12 10:45:17 PM Data extracted for this table: 285
+INFO 08/12 10:45:17 PM Header: Year mapped with: Year
+INFO 08/12 10:45:17 PM Header: Age mapped with: age
+INFO 08/12 10:45:17 PM Header: Team mapped with: team
+INFO 08/12 10:45:17 PM Header: Lg mapped with: MinorLeagueLevel
+INFO 08/12 10:45:18 PM Header: G mapped with: Games
+INFO 08/12 10:45:18 PM Header: AB mapped with: AtBats
+INFO 08/12 10:45:18 PM Header: R mapped with: Runs
+INFO 08/12 10:45:18 PM Header: H mapped with: Hits
+INFO 08/12 10:45:18 PM Header: 2B mapped with: Doubles
+INFO 08/12 10:45:18 PM Header: 3B mapped with: Triples
+INFO 08/12 10:45:18 PM Header: HR mapped with: HomeRuns
+INFO 08/12 10:45:18 PM Header: RBI mapped with: RunsBattedIn
+INFO 08/12 10:45:18 PM Header: SB mapped with: StolenBases
+INFO 08/12 10:45:18 PM Header: SO mapped with: StrikeOuts
+INFO 08/12 10:45:18 PM Key BA not found. Check actual dictionary on mapping_rules.py
+INFO 08/12 10:45:18 PM Header: OBP mapped with: OnBasePercentage
+INFO 08/12 10:45:18 PM Header: SLG mapped with: SluggingPercentage
+INFO 08/12 10:45:18 PM Header: OPS mapped with: OnBasePlusSlugging
+INFO 08/12 10:45:20 PM Table under section: Overall record
+INFO 08/12 10:45:20 PM Headers Found
+INFO 08/12 10:45:20 PM Data refined
+INFO 08/12 10:45:20 PM Rows extracted: 6
+INFO 08/12 10:45:20 PM Data extracted for this table: 66
+INFO 08/12 10:45:20 PM Header: Team mapped with: team
+INFO 08/12 10:45:20 PM Header: From mapped with: from
+INFO 08/12 10:45:20 PM Header: To mapped with: to
+INFO 08/12 10:45:20 PM Header: Regular season record - G mapped with: BaseballSeasonGames
+INFO 08/12 10:45:20 PM Header: Regular season record - W mapped with: BaseballSeasonWon
+INFO 08/12 10:45:20 PM Header: Regular season record - L mapped with: BaseballSeasonLost
+INFO 08/12 10:45:20 PM Header: Regular season record - Win% mapped with: BaseballSeasonWonPercentage
+INFO 08/12 10:45:20 PM Header: Post-season record - G mapped with: PostSeasonGames
+INFO 08/12 10:45:20 PM Header: Post-season record - W mapped with: PostSeasonWon
+INFO 08/12 10:45:20 PM Header: Post-season record - L mapped with: PostSeasonLost
+INFO 08/12 10:45:20 PM Header: Post-season record - Win% mapped with: PostSeasonWonPercentage
+INFO 08/12 10:45:20 PM Table under section: New York Giants managerial record
+INFO 08/12 10:45:20 PM Headers Found
+INFO 08/12 10:45:20 PM Data refined
+INFO 08/12 10:45:20 PM Rows extracted: 4
+INFO 08/12 10:45:20 PM Data extracted for this table: 40
+INFO 08/12 10:45:20 PM Section New York Giants managerial record not found. Check actual dictionary
+INFO 08/12 10:45:24 PM Lists found under Sections: ['Sources']
+INFO 08/12 10:45:24 PM Analyzing A._J._Hinch
+INFO 08/12 10:45:24 PM Analyzing resource: A._J._Hinch
+INFO 08/12 10:45:24 PM Table under section: Managerial record
+INFO 08/12 10:45:24 PM Headers Found
+INFO 08/12 10:45:24 PM Data refined
+INFO 08/12 10:45:24 PM Rows extracted: 2
+INFO 08/12 10:45:24 PM Data extracted for this table: 22
+INFO 08/12 10:45:24 PM Header: Team mapped with: team
+INFO 08/12 10:45:24 PM Header: From mapped with: from
+INFO 08/12 10:45:24 PM Header: To mapped with: to
+INFO 08/12 10:45:24 PM Header: Regular season record - G mapped with: BaseballSeasonGames
+INFO 08/12 10:45:24 PM Header: Regular season record - W mapped with: BaseballSeasonWon
+INFO 08/12 10:45:25 PM Header: Regular season record - L mapped with: BaseballSeasonLost
+INFO 08/12 10:45:25 PM Header: Regular season record - Win% mapped with: BaseballSeasonWonPercentage
+INFO 08/12 10:45:25 PM Header: Post-season record - G mapped with: PostSeasonGames
+INFO 08/12 10:45:25 PM Header: Post-season record - W mapped with: PostSeasonWon
+INFO 08/12 10:45:25 PM Header: Post-season record - L mapped with: PostSeasonLost
+INFO 08/12 10:45:25 PM Header: Post-season record - Win% mapped with: PostSeasonWonPercentage
+INFO 08/12 10:45:29 PM Lists found under Sections: []
+INFO 08/12 10:45:29 PM Analyzing Earl_Weaver
+INFO 08/12 10:45:29 PM Analyzing resource: Earl_Weaver
+INFO 08/12 10:45:29 PM Table under section: Managerial record
+INFO 08/12 10:45:29 PM Headers Found
+INFO 08/12 10:45:29 PM Data refined
+INFO 08/12 10:45:29 PM Rows extracted: 2
+INFO 08/12 10:45:29 PM Data extracted for this table: 18
+INFO 08/12 10:45:29 PM Header: Team mapped with: team
+INFO 08/12 10:45:29 PM Header: From mapped with: from
+INFO 08/12 10:45:29 PM Header: To mapped with: to
+INFO 08/12 10:45:29 PM Header: Regular season record - W mapped with: BaseballSeasonWon
+INFO 08/12 10:45:29 PM Header: Regular season record - L mapped with: BaseballSeasonLost
+INFO 08/12 10:45:29 PM Header: Regular season record - Win% mapped with: BaseballSeasonWonPercentage
+INFO 08/12 10:45:29 PM Header: Post-season record - W mapped with: PostSeasonWon
+INFO 08/12 10:45:29 PM Header: Post-season record - L mapped with: PostSeasonLost
+INFO 08/12 10:45:29 PM Header: Post-season record - Win% mapped with: PostSeasonWonPercentage
+INFO 08/12 10:45:33 PM Lists found under Sections: []
+INFO 08/12 10:45:33 PM Analyzing Bobby_Cox
+INFO 08/12 10:45:33 PM Analyzing resource: Bobby_Cox
+INFO 08/12 10:45:33 PM Table under section: Managerial record
+INFO 08/12 10:45:33 PM Headers Found
+INFO 08/12 10:45:33 PM Data refined
+INFO 08/12 10:45:33 PM Rows extracted: 3
+INFO 08/12 10:45:33 PM Data extracted for this table: 33
+INFO 08/12 10:45:33 PM Header: Team mapped with: team
+INFO 08/12 10:45:34 PM Header: From mapped with: from
+INFO 08/12 10:45:34 PM Header: To mapped with: to
+INFO 08/12 10:45:34 PM Header: Regular season record - G mapped with: BaseballSeasonGames
+INFO 08/12 10:45:34 PM Header: Regular season record - W mapped with: BaseballSeasonWon
+INFO 08/12 10:45:34 PM Header: Regular season record - L mapped with: BaseballSeasonLost
+INFO 08/12 10:45:34 PM Header: Regular season record - Win% mapped with: BaseballSeasonWonPercentage
+INFO 08/12 10:45:34 PM Header: Post-season record - G mapped with: PostSeasonGames
+INFO 08/12 10:45:34 PM Header: Post-season record - W mapped with: PostSeasonWon
+INFO 08/12 10:45:34 PM Header: Post-season record - L mapped with: PostSeasonLost
+INFO 08/12 10:45:34 PM Header: Post-season record - Win% mapped with: PostSeasonWonPercentage
+INFO 08/12 10:45:39 PM Lists found under Sections: []
+INFO 08/12 10:45:39 PM Analyzing Terry_Francona
+INFO 08/12 10:45:39 PM Analyzing resource: Terry_Francona
+INFO 08/12 10:45:39 PM Table under section: Managerial record
+INFO 08/12 10:45:39 PM Headers Found
+INFO 08/12 10:45:39 PM Data refined
+INFO 08/12 10:45:39 PM Rows extracted: 3
+INFO 08/12 10:45:39 PM Data extracted for this table: 33
+INFO 08/12 10:45:39 PM Header: Team mapped with: team
+INFO 08/12 10:45:40 PM Header: From mapped with: from
+INFO 08/12 10:45:40 PM Header: To mapped with: to
+INFO 08/12 10:45:40 PM Header: Regular season record - G mapped with: BaseballSeasonGames
+INFO 08/12 10:45:40 PM Header: Regular season record - W mapped with: BaseballSeasonWon
+INFO 08/12 10:45:40 PM Header: Regular season record - L mapped with: BaseballSeasonLost
+INFO 08/12 10:45:40 PM Header: Regular season record - Win% mapped with: BaseballSeasonWonPercentage
+INFO 08/12 10:45:40 PM Header: Post-season record - G mapped with: PostSeasonGames
+INFO 08/12 10:45:40 PM Header: Post-season record - W mapped with: PostSeasonWon
+INFO 08/12 10:45:40 PM Header: Post-season record - L mapped with: PostSeasonLost
+INFO 08/12 10:45:40 PM Header: Post-season record - Win% mapped with: PostSeasonWonPercentage
+INFO 08/12 10:45:45 PM Lists found under Sections: []
+INFO 08/12 10:45:45 PM Analyzing Clint_Hurdle
+INFO 08/12 10:45:45 PM Analyzing resource: Clint_Hurdle
+INFO 08/12 10:45:45 PM Table under section: Managerial record
+INFO 08/12 10:45:45 PM Headers Found
+INFO 08/12 10:45:45 PM Data refined
+INFO 08/12 10:45:45 PM Rows extracted: 2
+INFO 08/12 10:45:45 PM Data extracted for this table: 18
+INFO 08/12 10:45:45 PM Header: Team mapped with: team
+INFO 08/12 10:45:45 PM Header: From mapped with: from
+INFO 08/12 10:45:45 PM Header: To mapped with: to
+INFO 08/12 10:45:45 PM Header: Regular season record - W mapped with: BaseballSeasonWon
+INFO 08/12 10:45:45 PM Header: Regular season record - L mapped with: BaseballSeasonLost
+INFO 08/12 10:45:45 PM Header: Regular season record - Win% mapped with: BaseballSeasonWonPercentage
+INFO 08/12 10:45:45 PM Header: Post-season record - W mapped with: PostSeasonWon
+INFO 08/12 10:45:45 PM Header: Post-season record - L mapped with: PostSeasonLost
+INFO 08/12 10:45:45 PM Header: Post-season record - Win% mapped with: PostSeasonWonPercentage
+INFO 08/12 10:45:49 PM Lists found under Sections: []
+INFO 08/12 10:45:49 PM Analyzing Matt_Harvey
+INFO 08/12 10:45:50 PM Analyzing resource: Matt_Harvey
+INFO 08/12 10:45:50 PM No Tables found for this resource.
+INFO 08/12 10:45:53 PM Lists found under Sections: ['Awards and honors - Minor leagues', 'Awards and honors - Major league']
+INFO 08/12 10:45:58 PM Analyzing Mickey_Mantle
+INFO 08/12 10:45:58 PM Analyzing resource: Mickey_Mantle
+INFO 08/12 10:45:58 PM Table under section: Awards and achievements
+INFO 08/12 10:45:58 PM Headers Found
+INFO 08/12 10:45:58 PM Data refined
+INFO 08/12 10:45:58 PM Rows extracted: 10
+INFO 08/12 10:45:58 PM Data extracted for this table: 40
+INFO 08/12 10:45:58 PM Section Awards and achievements not found. Check actual dictionary
+INFO 08/12 10:46:02 PM Lists found under Sections: []
+INFO 08/12 10:46:02 PM Analyzing David_Ortiz
+INFO 08/12 10:46:03 PM Analyzing resource: David_Ortiz
+INFO 08/12 10:46:03 PM Table under section: 
+INFO 08/12 10:46:03 PM Headers Found
+INFO 08/12 10:46:03 PM Data refined
+INFO 08/12 10:46:03 PM Rows extracted: 2
+INFO 08/12 10:46:03 PM Data extracted for this table: 8
+INFO 08/12 10:46:03 PM Section  not found. Check actual dictionary
+INFO 08/12 10:46:03 PM Table under section: 
+INFO 08/12 10:46:03 PM Headers Found
+INFO 08/12 10:46:03 PM Data refined
+INFO 08/12 10:46:03 PM Rows extracted: 2
+INFO 08/12 10:46:03 PM Data extracted for this table: 6
+INFO 08/12 10:46:03 PM Section  not found. Check actual dictionary
+INFO 08/12 10:46:03 PM Table under section: 
+INFO 08/12 10:46:03 PM Headers Found
+INFO 08/12 10:46:03 PM Data refined
+INFO 08/12 10:46:03 PM Rows extracted: 13
+INFO 08/12 10:46:03 PM Data extracted for this table: 52
+INFO 08/12 10:46:03 PM Section  not found. Check actual dictionary
+INFO 08/12 10:46:03 PM Table under section: Annual statistical achievements
+INFO 08/12 10:46:03 PM Headers Found
+INFO 08/12 10:46:03 PM Data refined
+INFO 08/12 10:46:03 PM Rows extracted: 9
+INFO 08/12 10:46:03 PM Data extracted for this table: 36
+INFO 08/12 10:46:03 PM Header: Category mapped with: category
+INFO 08/12 10:46:03 PM Header: Times mapped with: Count
+INFO 08/12 10:46:03 PM Header: Dates mapped with: TimePeriod
+INFO 08/12 10:46:03 PM Header: Ref mapped with: reference
+INFO 08/12 10:46:06 PM Lists found under Sections: ['Career highlights - Records', 'Career highlights - Distinctions', 'Career highlights - Other accomplishments']
+INFO 08/12 10:46:08 PM Analyzing Willie_Mays
+INFO 08/12 10:46:09 PM Analyzing resource: Willie_Mays
+INFO 08/12 10:46:09 PM No Tables found for this resource.
+INFO 08/12 10:46:13 PM Lists found under Sections: []
+INFO 08/12 10:46:13 PM Analyzing Giancarlo_Stanton
+INFO 08/12 10:46:13 PM Analyzing resource: Giancarlo_Stanton
+INFO 08/12 10:46:13 PM No Tables found for this resource.
+INFO 08/12 10:46:17 PM Lists found under Sections: []
+INFO 08/12 10:46:17 PM Analyzing Nolan_Ryan
+INFO 08/12 10:46:18 PM Analyzing resource: Nolan_Ryan
+INFO 08/12 10:46:18 PM Table under section: Nohitters
+INFO 08/12 10:46:18 PM Headers Found
+INFO 08/12 10:46:18 PM Data refined
+INFO 08/12 10:46:18 PM Rows extracted: 7
+INFO 08/12 10:46:18 PM Data extracted for this table: 56
+INFO 08/12 10:46:18 PM Section Nohitters not found. Check actual dictionary
+INFO 08/12 10:46:22 PM Lists found under Sections: ['References - General references']
+INFO 08/12 10:46:22 PM There are 6 sections and sections without mapping rules
+INFO 08/12 10:46:22 PM There are 34 headers and sections without mapping rules
+INFO 08/12 10:46:22 PM There are 138 list sections extracted
+INFO 08/12 10:46:22 PM There are 229 list sections found
+INFO 08/12 10:46:22 PM End Of File reached, now you can serialize the graph
+INFO 08/12 10:46:22 PM Triples in the graph: 1664
+INFO 08/12 10:46:22 PM Graph serialized, filename: /Users/sachinmalepati/Documents/Dbpedia/tablist-extractor/Extracted/2018_08_12-22_46_T_Ext_en_BaseballPlayer.ttl
+INFO 08/12 10:46:22 PM REPORT:
+INFO 08/12 10:46:22 PM +           Total # resources analyzed: 25
+INFO 08/12 10:46:22 PM +           Total # tables found : 25
+INFO 08/12 10:46:22 PM +           Total # tables analyzed : 25
+INFO 08/12 10:46:22 PM +           Total # of table rows extracted: 236
+INFO 08/12 10:46:22 PM +           Total # of table data cells extracted : 1207
+INFO 08/12 10:46:22 PM +           Total # of exceptions extracting table's data : 0
+INFO 08/12 10:46:22 PM +           Total # of 'header not resolved' errors : 0
+INFO 08/12 10:46:22 PM +           Total # of 'no headers' errors : 3
+INFO 08/12 10:46:22 PM +           Total # of list sections found : 21
+INFO 08/12 10:46:22 PM +           Total # of 'no mapping rule' errors for section : 6
+INFO 08/12 10:46:22 PM +           Total # of 'no mapping rule' errors for headers : 34
+INFO 08/12 10:46:22 PM +           Total # of data cells extracted that needs to be mapped: 1207
+INFO 08/12 10:46:22 PM +           Total # of table's rows triples serialized : 198
+INFO 08/12 10:46:22 PM +           Total # of table's cells triples serialized : 990
+INFO 08/12 10:46:22 PM +           Total # of triples serialized : 1188
+INFO 08/12 10:46:22 PM +           Percentage of table mapping effectiveness  : 0.820
+INFO 08/12 10:46:22 PM +           Total # of lists elements found : 229
+INFO 08/12 10:46:22 PM +           Total # of list elements extracted : 138
+INFO 08/12 10:46:22 PM +           Percentage of list mapping effectiveness  : 0.603
